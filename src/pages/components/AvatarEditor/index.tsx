@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import SelectionWrapper from './SelectionWrapper';
 
 export default function AvatarEditor() {
   return (
@@ -14,23 +15,55 @@ export default function AvatarEditor() {
       <div className="w-5/6 md:w-2/3 mt-10">
         <div className="text-lg my-5">Choose your styles</div>
         <div className="grid gap-y-4 justify-items-center justify-between grid-rows-2 grid-cols-5 lg:flex">
-          <div className="w-12 h-12 md:w-16 md:h-16 rounded-lg border-3 border-solid border-black" />
-          <div className="w-12 h-12 md:w-16 md:h-16 rounded-lg border-3 border-solid border-black" />
-          <div className="w-12 h-12 md:w-16 md:h-16 rounded-lg border-3 border-solid border-black" />
-          <div className="w-12 h-12 md:w-16 md:h-16 rounded-lg border-3 border-solid border-black" />
-          <div className="w-12 h-12 md:w-16 md:h-16 rounded-lg border-3 border-solid border-black" />
-          <div className="w-12 h-12 md:w-16 md:h-16 rounded-lg border-3 border-solid border-black" />
-          <div className="w-12 h-12 md:w-16 md:h-16 rounded-lg border-3 border-solid border-black" />
-          <div className="w-12 h-12 md:w-16 md:h-16 rounded-lg border-3 border-solid border-black" />
-          <div className="w-12 h-12 md:w-16 md:h-16 rounded-lg border-3 border-solid border-black" />
-          <div className="w-12 h-12 md:w-16 md:h-16 rounded-lg border-3 border-solid border-black" />
+          <SelectionWrapper tooltip="Face">
+            <Image src="/avatar/face/face-0.svg" width={30} height={30} />
+          </SelectionWrapper>
+          <SelectionWrapper tooltip="Nose">
+            <Image src="/avatar/nose/nose-0.svg" width={30} height={30} />
+          </SelectionWrapper>
+          <SelectionWrapper tooltip="Mouth">
+            <Image src="/avatar/mouth/mouth-0.svg" width={30} height={30} />
+          </SelectionWrapper>
+          <SelectionWrapper tooltip="Eyes">
+            <Image src="/avatar/eyes/eyes-0.svg" width={30} height={30} />
+          </SelectionWrapper>
+          <SelectionWrapper tooltip="Eyebrows">
+            <Image
+              src="/avatar/eyebrows/eyebrows-0.svg"
+              width={30}
+              height={30}
+            />
+          </SelectionWrapper>
+          <SelectionWrapper tooltip="Glasses">
+            <Image src="/avatar/glasses/glasses-0.svg" width={30} height={30} />
+          </SelectionWrapper>
+          <SelectionWrapper tooltip="Hair Style">
+            <Image
+              src="/avatar/hairstyle/hairstyle-0.svg"
+              width={30}
+              height={30}
+            />
+          </SelectionWrapper>
+          <SelectionWrapper tooltip="Beard">
+            <Image src="/avatar/beard/beard-0.svg" width={30} height={30} />
+          </SelectionWrapper>
+          <SelectionWrapper tooltip="Details">
+            <Image src="/avatar/details/details-0.svg" width={30} height={30} />
+          </SelectionWrapper>
+          <SelectionWrapper tooltip="Accessories">
+            <Image
+              src="/avatar/accessories/accessories-0.svg"
+              width={30}
+              height={30}
+            />
+          </SelectionWrapper>
         </div>
         <div className="flex flex-col sm:flex-row mt-10 justify-between w-full">
           <button
             type="button"
             className="flex items-center mb-3 sm:mb-0 justify-center w-full sm:w-48 md:w-60 border-3 border-black text-black font-bold py-2 px-4 rounded-full"
           >
-            <Image src="/dice.svg" alt="Vercel Logo" width={28} height={28} />
+            <Image src="/dice.svg" alt="random button" width={28} height={28} />
             <span className="ml-3">Random</span>
           </button>
           <button
@@ -39,7 +72,7 @@ export default function AvatarEditor() {
           >
             <Image
               src="/download.svg"
-              alt="Vercel Logo"
+              alt="downlaod button"
               width={28}
               height={28}
             />

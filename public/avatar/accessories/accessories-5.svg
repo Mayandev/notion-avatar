@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="75px" height="75px" viewBox="0 0 75 75" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>accessories-5</title>
+    <g id="All-customizable-items" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="Accessories/-5" transform="translate(-218.000000, -549.000000)" stroke="#000000" stroke-width="8">
+            <g id="Path" transform="translate(214.000000, 553.000000)">
+                <path d="M55,40 C66.045695,40 75,31.045695 75,20 C75,8.954305 66.045695,0 55,0 C43.954305,0 35,8.954305 35,20"></path>
+                <path d="M28,70 C39.045695,70 48,61.045695 48,50 C48,38.954305 39.045695,30 28,30 C16.954305,30 8,38.954305 8,50" transform="translate(28.000000, 50.000000) rotate(-32.000000) translate(-28.000000, -50.000000) "></path>
+            </g>
+        </g>
+    </g>
+</svg>
