@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Quicksand";
+  src: url("/fonts/Quicksand.ttf");
+  font-display: swap;
+  font-style: bold;
+  font-weight: 600;
+}
+
+html {
+  font-family: "Quicksand", system-ui, -apple-system, BlinkMacSystemFont,
+    Helvetica Neue, PingFang SC, Microsoft YaHei, Source Han Sans SC,
+    Noto Sans CJK SC, WenQuanYi Micro Hei, sans-serif;
+  background-color: #FFFEFC;
+}

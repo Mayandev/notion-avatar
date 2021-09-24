@@ -1,0 +1,34 @@
+name: Check PR
+
+on: [pull_request]
+
+jobs:
+  run-ci:
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    name: Run Type Check & Linters
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
+
+      - name: Install dependencies (with cache)
+        uses: bahmutov/npm-install@HEAD
+
+      - name: Check types
+        run: yarn type-check
+
+      - name: Check linting
+        run: yarn lint
+
+      - name: Check commits messages
+        uses: wagoid/commitlint-github-action@v4
