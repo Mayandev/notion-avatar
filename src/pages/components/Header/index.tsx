@@ -17,7 +17,7 @@ export default function Header() {
           Avatar Maker
         </span>
       </div>
-      <Decoration className="absolute top-0 right-0" />
+      <Decoration className="absolute top-0 right-0 w-24 sm:w-28 md:w-36" />
     </header>
   );
 }

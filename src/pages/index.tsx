@@ -1,6 +1,8 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import Header from './components/Header';
+import Footer from './components/Footer';
+
 import AvatarEditor from './components/AvatarEditor';
 
 const Home: NextPage = () => (
@@ -13,9 +15,11 @@ const Home: NextPage = () => (
 
     <Header />
 
-    <main>
+    <main className="my-5">
       <AvatarEditor />
     </main>
+
+    <Footer />
 
     {/* <footer className={styles.footer}>
         <a
