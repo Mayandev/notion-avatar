@@ -23,11 +23,16 @@ html {
 
 .tooltip:before {
   @apply absolute w-max py-1 px-2 bg-black text-white
-    max-w-xs text-sm rounded pointer-events-none transform-gpu translate-y-3 transition opacity-0;
+    max-w-xs text-sm rounded pointer-events-none transform-gpu 
+    translate-y-3 transition opacity-0 capitalize;
   bottom: 120%;
   content: attr(data-tip);
 }
 
 .tooltip:hover:before {
   @apply transform-gpu translate-y-0 opacity-100;
+}
+
+img svg {
+  -webkit-user-drag: none;
 }

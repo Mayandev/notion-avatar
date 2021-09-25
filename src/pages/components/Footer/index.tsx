@@ -6,7 +6,7 @@ export default function Footer() {
       <Image src="/line.svg" width="125" height="54" />
       <div className="flex justify-center mt-10">
         <a className="hover:underline" href="https://github.com/mayandev">
-          GitHub
+          Dribbble
         </a>
         <span className="mx-2">·</span>
         <a className="hover:underline" href="https://github.com/phillzou">

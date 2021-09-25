@@ -1,65 +1,79 @@
+import { AvatarStyleCount } from '@/const';
+import { AvatarPart } from '@/types';
+import { getRandomStyle } from '@/utils';
 import Image from 'next/image';
+import { useState } from 'react';
 import SelectionWrapper from './SelectionWrapper';
+import domtoimage from 'dom-to-image';
+import { saveAs } from 'file-saver';
 
 export default function AvatarEditor() {
+  const [config, setConfig] = useState(getRandomStyle());
+
+  const switchConfig = (type: AvatarPart) => {
+    const newIdx = (config[type] + 1) % AvatarStyleCount[type];
+    config[type] = newIdx;
+    setConfig({ ...config });
+  };
+
+  const downloadAvatar = async () => {
+    const node = document.getElementById('avatar-preview');
+    const scale = 2;
+    if (node) {
+      const blob = await domtoimage.toBlob(node, {
+        height: node.offsetHeight * scale,
+        style: {
+          transform: `scale(${scale}) translate(${
+            node.offsetWidth / 2 / scale
+          }px, ${node.offsetHeight / 2 / scale}px)`,
+          'border-radius': 0,
+        },
+        width: node.offsetWidth * scale,
+      });
+      saveAs(blob, 'avatar.png');
+    }
+  };
+
   return (
-    <div className="flex justify-center items-center flex-col my-5">
-      <div className="w-36 md:w-60">
-        <Image
-          src="/placeholder.png"
-          alt="Notion Avatar Logo"
-          width={250}
-          height={250}
-        />
+    <div className="flex justify-center items-center flex-col">
+      <div id="avatar-preview" className="w-48 h-48 md:w-72 md:h-72 relative">
+        {Object.keys(config).map((type, index) => (
+          <div key={index} className="absolute">
+            <img
+              src={`/avatar/preview/${type}/${config[type as AvatarPart]}.svg`}
+              width={250}
+              height={250}
+            />
+          </div>
+        ))}
       </div>
-      <div className="w-5/6 md:w-2/3 mt-10">
+      <div className="w-5/6 md:w-2/3 mt-7">
         <div className="text-lg my-5">Choose your styles</div>
         <div className="grid gap-y-4 justify-items-center justify-between grid-rows-2 grid-cols-5 lg:flex">
-          <SelectionWrapper tooltip="Face">
-            <Image src="/avatar/face/face-0.svg" width={30} height={30} />
-          </SelectionWrapper>
-          <SelectionWrapper tooltip="Nose">
-            <Image src="/avatar/nose/nose-0.svg" width={30} height={30} />
-          </SelectionWrapper>
-          <SelectionWrapper tooltip="Mouth">
-            <Image src="/avatar/mouth/mouth-0.svg" width={30} height={30} />
-          </SelectionWrapper>
-          <SelectionWrapper tooltip="Eyes">
-            <Image src="/avatar/eyes/eyes-0.svg" width={30} height={30} />
-          </SelectionWrapper>
-          <SelectionWrapper tooltip="Eyebrows">
-            <Image
-              src="/avatar/eyebrows/eyebrows-0.svg"
-              width={30}
-              height={30}
-            />
-          </SelectionWrapper>
-          <SelectionWrapper tooltip="Glasses">
-            <Image src="/avatar/glasses/glasses-0.svg" width={30} height={30} />
-          </SelectionWrapper>
-          <SelectionWrapper tooltip="Hair Style">
-            <Image
-              src="/avatar/hairstyle/hairstyle-0.svg"
-              width={30}
-              height={30}
-            />
-          </SelectionWrapper>
-          <SelectionWrapper tooltip="Beard">
-            <Image src="/avatar/beard/beard-0.svg" width={30} height={30} />
-          </SelectionWrapper>
-          <SelectionWrapper tooltip="Details">
-            <Image src="/avatar/details/details-0.svg" width={30} height={30} />
-          </SelectionWrapper>
-          <SelectionWrapper tooltip="Accessories">
-            <Image
-              src="/avatar/accessories/accessories-0.svg"
-              width={30}
-              height={30}
-            />
-          </SelectionWrapper>
+          {Object.keys(config).map((type, index) => (
+            <div key={index}>
+              <SelectionWrapper
+                switchConfig={() => {
+                  switchConfig(type as AvatarPart);
+                }}
+                tooltip={type}
+              >
+                <Image
+                  src={`/avatar/part/${type}/${type}-${
+                    config[type as AvatarPart]
+                  }.svg`}
+                  width={30}
+                  height={30}
+                />
+              </SelectionWrapper>
+            </div>
+          ))}
         </div>
         <div className="flex flex-col sm:flex-row mt-10 justify-between w-full">
           <button
+            onClick={() => {
+              setConfig(getRandomStyle());
+            }}
             type="button"
             className="flex items-center mb-3 sm:mb-0 justify-center w-full sm:w-48 md:w-60 border-3 border-black text-black font-bold py-2 px-4 rounded-full"
           >
@@ -68,6 +82,7 @@ export default function AvatarEditor() {
           </button>
           <button
             type="button"
+            onClick={downloadAvatar}
             className="flex items-center justify-center w-full sm:w-48 md:w-60 border-3 border-black text-black font-bold py-2 px-4 rounded-full"
           >
             <Image
