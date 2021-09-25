@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="112px" height="152px" viewBox="0 0 112 152" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>accessories-4</title>
+    <g id="All-customizable-items" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="Accessories/-4" transform="translate(-244.000000, -685.000000)" fill="#FFFFFF" stroke="#000000" stroke-width="12">
+            <g id="Path-2" transform="translate(250.000000, 691.000000)">
+                <polygon points="50 1.42219569e-12 -2.45359288e-14 70 50 140 100 70"></polygon>
+                <polygon points="50 35 25 70 50 105 75 70"></polygon>
+                <line x1="50" y1="35" x2="50" y2="0" id="Path-3"></line>
+                <line x1="50" y1="140" x2="50" y2="105" id="Path-3"></line>
+                <line x1="75" y1="70" x2="100" y2="70" id="Path-4"></line>
+                <line x1="0" y1="70" x2="25" y2="70" id="Path-4"></line>
+            </g>
+        </g>
+    </g>
+</svg>

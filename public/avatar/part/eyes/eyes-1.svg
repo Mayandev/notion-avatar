@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="190px" height="57px" viewBox="0 0 190 57" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>eyes-1</title>
+    <g id="All-customizable-items" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Eyes/-1" transform="translate(-544.000000, -507.000000)">
+            <g id="eyes-1" transform="translate(546.000000, 509.000000)">
+                <path d="M24,7 C37.254834,7 48,17.745166 48,31 C48,44.254834 37.254834,55 24,55 C10.745166,55 0,44.254834 0,31 C0,17.745166 10.745166,7 24,7 Z M162,7 C175.254834,7 186,17.745166 186,31 C186,44.254834 175.254834,55 162,55 C148.745166,55 138,44.254834 138,31 C138,17.745166 148.745166,7 162,7 Z" id="Combined-Shape" fill="#000000"></path>
+                <g id="Group" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="4">
+                    <path d="M0,7 C8,2.33333333 16,0 24,0 C32,0 40,2.33333333 48,7" id="Path"></path>
+                    <path d="M138,7 C146,2.33333333 154,0 162,0 C170,0 178,2.33333333 186,7" id="Path"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

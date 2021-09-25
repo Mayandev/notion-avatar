@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="108px" height="180px" viewBox="0 0 108 180" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>accessories-8</title>
+    <g id="All-customizable-items" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="Accessories/-8" transform="translate(-240.000000, -689.000000)" stroke="#000000" stroke-width="12">
+            <g id="Path" transform="translate(246.000000, 695.000000)">
+                <line x1="48" y1="0" x2="48" y2="48"></line>
+                <circle id="Oval" fill="#FFFFFF" fill-rule="evenodd" cx="48" cy="60" r="12"></circle>
+                <circle id="Oval" fill="#FFFFFF" fill-rule="evenodd" cx="48" cy="120" r="48"></circle>
+                <circle id="Oval" cx="48" cy="84" r="12"></circle>
+                <circle id="Oval" cx="48" cy="96" r="24"></circle>
+            </g>
+        </g>
+    </g>
+</svg>

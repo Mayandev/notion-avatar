@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="242px" height="56px" viewBox="0 0 242 56" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>eyebrows-7</title>
+    <g id="All-customizable-items" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="Eyebrows/-7" transform="translate(-518.000000, -476.000000)" stroke="#000000" stroke-width="16">
+            <g id="eyebrows-7" transform="translate(528.000000, 485.000000)">
+                <path d="M2,31 C13.6420073,23.1142473 23.8820073,17.5142473 32.72,14.2 C41.5579927,10.8857527 52.651326,8.48575274 66,7" id="Path" transform="translate(34.000000, 19.000000) rotate(12.000000) translate(-34.000000, -19.000000) "></path>
+                <path d="M156,31 C167.642007,23.1142473 177.882007,17.5142473 186.72,14.2 C195.557993,10.8857527 206.651326,8.48575274 220,7" id="Path" transform="translate(188.000000, 19.000000) scale(-1, 1) rotate(12.000000) translate(-188.000000, -19.000000) "></path>
+            </g>
+        </g>
+    </g>
+</svg>
