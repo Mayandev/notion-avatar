@@ -1,13 +1,12 @@
-<div align="center">
+
 
 ![cover](./public/social.png)
 
 
-# 🪄 Notion Avatar Marker
+# Notion Avatar Marker
 
 An online tool for making notion-style avatars.
 
-</div>
 
 ## Online Editor
 
