@@ -47,7 +47,7 @@ export default function AvatarEditor() {
           </div>
         ))}
       </div>
-      <div className="w-5/6 md:w-2/3 mt-7">
+      <div className="w-5/6 md:w-2/3">
         <div className="text-lg my-5">Choose your styles</div>
         <div className="grid gap-y-4 justify-items-center justify-between grid-rows-2 grid-cols-5 lg:flex">
           {Object.keys(config).map((type) => (

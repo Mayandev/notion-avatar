@@ -1,6 +1,9 @@
 import Image from 'next/image';
+import { useEffect, useState } from 'react';
 
 export default function Footer() {
+  const [coffeUrl, setCoffeUrl] = useState();
+
   return (
     <footer className="flex flex-col items-center">
       <Image src="/line.svg" width="125" height="54" />
@@ -18,17 +21,18 @@ export default function Footer() {
         >
           Illustration
         </a>
-        <span className="mx-2">·</span>
-        <a
-          className="transition hover:underline"
-          href="https://github.com/phillzou"
-        >
+        <span className="mx-2 hidden md:inline-block">·</span>
+        <a className="hover:underline" href="https://twitter.com/phillzou">
           Twitter
         </a>
         <span className="mx-2">·</span>
         <a
           className="transition hover:underline"
-          href="https://ko-fi.com/mayandev"
+          href={
+            navigator.language === `zh-CN`
+              ? `https://afdian.net/@mayandev`
+              : `https://ko-fi.com/mayandev`
+          }
         >
           Buy Me A Coffe
         </a>
