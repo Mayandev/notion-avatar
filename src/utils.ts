@@ -1,8 +1,8 @@
 import { AvatarStyleCount } from './const';
 import { AvatarConfig, AvatarPart } from './types';
 
-export const getRandomStyle = (): AvatarConfig =>
-  Object.keys(AvatarStyleCount).reduce(
+export const getRandomStyle = (): AvatarConfig => {
+  const config = Object.keys(AvatarStyleCount).reduce(
     (prev, next) =>
       Object.assign(prev, {
         [next]: Math.floor(
@@ -11,3 +11,9 @@ export const getRandomStyle = (): AvatarConfig =>
       }),
     {} as Record<keyof AvatarConfig, number>,
   );
+  // for harmony
+  config.beard = 0;
+  config.details = 0;
+  config.accessories = 0;
+  return config;
+};

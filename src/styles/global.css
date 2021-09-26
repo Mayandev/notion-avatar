@@ -15,13 +15,19 @@ html {
     Helvetica Neue, PingFang SC, Microsoft YaHei, Source Han Sans SC,
     Noto Sans CJK SC, WenQuanYi Micro Hei, sans-serif;
     background-color: #fffefc;
-    -ms-overflow-style: none; /* for Internet Explorer, Edge */
-    scrollbar-width: none; /* for Firefox */
-    overflow-y: scroll; 
 }
 
-html::-webkit-scrollbar {
-  display: none;
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+    display: none;
+}
+
+html,
+body {
+    height: 100%;
+    overflow: hidden;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
 }
 
 .tooltip {

@@ -3,7 +3,7 @@ import Decoration from './decoration';
 
 export default function Header() {
   return (
-    <header>
+    <header className="relative">
       <div className="flex py-5 px-5 sm:px-16 md:px-32">
         <Image
           src="/logo.gif"

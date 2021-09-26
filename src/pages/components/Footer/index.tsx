@@ -2,7 +2,16 @@ import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
 export default function Footer() {
-  const [coffeUrl, setCoffeUrl] = useState();
+  const [coffeUrl, setCoffeUrl] = useState(``);
+
+  useEffect(() => {
+    const { language = `` } = navigator;
+    if (language !== `zh-CN`) {
+      setCoffeUrl(`https://ko-fi.com/mayandev`);
+    } else {
+      setCoffeUrl(`https://afdian.net/@mayandev`);
+    }
+  }, []);
 
   return (
     <footer className="flex flex-col items-center pb-4">
@@ -26,14 +35,7 @@ export default function Footer() {
           Twitter
         </a>
         <span className="mx-2">·</span>
-        <a
-          className="transition hover:underline"
-          href={
-            navigator.language === `zh-CN`
-              ? `https://afdian.net/@mayandev`
-              : `https://ko-fi.com/mayandev`
-          }
-        >
+        <a className="transition hover:underline" href={coffeUrl}>
           Buy Me A Coffe
         </a>
       </div>
