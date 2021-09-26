@@ -3,8 +3,7 @@ import { AvatarPart } from '@/types';
 import { getRandomStyle } from '@/utils';
 import Image from 'next/image';
 import { useState } from 'react';
-import domtoimage from 'dom-to-image';
-import { saveAs } from 'file-saver';
+import html2canvas from 'html2canvas';
 import SelectionWrapper from './SelectionWrapper';
 
 export default function AvatarEditor() {
@@ -17,26 +16,24 @@ export default function AvatarEditor() {
   };
 
   const downloadAvatar = async () => {
-    const node = document.getElementById(`avatar-preview`);
-    const scale = 2;
-    if (node) {
-      const blob = await domtoimage.toBlob(node, {
-        height: node.offsetHeight * scale,
-        style: {
-          transform: `scale(${scale}) translate(${
-            node.offsetWidth / 2 / scale
-          }px, ${node.offsetHeight / 2 / scale}px)`,
-          'border-radius': 0,
-        },
-        width: node.offsetWidth * scale,
-      });
-      saveAs(blob, `avatar.png`);
-    }
+    const dom: HTMLElement = document.querySelector(
+      `#avatar-preview`,
+    ) as HTMLElement;
+    const canvas = await html2canvas(dom, {
+      logging: false,
+      scale: window.devicePixelRatio,
+      width: 256,
+      height: 256,
+    });
+    const a = document.createElement(`a`);
+    a.href = canvas.toDataURL();
+    a.download = `avatar.png`;
+    a.click();
   };
 
   return (
     <div className="flex justify-center items-center flex-col">
-      <div id="avatar-preview" className="w-48 h-48 md:w-72 md:h-72 relative">
+      <div id="avatar-preview" className="w-48 h-48 md:w-96 md:h-96 relative">
         {Object.keys(config).map((type) => (
           <div key={type} className="absolute">
             <img
