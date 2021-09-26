@@ -95,9 +95,9 @@ const Home: NextPage = () => (
       <meta property="og:title" content={TITLE} />
       <meta property="og:description" content={DESCRIPTION} />
       <meta property="og:url" content={URL} />
-      <meta property="og:image" content="https://i.imgur.com/KRobkqb.png" />
+      <meta property="og:image" content="https://i.imgur.com/F5R0K03.png" />
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:image" content="https://i.imgur.com/KRobkqb.png" />
+      <meta name="twitter:image" content="https://i.imgur.com/F5R0K03.png" />
       <meta name="twitter:site" content="@phillzou" />
       <meta name="twitter:title" content={TITLE} />
       <meta name="twitter:description" content={DESCRIPTION} />
