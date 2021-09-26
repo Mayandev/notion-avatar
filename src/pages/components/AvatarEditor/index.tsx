@@ -43,7 +43,6 @@ export default function AvatarEditor() {
     // Dynamically load fuse.js
     config[type] = newIdx;
     setConfig({ ...config });
-    generatePreview();
   };
 
   const downloadAvatar = async () => {
