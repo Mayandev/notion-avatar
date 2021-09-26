@@ -12,5 +12,3 @@ export const AvatarStyleCount: AvatarConfig = {
   details: 10,
   accessories: 10,
 };
-
-
