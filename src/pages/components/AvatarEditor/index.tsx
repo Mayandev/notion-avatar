@@ -52,8 +52,8 @@ export default function AvatarEditor() {
     const canvas = await html2canvas(dom, {
       logging: false,
       scale: window.devicePixelRatio,
-      width: 256,
-      height: 256,
+      width: dom.offsetWidth,
+      height: dom.offsetHeight,
     });
     const a = document.createElement('a');
     a.href = canvas.toDataURL();
