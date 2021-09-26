@@ -19,7 +19,7 @@ export default function Footer() {
       <div className="flex justify-center mt-10">
         <a
           className="transition hover:underline"
-          href="https://github.com/mayandev"
+          href="https://github.com/mayandev/notion-avatar"
         >
           GitHub
         </a>
