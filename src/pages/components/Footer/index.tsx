@@ -5,7 +5,7 @@ export default function Footer() {
   const [coffeUrl, setCoffeUrl] = useState();
 
   return (
-    <footer className="flex flex-col items-center">
+    <footer className="flex flex-col items-center pb-4">
       <Image src="/line.svg" width="125" height="54" />
       <div className="flex justify-center mt-10">
         <a
