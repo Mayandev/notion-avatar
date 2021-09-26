@@ -14,7 +14,14 @@ html {
   font-family: 'Quicksand', system-ui, -apple-system, BlinkMacSystemFont,
     Helvetica Neue, PingFang SC, Microsoft YaHei, Source Han Sans SC,
     Noto Sans CJK SC, WenQuanYi Micro Hei, sans-serif;
-  background-color: #fffefc;
+    background-color: #fffefc;
+    -ms-overflow-style: none; /* for Internet Explorer, Edge */
+    scrollbar-width: none; /* for Firefox */
+    overflow-y: scroll; 
+}
+
+html::-webkit-scrollbar {
+  display: none;
 }
 
 .tooltip {
@@ -31,8 +38,4 @@ html {
 
 .tooltip:hover:before {
   @apply transform-gpu translate-y-0 opacity-100;
-}
-
-img svg {
-  -webkit-user-drag: none;
 }

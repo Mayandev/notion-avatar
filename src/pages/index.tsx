@@ -5,9 +5,9 @@ import Footer from './components/Footer';
 
 import AvatarEditor from './components/AvatarEditor';
 
-const TITLE = 'Notion Avatar Maker';
-const DESCRIPTION = 'An online tool for making notion-style avatars';
-
+const TITLE = `Notion Avatar Maker`;
+const DESCRIPTION = `An online tool for making notion-style avatars`;
+const URL = `https://notion-avatar.vercel.app/`;
 const Home: NextPage = () => (
   <>
     <Head>
@@ -94,6 +94,10 @@ const Home: NextPage = () => (
       <meta property="og:site_name" content={TITLE} />
       <meta property="og:title" content={TITLE} />
       <meta property="og:description" content={DESCRIPTION} />
+      <meta property="og:url" content={URL} />
+      <meta property="og:image" content="https://imgur.com/KRobkqb" />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:image" content="https://imgur.com/KRobkqb" />
       <meta name="twitter:site" content="@phillzou" />
       <meta name="twitter:title" content={TITLE} />
       <meta name="twitter:description" content={DESCRIPTION} />

@@ -3,9 +3,9 @@ import { AvatarPart } from '@/types';
 import { getRandomStyle } from '@/utils';
 import Image from 'next/image';
 import { useState } from 'react';
-import SelectionWrapper from './SelectionWrapper';
 import domtoimage from 'dom-to-image';
 import { saveAs } from 'file-saver';
+import SelectionWrapper from './SelectionWrapper';
 
 export default function AvatarEditor() {
   const [config, setConfig] = useState(getRandomStyle());
@@ -17,7 +17,7 @@ export default function AvatarEditor() {
   };
 
   const downloadAvatar = async () => {
-    const node = document.getElementById('avatar-preview');
+    const node = document.getElementById(`avatar-preview`);
     const scale = 2;
     if (node) {
       const blob = await domtoimage.toBlob(node, {
@@ -30,15 +30,15 @@ export default function AvatarEditor() {
         },
         width: node.offsetWidth * scale,
       });
-      saveAs(blob, 'avatar.png');
+      saveAs(blob, `avatar.png`);
     }
   };
 
   return (
     <div className="flex justify-center items-center flex-col">
       <div id="avatar-preview" className="w-48 h-48 md:w-72 md:h-72 relative">
-        {Object.keys(config).map((type, index) => (
-          <div key={index} className="absolute">
+        {Object.keys(config).map((type) => (
+          <div key={type} className="absolute">
             <img
               src={`/avatar/preview/${type}/${config[type as AvatarPart]}.svg`}
               width={250}
@@ -50,8 +50,8 @@ export default function AvatarEditor() {
       <div className="w-5/6 md:w-2/3 mt-7">
         <div className="text-lg my-5">Choose your styles</div>
         <div className="grid gap-y-4 justify-items-center justify-between grid-rows-2 grid-cols-5 lg:flex">
-          {Object.keys(config).map((type, index) => (
-            <div key={index}>
+          {Object.keys(config).map((type) => (
+            <div key={type}>
               <SelectionWrapper
                 switchConfig={() => {
                   switchConfig(type as AvatarPart);
