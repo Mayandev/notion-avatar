@@ -14,6 +14,5 @@ export const getRandomStyle = (): AvatarConfig => {
   // for harmony
   config.beard = 0;
   config.details = 0;
-  config.accessories = 0;
   return config;
 };

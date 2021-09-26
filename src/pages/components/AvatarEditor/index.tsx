@@ -6,16 +6,13 @@ import { useState, useEffect } from 'react';
 import html2canvas from 'html2canvas';
 import SelectionWrapper from './SelectionWrapper';
 
-const Width = 256;
-const Height = 256;
-
 export default function AvatarEditor() {
   const [config, setConfig] = useState(getRandomStyle());
   const [preview, setPreview] = useState(``);
 
   useEffect(() => {
     generatePreview();
-  }, []);
+  }, [config]);
 
   const generatePreview = async () => {
     const groups = await Promise.all(
@@ -33,7 +30,7 @@ export default function AvatarEditor() {
     );
 
     const previewSvg =
-      `<svg width="${Width}" height="${Height}" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+      `<svg viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
     ${groups.join('\n\n')}
       </svg>`
         .trim()

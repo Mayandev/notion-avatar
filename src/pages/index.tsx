@@ -6,7 +6,7 @@ import Footer from './components/Footer';
 import AvatarEditor from './components/AvatarEditor';
 
 const TITLE = `Notion Avatar Maker`;
-const DESCRIPTION = `An online tool for making notion-style avatars`;
+const DESCRIPTION = `An online tool for making notion-style avatars.`;
 const URL = `https://notion-avatar.vercel.app/`;
 const Home: NextPage = () => (
   <>

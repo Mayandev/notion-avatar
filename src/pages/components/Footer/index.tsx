@@ -19,16 +19,16 @@ export default function Footer() {
       <div className="flex justify-center mt-10">
         <a
           className="transition hover:underline"
-          href="https://dribbble.com/phillzou"
+          href="https://github.com/mayandev"
         >
-          Dribbble
+          GitHub
         </a>
         <span className="mx-2">·</span>
         <a
-          className="hidden md:inline-block hover:underline"
+          className="transition hidden md:inline-block hover:underline"
           href="https://dribbble.com/phillzou"
         >
-          Illustration
+          Dribbble
         </a>
         <span className="mx-2 hidden md:inline-block">·</span>
         <a className="hover:underline" href="https://twitter.com/phillzou">

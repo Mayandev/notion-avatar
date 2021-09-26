@@ -8,7 +8,7 @@ export const AvatarStyleCount: AvatarConfig = {
   eyebrows: 10,
   glasses: 10,
   hair: 30,
-  beard: 10,
-  details: 10,
   accessories: 10,
+  details: 10,
+  beard: 10,
 };
