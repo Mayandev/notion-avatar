@@ -11,8 +11,7 @@ An online tool for making notion-style avatars.
 ## Online Editor
 
 - [https://notion-avatar.vercel.app/](https://notion-avatar.vercel.app/)
-
-Powered by [Nextjs](https://nextjs.org/)、[Tailwind](https://tailwindcss.com/) and [Vercel](https://vercel.com).
+- Powered by [Nextjs](https://nextjs.org/)、[Tailwind](https://tailwindcss.com/) and [Vercel](https://vercel.com).
 
 ## Assets
 
