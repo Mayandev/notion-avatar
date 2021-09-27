@@ -16,5 +16,8 @@
   "dribbble": "设计稿",
   "twitter": "推特",
   "coffee": "捐赠",
-  "coffeeUrl": "https://afdian.net/@mayandev"
+  "coffeeUrl": "https://afdian.net/@mayandev",
+  "modalTitle": "最后一步",
+  "modalHint": "长按图片或者右键保存头像至手机相册",
+  "modalCancel": "关闭"
 }

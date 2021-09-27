@@ -16,5 +16,8 @@
   "dribbble": "Dribbble",
   "twitter": "Twitter",
   "coffee": "Buy Me A Coffee",
-  "coffeeUrl": "https://ko-fi.com/mayandev"
+  "coffeeUrl": "https://ko-fi.com/mayandev",
+  "modalTitle": "Almost done",
+  "modalHint": "Long press or click the right mouse button to save the avatar to your phone album",
+  "modalCancel": "Cancel"
 }

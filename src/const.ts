@@ -12,3 +12,5 @@ export const AvatarStyleCount: AvatarConfig = {
   details: 10,
   beard: 10,
 };
+
+export const CompatibleAgents = [`quark`, `micromessenger`];
