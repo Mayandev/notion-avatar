@@ -48,8 +48,7 @@ export default function AvatarEditor() {
   };
 
   const switchConfig = (type: AvatarPart) => {
-    const newIdx = (config[type] + 1) % AvatarStyleCount[type];
-    // Dynamically load fuse.js
+    const newIdx = (config[type] + 1) % (AvatarStyleCount[type] + 1);
     config[type] = newIdx;
     setConfig({ ...config });
   };
