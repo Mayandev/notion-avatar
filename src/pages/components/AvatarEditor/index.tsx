@@ -5,11 +5,13 @@ import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import html2canvas from 'html2canvas';
 import * as ga from '@/lib/ga';
+import { useTranslation } from 'next-i18next';
 import SelectionWrapper from './SelectionWrapper';
 
 export default function AvatarEditor() {
   const [config, setConfig] = useState(getRandomStyle());
   const [preview, setPreview] = useState(``);
+  const { t } = useTranslation(`common`);
 
   useEffect(() => {
     generatePreview();
@@ -58,7 +60,9 @@ export default function AvatarEditor() {
     });
     const a = document.createElement('a');
     a.href = canvas.toDataURL();
+
     a.download = `notion-avatar-${new Date().getTime()}.png`;
+    alert(window.navigator.userAgent.toLowerCase());
     a.click();
     // record download action
     ga.event({ action: 'download', params: { ...config } });
@@ -74,7 +78,7 @@ export default function AvatarEditor() {
         }}
       />
       <div className="w-5/6 md:w-2/3">
-        <div className="text-lg my-5">Choose your styles</div>
+        <div className="text-lg my-5">{t('choose')}</div>
         <div className="grid gap-y-4 justify-items-center justify-between grid-rows-2 grid-cols-5 lg:flex">
           {Object.keys(config).map((type) => (
             <div key={type}>
@@ -82,7 +86,7 @@ export default function AvatarEditor() {
                 switchConfig={() => {
                   switchConfig(type as AvatarPart);
                 }}
-                tooltip={type}
+                tooltip={t(type)}
               >
                 <Image
                   src={`/avatar/part/${type}/${type}-${
@@ -101,23 +105,23 @@ export default function AvatarEditor() {
               setConfig(getRandomStyle());
             }}
             type="button"
-            className="flex items-center mb-3 sm:mb-0 justify-center w-full sm:w-48 md:w-60 border-3 border-black text-black font-bold py-2 px-4 rounded-full"
+            className="outline-none flex items-center mb-3 sm:mb-0 justify-center w-full sm:w-48 md:w-60 border-3 border-black text-black font-bold py-2 px-4 rounded-full"
           >
-            <Image src="/dice.svg" alt="random button" width={28} height={28} />
-            <span className="ml-3">Random</span>
+            <Image src="/dice.svg" alt={t('random')} width={28} height={28} />
+            <span className="ml-3">{t('random')}</span>
           </button>
           <button
             type="button"
             onClick={downloadAvatar}
-            className="flex items-center justify-center w-full sm:w-48 md:w-60 border-3 border-black text-black font-bold py-2 px-4 rounded-full"
+            className="outline-none flex items-center justify-center w-full sm:w-48 md:w-60 border-3 border-black text-black font-bold py-2 px-4 rounded-full"
           >
             <Image
               src="/download.svg"
-              alt="downlaod button"
+              alt={t('download')}
               width={28}
               height={28}
             />
-            <span className="ml-3">Download</span>
+            <span className="ml-3">{t('download')}</span>
           </button>
         </div>
       </div>

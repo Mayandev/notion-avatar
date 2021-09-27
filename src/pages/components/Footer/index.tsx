@@ -1,17 +1,8 @@
+import { useTranslation } from 'next-i18next';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
 
 export default function Footer() {
-  const [coffeUrl, setCoffeUrl] = useState(``);
-
-  useEffect(() => {
-    const { language = `` } = navigator;
-    if (language !== `zh-CN`) {
-      setCoffeUrl(`https://ko-fi.com/mayandev`);
-    } else {
-      setCoffeUrl(`https://afdian.net/@mayandev`);
-    }
-  }, []);
+  const { t } = useTranslation(`common`);
 
   return (
     <footer className="flex flex-col items-center pb-4">
@@ -21,22 +12,22 @@ export default function Footer() {
           className="transition hover:underline"
           href="https://github.com/mayandev/notion-avatar"
         >
-          GitHub
+          {t(`github`)}
         </a>
         <span className="mx-2">·</span>
         <a
           className="transition hidden md:inline-block hover:underline"
           href="https://dribbble.com/phillzou"
         >
-          Dribbble
+          {t(`dribbble`)}
         </a>
         <span className="mx-2 hidden md:inline-block">·</span>
         <a className="hover:underline" href="https://twitter.com/phillzou">
-          Twitter
+          {t(`twitter`)}
         </a>
         <span className="mx-2">·</span>
-        <a className="transition hover:underline" href={coffeUrl}>
-          Buy Me A Coffe
+        <a className="transition hover:underline" href={t(`coffeeUrl`)}>
+          {t(`coffee`)}
         </a>
       </div>
     </footer>

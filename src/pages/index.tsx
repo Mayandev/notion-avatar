@@ -1,8 +1,8 @@
-import type { NextPage } from 'next';
+import type { GetStaticPropsContext, NextPage } from 'next';
 import Head from 'next/head';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Header from './components/Header';
 import Footer from './components/Footer';
-
 import AvatarEditor from './components/AvatarEditor';
 
 const TITLE = `Notion Avatar Maker`;
@@ -111,5 +111,15 @@ const Home: NextPage = () => (
     <Footer />
   </>
 );
+
+export async function getStaticProps({
+  locale,
+}: GetStaticPropsContext & { locale: string }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, [`common`])),
+    },
+  };
+}
 
 export default Home;

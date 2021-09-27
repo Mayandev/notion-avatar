@@ -25,7 +25,7 @@ class Document extends NextDocument {
             }}
           />
         </Head>
-        <body>
+        <body className="font-bold">
           <Main />
           <NextScript />
         </body>

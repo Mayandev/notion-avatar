@@ -3,10 +3,11 @@ import '@/styles/global.css';
 
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
+import { appWithTranslation } from 'next-i18next';
 
 import * as ga from '../lib/ga';
 
-export default function MyApp({ Component, pageProps }: AppProps) {
+const MyApp = ({ Component, pageProps }: AppProps) => {
   const router = useRouter();
 
   useEffect(() => {
@@ -23,4 +24,6 @@ export default function MyApp({ Component, pageProps }: AppProps) {
     };
   }, [router.events]);
   return <Component {...pageProps} />;
-}
+};
+
+export default appWithTranslation(MyApp);
