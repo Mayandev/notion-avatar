@@ -4,6 +4,7 @@ import { getRandomStyle } from '@/utils';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import html2canvas from 'html2canvas';
+import * as ga from '@/lib/ga';
 import SelectionWrapper from './SelectionWrapper';
 
 export default function AvatarEditor() {
@@ -57,8 +58,10 @@ export default function AvatarEditor() {
     });
     const a = document.createElement('a');
     a.href = canvas.toDataURL();
-    a.download = 'avatar.png';
+    a.download = `notion-avatar-${new Date().getTime()}.png`;
     a.click();
+    // record download action
+    ga.event({ action: 'download', params: { ...config } });
   };
 
   return (
