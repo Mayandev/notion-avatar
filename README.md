@@ -14,7 +14,7 @@ I18n supported:
 
 ## Assets
 
-- Illustration designer: [@Micah](https://www.producthunt.com/@felix12777) on ProductHunt
+- Illustration designer: [@Felix Wong](https://www.producthunt.com/@felix12777) on ProductHunt
 - Pack of illustration: [Noto avatar](https://abstractlab.gumroad.com/l/noto-avatar)
 
 ## Contact
