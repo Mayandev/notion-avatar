@@ -66,7 +66,7 @@ export default function AvatarEditor() {
       height: dom.offsetHeight,
     });
     const userAgent = window.navigator.userAgent.toLowerCase();
-    const isCompatible = CompatibleAgents.some(
+    const isNeedCompatible = CompatibleAgents.some(
       (agent) => userAgent.indexOf(agent) >= 0,
     );
 
@@ -75,19 +75,20 @@ export default function AvatarEditor() {
 
     // base64 only support png svg for now, maybe more change it to Map
     let imageURL;
-    if (imageType === "png") {
+    if (imageType === 'png') {
       imageURL = canvas.toDataURL();
     } else {
-      const svgElement = dom.querySelector("svg")
+      const svgElement = dom.querySelector('svg');
       if (!svgElement) {
         // not generate for some reason
-        return
+        return;
       }
       const svg = new XMLSerializer().serializeToString(svgElement);
-      imageURL = `data:image/svg+xml;base64,${window.btoa(svg)}`
+      imageURL = `data:image/svg+xml;base64,${window.btoa(svg)}`;
     }
 
-    if (isCompatible) {
+    // compatible for browsers which don't surpport dwonload attribution
+    if (isNeedCompatible) {
       setImageDataURL(imageURL);
       setDownloadModal(true);
       return;
@@ -140,7 +141,7 @@ export default function AvatarEditor() {
               </div>
             ))}
           </div>
-          <div className="flex flex-col sm:flex-row mt-10 justify-between w-full">
+          <div className="flex flex-col sm:flex-row mt-10 justify-between w-full select-none">
             <button
               onClick={() => {
                 setConfig(getRandomStyle());
@@ -154,7 +155,7 @@ export default function AvatarEditor() {
             <button
               type="button"
               onClick={downloadAvatar}
-              className="outline-none flex items-center justify-center w-full sm:w-48 md:w-60 border-3 border-black text-black font-bold py-2 px-4 rounded-full"
+              className="outline-none select-none flex items-center justify-center w-full sm:w-48 md:w-60 border-3 border-black text-black font-bold py-2 px-4 rounded-full"
             >
               <Image
                 src="/download.svg"
@@ -162,12 +163,20 @@ export default function AvatarEditor() {
                 width={28}
                 height={28}
               />
-              <span className="ml-3">{t('download')}
-                <select onClick={(e) => (e.stopPropagation())} onChange={(e) => setImageType(e.target.value)}>
-                  <option value="png">png</option>
-                  <option value="svg">svg</option>
+              <span className="ml-3">{t('download')}</span>
+              <div className="px-2 flex">
+                <select
+                  className="appearance-none focus:outline-none select-none"
+                  onClick={(e) => e.stopPropagation()}
+                  onChange={(e) => setImageType(e.target.value)}
+                >
+                  <option value="png">PNG</option>
+                  <option value="svg">SVG</option>
                 </select>
-              </span>
+                <div className="ml-1">
+                  <Image src="/dropdown.svg" width="10" height="6" />
+                </div>
+              </div>
             </button>
           </div>
         </div>
