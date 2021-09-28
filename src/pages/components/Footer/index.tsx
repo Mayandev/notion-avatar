@@ -35,19 +35,20 @@ export default function Footer() {
           href="https://abstractlab.gumroad.com/l/noto-avatar"
           className="hover:underline"
         >
-          &copy;&nbsp;Illustrations&nbsp;
+          &copy;{` ${t(`illustrations`)}`}
         </a>
-        designed by
+        {t(`designedBy`)}
         <a href="https://twitter.com/@felix12777" className="hover:underline">
-          &nbsp;@Felix Wong&nbsp;
+          {` Felix Wong `}
         </a>
-        and licensed under
+        {t(`underDesign`)}
         <a
-          className="ml-2 hover:underline"
+          className="hover:underline"
           href="https://creativecommons.org/publicdomain/zero/1.0/"
         >
-          CC0
+          {` CC0 `}
         </a>
+        {t(`license`)}
       </div>
     </footer>
   );
