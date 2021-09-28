@@ -38,7 +38,7 @@ export default function Footer() {
           &copy;{` ${t(`illustrations`)}`}
         </a>
         {t(`designedBy`)}
-        <a href="https://twitter.com/@felix12777" className="hover:underline">
+        <a href="https://twitter.com/felix12777" className="hover:underline">
           {` Felix Wong `}
         </a>
         {t(`underDesign`)}
