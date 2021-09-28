@@ -30,6 +30,25 @@ export default function Footer() {
           {t(`coffee`)}
         </a>
       </div>
+      <div className="text-gray-500 mt-3 px-6 text-center">
+        <a
+          href="https://abstractlab.gumroad.com/l/noto-avatar"
+          className="hover:underline"
+        >
+          &copy;&nbsp;Illustrations&nbsp;
+        </a>
+        designed by
+        <a href="https://twitter.com/@felix12777" className="hover:underline">
+          &nbsp;@Felix Wong&nbsp;
+        </a>
+        and licensed under
+        <a
+          className="ml-2 hover:underline"
+          href="https://creativecommons.org/publicdomain/zero/1.0/"
+        >
+          CC0
+        </a>
+      </div>
     </footer>
   );
 }
