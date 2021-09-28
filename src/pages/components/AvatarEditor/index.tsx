@@ -181,17 +181,17 @@ export default function AvatarEditor() {
               >
                 <g
                   stroke="none"
-                  stroke-width="1"
+                  strokeWidth="1"
                   fill="none"
-                  fill-rule="evenodd"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  fillRule="evenodd"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 >
                   <g
                     id="a"
                     transform="translate(1.000000, 1.000000)"
                     stroke="#000000"
-                    stroke-width="2"
+                    strokeWidth="2"
                   >
                     <polyline points="8 0 4 4 0 0"></polyline>
                   </g>

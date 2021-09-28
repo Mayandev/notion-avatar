@@ -23,5 +23,7 @@
   "coffeeUrl": "https://ko-fi.com/mayandev",
   "modalTitle": "Almost done",
   "modalHint": "Long press or click the right mouse button to save the avatar to your phone album",
-  "modalCancel": "Cancel"
+  "modalCancel": "Cancel",
+  "siteTitle": "Notion Avatar Maker",
+  "siteDescription": "An online tool for making notion-style avatars."
 }
