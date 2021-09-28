@@ -12,6 +12,7 @@ import DownloadModal from './DownloadModal';
 export default function AvatarEditor() {
   const [config, setConfig] = useState(getRandomStyle());
   const [preview, setPreview] = useState(``);
+  const [imageType, setImageType] = useState(`png`);
   const [showDownloadModal, setDownloadModal] = useState(false);
   // default placeholder
   const [imageDataURL, setImageDataURL] = useState(`/logo.gif`);
@@ -64,7 +65,6 @@ export default function AvatarEditor() {
       width: dom.offsetWidth,
       height: dom.offsetHeight,
     });
-
     const userAgent = window.navigator.userAgent.toLowerCase();
     const isCompatible = CompatibleAgents.some(
       (agent) => userAgent.indexOf(agent) >= 0,
@@ -72,8 +72,20 @@ export default function AvatarEditor() {
 
     // record download action
     ga.event({ action: 'download', params: { ...config } });
-    // base64
-    const imageURL = canvas.toDataURL();
+
+    // base64 only support png svg for now, maybe more change it to Map
+    let imageURL;
+    if (imageType === "png") {
+      imageURL = canvas.toDataURL();
+    } else {
+      const svgElement = dom.querySelector("svg")
+      if (!svgElement) {
+        // not generate for some reason
+        return
+      }
+      const svg = new XMLSerializer().serializeToString(svgElement);
+      imageURL = `data:image/svg+xml;base64,${window.btoa(svg)}`
+    }
 
     if (isCompatible) {
       setImageDataURL(imageURL);
@@ -84,7 +96,7 @@ export default function AvatarEditor() {
     const a = document.createElement('a');
 
     a.href = imageURL;
-    a.download = `notion-avatar-${new Date().getTime()}.png`;
+    a.download = `notion-avatar-${new Date().getTime()}.${imageType}`;
     a.click();
   };
 
@@ -150,7 +162,12 @@ export default function AvatarEditor() {
                 width={28}
                 height={28}
               />
-              <span className="ml-3">{t('download')}</span>
+              <span className="ml-3">{t('download')}
+                <select onClick={(e) => (e.stopPropagation())} onChange={(e) => setImageType(e.target.value)}>
+                  <option value="png">png</option>
+                  <option value="svg">svg</option>
+                </select>
+              </span>
             </button>
           </div>
         </div>
