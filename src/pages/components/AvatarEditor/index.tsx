@@ -141,13 +141,13 @@ export default function AvatarEditor() {
               </div>
             ))}
           </div>
-          <div className="flex flex-col sm:flex-row mt-10 justify-between w-full select-none">
+          <div className="flex flex-col md:flex-row mt-10 justify-between w-full select-none">
             <button
               onClick={() => {
                 setConfig(getRandomStyle());
               }}
               type="button"
-              className="outline-none flex items-center mb-3 sm:mb-0 justify-center w-full sm:w-48 md:w-60 border-3 border-black text-black font-bold py-2 px-4 rounded-full"
+              className="outline-none flex items-center mb-3 md:mb-0 justify-center w-full md:w-60 border-3 border-black text-black font-bold py-2 px-4 rounded-full"
             >
               <Image src="/dice.svg" alt={t('random')} width={28} height={28} />
               <span className="ml-3">{t('random')}</span>
@@ -155,7 +155,7 @@ export default function AvatarEditor() {
             <button
               type="button"
               onClick={downloadAvatar}
-              className="outline-none select-none flex items-center justify-center w-full sm:w-48 md:w-60 border-3 border-black text-black font-bold py-2 px-4 rounded-full"
+              className="outline-none select-none flex items-center justify-center w-full md:w-60 border-3 border-black text-black font-bold py-2 px-4 rounded-full"
             >
               <Image
                 src="/download.svg"
@@ -164,19 +164,39 @@ export default function AvatarEditor() {
                 height={28}
               />
               <span className="ml-3">{t('download')}</span>
-              <div className="px-2 flex">
-                <select
-                  className="appearance-none focus:outline-none select-none"
-                  onClick={(e) => e.stopPropagation()}
-                  onChange={(e) => setImageType(e.target.value)}
+              <select
+                className="appearance-none focus:outline-none select-none bg-transparent mx-2"
+                onClick={(e) => e.stopPropagation()}
+                onChange={(e) => setImageType(e.target.value)}
+              >
+                <option value="png">PNG</option>
+                <option value="svg">SVG</option>
+              </select>
+              <svg
+                width="10px"
+                height="6px"
+                viewBox="0 0 10 6"
+                version="1.1"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g
+                  stroke="none"
+                  stroke-width="1"
+                  fill="none"
+                  fill-rule="evenodd"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
                 >
-                  <option value="png">PNG</option>
-                  <option value="svg">SVG</option>
-                </select>
-                <div className="ml-1">
-                  <Image src="/dropdown.svg" width="10" height="6" />
-                </div>
-              </div>
+                  <g
+                    id="a"
+                    transform="translate(1.000000, 1.000000)"
+                    stroke="#000000"
+                    stroke-width="2"
+                  >
+                    <polyline points="8 0 4 4 0 0"></polyline>
+                  </g>
+                </g>
+              </svg>
             </button>
           </div>
         </div>
