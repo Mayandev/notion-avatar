@@ -25,5 +25,7 @@
   "modalHint": "Long press or click the right mouse button to save the avatar to your album",
   "modalCancel": "Cancel",
   "siteTitle": "Notion Avatar Maker",
-  "siteDescription": "An online tool for making notion-style avatars."
+  "siteDescription": "An online tool for making notion-style avatars.",
+  "404Title": "Oops! Page Not Found.",
+  "404Redirect": "Back To Home"
 }

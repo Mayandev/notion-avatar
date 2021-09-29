@@ -25,5 +25,7 @@
   "modalHint": "长按图片或者右键保存头像至本地相册",
   "modalCancel": "关闭",
   "siteTitle": "Notion 风格头像制作",
-  "siteDescription": "一个生成 Notion 风格头像的在线工具。"
+  "siteDescription": "一个生成 Notion 风格头像的在线工具。",
+  "404Title": "啊哦！页面走丢了。",
+  "404Redirect": "返回主页"
 }
