@@ -83,7 +83,7 @@ const Home: NextPage = () => {
           sizes="16x16"
           href="/favicon/favicon-16x16.png"
         />
-        <link rel="manifest" href="/favicon/manifest.json" />
+        <link rel="manifest" href="/manifest.json" />
         <title>{t(`siteTitle`)}</title>
         <meta name="description" content={t(`siteDescription`)} />
         <meta name="msapplication-TileColor" content="#fffefc" />
