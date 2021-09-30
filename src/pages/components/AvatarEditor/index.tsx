@@ -1,4 +1,4 @@
-import { AvatarStyleCount, CompatibleAgents, ContentTypeMap } from '@/const';
+import { AvatarStyleCount, CompatibleAgents } from '@/const';
 import { AvatarPart } from '@/types';
 import { getRandomStyle } from '@/utils';
 import Image from 'next/image';
