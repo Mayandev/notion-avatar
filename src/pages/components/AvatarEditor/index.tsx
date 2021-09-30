@@ -1,23 +1,39 @@
-import { AvatarStyleCount, CompatibleAgents } from '@/const';
+import { AvatarStyleCount, CompatibleAgents, ContentTypeMap } from '@/const';
 import { AvatarPart } from '@/types';
 import { getRandomStyle } from '@/utils';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import html2canvas from 'html2canvas';
+import { useRouter } from 'next/router';
 import * as ga from '@/lib/ga';
 import { useTranslation } from 'next-i18next';
 import SelectionWrapper from './SelectionWrapper';
 import DownloadModal from './DownloadModal';
 
 export default function AvatarEditor() {
-  const [config, setConfig] = useState(getRandomStyle());
+  const router = useRouter();
+
+  const [config, setConfig] = useState({ ...getRandomStyle() });
   const [preview, setPreview] = useState(``);
   const [imageType, setImageType] = useState(`png`);
   const [showDownloadModal, setDownloadModal] = useState(false);
-  // default placeholder
+  // default placeholder for compatible modal
   const [imageDataURL, setImageDataURL] = useState(`/logo.gif`);
 
   const { t } = useTranslation(`common`);
+
+  // hack
+  useEffect(() => {
+    if (router.asPath !== router.route) {
+      const { query } = router;
+      // query string to number
+      const params = Object.keys(query).reduce(
+        (prev, next) => Object.assign(prev, { [next]: Number(query[next]) }),
+        {},
+      );
+      setConfig({ ...config, ...params });
+    }
+  }, [router]);
 
   useEffect(() => {
     generatePreview();
