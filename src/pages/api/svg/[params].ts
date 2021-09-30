@@ -43,7 +43,7 @@ export default async function handler(
     Buffer.from(params as string, `base64`).toString(),
   ) as AvatarConfig;
 
-  const url = `${process.env.NEXT_PUBLIC_VERCEL_URL}?${Object.keys(config)
+  const url = `${process.env.NEXT_PUBLIC_URL}?${Object.keys(config)
     .map((type) => `${type}=${config[type as AvatarPart]}`)
     .join(`&`)}`;
 
