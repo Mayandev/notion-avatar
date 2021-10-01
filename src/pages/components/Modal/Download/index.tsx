@@ -14,7 +14,7 @@ export default function DownloadModal({ onCancel, image }: DownloadModalProps) {
       <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
         <div className="flex flex-col items-center sm:flex-row">
           <div className="w-full flex justify-center">
-            <img src={image} className="w-64" />
+            <img alt="notion avatar" src={image} className="w-64" />
           </div>
           <div className="h-full flex-col flex sm:justify-between mt-4 sm:mt-0">
             <div className="text-xl">🎉 {t(`modalTitle`)}</div>

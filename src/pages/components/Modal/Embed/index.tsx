@@ -1,4 +1,3 @@
-import { useTranslation } from 'next-i18next';
 import { AvatarConfig, ImageApiType, ImageType } from '@/types';
 import { useState, useEffect } from 'react';
 import Modal from '../Common';

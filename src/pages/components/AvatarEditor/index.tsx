@@ -8,7 +8,8 @@ import { useRouter } from 'next/router';
 import * as ga from '@/lib/ga';
 import { useTranslation } from 'next-i18next';
 import SelectionWrapper from './SelectionWrapper';
-import { DownloadModal, EmbedModal } from '../Modal';
+import DownloadModal from '../Modal/Download';
+import EmbedModal from '../Modal/Embed';
 
 export default function AvatarEditor() {
   const router = useRouter();
