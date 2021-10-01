@@ -25,3 +25,9 @@ export type AvatarConfig = {
 };
 
 export type AvatarPart = keyof AvatarConfig;
+
+export type ImageType = 'png' | 'svg';
+
+export type ImageApiType = {
+  [key in ImageType]: string;
+};

@@ -1,5 +1,5 @@
 import { AvatarStyleCount, CompatibleAgents } from '@/const';
-import { AvatarPart } from '@/types';
+import { AvatarPart, ImageType } from '@/types';
 import { getRandomStyle } from '@/utils';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
@@ -8,15 +8,17 @@ import { useRouter } from 'next/router';
 import * as ga from '@/lib/ga';
 import { useTranslation } from 'next-i18next';
 import SelectionWrapper from './SelectionWrapper';
-import DownloadModal from './DownloadModal';
+import { DownloadModal, EmbedModal } from '../Modal';
 
 export default function AvatarEditor() {
   const router = useRouter();
 
   const [config, setConfig] = useState({ ...getRandomStyle() });
   const [preview, setPreview] = useState(``);
-  const [imageType, setImageType] = useState(`png`);
+  const [imageType, setImageType] = useState(`png` as ImageType);
   const [showDownloadModal, setDownloadModal] = useState(false);
+  const [showEmbedModal, setEmbedModal] = useState(false);
+
   // default placeholder for compatible modal
   const [imageDataURL, setImageDataURL] = useState(`/logo.gif`);
 
@@ -34,10 +36,6 @@ export default function AvatarEditor() {
       setConfig({ ...config, ...params });
     }
   }, [router]);
-
-  useEffect(() => {
-    generatePreview();
-  }, [config]);
 
   const generatePreview = async () => {
     const groups = await Promise.all(
@@ -63,6 +61,10 @@ export default function AvatarEditor() {
 
     setPreview(previewSvg);
   };
+
+  useEffect(() => {
+    generatePreview();
+  }, [config]);
 
   const switchConfig = (type: AvatarPart) => {
     const newIdx = (config[type] + 1) % (AvatarStyleCount[type] + 1);
@@ -104,7 +106,7 @@ export default function AvatarEditor() {
     }
 
     // compatible for browsers which don't surpport dwonload attribution
-    if (isNeedCompatible) {
+    if (!isNeedCompatible) {
       setImageDataURL(imageURL);
       setDownloadModal(true);
       return;
@@ -121,10 +123,19 @@ export default function AvatarEditor() {
     <>
       {showDownloadModal && (
         <DownloadModal
-          image={imageDataURL}
           onCancel={() => {
             setDownloadModal(false);
           }}
+          image={imageDataURL}
+        />
+      )}
+      {showEmbedModal && (
+        <EmbedModal
+          onCancel={() => {
+            setEmbedModal(false);
+          }}
+          config={config}
+          imageType={imageType}
         />
       )}
       <div className="flex justify-center items-center flex-col">
@@ -157,21 +168,31 @@ export default function AvatarEditor() {
               </div>
             ))}
           </div>
-          <div className="flex flex-col md:flex-row mt-10 justify-between w-full select-none">
+          <div className="flex flex-col gap-3 md:flex-row mt-8 justify-between w-full select-none">
             <button
               onClick={() => {
                 setConfig(getRandomStyle());
               }}
               type="button"
-              className="outline-none flex items-center mb-3 md:mb-0 justify-center w-full md:w-60 border-3 border-black text-black font-bold py-2 px-4 rounded-full"
+              className="focus:ring-2 focus:ring-offset-2 focus:ring-black hover:bg-gray-50 outline-none flex items-center justify-center w-full md:w-60 border-3 border-black text-black font-bold py-2 px-4 rounded-full"
             >
               <Image src="/dice.svg" alt={t('random')} width={28} height={28} />
               <span className="ml-3">{t('random')}</span>
             </button>
             <button
+              onClick={() => {
+                setEmbedModal(true);
+              }}
+              type="button"
+              className="focus:ring-2 focus:ring-offset-2 focus:ring-black hover:bg-gray-50 outline-none flex items-center justify-center w-full md:w-60 border-3 border-black text-black font-bold py-2 px-4 rounded-full"
+            >
+              <Image src="/code.svg" alt={t('embed')} width={28} height={28} />
+              <span className="ml-3">{t('embed')}</span>
+            </button>
+            <button
               type="button"
               onClick={downloadAvatar}
-              className="outline-none select-none flex items-center justify-center w-full md:w-60 border-3 border-black text-black font-bold py-2 px-4 rounded-full"
+              className="focus:ring-2 focus:ring-offset-2 focus:ring-black hover:bg-gray-50 outline-none select-none flex items-center justify-center w-full md:w-60 border-3 border-black text-black font-bold py-2 px-4 rounded-full"
             >
               <Image
                 src="/download.svg"
@@ -183,7 +204,7 @@ export default function AvatarEditor() {
               <select
                 className="appearance-none focus:outline-none select-none bg-transparent mx-2"
                 onClick={(e) => e.stopPropagation()}
-                onChange={(e) => setImageType(e.target.value)}
+                onChange={(e) => setImageType(e.target.value as ImageType)}
               >
                 <option value="png">PNG</option>
                 <option value="svg">SVG</option>
