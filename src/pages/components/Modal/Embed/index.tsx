@@ -38,7 +38,7 @@ export default function EmbedModal({
         </div>
         <div className="my-2">
           <h2 className="text-xl">{`<img>`}</h2>
-          <Code code={`<img src=${url} alt="notion avatar">`} />
+          <Code code={`<img src="${url}" alt="notion avatar">`} />
         </div>
         <div className="my-2">
           <h2 className="text-xl">Markdown</h2>
