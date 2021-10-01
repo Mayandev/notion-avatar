@@ -120,6 +120,12 @@ export default function AvatarEditor() {
     a.click();
   };
 
+  const onOpenEmbedModal = () => {
+    setEmbedModal(true);
+    // record embed action
+    ga.event({ action: 'embed', params: { ...config } });
+  };
+
   return (
     <>
       {showDownloadModal && (
@@ -181,9 +187,7 @@ export default function AvatarEditor() {
               <span className="ml-3">{t('random')}</span>
             </button>
             <button
-              onClick={() => {
-                setEmbedModal(true);
-              }}
+              onClick={onOpenEmbedModal}
               type="button"
               className="mb-3 md:mb-0 focus:ring-2 focus:ring-offset-2 focus:ring-black hover:bg-gray-50 outline-none flex items-center justify-center w-full md:w-60 border-3 border-black text-black font-bold py-2 px-4 rounded-full"
             >
