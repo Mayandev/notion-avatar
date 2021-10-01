@@ -107,7 +107,7 @@ export default function AvatarEditor() {
     }
 
     // compatible for browsers which don't surpport dwonload attribution
-    if (!isNeedCompatible) {
+    if (isNeedCompatible) {
       setImageDataURL(imageURL);
       setDownloadModal(true);
       return;
@@ -169,13 +169,13 @@ export default function AvatarEditor() {
               </div>
             ))}
           </div>
-          <div className="flex flex-col gap-3 md:flex-row mt-8 justify-between w-full select-none">
+          <div className="flex flex-col gap-x-3 md:flex-row mt-8 justify-between w-full select-none">
             <button
               onClick={() => {
                 setConfig(getRandomStyle());
               }}
               type="button"
-              className="focus:ring-2 focus:ring-offset-2 focus:ring-black hover:bg-gray-50 outline-none flex items-center justify-center w-full md:w-60 border-3 border-black text-black font-bold py-2 px-4 rounded-full"
+              className="mb-3 md:mb-0 focus:ring-2 focus:ring-offset-2 focus:ring-black hover:bg-gray-50 outline-none flex items-center justify-center w-full md:w-60 border-3 border-black text-black font-bold py-2 px-4 rounded-full"
             >
               <Image src="/dice.svg" alt={t('random')} width={28} height={28} />
               <span className="ml-3">{t('random')}</span>
@@ -185,7 +185,7 @@ export default function AvatarEditor() {
                 setEmbedModal(true);
               }}
               type="button"
-              className="focus:ring-2 focus:ring-offset-2 focus:ring-black hover:bg-gray-50 outline-none flex items-center justify-center w-full md:w-60 border-3 border-black text-black font-bold py-2 px-4 rounded-full"
+              className="mb-3 md:mb-0 focus:ring-2 focus:ring-offset-2 focus:ring-black hover:bg-gray-50 outline-none flex items-center justify-center w-full md:w-60 border-3 border-black text-black font-bold py-2 px-4 rounded-full"
             >
               <Image src="/code.svg" alt={t('embed')} width={28} height={28} />
               <span className="ml-3">{t('embed')}</span>
