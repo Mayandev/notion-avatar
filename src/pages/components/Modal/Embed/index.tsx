@@ -1,5 +1,6 @@
 import { AvatarConfig, ImageApiType, ImageType } from '@/types';
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'next-i18next';
 import Modal from '../Common';
 import Code from '../../Code';
 
@@ -14,12 +15,18 @@ const apiType: ImageApiType = {
   svg: `svg`,
 };
 
+const formatType: ImageApiType = {
+  png: `PNG`,
+  svg: `SVG`,
+};
+
 export default function EmbedModal({
   onCancel,
   config,
   imageType,
 }: DownloadModalProps) {
   const [url, setUrl] = useState(``);
+  const { t } = useTranslation();
 
   useEffect(() => {
     setUrl(
@@ -33,7 +40,7 @@ export default function EmbedModal({
     <Modal onCancel={onCancel}>
       <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
         <div className="my-2">
-          <h2 className="text-xl">URL</h2>
+          <h2 className="text-xl uppercase">{formatType[imageType]} URL</h2>
           <Code code={url} />
         </div>
         <div className="my-2">
@@ -44,6 +51,7 @@ export default function EmbedModal({
           <h2 className="text-xl">Markdown</h2>
           <Code code={`![notion avatar](${url})`} />
         </div>
+        <p className="mt-2 text-gray-500">*{t(`downloadTip`)}</p>
       </div>
     </Modal>
   );

@@ -30,5 +30,6 @@
   "404Title": "Oops! Page Not Found.",
   "404Redirect": "Back To Home",
   "copy": "Copy",
-  "copied": "Copied"
+  "copied": "Copied",
+  "downloadTip": "*Currently supports svg and png formats, try changing the format at the download button"
 }
