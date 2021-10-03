@@ -15,7 +15,7 @@ export default function Modal({ onCancel, children }: ModalProps) {
       role="dialog"
       aria-modal="true"
     >
-      <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-36 text-center sm:block sm:p-0">
+      <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-56 text-center sm:block sm:p-0">
         <div
           className="absolute inset-0 bg-black bg-opacity-75 transition-opacity"
           aria-hidden="true"

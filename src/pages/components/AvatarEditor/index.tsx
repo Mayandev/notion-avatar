@@ -40,7 +40,7 @@ export default function AvatarEditor() {
 
   const generatePreview = async () => {
     const groups = await Promise.all(
-      Object.keys(config).map(async (type) => {
+      Object.keys(AvatarStyleCount).map(async (type) => {
         /* eslint-disable */
         const svgRaw = (
           await require(`!!raw-loader!@/public/avatar/preview/${type}/${
@@ -156,7 +156,7 @@ export default function AvatarEditor() {
         <div className="w-5/6 md:w-2/3">
           <div className="text-lg my-5">{t('choose')}</div>
           <div className="grid gap-y-4 justify-items-center justify-between grid-rows-2 grid-cols-5 lg:flex">
-            {Object.keys(config).map((type) => (
+            {Object.keys(AvatarStyleCount).map((type) => (
               <div key={type}>
                 <SelectionWrapper
                   switchConfig={() => {

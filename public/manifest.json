@@ -3,7 +3,7 @@
   "short_name": "Notion Avatar",
   "theme_color": "#fffefc",
   "background_color": "#fffefc",
-  "display": "fullscreen",
+  "display": "standalone",
   "orientation": "portrait",
   "start_url": "/",
   "icons": [
