@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import chromium from 'chrome-aws-lambda';
-import { AvatarConfig, AvatarPart } from '@/types';
+import { AvatarConfigBase, AvatarPart } from '@/types';
 
 // TODO: reuse this logic with svg api
 async function getBrowserInstance() {
@@ -42,7 +42,7 @@ export default async function handler(
   // decode
   const config = JSON.parse(
     Buffer.from(params as string, `base64`).toString(),
-  ) as AvatarConfig;
+  ) as AvatarConfigBase;
 
   const url = `${process.env.NEXT_PUBLIC_URL}?${Object.keys(config)
     .map((type) => `${type}=${config[type as AvatarPart]}`)

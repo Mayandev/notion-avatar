@@ -31,5 +31,6 @@
   "404Redirect": "Back To Home",
   "copy": "Copy",
   "copied": "Copied",
-  "downloadTip": "Currently supports svg and png formats, try changing the format at the download button"
+  "downloadTip": "Currently supports svg and png formats, try changing the format at the download button",
+  "flip": "Flip"
 }

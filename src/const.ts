@@ -1,6 +1,6 @@
-import { AvatarConfig } from './types';
+import { AvatarConfigBase } from './types';
 
-export const AvatarStyleCount: AvatarConfig = {
+export const AvatarStyleCount: AvatarConfigBase = {
   face: 10,
   nose: 10,
   mouth: 10,

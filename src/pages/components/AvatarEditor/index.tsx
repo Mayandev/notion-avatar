@@ -1,5 +1,5 @@
 import { AvatarStyleCount, CompatibleAgents } from '@/const';
-import { AvatarPart, ImageType } from '@/types';
+import { AvatarPart, ImageType, AvatarConfig } from '@/types';
 import { getRandomStyle } from '@/utils';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
@@ -19,6 +19,7 @@ export default function AvatarEditor() {
   const [imageType, setImageType] = useState(`png` as ImageType);
   const [showDownloadModal, setDownloadModal] = useState(false);
   const [showEmbedModal, setEmbedModal] = useState(false);
+  const [flip, setFlip] = useState(false);
 
   // default placeholder for compatible modal
   const [imageDataURL, setImageDataURL] = useState(`/logo.gif`);
@@ -31,14 +32,15 @@ export default function AvatarEditor() {
       const { query } = router;
       // query string to number
       const params = Object.keys(query).reduce(
-        (prev, next) => Object.assign(prev, { [next]: Number(query[next]) }),
+        (prev, next) => Object.assign(prev, { [next]: query[next] }),
         {},
-      );
+      ) as AvatarConfig;
       setConfig({ ...config, ...params });
+      setFlip(Boolean(Number(params.flip ?? 0)));
     }
   }, [router]);
 
-  const generatePreview = async () => {
+  const generatePreview = async (flipped: boolean) => {
     const groups = await Promise.all(
       Object.keys(AvatarStyleCount).map(async (type) => {
         /* eslint-disable */
@@ -47,7 +49,9 @@ export default function AvatarEditor() {
             config[type as AvatarPart]
           }.svg`)
         ).default;
-        return `\n<g id="notion-avatar-${type}">\n
+        return `\n<g id="notion-avatar-${type}" ${
+          flipped ? 'transform="scale(-1,1)" transform-origin="540 540"' : ''
+        }>\n
       ${svgRaw.replace(/<svg.*(?=>)>/, '').replace('</svg>', '')}
     \n</g>\n`;
       }),
@@ -64,8 +68,8 @@ export default function AvatarEditor() {
   };
 
   useEffect(() => {
-    generatePreview();
-  }, [config]);
+    generatePreview(flip);
+  }, [config, flip]);
 
   const switchConfig = (type: AvatarPart) => {
     const newIdx = (config[type] + 1) % (AvatarStyleCount[type] + 1);
@@ -141,7 +145,7 @@ export default function AvatarEditor() {
           onCancel={() => {
             setEmbedModal(false);
           }}
-          config={config}
+          config={{ ...config, flip: Number(flip) }}
           imageType={imageType}
         />
       )}
@@ -154,7 +158,22 @@ export default function AvatarEditor() {
           }}
         />
         <div className="w-5/6 md:w-2/3">
-          <div className="text-lg my-5">{t('choose')}</div>
+          <div className="flex justify-between items-center">
+            <div className="text-lg my-5">{t('choose')}</div>
+            <button
+              data-tip={t('flip')}
+              className="w-8 h-8 sm:w-12 sm:h-12 tooltip"
+              onClick={() => {
+                setFlip(!flip);
+              }}
+            >
+              <Image
+                width={30}
+                height={30}
+                src={flip ? '/flip-left.svg' : '/flip-right.svg'}
+              />
+            </button>
+          </div>
           <div className="grid gap-y-4 justify-items-center justify-between grid-rows-2 grid-cols-5 lg:flex">
             {Object.keys(AvatarStyleCount).map((type) => (
               <div key={type}>

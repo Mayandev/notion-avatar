@@ -31,6 +31,6 @@
   "404Redirect": "返回主页",
   "copy": "复制",
   "copied": "已复制",
-  "downloadTip": "目前支持 svg 和 png 格式，试试在下载按钮改变格式"
-
+  "downloadTip": "目前支持 svg 和 png 格式，试试在下载按钮改变格式",
+  "flip": "翻转"
 }
