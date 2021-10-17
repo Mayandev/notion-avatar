@@ -50,7 +50,7 @@ export default function AvatarEditor() {
           }.svg`)
         ).default;
         return `\n<g id="notion-avatar-${type}" ${
-          flipped ? 'transform="scale(-1,1)" transform-origin="540 540"' : ''
+          flipped ? 'transform="scale(-1,1) translate(-1080, 0)"' : ''
         }>\n
       ${svgRaw.replace(/<svg.*(?=>)>/, '').replace('</svg>', '')}
     \n</g>\n`;
