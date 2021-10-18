@@ -1,10 +1,1 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="180px" height="211px" viewBox="0 0 180 211" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <title>flip right</title>
-    <g id="flip-right" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linejoin="round">
-        <g id="flip2" transform="translate(5.000000, 6.000000)" fill="#000000" fill-rule="nonzero" stroke="#000000" stroke-width="10">
-            <polygon points="95 0 95 200 170 200"></polygon>
-            <polygon fill-opacity="0" points="0 200 75 200 75 0"></polygon>
-        </g>
-    </g>
-</svg>
+<svg width="180" height="211" xmlns="http://www.w3.org/2000/svg"><g fill="#000" fill-rule="nonzero" stroke="#000" stroke-width="10" stroke-linejoin="round"><path d="M100 6v200h75z"/><path fill="none" d="M5 206h75V6z"/></g></svg>
