@@ -3,3 +3,4 @@
 . "$(dirname "$0")/common.sh"
 
 yarn lint-staged
+yarn svgo
