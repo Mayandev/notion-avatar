@@ -6,7 +6,7 @@ export default function Footer() {
 
   return (
     <footer className="flex flex-col items-center pb-4">
-      <Image src="/line.svg" width="125" height="54" />
+      <Image src="/icon/line.svg" width="125" height="54" />
       <div className="flex justify-center mt-10">
         <a
           className="transition hover:underline"

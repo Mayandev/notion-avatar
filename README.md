@@ -29,7 +29,7 @@ I18n supported:
 
 - Illustration designer: [@Felix Wong](https://www.producthunt.com/@felix12777) on ProductHunt
 - Pack of illustrations: [Noto avatar](https://abstractlab.gumroad.com/l/noto-avatar)
-- Assets licensed under [CC0](https://creativecommons.org/publicdomain/zero/1.0/) <img src="./public/cc0.svg" width="50"/>
+- Assets licensed under [CC0](https://creativecommons.org/publicdomain/zero/1.0/) <img src="./public/icon/cc0.svg" width="50"/>
 
 ## Contact
 

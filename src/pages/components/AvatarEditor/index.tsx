@@ -170,7 +170,7 @@ export default function AvatarEditor() {
               <Image
                 width={30}
                 height={30}
-                src={flip ? '/flip-left.svg' : '/flip-right.svg'}
+                src={flip ? '/icon/flip-left.svg' : '/icon/flip-right.svg'}
               />
             </button>
           </div>
@@ -202,7 +202,12 @@ export default function AvatarEditor() {
               type="button"
               className="mb-3 md:mb-0 focus:ring-2 focus:ring-offset-2 focus:ring-black hover:bg-gray-50 outline-none flex items-center justify-center w-full md:w-60 border-3 border-black text-black font-bold py-2 px-4 rounded-full"
             >
-              <Image src="/dice.svg" alt={t('random')} width={28} height={28} />
+              <Image
+                src="/icon/dice.svg"
+                alt={t('random')}
+                width={28}
+                height={28}
+              />
               <span className="ml-3">{t('random')}</span>
             </button>
             <button
@@ -210,7 +215,12 @@ export default function AvatarEditor() {
               type="button"
               className="mb-3 md:mb-0 focus:ring-2 focus:ring-offset-2 focus:ring-black hover:bg-gray-50 outline-none flex items-center justify-center w-full md:w-60 border-3 border-black text-black font-bold py-2 px-4 rounded-full"
             >
-              <Image src="/code.svg" alt={t('embed')} width={28} height={28} />
+              <Image
+                src="/icon/code.svg"
+                alt={t('embed')}
+                width={28}
+                height={28}
+              />
               <span className="ml-3">{t('embed')}</span>
             </button>
             <button
@@ -219,7 +229,7 @@ export default function AvatarEditor() {
               className="focus:ring-2 focus:ring-offset-2 focus:ring-black hover:bg-gray-50 outline-none select-none flex items-center justify-center w-full md:w-60 border-3 border-black text-black font-bold py-2 px-4 rounded-full"
             >
               <Image
-                src="/download.svg"
+                src="/icon/download.svg"
                 alt={t('download')}
                 width={28}
                 height={28}
