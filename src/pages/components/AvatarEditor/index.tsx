@@ -10,21 +10,24 @@ import { useTranslation } from 'next-i18next';
 import SelectionWrapper from './SelectionWrapper';
 import DownloadModal from '../Modal/Download';
 import EmbedModal from '../Modal/Embed';
+import PaletteModal from '../Modal/Palette';
 
 export default function AvatarEditor() {
   const router = useRouter();
 
   const [config, setConfig] = useState({ ...getRandomStyle() });
-  const [preview, setPreview] = useState(``);
-  const [imageType, setImageType] = useState(`png` as ImageType);
+  const [preview, setPreview] = useState('');
+  const [imageType, setImageType] = useState('png' as ImageType);
   const [showDownloadModal, setDownloadModal] = useState(false);
   const [showEmbedModal, setEmbedModal] = useState(false);
+  const [showPaletteModal, setPaletteModal] = useState(false);
   const [flip, setFlip] = useState(false);
+  const [backgroundColor, setBackgroundColor] = useState(`rgba('255, 0, 0, 0')`);
 
   // default placeholder for compatible modal
-  const [imageDataURL, setImageDataURL] = useState(`/logo.gif`);
+  const [imageDataURL, setImageDataURL] = useState('/logo.gif');
 
-  const { t } = useTranslation(`common`);
+  const { t } = useTranslation('common');
 
   // hack
   useEffect(() => {
@@ -33,7 +36,7 @@ export default function AvatarEditor() {
       // query string to number
       const params = Object.keys(query).reduce(
         (prev, next) => Object.assign(prev, { [next]: query[next] }),
-        {},
+        {}
       ) as AvatarConfig;
       setConfig({ ...config, ...params });
       setFlip(Boolean(Number(params.flip ?? 0)));
@@ -42,7 +45,7 @@ export default function AvatarEditor() {
 
   const generatePreview = async (flipped: boolean) => {
     const groups = await Promise.all(
-      Object.keys(AvatarStyleCount).map(async (type) => {
+      Object.keys(AvatarStyleCount).map(async type => {
         /* eslint-disable */
         const svgRaw = (
           await require(`!!raw-loader!@/public/avatar/preview/${type}/${
@@ -50,8 +53,8 @@ export default function AvatarEditor() {
           }.svg`)
         ).default;
         return `\n<g id="notion-avatar-${type}" ${
-          flipped ? 'transform="scale(-1,1) translate(-1080, 0)"' : ''
-        }>\n
+          type === 'face' ? 'fill="#ffffff"' : ''
+        } ${flipped ? 'transform="scale(-1,1) translate(-1080, 0)"' : ''}>\n
       ${svgRaw.replace(/<svg.*(?=>)>/, '').replace('</svg>', '')}
     \n</g>\n`;
       }),
@@ -59,7 +62,20 @@ export default function AvatarEditor() {
 
     const previewSvg =
       `<svg viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
-    ${groups.join('\n\n')}
+      <defs>
+        <filter id="filter" x="-20%" y="-20%" width="140%" height="140%" filterUnits="objectBoundingBox" primitiveUnits="userSpaceOnUse" color-interpolation-filters="linearRGB">
+          <feMorphology operator="dilate" radius="20 20" in="SourceAlpha" result="morphology"/>
+          <feFlood flood-color="#ffffff" flood-opacity="1" result="flood"/>
+          <feComposite in="flood" in2="morphology" operator="in" result="composite"/>
+          <feMerge result="merge">
+                <feMergeNode in="composite" result="mergeNode"/>
+            <feMergeNode in="SourceGraphic" result="mergeNode1"/>
+            </feMerge>
+        </filter>
+      </defs>
+      <g id="notion-avatar" filter="url(#filter)">
+        ${groups.join('\n\n')}
+      </g>
       </svg>`
         .trim()
         .replace(/(\n|\t)/g, '');
@@ -90,7 +106,7 @@ export default function AvatarEditor() {
     });
     const userAgent = window.navigator.userAgent.toLowerCase();
     const isNeedCompatible = CompatibleAgents.some(
-      (agent) => userAgent.indexOf(agent) >= 0,
+      agent => userAgent.indexOf(agent) >= 0,
     );
 
     // record download action
@@ -130,6 +146,10 @@ export default function AvatarEditor() {
     ga.event({ action: 'embed', params: { ...config } });
   };
 
+  const onOpenPaletteModal = () => {
+    setPaletteModal(true);
+  };
+
   return (
     <>
       {showDownloadModal && (
@@ -149,10 +169,21 @@ export default function AvatarEditor() {
           imageType={imageType}
         />
       )}
+      {showPaletteModal && (
+        <PaletteModal
+          onCancel={() => {
+            setPaletteModal(false);
+          }}
+          onSelect={color => {
+            setBackgroundColor(color);
+          }}
+        />
+      )}
       <div className="flex justify-center items-center flex-col">
         <div
+          style={{backgroundColor: backgroundColor}}
           id="avatar-preview"
-          className="w-48 h-48 md:w-72 md:h-72"
+          className="w-48 h-48 md:w-72 md:h-72 rounded-lg"
           dangerouslySetInnerHTML={{
             __html: preview,
           }}
@@ -160,22 +191,31 @@ export default function AvatarEditor() {
         <div className="w-5/6 md:w-2/3">
           <div className="flex justify-between items-center">
             <div className="text-lg my-5">{t('choose')}</div>
-            <button
-              data-tip={t('flip')}
-              className="w-8 h-8 sm:w-12 sm:h-12 tooltip"
-              onClick={() => {
-                setFlip(!flip);
-              }}
-            >
-              <Image
-                width={30}
-                height={30}
-                src={flip ? '/icon/flip-left.svg' : '/icon/flip-right.svg'}
-              />
-            </button>
+            <div>
+              <button
+                data-tip={t('flip')}
+                className="w-8 h-8 sm:w-12 sm:h-12 tooltip"
+                onClick={() => {
+                  setFlip(!flip);
+                }}
+              >
+                <Image
+                  width={30}
+                  height={30}
+                  src={flip ? '/icon/flip-left.svg' : '/icon/flip-right.svg'}
+                />
+              </button>
+              <button
+                data-tip={t('background')}
+                className="w-8 h-8 sm:w-12 sm:h-12 tooltip ml-2"
+                onClick={onOpenPaletteModal}
+              >
+                <Image width={30} height={30} src="/icon/palette.svg" />
+              </button>
+            </div>
           </div>
           <div className="grid gap-y-4 justify-items-center justify-between grid-rows-2 grid-cols-5 lg:flex">
-            {Object.keys(AvatarStyleCount).map((type) => (
+            {Object.keys(AvatarStyleCount).map(type => (
               <div key={type}>
                 <SelectionWrapper
                   switchConfig={() => {
@@ -237,8 +277,8 @@ export default function AvatarEditor() {
               <span className="ml-3">{t('download')}</span>
               <select
                 className="appearance-none focus:outline-none select-none bg-transparent mx-2"
-                onClick={(e) => e.stopPropagation()}
-                onChange={(e) => setImageType(e.target.value as ImageType)}
+                onClick={e => e.stopPropagation()}
+                onChange={e => setImageType(e.target.value as ImageType)}
               >
                 <option value="png">PNG</option>
                 <option value="svg">SVG</option>

@@ -1,1 +1,10 @@
-<svg width="180" height="211" xmlns="http://www.w3.org/2000/svg"><g stroke="#000" stroke-width="10" stroke-linejoin="round"><path d="M100 6v200h75z"/><path fill="none" d="M5 206h75V6z"/></g></svg>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="160px" height="160px" viewBox="0 0 160 160" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>未命名4</title>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linejoin="round">
+        <g id="flip-left" transform="translate(15.000000, 9.000000)" stroke="#000000" stroke-width="10">
+            <polygon id="路径" fill="#000000" points="76 0 76 141.068702 129.129771 141.068702"></polygon>
+            <polygon id="路径" fill-rule="nonzero" points="0 141.068702 53.129771 141.068702 53.129771 0"></polygon>
+        </g>
+    </g>
+</svg>

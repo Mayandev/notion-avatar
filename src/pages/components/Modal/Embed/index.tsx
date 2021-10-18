@@ -4,7 +4,7 @@ import { useTranslation } from 'next-i18next';
 import Modal from '../Common';
 import Code from '../../Code';
 
-type DownloadModalProps = {
+type EmbedModalProps = {
   onCancel: () => void;
   config: AvatarConfig;
   imageType: ImageType;
@@ -24,7 +24,7 @@ export default function EmbedModal({
   onCancel,
   config,
   imageType,
-}: DownloadModalProps) {
+}: EmbedModalProps) {
   const [url, setUrl] = useState(``);
   const { t } = useTranslation();
 
