@@ -22,8 +22,9 @@ export default function AvatarEditor() {
   const [showEmbedModal, setEmbedModal] = useState(false);
   const [showPaletteModal, setPaletteModal] = useState(false);
   const [flip, setFlip] = useState(false);
-  const [backgroundColor, setBackgroundColor] =
-    useState(`rgba('255, 0, 0, 0')`);
+  const [backgroundColor, setBackgroundColor] = useState(
+    "rgba('255, 0, 0, 0')",
+  );
 
   // default placeholder for compatible modal
   const [imageDataURL, setImageDataURL] = useState('/logo.gif');

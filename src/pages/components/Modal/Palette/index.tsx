@@ -1,7 +1,6 @@
-import { useState, useEffect } from 'react';
 import { useTranslation } from 'next-i18next';
-import Modal from '../Common';
 import { PalettePreset } from '@/const';
+import Modal from '../Common';
 
 type PaletteModalProps = {
   onSelect: (color: string) => void;
@@ -20,6 +19,7 @@ export default function PaletteModal({
         <h1>{t('paletteTitle')}</h1>
         <div className="mt-3 flex flex-wrap gap-4">
           {PalettePreset.map((color, index) => (
+            /* eslint-disable */
             <button
               key={index}
               type="button"
