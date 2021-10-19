@@ -265,52 +265,56 @@ export default function AvatarEditor() {
               />
               <span className="ml-3">{t('embed')}</span>
             </button>
-            <button
-              type="button"
-              onClick={downloadAvatar}
-              className="focus:ring-2 focus:ring-offset-2 focus:ring-black hover:bg-gray-50 outline-none select-none flex items-center justify-center w-full md:w-60 border-3 border-black text-black font-bold py-2 px-4 rounded-full"
-            >
-              <Image
-                src="/icon/download.svg"
-                alt={t('download')}
-                width={28}
-                height={28}
-              />
-              <span className="ml-3">{t('download')}</span>
-              <select
-                className="appearance-none focus:outline-none select-none bg-transparent mx-2"
-                onClick={(e) => e.stopPropagation()}
-                onChange={(e) => setImageType(e.target.value as ImageType)}
+            <div className="flex">
+              <button
+                type="button"
+                onClick={downloadAvatar}
+                className="focus:ring-2 focus:ring-offset-2 focus:ring-black hover:bg-gray-50 outline-none select-none flex items-center justify-center md:w-52 border-3 border-black text-black font-bold py-2 px-4 rounded-full rounded-r-none flex-grow"
               >
-                <option value="png">PNG</option>
-                <option value="svg">SVG</option>
-              </select>
-              <svg
-                width="10px"
-                height="6px"
-                viewBox="0 0 10 6"
-                version="1.1"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <g
-                  stroke="none"
-                  strokeWidth="1"
-                  fill="none"
-                  fillRule="evenodd"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
+                <Image
+                  src="/icon/download.svg"
+                  alt={t('download')}
+                  width={28}
+                  height={28}
+                />
+                <span className="ml-3">{t('download')}</span>
+              </button>
+              <div className="border-3 border-black rounded-full flex items-center rounded-l-none border-l-0 relative">
+                <select
+                  className="appearance-none focus:outline-none select-none bg-transparent h-full w-full pl-4 pr-7 z-10"
+                  onChange={(e) => setImageType(e.target.value as ImageType)}
+                >
+                  <option value="png">.PNG</option>
+                  <option value="svg">.SVG</option>
+                </select>
+                <svg
+                  width="10px"
+                  height="6px"
+                  viewBox="0 0 10 6"
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="absolute right-3"
                 >
                   <g
-                    id="a"
-                    transform="translate(1.000000, 1.000000)"
-                    stroke="#000000"
-                    strokeWidth="2"
+                    stroke="none"
+                    strokeWidth="1"
+                    fill="none"
+                    fillRule="evenodd"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   >
-                    <polyline points="8 0 4 4 0 0"></polyline>
+                    <g
+                      id="a"
+                      transform="translate(1.000000, 1.000000)"
+                      stroke="#000000"
+                      strokeWidth="2"
+                    >
+                      <polyline points="8 0 4 4 0 0"></polyline>
+                    </g>
                   </g>
-                </g>
-              </svg>
-            </button>
+                </svg>
+              </div>
+            </div>
           </div>
         </div>
       </div>
