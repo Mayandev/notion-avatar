@@ -66,7 +66,7 @@ export default function PaletteModal({
         </div>
 
         <h1 className="py-4">{t('paletteTitle')}</h1>
-        <div className="grid gap-2 sm:gap-4 justify-items-center justify-between grid-rows-2 grid-cols-5">
+        <div className="grid gap-2 p-1 sm:gap-4 justify-items-center justify-between grid-rows-2 grid-cols-5">
           {PalettePreset.map((color, index) => (
             /* eslint-disable */
             <button
@@ -75,7 +75,7 @@ export default function PaletteModal({
               onClick={() => {
                 setColor(color);
               }}
-              className="w-14 h-10 sm:w-20 sm:h-12 rounded focus:ring-2 focus:ring-offset-2"
+              className="w-12 h-10 sm:w-20 sm:h-12 rounded outline-none select-none border-3 border-solid border-black focus:ring-2 focus:ring-offset-2 focus:ring-black hover:bg-gray-50"
               style={{ background: color }}
             >
               {' '}
