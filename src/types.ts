@@ -24,6 +24,17 @@ export type AvatarConfigBase = {
   nose: number;
 };
 
+export type BackgroundShape = 'circle' | 'square' | 'none';
+
+export type AvatarBackgroundConfig = {
+  color: string;
+  shape: BackgroundShape;
+};
+
+export type ShapeStyle = {
+  [key in BackgroundShape]: string;
+};
+
 export type AvatarPart = keyof AvatarConfigBase;
 
 export type ImageType = 'png' | 'svg';

@@ -25,6 +25,7 @@
   "modalTitle": "Almost done",
   "modalHint": "Long press or click the right mouse button to save the avatar to your album",
   "modalCancel": "Cancel",
+  "modalConfirm": "Confirm",
   "siteTitle": "Notion Avatar Maker",
   "siteDescription": "An online tool for making notion-style avatars.",
   "404Title": "Oops! Page Not Found.",
@@ -34,5 +35,7 @@
   "downloadTip": "Currently supports svg and png formats, try changing the format at the download button",
   "flip": "Flip",
   "background": "Background",
-  "paletteTitle": "Choose a background"
+  "paletteTitle": "Choose background",
+  "chooseShape": "Choose shape",
+  "customColor": "Or input color value"
 }

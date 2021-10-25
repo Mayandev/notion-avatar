@@ -25,6 +25,7 @@
   "modalTitle": "最后一步",
   "modalHint": "长按图片或者右键保存头像至本地相册",
   "modalCancel": "关闭",
+  "modalConfirm": "确认",
   "siteTitle": "Notion 风格头像制作",
   "siteDescription": "一个生成 Notion 风格头像的在线工具。",
   "404Title": "啊哦！页面走丢了。",
@@ -34,5 +35,7 @@
   "downloadTip": "目前支持 svg 和 png 格式，试试在下载按钮改变格式",
   "flip": "翻转",
   "background": "背景色",
-  "paletteTitle": "请选择一种背景颜色"
+  "paletteTitle": "请选择一种背景颜色",
+  "chooseShape": "请选择一种形状",
+  "customColor": "或输入颜色值"
 }

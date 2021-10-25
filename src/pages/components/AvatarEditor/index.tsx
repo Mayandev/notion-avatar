@@ -1,5 +1,16 @@
-import { AvatarStyleCount, CompatibleAgents } from '@/const';
-import { AvatarPart, ImageType, AvatarConfig } from '@/types';
+import {
+  AvatarStyleCount,
+  CompatibleAgents,
+  DefaultBackgroundConfig,
+  ShapeStyleMapping,
+  SVGFilter,
+} from '@/const';
+import {
+  AvatarPart,
+  ImageType,
+  AvatarConfig,
+  AvatarBackgroundConfig,
+} from '@/types';
 import { getRandomStyle } from '@/utils';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
@@ -22,8 +33,8 @@ export default function AvatarEditor() {
   const [showEmbedModal, setEmbedModal] = useState(false);
   const [showPaletteModal, setPaletteModal] = useState(false);
   const [flip, setFlip] = useState(false);
-  const [backgroundColor, setBackgroundColor] = useState(
-    "rgba('255, 0, 0, 0')",
+  const [background, setBackground] = useState<AvatarBackgroundConfig>(
+    DefaultBackgroundConfig,
   );
 
   // default placeholder for compatible modal
@@ -64,17 +75,7 @@ export default function AvatarEditor() {
 
     const previewSvg =
       `<svg viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <filter id="filter" x="-20%" y="-20%" width="140%" height="140%" filterUnits="objectBoundingBox" primitiveUnits="userSpaceOnUse" color-interpolation-filters="linearRGB">
-          <feMorphology operator="dilate" radius="20 20" in="SourceAlpha" result="morphology"/>
-          <feFlood flood-color="#ffffff" flood-opacity="1" result="flood"/>
-          <feComposite in="flood" in2="morphology" operator="in" result="composite"/>
-          <feMerge result="merge">
-                <feMergeNode in="composite" result="mergeNode"/>
-            <feMergeNode in="SourceGraphic" result="mergeNode1"/>
-            </feMerge>
-        </filter>
-      </defs>
+      ${SVGFilter}
       <g id="notion-avatar" filter="url(#filter)">
         ${groups.join('\n\n')}
       </g>
@@ -176,16 +177,25 @@ export default function AvatarEditor() {
           onCancel={() => {
             setPaletteModal(false);
           }}
-          onSelect={(color) => {
-            setBackgroundColor(color);
+          onSelect={(background: AvatarBackgroundConfig) => {
+            setBackground({ ...background });
+            setPaletteModal(false);
           }}
+          backgroundConfig={background}
         />
       )}
       <div className="flex justify-center items-center flex-col">
         <div
-          style={{ backgroundColor: backgroundColor }}
+          style={{
+            backgroundColor:
+              background.shape === 'none'
+                ? DefaultBackgroundConfig.color
+                : background.color,
+          }}
           id="avatar-preview"
-          className="w-48 h-48 md:w-72 md:h-72 rounded-lg"
+          className={`w-48 h-48 md:w-72 md:h-72 ${
+            ShapeStyleMapping[background.shape]
+          }`}
           dangerouslySetInnerHTML={{
             __html: preview,
           }}
