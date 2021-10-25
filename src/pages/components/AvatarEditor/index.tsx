@@ -53,6 +53,12 @@ export default function AvatarEditor() {
       ) as AvatarConfig;
       setConfig({ ...config, ...params });
       setFlip(Boolean(Number(params.flip ?? 0)));
+      console.log(params);
+
+      setBackground({
+        color: params.color ?? 'rgba(255, 0, 0, 0)',
+        shape: params.shape ?? 'none',
+      });
     }
   }, [router]);
 
@@ -168,7 +174,12 @@ export default function AvatarEditor() {
           onCancel={() => {
             setEmbedModal(false);
           }}
-          config={{ ...config, flip: Number(flip) }}
+          config={{
+            ...config,
+            flip: Number(flip),
+            color: background.color,
+            shape: background.shape,
+          }}
           imageType={imageType}
         />
       )}

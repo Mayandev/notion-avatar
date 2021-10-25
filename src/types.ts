@@ -45,4 +45,5 @@ export type ImageApiType = {
 
 export type AvatarConfig = {
   flip: number;
-} & AvatarConfigBase;
+} & AvatarConfigBase &
+  AvatarBackgroundConfig;

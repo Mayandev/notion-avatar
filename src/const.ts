@@ -16,9 +16,7 @@ export const AvatarStyleCount: AvatarConfigBase = {
 export const CompatibleAgents = ['quark', 'micromessenger', 'weibo', 'douban'];
 
 export const PalettePreset = [
-  '#f5222d',
   '#fa541c',
-  '#fa8c16',
   '#faad14',
   '#fadb14',
   '#a0d911',

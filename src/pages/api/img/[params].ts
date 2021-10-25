@@ -45,7 +45,7 @@ export default async function handler(
   ) as AvatarConfigBase;
 
   const url = `${process.env.NEXT_PUBLIC_URL}?${Object.keys(config)
-    .map((type) => `${type}=${config[type as AvatarPart]}`)
+    .map((type) => `${type}=${encodeURIComponent(config[type as AvatarPart])}`)
     .join(`&`)}`;
 
   let browser;
