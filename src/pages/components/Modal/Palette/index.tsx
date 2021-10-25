@@ -1,5 +1,5 @@
 import { useTranslation } from 'next-i18next';
-import { PalettePreset } from '@/const';
+import { PalettePreset, DefaultBackgroundConfig } from '@/const';
 import { AvatarBackgroundConfig, BackgroundShape } from '@/types';
 import { useState } from 'react';
 import Modal from '../Common';
@@ -13,7 +13,7 @@ type PaletteModalProps = {
 export default function PaletteModal({
   onSelect,
   onCancel,
-  backgroundConfig,
+  backgroundConfig = DefaultBackgroundConfig,
 }: PaletteModalProps) {
   const { t } = useTranslation();
   const [bgShape, setShape] = useState<BackgroundShape>(backgroundConfig.shape);
