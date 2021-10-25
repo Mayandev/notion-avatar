@@ -302,7 +302,7 @@ export default function AvatarEditor() {
               </button>
               <div className="border-3 border-black rounded-full flex items-center rounded-l-none border-l-0 relative">
                 <select
-                  className="appearance-none focus:outline-none select-none bg-transparent h-full w-full pl-4 pr-7 z-10"
+                  className="appearance-none focus:outline-none select-none bg-transparent h-full w-20 pl-4 pr-7"
                   onChange={(e) => setImageType(e.target.value as ImageType)}
                 >
                   <option value="png">.PNG</option>
