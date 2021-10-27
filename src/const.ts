@@ -1,4 +1,10 @@
-import { AvatarConfigBase, AvatarBackgroundConfig, ShapeStyle } from './types';
+import {
+  AvatarConfigBase,
+  AvatarBackgroundConfig,
+  ShapeStyle,
+  FestivalTime,
+  AvatarConfigExtra,
+} from './types';
 
 export const AvatarStyleCount: AvatarConfigBase = {
   face: 10,
@@ -11,6 +17,11 @@ export const AvatarStyleCount: AvatarConfigBase = {
   accessories: 10,
   details: 10,
   beard: 10,
+};
+
+export const AvatarStyleCountExtra: AvatarConfigExtra = {
+  ...AvatarStyleCount,
+  halloween: 5,
 };
 
 export const CompatibleAgents = ['quark', 'micromessenger', 'weibo', 'douban'];
@@ -50,3 +61,10 @@ export const SVGFilter = `<defs>
       </feMerge>
   </filter>
 </defs>`;
+
+export const FestivalTimeMapping: FestivalTime = {
+  halloween: {
+    start: '10-24',
+    end: '11-07',
+  },
+};

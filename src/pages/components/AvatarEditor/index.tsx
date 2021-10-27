@@ -1,5 +1,6 @@
 import {
   AvatarStyleCount,
+  AvatarStyleCountExtra,
   CompatibleAgents,
   DefaultBackgroundConfig,
   ShapeStyleMapping,
@@ -10,8 +11,9 @@ import {
   ImageType,
   AvatarConfig,
   AvatarBackgroundConfig,
+  AvatarPartExtra,
 } from '@/types';
-import { getRandomStyle } from '@/utils';
+import { getRandomStyle, isFestival, getCurrentFestival } from '@/utils';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import html2canvas from 'html2canvas';
@@ -23,6 +25,7 @@ import DownloadModal from '../Modal/Download';
 import EmbedModal from '../Modal/Embed';
 import PaletteModal from '../Modal/Palette';
 
+// TODO: Refactor this component
 export default function AvatarEditor() {
   const router = useRouter();
 
@@ -36,9 +39,10 @@ export default function AvatarEditor() {
   const [background, setBackground] = useState<AvatarBackgroundConfig>(
     DefaultBackgroundConfig,
   );
-
   // default placeholder for compatible modal
   const [imageDataURL, setImageDataURL] = useState('/logo.gif');
+
+  const festival = getCurrentFestival();
 
   const { t } = useTranslation('common');
 
@@ -79,6 +83,18 @@ export default function AvatarEditor() {
       }),
     );
 
+    // for festival
+    if (festival) {
+      const svgRaw = (
+        await require(`!!raw-loader!@/public/avatar/preview/festival/${festival}/${config[festival]}.svg`)
+      ).default;
+      groups.push(`\n<g id="notion-avatar-${festival}" ${
+        flipped ? 'transform="scale(-1,1) translate(-1080, 0)"' : ''
+      }>\n
+    ${svgRaw.replace(/<svg.*(?=>)>/, '').replace('</svg>', '')}
+  \n</g>\n`);
+    }
+
     const previewSvg =
       `<svg viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
       ${SVGFilter}
@@ -96,8 +112,9 @@ export default function AvatarEditor() {
     generatePreview(flip);
   }, [config, flip]);
 
-  const switchConfig = (type: AvatarPart) => {
-    const newIdx = (config[type] + 1) % (AvatarStyleCount[type] + 1);
+  const switchConfig = (type: AvatarPartExtra) => {
+    const newIdx =
+      (Number(config[type]) + 1) % (Number(AvatarStyleCountExtra[type]) + 1);
     config[type] = newIdx;
     setConfig({ ...config });
   };
@@ -214,7 +231,7 @@ export default function AvatarEditor() {
         <div className="w-5/6 md:w-2/3">
           <div className="flex justify-between items-center">
             <div className="text-lg my-5">{t('choose')}</div>
-            <div>
+            <div className="flex items-center">
               <button
                 data-tip={t('flip')}
                 className="w-8 h-8 sm:w-12 sm:h-12 tooltip"
@@ -256,6 +273,26 @@ export default function AvatarEditor() {
                 </SelectionWrapper>
               </div>
             ))}
+            {isFestival() && (
+              <SelectionWrapper
+                switchConfig={() => {
+                  switchConfig(festival);
+                }}
+                tooltip={'🎃'}
+                className="relative "
+              >
+                <>
+                  <Image
+                    src={`/avatar/part/festival/${festival}/${festival}-${config[festival]}.svg`}
+                    width={30}
+                    height={30}
+                  />
+                  <span className="top-0 right-0 absolute bg-red-600 text-xs text-white rounded translate-x-1/2 px-1 -translate-y-1/2">
+                    New
+                  </span>
+                </>
+              </SelectionWrapper>
+            )}
           </div>
           <div className="flex flex-col gap-x-3 md:flex-row mt-8 justify-between w-full select-none">
             <button

@@ -11,6 +11,18 @@
 //   Nose
 // }
 
+export type Festival = 'halloween';
+export type FestivalTime = {
+  [key in Festival]: {
+    start: string;
+    end: string;
+  };
+};
+
+export type FestivalAvatarConfig = {
+  [key in Festival]?: number;
+};
+
 export type AvatarConfigBase = {
   accessories: number;
   beard: number;
@@ -24,6 +36,8 @@ export type AvatarConfigBase = {
   nose: number;
 };
 
+export type AvatarConfigExtra = AvatarConfigBase & FestivalAvatarConfig;
+
 export type BackgroundShape = 'circle' | 'square' | 'none';
 
 export type AvatarBackgroundConfig = {
@@ -36,6 +50,7 @@ export type ShapeStyle = {
 };
 
 export type AvatarPart = keyof AvatarConfigBase;
+export type AvatarPartExtra = AvatarPart | Festival;
 
 export type ImageType = 'png' | 'svg';
 

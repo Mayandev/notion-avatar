@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="280px" height="246px" viewBox="0 0 280 246" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>编组</title>
+    <g id="All-customizable-items" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Festival/-5" transform="translate(-727.000000, -96.000000)">
+            <g id="编组" transform="translate(733.293076, 102.000000)">
+                <path d="M0,233.198381 C11.531128,73.1983806 64.0281054,-4.4682861 157.490932,0.198380567 C297.685172,7.19838057 269.464254,148.198381 253.077914,174.198381 C236.691574,200.198381 217.574178,217.198381 186.622203,213.198381 C149.477225,208.398044 114.69157,193.513937 65.545359,196.198381 C43.8684416,197.382408 22.0199886,209.715741 0,233.198381 Z" id="Path" stroke="#000000" stroke-width="12" fill="#000000" stroke-linecap="round" stroke-linejoin="round"></path>
+                <text id="TRICK-OR-TREAT" stroke="#FFFFFF" stroke-width="6" transform="translate(152.206924, 106.000000) rotate(5.000000) translate(-152.206924, -106.000000) " font-family="Chalkduster" font-size="36" font-weight="normal" fill="#FFFFFF">
+                    <tspan x="87.2875865" y="69">TRICK</tspan>
+                    <tspan x="125.1572" y="123">OR</tspan>
+                    <tspan x="83.9859291" y="177">TREAT</tspan>
+                </text>
+            </g>
+        </g>
+    </g>
+</svg>

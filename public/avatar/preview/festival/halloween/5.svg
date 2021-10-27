@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1080px" height="1080px" viewBox="0 0 1080 1080" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Festival/ 5</title>
+    <g id="Festival/-5" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M733.293076,335.198381 C744.824204,175.198381 797.321182,97.5317139 890.784009,102.198381 C1030.97825,109.198381 1002.75733,250.198381 986.370991,276.198381 C969.984651,302.198381 950.867254,319.198381 919.915279,315.198381 C882.770302,310.398044 847.984646,295.513937 798.838435,298.198381 C777.161518,299.382408 755.313065,311.715741 733.293076,335.198381 Z" id="Path" stroke="#000000" stroke-width="12" fill="#000000" stroke-linecap="round" stroke-linejoin="round"></path>
+        <text id="TRICK-OR-TREAT" stroke="#FFFFFF" stroke-width="6" transform="translate(885.500000, 208.000000) rotate(5.000000) translate(-885.500000, -208.000000) " font-family="Chalkduster" font-size="36" font-weight="normal" fill="#FFFFFF">
+            <tspan x="820.580663" y="171">TRICK</tspan>
+            <tspan x="858.450276" y="225">OR</tspan>
+            <tspan x="817.279006" y="279">TREAT</tspan>
+        </text>
+    </g>
+</svg>
