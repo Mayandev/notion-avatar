@@ -11,7 +11,7 @@
 //   Nose
 // }
 
-export type Festival = 'halloween';
+export type Festival = 'halloween' | 'christmas';
 export type FestivalTime = {
   [key in Festival]: {
     start: string;

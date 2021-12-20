@@ -22,6 +22,7 @@ export const AvatarStyleCount: AvatarConfigBase = {
 export const AvatarStyleCountExtra: AvatarConfigExtra = {
   ...AvatarStyleCount,
   halloween: 5,
+  christmas: 5,
 };
 
 export const CompatibleAgents = ['quark', 'micromessenger', 'weibo', 'douban'];
@@ -66,5 +67,9 @@ export const FestivalTimeMapping: FestivalTime = {
   halloween: {
     start: '10-24',
     end: '11-07',
+  },
+  christmas: {
+    start: '12-19',
+    end: '12-31',
   },
 };
