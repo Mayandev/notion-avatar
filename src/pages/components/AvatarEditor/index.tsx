@@ -3,6 +3,7 @@ import {
   AvatarStyleCountExtra,
   CompatibleAgents,
   DefaultBackgroundConfig,
+  FestivalTooltipEmoji,
   ShapeStyleMapping,
   SVGFilter,
 } from '@/const';
@@ -278,7 +279,7 @@ export default function AvatarEditor() {
                 switchConfig={() => {
                   switchConfig(festival);
                 }}
-                tooltip={'🎃'}
+                tooltip={FestivalTooltipEmoji[festival]}
                 className="relative "
               >
                 <>

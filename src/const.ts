@@ -73,3 +73,8 @@ export const FestivalTimeMapping: FestivalTime = {
     end: '12-31',
   },
 };
+
+export const FestivalTooltipEmoji = {
+  halloween: '🎃',
+  christmas: '🎄',
+};
