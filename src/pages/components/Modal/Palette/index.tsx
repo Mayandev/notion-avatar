@@ -21,14 +21,22 @@ export default function PaletteModal({
 
   const setBackgroundShape = (shape: BackgroundShape) => {
     if (shape === bgShape) {
-      setShape('none');
+      setShape(DefaultBackgroundConfig.shape);
       return;
     }
     setShape(shape);
   };
 
+  const setBackgroundColor = (color: string) => {
+    if (bgColor === color) {
+      setColor(DefaultBackgroundConfig.color);
+      return;
+    }
+    setColor(color);
+  };
+
   const handleColorChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setColor(e.target.value);
+    setBackgroundColor(e.target.value);
   };
 
   return (
@@ -73,9 +81,11 @@ export default function PaletteModal({
               key={index}
               type="button"
               onClick={() => {
-                setColor(color);
+                setBackgroundColor(color);
               }}
-              className="w-12 h-10 sm:w-20 sm:h-12 rounded outline-none select-none border-3 border-solid border-black focus:ring-2 focus:ring-offset-2 focus:ring-black hover:bg-gray-50"
+              className={`w-12 h-10 sm:w-20 sm:h-12 rounded outline-none select-none border-3 border-solid border-black ${
+                color === bgColor && 'ring-2 ring-offset-2 ring-black'
+              }`}
               style={{ background: color }}
             >
               {' '}
