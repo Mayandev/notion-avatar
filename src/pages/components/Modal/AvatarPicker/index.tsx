@@ -1,0 +1,58 @@
+import { AvatarStyleCountExtra, DefaultAvatarPickerConfig } from '@/const';
+import { AvatarPickerConfig } from '@/types';
+import Image from 'next/image';
+import { useState } from 'react';
+import { useTranslation } from 'next-i18next';
+
+import Modal from '../Common';
+
+type AvatarPickerProps = {
+  onCancel: () => void;
+  avatarPart: AvatarPickerConfig;
+  onConfirm: (index: number) => void;
+};
+
+export default function AvatarPicker({
+  onCancel,
+  avatarPart = DefaultAvatarPickerConfig,
+  onConfirm,
+}: AvatarPickerProps) {
+  const { t } = useTranslation('common');
+  const [currentIndex, setCurrentIndex] = useState<number>(avatarPart.index);
+  return (
+    <Modal onCancel={onCancel} onConfirm={() => onConfirm(currentIndex)}>
+      <div className="text-xl bg-white px-4 pt-2 pb-4 sm:p-6 sm:pb-4">
+        <h1 className="py-4 w-full">
+          {t('Choose')}
+          {t(`${avatarPart.part}`)}
+        </h1>
+        <div className="h-auto max-h-72 overflow-scroll">
+          <div className="grid gap-8 grid-cols-4 p-2">
+            {Array(AvatarStyleCountExtra[avatarPart.part])
+              .fill(0)
+              .map((zero, index) => (
+                /* eslint-disable */
+                <button
+                  type="button"
+                  className={`w-14 h-14 p-2 outline-none select-none rounded-lg focus:ring-2 focus:ring-offset-2 focus:ring-black bg-white hover:bg-gray-50 ${
+                    currentIndex === index && 'border-black border-3'
+                  } `}
+                  onClick={() => {
+                    setCurrentIndex(index);
+                  }}
+                >
+                  <div className="flex justify-center items-center">
+                    <Image
+                      src={`/avatar/part/${avatarPart.part}/${avatarPart.part}-${index}.svg`}
+                      width={50}
+                      height={50}
+                    />
+                  </div>
+                </button>
+              ))}
+          </div>
+        </div>
+      </div>
+    </Modal>
+  );
+}

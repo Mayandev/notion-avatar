@@ -4,6 +4,7 @@ import {
   ShapeStyle,
   FestivalTime,
   AvatarConfigExtra,
+  AvatarPickerConfig,
 } from './types';
 
 export const AvatarStyleCount: AvatarConfigBase = {
@@ -43,6 +44,11 @@ export const PalettePreset = [
 export const DefaultBackgroundConfig: AvatarBackgroundConfig = {
   color: 'rgba(255, 0, 0, 0)',
   shape: 'none',
+};
+
+export const DefaultAvatarPickerConfig: AvatarPickerConfig = {
+  part: 'face',
+  index: 0,
 };
 
 export const ShapeStyleMapping: ShapeStyle = {

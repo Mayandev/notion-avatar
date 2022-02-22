@@ -98,7 +98,7 @@ export default function PaletteModal({
           <input
             defaultValue={backgroundConfig.color}
             onChange={handleColorChange}
-            className="ml-2 border-gray-400 border-1 rounded bg-gray-2=100"
+            className="ml-2 border-gray-400 border-1 rounded bg-gray-200"
             type="color"
           ></input>
         </div>

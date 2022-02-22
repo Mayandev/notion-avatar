@@ -37,5 +37,6 @@
   "background": "背景色",
   "paletteTitle": "请选择一种背景颜色",
   "chooseShape": "请选择一种背景形状",
-  "customColor": "更多颜色选择"
+  "customColor": "更多颜色选择",
+  "Choose": "选择"
 }

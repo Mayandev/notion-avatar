@@ -37,5 +37,6 @@
   "background": "Background",
   "paletteTitle": "Choose background",
   "chooseShape": "Choose shape",
-  "customColor": "DIY color value"
+  "customColor": "DIY color value",
+  "choosePart": "Choose"
 }

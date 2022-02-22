@@ -1,7 +1,7 @@
 import {
   AvatarStyleCount,
-  AvatarStyleCountExtra,
   CompatibleAgents,
+  DefaultAvatarPickerConfig,
   DefaultBackgroundConfig,
   FestivalTooltipEmoji,
   ShapeStyleMapping,
@@ -12,7 +12,7 @@ import {
   ImageType,
   AvatarConfig,
   AvatarBackgroundConfig,
-  AvatarPartExtra,
+  AvatarPickerConfig,
 } from '@/types';
 import { getRandomStyle, isFestival, getCurrentFestival } from '@/utils';
 import Image from 'next/image';
@@ -25,8 +25,8 @@ import SelectionWrapper from './SelectionWrapper';
 import DownloadModal from '../Modal/Download';
 import EmbedModal from '../Modal/Embed';
 import PaletteModal from '../Modal/Palette';
+import AvatarPicker from '../Modal/AvatarPicker';
 
-// TODO: Refactor this component
 export default function AvatarEditor() {
   const router = useRouter();
 
@@ -36,12 +36,16 @@ export default function AvatarEditor() {
   const [showDownloadModal, setDownloadModal] = useState(false);
   const [showEmbedModal, setEmbedModal] = useState(false);
   const [showPaletteModal, setPaletteModal] = useState(false);
+  const [showAvatarPicker, setAvatarPicker] = useState(false);
   const [flip, setFlip] = useState(false);
   const [background, setBackground] = useState<AvatarBackgroundConfig>(
     DefaultBackgroundConfig,
   );
   // default placeholder for compatible modal
   const [imageDataURL, setImageDataURL] = useState('/logo.gif');
+  const [avatarPart, setAvatarPart] = useState<AvatarPickerConfig>(
+    DefaultAvatarPickerConfig,
+  );
 
   const festival = getCurrentFestival();
 
@@ -58,7 +62,6 @@ export default function AvatarEditor() {
       ) as AvatarConfig;
       setConfig({ ...config, ...params });
       setFlip(Boolean(Number(params.flip ?? 0)));
-      console.log(params);
 
       setBackground({
         color: params.color ?? 'rgba(255, 0, 0, 0)',
@@ -113,11 +116,13 @@ export default function AvatarEditor() {
     generatePreview(flip);
   }, [config, flip]);
 
-  const switchConfig = (type: AvatarPartExtra) => {
-    const newIdx =
-      (Number(config[type]) + 1) % (Number(AvatarStyleCountExtra[type]) + 1);
-    config[type] = newIdx;
+  const switchConfig = (avatarConfig: AvatarPickerConfig) => {
+    // const newIdx =
+    //   (Number(config[type]) + 1) % (Number(AvatarStyleCountExtra[type]) + 1);
+    config[avatarConfig.part] = avatarConfig.index;
     setConfig({ ...config });
+    // hide modal
+    setAvatarPicker(false);
   };
 
   const downloadAvatar = async () => {
@@ -179,6 +184,15 @@ export default function AvatarEditor() {
 
   return (
     <>
+      {showAvatarPicker && (
+        <AvatarPicker
+          onCancel={() => setAvatarPicker(false)}
+          avatarPart={avatarPart}
+          onConfirm={(newIdx) =>
+            switchConfig({ index: newIdx, part: avatarPart.part })
+          }
+        />
+      )}
       {showDownloadModal && (
         <DownloadModal
           onCancel={() => {
@@ -260,7 +274,11 @@ export default function AvatarEditor() {
               <div key={type}>
                 <SelectionWrapper
                   switchConfig={() => {
-                    switchConfig(type as AvatarPart);
+                    setAvatarPart({
+                      part: type as AvatarPart,
+                      index: config[type as AvatarPart],
+                    });
+                    setAvatarPicker(true);
                   }}
                   tooltip={t(type)}
                 >
@@ -277,7 +295,11 @@ export default function AvatarEditor() {
             {isFestival() && (
               <SelectionWrapper
                 switchConfig={() => {
-                  switchConfig(festival);
+                  setAvatarPart({
+                    part: festival,
+                    index: config[festival] || 0,
+                  });
+                  setAvatarPicker(true);
                 }}
                 tooltip={FestivalTooltipEmoji[festival]}
                 className="relative "

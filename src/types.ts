@@ -45,6 +45,11 @@ export type AvatarBackgroundConfig = {
   shape: BackgroundShape;
 };
 
+export type AvatarPickerConfig = {
+  part: AvatarPartExtra;
+  index: number;
+};
+
 export type ShapeStyle = {
   [key in BackgroundShape]: string;
 };
