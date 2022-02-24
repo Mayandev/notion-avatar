@@ -8,16 +8,16 @@ import {
 } from './types';
 
 export const AvatarStyleCount: AvatarConfigBase = {
-  face: 10,
-  nose: 10,
-  mouth: 10,
-  eyes: 10,
-  eyebrows: 10,
-  glasses: 10,
-  hair: 30,
-  accessories: 10,
-  details: 10,
-  beard: 10,
+  face: 15,
+  nose: 13,
+  mouth: 19,
+  eyes: 13,
+  eyebrows: 15,
+  glasses: 14,
+  hair: 58,
+  accessories: 14,
+  details: 13,
+  beard: 16,
 };
 
 export const AvatarStyleCountExtra: AvatarConfigExtra = {

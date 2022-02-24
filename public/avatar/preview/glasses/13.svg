@@ -1,0 +1,29 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Glasses/ 13">
+<g id="Group">
+<path id="Path" d="M594.966 482.529H684.378" stroke="black" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Path_2" d="M593 517.765C593 517.765 615.694 501 638 501C660.306 501 682.412 517.765 682.412 517.765" stroke="black" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Path_3" d="M510.484 517.569L293.827 555.771" stroke="black" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+<g id="Rectangle">
+<path id="Mask" fill-rule="evenodd" clip-rule="evenodd" d="M470.242 498.62C502.983 452.135 598.089 462.262 619.362 504.282C640.636 546.302 563.647 605 516.916 605C470.186 605 437.501 545.106 470.242 498.62Z" fill="#0C0C0C"/>
+<mask id="mask0_0_1173" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="457" y="468" width="166" height="137">
+<path id="Mask_2" fill-rule="evenodd" clip-rule="evenodd" d="M470.242 498.62C502.983 452.135 598.089 462.262 619.362 504.282C640.636 546.302 563.647 605 516.916 605C470.186 605 437.501 545.106 470.242 498.62Z" fill="white"/>
+</mask>
+<g mask="url(#mask0_0_1173)">
+<rect id="Rectangle_2" x="549.624" y="439.067" width="210" height="28" transform="rotate(60 549.624 439.067)" fill="white"/>
+</g>
+</g>
+<g id="Rectangle_3">
+<path id="Mask_3" fill-rule="evenodd" clip-rule="evenodd" d="M804.758 498.62C772.017 452.135 676.911 462.262 655.638 504.282C634.364 546.302 711.353 605 758.084 605C804.814 605 837.499 545.106 804.758 498.62Z" fill="#0C0C0C"/>
+<mask id="mask1_0_1173" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="652" y="468" width="166" height="137">
+<path id="Mask_4" fill-rule="evenodd" clip-rule="evenodd" d="M804.758 498.62C772.017 452.135 676.911 462.262 655.638 504.282C634.364 546.302 711.353 605 758.084 605C804.814 605 837.499 545.106 804.758 498.62Z" fill="white"/>
+</mask>
+<g mask="url(#mask1_0_1173)">
+<rect id="Rectangle_4" x="739.624" y="439.067" width="210" height="28" transform="rotate(60 739.624 439.067)" fill="white"/>
+</g>
+</g>
+<path id="Path_4" fill-rule="evenodd" clip-rule="evenodd" d="M470.242 498.62C502.983 452.135 598.089 462.262 619.362 504.282C640.636 546.302 563.647 605 516.916 605C470.186 605 437.501 545.106 470.242 498.62Z" stroke="black" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Path_5" fill-rule="evenodd" clip-rule="evenodd" d="M804.758 498.62C772.017 452.135 676.911 462.262 655.638 504.282C634.364 546.302 711.353 605 758.084 605C804.814 605 837.499 545.106 804.758 498.62Z" stroke="black" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</g>
+</svg>

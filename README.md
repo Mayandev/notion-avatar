@@ -14,16 +14,16 @@ I18n supported:
 
 ## Styles
 
-- 😉 11 face shapes
-- 👃🏼 11 noses
-- 👄 11 mouths
-- 👀 11 eyes
-- 👁️ 11 eyebrows
-- 🕶️ 10 glasses
-- 💇‍♀️ 30 hairstyles
-- 🎅🏼 10 beards
-- 💋 10 facial details
-- 💍 10 accessories
+- 😉 15 face shapes
+- 👃🏼 13 noses
+- 👄 19 mouths
+- 👀 13 eyes
+- 👁️ 15 eyebrows
+- 🕶️ 14 glasses
+- 💇‍♀️ 58 hairstyles
+- 🎅🏼 16 beards
+- 💋 13 facial details
+- 💍 14 accessories
 
 ## Assets
 

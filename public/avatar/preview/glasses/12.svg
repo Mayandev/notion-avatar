@@ -1,0 +1,18 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Glasses/ 12">
+<g id="Group">
+<path id="Path" fill-rule="evenodd" clip-rule="evenodd" d="M805.209 500.217C805.813 491.284 798.652 484 789.699 484H455C446.163 484 439 491.163 439 500V575.76C439 580.706 441.26 585.352 445.249 588.275C465.881 603.396 532.959 650 575.94 650C627.244 650 619.761 588.343 666.321 588.343C712.881 588.343 690.97 650 747.116 640.514C791.7 632.982 802.608 538.717 805.209 500.217Z" fill="white" stroke="black" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<g id="Group_2">
+<path id="Mask" fill-rule="evenodd" clip-rule="evenodd" d="M783.642 509.995C783.893 505.509 780.3 501.847 775.807 501.847L465 501.847C460.582 501.847 457 505.428 457 509.847V561.349C457 563.759 458.047 566.008 459.946 567.493C474.566 578.927 540.245 628.47 580.546 628.47C611.607 628.47 603.397 573.489 662.087 568.491C720.777 563.492 704.644 623.472 742.954 620.14C775.033 617.35 782.169 536.288 783.642 509.995Z" fill="black"/>
+<mask id="mask0_0_1157" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="457" y="501" width="327" height="128">
+<path id="Mask_2" fill-rule="evenodd" clip-rule="evenodd" d="M783.642 509.995C783.893 505.509 780.3 501.847 775.807 501.847L465 501.847C460.582 501.847 457 505.428 457 509.847V561.349C457 563.759 458.047 566.008 459.946 567.493C474.566 578.927 540.245 628.47 580.546 628.47C611.607 628.47 603.397 573.489 662.087 568.491C720.777 563.492 704.644 623.472 742.954 620.14C775.033 617.35 782.169 536.288 783.642 509.995Z" fill="white"/>
+</mask>
+<g mask="url(#mask0_0_1157)">
+<path id="Path_2" d="M671.808 492.742L781.264 580.828" stroke="white" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Path_3" d="M696.436 478.979L805.892 567.065" stroke="white" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</g>
+<path id="Path_4" fill-rule="evenodd" clip-rule="evenodd" d="M439 492.036L284 523V566.875L439 552V492.036Z" fill="black" stroke="black" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</g>
+</svg>
