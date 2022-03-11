@@ -28,7 +28,7 @@ export default function AvatarPicker({
         </h1>
         <div className="h-auto max-h-72 overflow-scroll">
           <div className="grid gap-8 grid-cols-4 p-2">
-            {Array(AvatarStyleCountExtra[avatarPart.part])
+            {Array(Number(AvatarStyleCountExtra[avatarPart.part]) + 1)
               .fill(0)
               .map((zero, index) => (
                 /* eslint-disable */

@@ -14,11 +14,11 @@ I18n supported:
 
 ## Styles
 
-- 😉 15 face shapes
-- 👃🏼 13 noses
-- 👄 19 mouths
-- 👀 13 eyes
-- 👁️ 15 eyebrows
+- 😉 16 face shapes
+- 👃🏼 14 noses
+- 👄 20 mouths
+- 👀 14 eyes
+- 👁️ 16 eyebrows
 - 🕶️ 14 glasses
 - 💇‍♀️ 58 hairstyles
 - 🎅🏼 16 beards
