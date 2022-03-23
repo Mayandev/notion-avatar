@@ -1247,10 +1247,10 @@
   resolved "https://registry.npmjs.org/@trysound/sax/-/sax-0.2.0.tgz#cccaab758af56761eb7bf37af6f03f326dd798ad"
   integrity sha512-L7z9BgrNEcYyUYtF+HaEfiS5ebkh9jXqbszz7pC0hRBPaatV0XjSD3+eHrpqFemQfgwiFF0QPIarnIihIDn7OA==
 
-"@types/dom-to-image@2.6.3":
-  version "2.6.3"
-  resolved "https://registry.npmjs.org/@types/dom-to-image/-/dom-to-image-2.6.3.tgz#126baa1207767ad1633c01961d39b59659ed7db2"
-  integrity sha512-Al9qrndYctlJRtTmZYTFeO7JKNqfkAnBXi9lbi0jtQtHbMi4Ygd4waGwalqOw7KXjs1jtmw84A9BPCaXWO/nQw==
+"@types/dom-to-image@2.6.4":
+  version "2.6.4"
+  resolved "https://registry.yarnpkg.com/@types/dom-to-image/-/dom-to-image-2.6.4.tgz#008411e23903cb0ee9e51a42ab8358c609541ee8"
+  integrity sha512-UddUdGF1qulrSDulkz3K2Ypq527MR6ixlgAzqLbxSiQ0icx0XDlIV+h4+edmjq/1dqn0KgN0xGSe1kI9t+vGuw==
 
 "@types/estree@0.0.39":
   version "0.0.39"

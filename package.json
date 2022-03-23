@@ -44,7 +44,7 @@
   "devDependencies": {
     "@commitlint/cli": "13.1.0",
     "@commitlint/config-conventional": "13.1.0",
-    "@types/dom-to-image": "2.6.3",
+    "@types/dom-to-image": "2.6.4",
     "@types/file-saver": "2.0.3",
     "@types/node": "14.17.15",
     "@types/react": "17.0.21",
