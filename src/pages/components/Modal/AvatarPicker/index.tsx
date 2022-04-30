@@ -40,6 +40,7 @@ export default function AvatarPicker({
                   onClick={() => {
                     setCurrentIndex(index);
                   }}
+                  key={index}
                 >
                   <div className="flex justify-center items-center">
                     <Image

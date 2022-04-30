@@ -1,6 +1,6 @@
 @tailwind base;
-@tailwind components;
 @tailwind utilities;
+@tailwind components;
 
 @font-face {
   font-family: 'Quicksand';

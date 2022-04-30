@@ -4,6 +4,7 @@ import {
   DefaultAvatarPickerConfig,
   DefaultBackgroundConfig,
   FestivalTooltipEmoji,
+  ModalKeyMap,
   ShapeStyleMapping,
   SVGFilter,
 } from '@/const';
@@ -21,6 +22,7 @@ import html2canvas from 'html2canvas';
 import { useRouter } from 'next/router';
 import * as ga from '@/lib/ga';
 import { useTranslation } from 'next-i18next';
+import { useModalStates } from '@/hooks/useModalState';
 import SelectionWrapper from './SelectionWrapper';
 import DownloadModal from '../Modal/Download';
 import EmbedModal from '../Modal/Embed';
@@ -33,10 +35,7 @@ export default function AvatarEditor() {
   const [config, setConfig] = useState({ ...getRandomStyle() });
   const [preview, setPreview] = useState('');
   const [imageType, setImageType] = useState('png' as ImageType);
-  const [showDownloadModal, setDownloadModal] = useState(false);
-  const [showEmbedModal, setEmbedModal] = useState(false);
-  const [showPaletteModal, setPaletteModal] = useState(false);
-  const [showAvatarPicker, setAvatarPicker] = useState(false);
+  const { modalStates, toggleModal } = useModalStates(ModalKeyMap);
   const [flip, setFlip] = useState(false);
   const [background, setBackground] = useState<AvatarBackgroundConfig>(
     DefaultBackgroundConfig,
@@ -122,7 +121,7 @@ export default function AvatarEditor() {
     config[avatarConfig.part] = avatarConfig.index;
     setConfig({ ...config });
     // hide modal
-    setAvatarPicker(false);
+    toggleModal('avatarPicker');
   };
 
   const downloadAvatar = async () => {
@@ -161,7 +160,7 @@ export default function AvatarEditor() {
     // compatible for browsers which don't surpport dwonload attribution
     if (isNeedCompatible) {
       setImageDataURL(imageURL);
-      setDownloadModal(true);
+      toggleModal('download');
       return;
     }
 
@@ -173,38 +172,38 @@ export default function AvatarEditor() {
   };
 
   const onOpenEmbedModal = () => {
-    setEmbedModal(true);
+    toggleModal('embed');
     // record embed action
     ga.event({ action: 'embed', params: { ...config } });
   };
 
   const onOpenPaletteModal = () => {
-    setPaletteModal(true);
+    toggleModal('palette');
   };
 
   return (
     <>
-      {showAvatarPicker && (
+      {modalStates.avatarPicker && (
         <AvatarPicker
-          onCancel={() => setAvatarPicker(false)}
+          onCancel={() => toggleModal('avatarPicker')}
           avatarPart={avatarPart}
           onConfirm={(newIdx) =>
             switchConfig({ index: newIdx, part: avatarPart.part })
           }
         />
       )}
-      {showDownloadModal && (
+      {modalStates.download && (
         <DownloadModal
           onCancel={() => {
-            setDownloadModal(false);
+            toggleModal('download');
           }}
           image={imageDataURL}
         />
       )}
-      {showEmbedModal && (
+      {modalStates.embed && (
         <EmbedModal
           onCancel={() => {
-            setEmbedModal(false);
+            toggleModal('embed');
           }}
           config={{
             ...config,
@@ -215,14 +214,14 @@ export default function AvatarEditor() {
           imageType={imageType}
         />
       )}
-      {showPaletteModal && (
+      {modalStates.palette && (
         <PaletteModal
           onCancel={() => {
-            setPaletteModal(false);
+            toggleModal('palette');
           }}
           onSelect={(background: AvatarBackgroundConfig) => {
             setBackground({ ...background });
-            setPaletteModal(false);
+            toggleModal('palette');
           }}
           backgroundConfig={background}
         />
@@ -278,7 +277,7 @@ export default function AvatarEditor() {
                       part: type as AvatarPart,
                       index: config[type as AvatarPart],
                     });
-                    setAvatarPicker(true);
+                    toggleModal('avatarPicker');
                   }}
                   tooltip={t(type)}
                 >
@@ -299,7 +298,7 @@ export default function AvatarEditor() {
                     part: festival,
                     index: config[festival] || 0,
                   });
-                  setAvatarPicker(true);
+                  toggleModal('avatarPicker');
                 }}
                 tooltip={FestivalTooltipEmoji[festival]}
                 className="relative "

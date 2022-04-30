@@ -84,3 +84,10 @@ export const FestivalTooltipEmoji = {
   halloween: '🎃',
   christmas: '🎄',
 };
+
+export const ModalKeyMap = {
+  download: 'download',
+  embed: 'embed',
+  palette: 'palette',
+  avatarPicker: 'avatarPicker',
+};
