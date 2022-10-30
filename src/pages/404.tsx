@@ -13,9 +13,7 @@ export default function PageNotFount() {
       <Header />
       <main className="flex flex-col justify-center h-2/3 items-center">
         <h1 className="text-2xl sm:text-3xl md:text-4xl">{t(`404Title`)}</h1>
-        <Link href="/">
-          <a className="mt-4 underline">← {t(`404Redirect`)}</a>
-        </Link>
+        <Link href="/">← {t(`404Redirect`)}</Link>
       </main>
     </div>
   );

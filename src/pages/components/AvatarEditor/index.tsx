@@ -16,7 +16,7 @@ import {
   AvatarPickerConfig,
 } from '@/types';
 import { getRandomStyle, isFestival, getCurrentFestival } from '@/utils';
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import { useState, useEffect } from 'react';
 import html2canvas from 'html2canvas';
 import { useRouter } from 'next/router';

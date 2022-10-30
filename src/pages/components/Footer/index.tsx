@@ -1,5 +1,5 @@
 import { useTranslation } from 'next-i18next';
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 
 export default function Footer() {
   const { t } = useTranslation(`common`);

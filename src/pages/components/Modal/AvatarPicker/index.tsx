@@ -1,8 +1,12 @@
-import { AvatarStyleCountExtra, DefaultAvatarPickerConfig } from '@/const';
+import {
+  AvatarStyleCountExtra,
+  DefaultAvatarPickerConfig,
+  FestivalTimeMapping,
+} from '@/const';
 import { AvatarPickerConfig } from '@/types';
 import { isFestival } from '@/utils';
 
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import { useState } from 'react';
 import { useTranslation } from 'next-i18next';
 
@@ -46,7 +50,9 @@ export default function AvatarPicker({
                   <div className="flex justify-center items-center">
                     <Image
                       src={
-                        isFestival()
+                        Object.keys(FestivalTimeMapping).includes(
+                          avatarPart.part,
+                        )
                           ? `/avatar/part/festival/${avatarPart.part}/${avatarPart.part}-${index}.svg`
                           : `/avatar/part/${avatarPart.part}/${avatarPart.part}-${index}.svg`
                       }
