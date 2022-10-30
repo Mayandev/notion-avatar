@@ -38,5 +38,7 @@
   "paletteTitle": "Choose background",
   "chooseShape": "Choose shape",
   "customColor": "DIY color value",
-  "choosePart": "Choose"
+  "choosePart": "Choose",
+  "halloween": "Halloween",
+  "christmas": "Christmas"
 }

@@ -1,5 +1,7 @@
 import { AvatarStyleCountExtra, DefaultAvatarPickerConfig } from '@/const';
 import { AvatarPickerConfig } from '@/types';
+import { isFestival } from '@/utils';
+
 import Image from 'next/image';
 import { useState } from 'react';
 import { useTranslation } from 'next-i18next';
@@ -23,8 +25,7 @@ export default function AvatarPicker({
     <Modal onCancel={onCancel} onConfirm={() => onConfirm(currentIndex)}>
       <div className="text-xl bg-white px-4 pt-2 pb-4 sm:p-6 sm:pb-4">
         <h1 className="py-4 w-full">
-          {t('Choose')}
-          {t(`${avatarPart.part}`)}
+          {t('Choose')} {t(`${avatarPart.part}`)}
         </h1>
         <div className="h-auto max-h-72 overflow-scroll">
           <div className="grid gap-8 grid-cols-4 p-2">
@@ -44,7 +45,11 @@ export default function AvatarPicker({
                 >
                   <div className="flex justify-center items-center">
                     <Image
-                      src={`/avatar/part/${avatarPart.part}/${avatarPart.part}-${index}.svg`}
+                      src={
+                        isFestival()
+                          ? `/avatar/part/festival/${avatarPart.part}/${avatarPart.part}-${index}.svg`
+                          : `/avatar/part/${avatarPart.part}/${avatarPart.part}-${index}.svg`
+                      }
                       width={50}
                       height={50}
                     />
