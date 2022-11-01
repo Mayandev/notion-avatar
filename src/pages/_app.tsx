@@ -9,6 +9,7 @@ import * as ga from '../lib/ga';
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const router = useRouter();
+  const AnyComponent = Component as any;
 
   useEffect(() => {
     const handleRouteChange = (url: string) => {
@@ -23,7 +24,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
       router.events.off(`routeChangeComplete`, handleRouteChange);
     };
   }, [router.events]);
-  return <Component {...pageProps} />;
+  return <AnyComponent {...pageProps} />;
 };
 
 export default appWithTranslation(MyApp);
