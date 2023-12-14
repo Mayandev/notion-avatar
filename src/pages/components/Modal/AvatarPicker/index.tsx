@@ -29,7 +29,10 @@ export default function AvatarPicker({
     <Modal onCancel={onCancel} onConfirm={() => onConfirm(currentIndex)}>
       <div className="text-xl bg-white px-4 pt-2 pb-4 sm:p-6 sm:pb-4">
         <h1 className="py-4 w-full">
-          {t('Choose')} {t(`${avatarPart.part}`)}
+          {t('Choose item', {
+            item: t(`${avatarPart.part}`),
+            choose: t('Choose'),
+          })}
         </h1>
         <div className="h-auto max-h-72 overflow-scroll">
           <div className="grid gap-8 grid-cols-4 p-2">

@@ -39,6 +39,7 @@
   "chooseShape": "Choose shape",
   "customColor": "DIY color value",
   "choosePart": "Choose",
+  "Choose item": "{{choose}} {{item}}",
   "halloween": "Halloween",
   "christmas": "Christmas"
 }
