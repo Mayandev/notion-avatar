@@ -39,6 +39,7 @@
   "chooseShape": "모양을 고르세요",
   "customColor": "커스텀 컬러",
   "Choose": "선택",
+  "Choose item": "{{item}} {{choose}}",
   "halloween": "할로윈",
   "christmas": "크리스마스"
 }
