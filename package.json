@@ -77,5 +77,8 @@
     "commitizen": {
       "path": "cz-conventional-changelog"
     }
+  },
+  "engines": {
+    "node": "^14"
   }
 }
