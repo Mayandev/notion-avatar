@@ -70,7 +70,7 @@ export default async function handler(
       data: error?.message || `Something went wrong`,
     });
   } finally {
-    if (browser !== null) {
+    if (browser) {
       await browser.close();
     }
   }
