@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import chromium from 'chrome-aws-lambda';
+import chromium from '@sparticuz/chromium-min';
 import { AvatarConfig, AvatarPart } from '@/types';
 
 async function getBrowserInstance() {
