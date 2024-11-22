@@ -25,8 +25,8 @@ import { useModalStates } from '@/hooks/useModalState';
 import SelectionWrapper from './SelectionWrapper';
 import DownloadModal from '../Modal/Download';
 import EmbedModal from '../Modal/Embed';
-import PaletteModal from '../Modal/Palette';
 
+import PaletteModal from '../Popover/Palette';
 import AvatarPicker from '../Popover/AvatarPicker';
 
 export default function AvatarEditor() {
@@ -119,9 +119,8 @@ export default function AvatarEditor() {
   const switchConfig = (avatarConfig: AvatarPickerConfig) => {
     // const newIdx =
     //   (Number(config[type]) + 1) % (Number(AvatarStyleCountExtra[type]) + 1);
-    const newConfig = JSON.parse(JSON.stringify(config));
-    newConfig[avatarConfig.part] = avatarConfig.index;
-    setConfig(newConfig);
+    config[avatarConfig.part] = avatarConfig.index;
+    setConfig({ ...config });
     // hide modal
     // toggleModal('avatarPicker');
   };
@@ -216,7 +215,7 @@ export default function AvatarEditor() {
           imageType={imageType}
         />
       )}
-      {modalStates.palette && (
+      {/* {modalStates.palette && (
         <PaletteModal
           onCancel={() => {
             toggleModal('palette');
@@ -227,7 +226,7 @@ export default function AvatarEditor() {
           }}
           backgroundConfig={background}
         />
-      )}
+      )} */}
       <div className="flex justify-center items-center flex-col">
         <div
           style={{
@@ -261,13 +260,24 @@ export default function AvatarEditor() {
                   src={flip ? '/icon/flip-left.svg' : '/icon/flip-right.svg'}
                 />
               </button>
-              <button
-                data-tip={t('background')}
-                className="w-8 h-8 sm:w-12 sm:h-12 tooltip ml-2"
-                onClick={onOpenPaletteModal}
-              >
-                <Image width={30} height={30} src="/icon/palette.svg" />
-              </button>
+              <div className="relative" id="palette-picker">
+                <button
+                  data-tip={t('background')}
+                  className="w-8 h-8 sm:w-12 sm:h-12 tooltip ml-2"
+                  onClick={onOpenPaletteModal}
+                >
+                  <Image width={30} height={30} src="/icon/palette.svg" />
+                </button>
+                {modalStates.palette && (
+                  <PaletteModal
+                    onSelect={(background: AvatarBackgroundConfig) => {
+                      setBackground({ ...background });
+                    }}
+                    backgroundConfig={background}
+                    onClose={() => toggleModal('palette')}
+                  />
+                )}
+              </div>
             </div>
           </div>
           <div className="grid gap-y-4 justify-items-center justify-between grid-rows-2 grid-cols-5 lg:flex">

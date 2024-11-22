@@ -4,6 +4,7 @@ import { AvatarPickerConfig } from '@/types';
 import Image from 'next/legacy/image';
 import { useTranslation } from 'next-i18next';
 import { useEffect } from 'react';
+import { useClickOutside } from '@/hooks/useClickOutside';
 
 type AvatarPickerProps = {
   avatarPart: AvatarPickerConfig;
@@ -20,28 +21,11 @@ export default function AvatarPicker({
 }: AvatarPickerProps) {
   const { t } = useTranslation('common');
 
-  useEffect(() => {
-    function handleClose(e: MouseEvent) {
-      const element = document.querySelector(
-        `#avatar-picker-${avatarPart.part}`,
-      );
-
-      if (element && !element.contains(e.target as Node)) {
-        onClose();
-      }
-    }
-    document.addEventListener('click', handleClose);
-
-    return () => {
-      document.removeEventListener('click', handleClose);
-    };
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  useClickOutside(`#avatar-picker-${avatarPart.part}`, onClose);
 
   return (
     <div
-      className="text-xl bg-white px-4 pt-2 pb-4 sm:p-6 sm:pb-4 absolute top-[120%] left-1/2 z-10 border rounded-lg text-left overflow-hidden shadow-xl sm:w-[32rem]"
+      className="text-xl bg-white px-4 pt-2 pb-4 sm:p-6 sm:pb-4 text-left overflow-hidden absolute top-[120%] left-1/2 z-10 border rounded-lg shadow-xl sm:w-[32rem]"
       style={{
         transform: `translateX(-${offsetLeft}%)`,
       }}
