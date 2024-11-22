@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="1080px" height="1080px" viewBox="0 0 1080 1080" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="1080px" height="1080px" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
     <title>glasses-0</title>
-    <g id="glasses-0" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"></g>
+    <path
+        d="m32,8c-13.25,0-24,10.75-24,24s10.75,24,24,24,24-10.75,24-24-10.75-24-24-24Zm0,42c-9.94,0-18-8.06-18-18,0-3.89,1.24-7.48,3.34-10.42l25.08,25.08c-2.94,2.09-6.53,3.34-10.42,3.34Zm14.66-7.58l-25.08-25.08c2.94-2.09,6.53-3.34,10.42-3.34,9.94,0,18,8.06,18,18,0,3.89-1.24,7.48-3.34,10.42Z"
+        fill="#000" />
 </svg>

@@ -1,7 +1,6 @@
 import {
   AvatarStyleCount,
   CompatibleAgents,
-  DefaultAvatarPickerConfig,
   DefaultBackgroundConfig,
   FestivalTooltipEmoji,
   ModalKeyMap,
@@ -27,7 +26,8 @@ import SelectionWrapper from './SelectionWrapper';
 import DownloadModal from '../Modal/Download';
 import EmbedModal from '../Modal/Embed';
 import PaletteModal from '../Modal/Palette';
-import AvatarPicker from '../Modal/AvatarPicker';
+
+import AvatarPicker from '../Popover/AvatarPicker';
 
 export default function AvatarEditor() {
   const router = useRouter();
@@ -42,9 +42,7 @@ export default function AvatarEditor() {
   );
   // default placeholder for compatible modal
   const [imageDataURL, setImageDataURL] = useState('/logo.gif');
-  const [avatarPart, setAvatarPart] = useState<AvatarPickerConfig>(
-    DefaultAvatarPickerConfig,
-  );
+  const [avatarPart, setAvatarPart] = useState<AvatarPickerConfig | null>(null);
 
   const festival = getCurrentFestival();
 
@@ -59,6 +57,7 @@ export default function AvatarEditor() {
         (prev, next) => Object.assign(prev, { [next]: query[next] }),
         {},
       ) as AvatarConfig;
+
       setConfig({ ...config, ...params });
       setFlip(Boolean(Number(params.flip ?? 0)));
 
@@ -67,6 +66,8 @@ export default function AvatarEditor() {
         shape: params.shape ?? 'none',
       });
     }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router]);
 
   const generatePreview = async (flipped: boolean) => {
@@ -118,10 +119,11 @@ export default function AvatarEditor() {
   const switchConfig = (avatarConfig: AvatarPickerConfig) => {
     // const newIdx =
     //   (Number(config[type]) + 1) % (Number(AvatarStyleCountExtra[type]) + 1);
-    config[avatarConfig.part] = avatarConfig.index;
-    setConfig({ ...config });
+    const newConfig = JSON.parse(JSON.stringify(config));
+    newConfig[avatarConfig.part] = avatarConfig.index;
+    setConfig(newConfig);
     // hide modal
-    toggleModal('avatarPicker');
+    // toggleModal('avatarPicker');
   };
 
   const downloadAvatar = async () => {
@@ -183,7 +185,7 @@ export default function AvatarEditor() {
 
   return (
     <>
-      {modalStates.avatarPicker && (
+      {/* {modalStates.avatarPicker && (
         <AvatarPicker
           onCancel={() => toggleModal('avatarPicker')}
           avatarPart={avatarPart}
@@ -191,7 +193,7 @@ export default function AvatarEditor() {
             switchConfig({ index: newIdx, part: avatarPart.part })
           }
         />
-      )}
+      )} */}
       {modalStates.download && (
         <DownloadModal
           onCancel={() => {
@@ -269,15 +271,15 @@ export default function AvatarEditor() {
             </div>
           </div>
           <div className="grid gap-y-4 justify-items-center justify-between grid-rows-2 grid-cols-5 lg:flex">
-            {Object.keys(AvatarStyleCount).map((type) => (
-              <div key={type}>
+            {Object.keys(AvatarStyleCount).map((type, i, arr) => (
+              <div key={type} className="relative" id={`avatar-picker-${type}`}>
                 <SelectionWrapper
                   switchConfig={() => {
                     setAvatarPart({
                       part: type as AvatarPart,
                       index: config[type as AvatarPart],
                     });
-                    toggleModal('avatarPicker');
+                    // toggleModal('avatarPicker');
                   }}
                   tooltip={t(type)}
                 >
@@ -289,31 +291,76 @@ export default function AvatarEditor() {
                     height={30}
                   />
                 </SelectionWrapper>
+                {avatarPart?.part === type && (
+                  <AvatarPicker
+                    avatarPart={{
+                      part: type as AvatarPart,
+                      index: avatarPart?.index || 0,
+                    }}
+                    offsetLeft={Math.max(
+                      10,
+                      Math.min((i / arr.length) * 100, 90),
+                    )}
+                    onSelect={(index) => {
+                      if (!avatarPart) return;
+                      setAvatarPart({
+                        part: type as AvatarPart,
+                        index,
+                      });
+                      switchConfig({ index, part: avatarPart.part });
+                    }}
+                    onClose={() => {
+                      setAvatarPart(null);
+                    }}
+                  />
+                )}
               </div>
             ))}
             {isFestival() && (
-              <SelectionWrapper
-                switchConfig={() => {
-                  setAvatarPart({
-                    part: festival,
-                    index: config[festival] || 0,
-                  });
-                  toggleModal('avatarPicker');
-                }}
-                tooltip={FestivalTooltipEmoji[festival]}
-                className="relative "
-              >
-                <>
-                  <Image
-                    src={`/avatar/part/festival/${festival}/${festival}-${config[festival]}.svg`}
-                    width={30}
-                    height={30}
+              <div className="relative" id={`avatar-picker-${festival}`}>
+                <SelectionWrapper
+                  switchConfig={() => {
+                    setAvatarPart({
+                      part: festival,
+                      index: config[festival] || 0,
+                    });
+                    toggleModal('avatarPicker');
+                  }}
+                  tooltip={FestivalTooltipEmoji[festival]}
+                  className="relative "
+                >
+                  <>
+                    <Image
+                      src={`/avatar/part/festival/${festival}/${festival}-${config[festival]}.svg`}
+                      width={30}
+                      height={30}
+                    />
+                    <span className="top-0 right-0 absolute bg-red-600 text-xs text-white rounded translate-x-1/2 px-1 -translate-y-1/2">
+                      New
+                    </span>
+                  </>
+                </SelectionWrapper>
+                {avatarPart?.part === festival && (
+                  <AvatarPicker
+                    avatarPart={{
+                      part: festival as AvatarPart,
+                      index: avatarPart?.index || 0,
+                    }}
+                    offsetLeft={90}
+                    onSelect={(index) => {
+                      if (!avatarPart) return;
+                      setAvatarPart({
+                        part: festival as AvatarPart,
+                        index,
+                      });
+                      switchConfig({ index, part: avatarPart.part });
+                    }}
+                    onClose={() => {
+                      setAvatarPart(null);
+                    }}
                   />
-                  <span className="top-0 right-0 absolute bg-red-600 text-xs text-white rounded translate-x-1/2 px-1 -translate-y-1/2">
-                    New
-                  </span>
-                </>
-              </SelectionWrapper>
+                )}
+              </div>
             )}
           </div>
           <div className="flex flex-col gap-x-3 md:flex-row mt-8 justify-between w-full select-none">
