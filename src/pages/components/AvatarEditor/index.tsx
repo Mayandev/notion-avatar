@@ -318,7 +318,7 @@ export default function AvatarEditor() {
                     onClose={() => {
                       setAvatarPart(null);
                     }}
-                    triggerId={`avatar-picker-${type}`}
+                    triggerId={`#avatar-picker-${type}`}
                   />
                 )}
               </div>
@@ -363,7 +363,7 @@ export default function AvatarEditor() {
                     onClose={() => {
                       setAvatarPart(null);
                     }}
-                    triggerId={`avatar-picker-${festival}`}
+                    triggerId={`#avatar-picker-${festival}`}
                   />
                 )}
               </div>
