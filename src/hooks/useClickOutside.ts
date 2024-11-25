@@ -9,11 +9,9 @@ export const useClickOutside = (id: string, callback: () => void) => {
         callback();
       }
     }
-    document.addEventListener('click', handleClose);
 
-    return () => {
-      document.removeEventListener('click', handleClose);
-    };
+    document.addEventListener('click', handleClose);
+    return () => document.removeEventListener('click', handleClose);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

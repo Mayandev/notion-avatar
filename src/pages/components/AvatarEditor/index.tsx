@@ -329,7 +329,6 @@ export default function AvatarEditor() {
                       part: festival,
                       index: config[festival] || 0,
                     });
-                    toggleModal('avatarPicker');
                   }}
                   tooltip={FestivalTooltipEmoji[festival]}
                   className="relative "
