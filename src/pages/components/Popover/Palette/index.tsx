@@ -4,17 +4,19 @@ import { AvatarBackgroundConfig, BackgroundShape } from '@/types';
 import { useEffect, useState } from 'react';
 import Popover from '../Common';
 
-type PaletteModalProps = {
+type PalettePopoverProps = {
   onSelect: (background: AvatarBackgroundConfig) => void;
   onClose: () => void;
   backgroundConfig: AvatarBackgroundConfig;
+  triggerId: string;
 };
 
-export default function PaletteModal({
+export default function PalettePopover({
   onSelect,
   onClose,
   backgroundConfig = DefaultBackgroundConfig,
-}: PaletteModalProps) {
+  triggerId,
+}: PalettePopoverProps) {
   const { t } = useTranslation();
   const [bgShape, setShape] = useState<BackgroundShape>(backgroundConfig.shape);
   const [bgColor, setColor] = useState<string>(backgroundConfig.color);
@@ -46,7 +48,7 @@ export default function PaletteModal({
   }, [bgShape, bgColor]);
 
   return (
-    <Popover id="#palette-picker" onClose={onClose}>
+    <Popover triggerId={triggerId} onClose={onClose}>
       <>
         <h1 className="py-4 w-full flex justify-between items-center">
           {t('chooseShape')}{' '}

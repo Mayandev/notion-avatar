@@ -26,8 +26,8 @@ import SelectionWrapper from './SelectionWrapper';
 import DownloadModal from '../Modal/Download';
 import EmbedModal from '../Modal/Embed';
 
-import PaletteModal from '../Popover/Palette';
-import AvatarPicker from '../Popover/AvatarPicker';
+import PalettePopover from '../Popover/Palette';
+import AvatarPickerPopover from '../Popover/AvatarPicker';
 
 export default function AvatarEditor() {
   const router = useRouter();
@@ -269,12 +269,13 @@ export default function AvatarEditor() {
                   <Image width={30} height={30} src="/icon/palette.svg" />
                 </button>
                 {modalStates.palette && (
-                  <PaletteModal
+                  <PalettePopover
                     onSelect={(background: AvatarBackgroundConfig) => {
                       setBackground({ ...background });
                     }}
                     backgroundConfig={background}
                     onClose={() => toggleModal('palette')}
+                    triggerId="#palette-picker"
                   />
                 )}
               </div>
@@ -301,7 +302,7 @@ export default function AvatarEditor() {
                   />
                 </SelectionWrapper>
                 {avatarPart?.part === type && (
-                  <AvatarPicker
+                  <AvatarPickerPopover
                     avatarPart={{
                       part: type as AvatarPart,
                       index: avatarPart?.index || 0,
@@ -317,6 +318,7 @@ export default function AvatarEditor() {
                     onClose={() => {
                       setAvatarPart(null);
                     }}
+                    triggerId={`avatar-picker-${type}`}
                   />
                 )}
               </div>
@@ -345,7 +347,7 @@ export default function AvatarEditor() {
                   </>
                 </SelectionWrapper>
                 {avatarPart?.part === festival && (
-                  <AvatarPicker
+                  <AvatarPickerPopover
                     avatarPart={{
                       part: festival as AvatarPart,
                       index: avatarPart?.index || 0,
@@ -361,6 +363,7 @@ export default function AvatarEditor() {
                     onClose={() => {
                       setAvatarPart(null);
                     }}
+                    triggerId={`avatar-picker-${festival}`}
                   />
                 )}
               </div>

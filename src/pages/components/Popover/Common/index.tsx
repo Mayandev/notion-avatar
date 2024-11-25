@@ -3,7 +3,7 @@ import { useMediaQuery } from '@/hooks/useMediaQuery';
 import { useLayoutEffect, useState } from 'react';
 
 type PopoverProps = {
-  id: string;
+  triggerId: string;
   children: JSX.Element;
   onClose: () => void;
 };
@@ -12,10 +12,14 @@ const smallScreenStyle = 'fixed top-auto bottom-0 left-0 w-full rounded-t-lg';
 const mediumScreenStyle =
   'sm:absolute sm:bottom-auto sm:top-[110%] sm:left-1/2  sm:rounded-lg sm:w-[32rem]';
 
-export default function Popover({ id, children, onClose }: PopoverProps) {
+export default function Popover({
+  triggerId,
+  children,
+  onClose,
+}: PopoverProps) {
   const [translateX, setTranslateX] = useState<number | null>(null);
 
-  useClickOutside(id, onClose);
+  useClickOutside(triggerId, onClose);
 
   useLayoutEffect(() => {
     const element = document.querySelector('#popover');

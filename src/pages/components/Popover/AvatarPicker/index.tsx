@@ -5,21 +5,23 @@ import Image from 'next/legacy/image';
 import { useTranslation } from 'next-i18next';
 import Popover from '../Common';
 
-type AvatarPickerProps = {
+type AvatarPickerPopoverProps = {
   avatarPart: AvatarPickerConfig;
   onSelect: (index: number) => void;
   onClose: () => void;
+  triggerId: string;
 };
 
-export default function AvatarPicker({
+export default function AvatarPickerPopover({
   avatarPart,
   onSelect,
   onClose,
-}: AvatarPickerProps) {
+  triggerId,
+}: AvatarPickerPopoverProps) {
   const { t } = useTranslation('common');
 
   return (
-    <Popover id={`#avatar-picker-${avatarPart.part}`} onClose={onClose}>
+    <Popover triggerId={triggerId} onClose={onClose}>
       <>
         <h1 className="py-4 w-full flex justify-between items-center">
           {t('Choose item', {
