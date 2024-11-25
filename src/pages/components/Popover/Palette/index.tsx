@@ -48,12 +48,6 @@ export default function PaletteModal({
   useClickOutside('#palette-picker', onClose);
 
   return (
-    // <Modal
-    //   onCancel={onCancel}
-    //   onConfirm={() => {
-    //     onSelect({ shape: bgShape, color: bgColor });
-    //   }}
-    // >
     <div
       className="text-xl bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4  absolute top-[120%] left-1/2 z-10 border rounded-lg  shadow-xl sm:w-[32rem]"
       style={{
@@ -118,6 +112,5 @@ export default function PaletteModal({
         ></input>
       </div>
     </div>
-    // </Modal>
   );
 }

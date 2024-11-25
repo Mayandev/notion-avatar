@@ -3,33 +3,41 @@ import { AvatarPickerConfig } from '@/types';
 
 import Image from 'next/legacy/image';
 import { useTranslation } from 'next-i18next';
-import { useEffect } from 'react';
+import { useLayoutEffect, useState } from 'react';
 import { useClickOutside } from '@/hooks/useClickOutside';
 
 type AvatarPickerProps = {
   avatarPart: AvatarPickerConfig;
-  offsetLeft: number;
   onSelect: (index: number) => void;
   onClose: () => void;
 };
 
 export default function AvatarPicker({
   avatarPart,
-  offsetLeft,
   onSelect,
   onClose,
 }: AvatarPickerProps) {
   const { t } = useTranslation('common');
 
+  const [translateX, setTranslateX] = useState<number | null>(null);
+
   useClickOutside(`#avatar-picker-${avatarPart.part}`, onClose);
+
+  useLayoutEffect(() => {
+    const element = document.querySelector('#popover');
+    const { x } = element?.getBoundingClientRect() || { x: 0 };
+    const pageWidth = window.innerWidth;
+
+    setTranslateX(Math.max(10, Math.min((x / pageWidth) * 100, 90)));
+  }, []);
 
   return (
     <div
-      className="text-xl bg-white px-4 pt-2 pb-4 sm:p-6 sm:pb-4 text-left overflow-hidden absolute top-[120%] left-1/2 z-10 border rounded-lg shadow-xl sm:w-[32rem]"
+      className="text-xl bg-white px-4 pt-2 pb-4 sm:p-6 sm:pb-4 text-left overflow-hidden absolute top-[120%] left-1/2 z-10 border rounded-lg shadow-xl sm:w-[32rem] hidden sm:block"
       style={{
-        transform: `translateX(-${offsetLeft}%)`,
+        transform: `translateX(-${translateX}%)`,
       }}
-      // id={`avatar-picker-${avatarPart.part}`}
+      id="popover"
     >
       <h1 className="py-4 w-full">
         {t('Choose item', {

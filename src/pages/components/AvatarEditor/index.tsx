@@ -281,7 +281,7 @@ export default function AvatarEditor() {
             </div>
           </div>
           <div className="grid gap-y-4 justify-items-center justify-between grid-rows-2 grid-cols-5 lg:flex">
-            {Object.keys(AvatarStyleCount).map((type, i, arr) => (
+            {Object.keys(AvatarStyleCount).map((type) => (
               <div key={type} className="relative" id={`avatar-picker-${type}`}>
                 <SelectionWrapper
                   switchConfig={() => {
@@ -289,7 +289,6 @@ export default function AvatarEditor() {
                       part: type as AvatarPart,
                       index: config[type as AvatarPart],
                     });
-                    // toggleModal('avatarPicker');
                   }}
                   tooltip={t(type)}
                 >
@@ -307,10 +306,6 @@ export default function AvatarEditor() {
                       part: type as AvatarPart,
                       index: avatarPart?.index || 0,
                     }}
-                    offsetLeft={Math.max(
-                      10,
-                      Math.min((i / arr.length) * 100, 90),
-                    )}
                     onSelect={(index) => {
                       if (!avatarPart) return;
                       setAvatarPart({
@@ -356,7 +351,6 @@ export default function AvatarEditor() {
                       part: festival as AvatarPart,
                       index: avatarPart?.index || 0,
                     }}
-                    offsetLeft={90}
                     onSelect={(index) => {
                       if (!avatarPart) return;
                       setAvatarPart({
