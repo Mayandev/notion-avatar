@@ -20,6 +20,8 @@ export default function AvatarPickerPopover({
 }: AvatarPickerPopoverProps) {
   const { t } = useTranslation('common');
 
+  if (!avatarPart) return null;
+
   return (
     <Popover triggerId={triggerId} onClose={onClose}>
       <>
