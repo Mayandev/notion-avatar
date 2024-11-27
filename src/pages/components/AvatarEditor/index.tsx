@@ -1,7 +1,6 @@
 import {
   AvatarStyleCount,
   CompatibleAgents,
-  DefaultAvatarPickerConfig,
   DefaultBackgroundConfig,
   FestivalTooltipEmoji,
   ModalKeyMap,
@@ -26,8 +25,9 @@ import { useModalStates } from '@/hooks/useModalState';
 import SelectionWrapper from './SelectionWrapper';
 import DownloadModal from '../Modal/Download';
 import EmbedModal from '../Modal/Embed';
-import PaletteModal from '../Modal/Palette';
-import AvatarPicker from '../Modal/AvatarPicker';
+
+import PalettePopover from '../Popover/Palette';
+import AvatarPickerPopover from '../Popover/AvatarPicker';
 
 export default function AvatarEditor() {
   const router = useRouter();
@@ -42,9 +42,7 @@ export default function AvatarEditor() {
   );
   // default placeholder for compatible modal
   const [imageDataURL, setImageDataURL] = useState('/logo.gif');
-  const [avatarPart, setAvatarPart] = useState<AvatarPickerConfig>(
-    DefaultAvatarPickerConfig,
-  );
+  const [avatarPart, setAvatarPart] = useState<AvatarPickerConfig | null>(null);
 
   const festival = getCurrentFestival();
 
@@ -59,6 +57,7 @@ export default function AvatarEditor() {
         (prev, next) => Object.assign(prev, { [next]: query[next] }),
         {},
       ) as AvatarConfig;
+
       setConfig({ ...config, ...params });
       setFlip(Boolean(Number(params.flip ?? 0)));
 
@@ -67,6 +66,8 @@ export default function AvatarEditor() {
         shape: params.shape ?? 'none',
       });
     }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router]);
 
   const generatePreview = async (flipped: boolean) => {
@@ -121,7 +122,7 @@ export default function AvatarEditor() {
     config[avatarConfig.part] = avatarConfig.index;
     setConfig({ ...config });
     // hide modal
-    toggleModal('avatarPicker');
+    // toggleModal('avatarPicker');
   };
 
   const downloadAvatar = async () => {
@@ -183,7 +184,7 @@ export default function AvatarEditor() {
 
   return (
     <>
-      {modalStates.avatarPicker && (
+      {/* {modalStates.avatarPicker && (
         <AvatarPicker
           onCancel={() => toggleModal('avatarPicker')}
           avatarPart={avatarPart}
@@ -191,7 +192,7 @@ export default function AvatarEditor() {
             switchConfig({ index: newIdx, part: avatarPart.part })
           }
         />
-      )}
+      )} */}
       {modalStates.download && (
         <DownloadModal
           onCancel={() => {
@@ -214,7 +215,7 @@ export default function AvatarEditor() {
           imageType={imageType}
         />
       )}
-      {modalStates.palette && (
+      {/* {modalStates.palette && (
         <PaletteModal
           onCancel={() => {
             toggleModal('palette');
@@ -225,7 +226,7 @@ export default function AvatarEditor() {
           }}
           backgroundConfig={background}
         />
-      )}
+      )} */}
       <div className="flex justify-center items-center flex-col">
         <div
           style={{
@@ -259,25 +260,36 @@ export default function AvatarEditor() {
                   src={flip ? '/icon/flip-left.svg' : '/icon/flip-right.svg'}
                 />
               </button>
-              <button
-                data-tip={t('background')}
-                className="w-8 h-8 sm:w-12 sm:h-12 tooltip ml-2"
-                onClick={onOpenPaletteModal}
-              >
-                <Image width={30} height={30} src="/icon/palette.svg" />
-              </button>
+              <div className="relative" id="palette-picker">
+                <button
+                  data-tip={t('background')}
+                  className="w-8 h-8 sm:w-12 sm:h-12 tooltip ml-2"
+                  onClick={onOpenPaletteModal}
+                >
+                  <Image width={30} height={30} src="/icon/palette.svg" />
+                </button>
+                {modalStates.palette && (
+                  <PalettePopover
+                    onSelect={(background: AvatarBackgroundConfig) => {
+                      setBackground({ ...background });
+                    }}
+                    backgroundConfig={background}
+                    onClose={() => toggleModal('palette')}
+                    triggerId="#palette-picker"
+                  />
+                )}
+              </div>
             </div>
           </div>
           <div className="grid gap-y-4 justify-items-center justify-between grid-rows-2 grid-cols-5 lg:flex">
             {Object.keys(AvatarStyleCount).map((type) => (
-              <div key={type}>
+              <div key={type} className="relative" id={`avatar-picker-${type}`}>
                 <SelectionWrapper
                   switchConfig={() => {
                     setAvatarPart({
                       part: type as AvatarPart,
                       index: config[type as AvatarPart],
                     });
-                    toggleModal('avatarPicker');
                   }}
                   tooltip={t(type)}
                 >
@@ -289,31 +301,72 @@ export default function AvatarEditor() {
                     height={30}
                   />
                 </SelectionWrapper>
+                {avatarPart?.part === type && (
+                  <AvatarPickerPopover
+                    avatarPart={{
+                      part: type as AvatarPart,
+                      index: avatarPart?.index || 0,
+                    }}
+                    onSelect={(index) => {
+                      if (!avatarPart) return;
+                      setAvatarPart({
+                        part: type as AvatarPart,
+                        index,
+                      });
+                      switchConfig({ index, part: avatarPart.part });
+                    }}
+                    onClose={() => {
+                      setAvatarPart(null);
+                    }}
+                    triggerId={`#avatar-picker-${type}`}
+                  />
+                )}
               </div>
             ))}
             {isFestival() && (
-              <SelectionWrapper
-                switchConfig={() => {
-                  setAvatarPart({
-                    part: festival,
-                    index: config[festival] || 0,
-                  });
-                  toggleModal('avatarPicker');
-                }}
-                tooltip={FestivalTooltipEmoji[festival]}
-                className="relative "
-              >
-                <>
-                  <Image
-                    src={`/avatar/part/festival/${festival}/${festival}-${config[festival]}.svg`}
-                    width={30}
-                    height={30}
+              <div className="relative" id={`avatar-picker-${festival}`}>
+                <SelectionWrapper
+                  switchConfig={() => {
+                    setAvatarPart({
+                      part: festival,
+                      index: config[festival] || 0,
+                    });
+                  }}
+                  tooltip={FestivalTooltipEmoji[festival]}
+                  className="relative "
+                >
+                  <>
+                    <Image
+                      src={`/avatar/part/festival/${festival}/${festival}-${config[festival]}.svg`}
+                      width={30}
+                      height={30}
+                    />
+                    <span className="top-0 right-0 absolute bg-red-600 text-xs text-white rounded translate-x-1/2 px-1 -translate-y-1/2">
+                      New
+                    </span>
+                  </>
+                </SelectionWrapper>
+                {avatarPart?.part === festival && (
+                  <AvatarPickerPopover
+                    avatarPart={{
+                      part: festival as AvatarPart,
+                      index: avatarPart?.index || 0,
+                    }}
+                    onSelect={(index) => {
+                      if (!avatarPart) return;
+                      setAvatarPart({
+                        part: festival as AvatarPart,
+                        index,
+                      });
+                      switchConfig({ index, part: avatarPart.part });
+                    }}
+                    onClose={() => {
+                      setAvatarPart(null);
+                    }}
+                    triggerId={`#avatar-picker-${festival}`}
                   />
-                  <span className="top-0 right-0 absolute bg-red-600 text-xs text-white rounded translate-x-1/2 px-1 -translate-y-1/2">
-                    New
-                  </span>
-                </>
-              </SelectionWrapper>
+                )}
+              </div>
             )}
           </div>
           <div className="flex flex-col gap-x-3 md:flex-row mt-8 justify-between w-full select-none">

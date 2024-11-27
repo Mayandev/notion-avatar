@@ -16,7 +16,9 @@ export default function SelectionWrapper({
       role="button"
       tabIndex={0}
       onClick={switchConfig}
-      onKeyDown={switchConfig}
+      onKeyDown={() => {
+        //
+      }}
       className={`tooltip ${className} outline-none select-none rounded-lg border-3 border-solid border-black focus:ring-2 focus:ring-offset-2 focus:ring-black hover:bg-gray-50`}
       data-tip={tooltip}
     >
