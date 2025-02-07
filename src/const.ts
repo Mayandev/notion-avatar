@@ -29,6 +29,7 @@ export const AvatarStyleCountExtra: AvatarConfigExtra = {
 export const CompatibleAgents = ['quark', 'micromessenger', 'weibo', 'douban'];
 
 export const PalettePreset = [
+  'transparent',
   '#fa541c',
   '#faad14',
   '#fadb14',
@@ -58,16 +59,16 @@ export const ShapeStyleMapping: ShapeStyle = {
 };
 
 export const SVGFilter = `<defs>
-  <filter id="filter" x="-20%" y="-20%" width="140%" height="140%" filterUnits="objectBoundingBox" primitiveUnits="userSpaceOnUse" color-interpolation-filters="linearRGB">
-    <feMorphology operator="dilate" radius="20 20" in="SourceAlpha" result="morphology"/>
-    <feFlood flood-color="#ffffff" flood-opacity="1" result="flood"/>
-    <feComposite in="flood" in2="morphology" operator="in" result="composite"/>
-    <feMerge result="merge">
-          <feMergeNode in="composite" result="mergeNode"/>
-      <feMergeNode in="SourceGraphic" result="mergeNode1"/>
-      </feMerge>
-  </filter>
-</defs>`;
+    <filter id="filter" x="-20%" y="-20%" width="140%" height="140%" filterUnits="objectBoundingBox" primitiveUnits="userSpaceOnUse" color-interpolation-filters="linearRGB">
+      <feMorphology operator="dilate" radius="20 20" in="SourceAlpha" result="morphology"/>
+      <feFlood flood-color="#ffffff" flood-opacity="1" result="flood"/>
+      <feComposite in="flood" in2="morphology" operator="in" result="composite"/>
+      <feMerge result="merge">
+            <feMergeNode in="composite" result="mergeNode"/>
+        <feMergeNode in="SourceGraphic" result="mergeNode1"/>
+        </feMerge>
+    </filter>
+  </defs>`;
 
 export const FestivalTimeMapping: FestivalTime = {
   halloween: {
