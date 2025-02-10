@@ -100,7 +100,18 @@ export default function PalettePopover({
               className={`w-12 h-10 sm:w-20 sm:h-12 rounded outline-none select-none border-3 border-solid border-black ${
                 color === bgColor && 'ring-2 ring-offset-2 ring-black'
               }`}
-              style={{ background: color }}
+              style={{
+                background:
+                  color === 'transparent'
+                    ? `repeating-linear-gradient(
+                45deg,
+                #fff,
+                #fff 4px,
+                #ff0000 4px,
+                #ff0000 8px
+              )`
+                    : color,
+              }}
             >
               {' '}
             </button>

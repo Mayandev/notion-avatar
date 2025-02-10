@@ -82,8 +82,8 @@ export default function AvatarEditor() {
         return `\n<g id="notion-avatar-${type}" ${
           type === 'face' ? 'fill="#ffffff"' : ''
         } ${flipped ? 'transform="scale(-1,1) translate(-1080, 0)"' : ''}>\n
-      ${svgRaw.replace(/<svg.*(?=>)>/, '').replace('</svg>', '')}
-    \n</g>\n`;
+        ${svgRaw.replace(/<svg.*(?=>)>/, '').replace('</svg>', '')}
+      \n</g>\n`;
       }),
     );
 
@@ -95,17 +95,17 @@ export default function AvatarEditor() {
       groups.push(`\n<g id="notion-avatar-${festival}" ${
         flipped ? 'transform="scale(-1,1) translate(-1080, 0)"' : ''
       }>\n
-    ${svgRaw.replace(/<svg.*(?=>)>/, '').replace('</svg>', '')}
-  \n</g>\n`);
+      ${svgRaw.replace(/<svg.*(?=>)>/, '').replace('</svg>', '')}
+    \n</g>\n`);
     }
 
     const previewSvg =
       `<svg viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
-      ${SVGFilter}
-      <g id="notion-avatar" filter="url(#filter)">
-        ${groups.join('\n\n')}
-      </g>
-      </svg>`
+        ${SVGFilter}
+        <g id="notion-avatar" filter="url(#filter)">
+          ${groups.join('\n\n')}
+        </g>
+        </svg>`
         .trim()
         .replace(/(\n|\t)/g, '');
 
@@ -135,6 +135,8 @@ export default function AvatarEditor() {
       scale: window.devicePixelRatio,
       width: dom.offsetWidth,
       height: dom.offsetHeight,
+      backgroundColor:
+        background.color === 'transparent' ? null : background.color,
     });
     const userAgent = window.navigator.userAgent.toLowerCase();
     const isNeedCompatible = CompatibleAgents.some(
@@ -185,14 +187,14 @@ export default function AvatarEditor() {
   return (
     <>
       {/* {modalStates.avatarPicker && (
-        <AvatarPicker
-          onCancel={() => toggleModal('avatarPicker')}
-          avatarPart={avatarPart}
-          onConfirm={(newIdx) =>
-            switchConfig({ index: newIdx, part: avatarPart.part })
-          }
-        />
-      )} */}
+          <AvatarPicker
+            onCancel={() => toggleModal('avatarPicker')}
+            avatarPart={avatarPart}
+            onConfirm={(newIdx) =>
+              switchConfig({ index: newIdx, part: avatarPart.part })
+            }
+          />
+        )} */}
       {modalStates.download && (
         <DownloadModal
           onCancel={() => {
@@ -216,17 +218,17 @@ export default function AvatarEditor() {
         />
       )}
       {/* {modalStates.palette && (
-        <PaletteModal
-          onCancel={() => {
-            toggleModal('palette');
-          }}
-          onSelect={(background: AvatarBackgroundConfig) => {
-            setBackground({ ...background });
-            toggleModal('palette');
-          }}
-          backgroundConfig={background}
-        />
-      )} */}
+          <PaletteModal
+            onCancel={() => {
+              toggleModal('palette');
+            }}
+            onSelect={(background: AvatarBackgroundConfig) => {
+              setBackground({ ...background });
+              toggleModal('palette');
+            }}
+            backgroundConfig={background}
+          />
+        )} */}
       <div className="flex justify-center items-center flex-col">
         <div
           style={{
