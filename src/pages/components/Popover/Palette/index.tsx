@@ -107,8 +107,8 @@ export default function PalettePopover({
                 45deg,
                 #fff,
                 #fff 4px,
-                #ff0000 4px,
-                #ff0000 8px
+                #000 4px,
+                #000 8px
               )`
                     : color,
               }}
