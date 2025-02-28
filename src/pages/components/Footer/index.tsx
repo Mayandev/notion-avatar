@@ -22,7 +22,7 @@ export default function Footer() {
           {t(`dribbble`)}
         </a>
         <span className="mx-2 hidden md:inline-block">·</span>
-        <a className="hover:underline" href="https://twitter.com/phillzou">
+        <a className="hover:underline" href="https://x.com/phillzou">
           {t(`twitter`)}
         </a>
         <span className="mx-2">·</span>
@@ -38,7 +38,7 @@ export default function Footer() {
           &copy;{` ${t(`illustrations`)}`}
         </a>
         {t(`designedBy`)}
-        <a href="https://twitter.com/felix12777" className="hover:underline">
+        <a href="https://x.com/felix12777" className="hover:underline">
           {` Felix Wong `}
         </a>
         {t(`underDesign`)}
