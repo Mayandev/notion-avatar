@@ -33,7 +33,7 @@ export default function Popover({
 
   return (
     <div
-      className={`text-xl bg-white px-4 pt-2 pb-4 sm:p-6 sm:pb-4 text-left overflow-hidden z-10 border shadow-xl ${smallScreenStyle} ${mediumScreenStyle}`}
+      className={`text-xl bg-[#fffefc] px-4 pt-2 pb-4 sm:p-6 sm:pb-4 text-left overflow-hidden z-10 border shadow-xl ${smallScreenStyle} ${mediumScreenStyle}`}
       style={{
         transform: `${isSmallScreen ? 'unset' : `translateX(-${translateX}%)`}`,
       }}

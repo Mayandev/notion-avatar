@@ -6,7 +6,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import AvatarEditor from './components/AvatarEditor';
 
-const URL = `https://notion-avatar.vercel.app/`;
+const URL = `https://notion-avatar.app/`;
 
 const Home: NextPage = () => {
   const { t } = useTranslation(`common`);
