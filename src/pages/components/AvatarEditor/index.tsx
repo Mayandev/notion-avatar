@@ -25,6 +25,7 @@ import { useModalStates } from '@/hooks/useModalState';
 import SelectionWrapper from './SelectionWrapper';
 import DownloadModal from '../Modal/Download';
 import EmbedModal from '../Modal/Embed';
+import ShareModal from '../Modal/Share';
 
 import PalettePopover from '../Popover/Palette';
 import AvatarPickerPopover from '../Popover/AvatarPicker';
@@ -159,19 +160,19 @@ export default function AvatarEditor() {
       const svg = new XMLSerializer().serializeToString(svgElement);
       imageURL = `data:image/svg+xml;base64,${window.btoa(svg)}`;
     }
+    setImageDataURL(imageURL);
 
     // compatible for browsers which don't surpport dwonload attribution
     if (isNeedCompatible) {
-      setImageDataURL(imageURL);
       toggleModal('download');
       return;
     }
-
     const a = document.createElement('a');
 
     a.href = imageURL;
     a.download = `notion-avatar-${new Date().getTime()}.${imageType}`;
     a.click();
+    toggleModal('share');
   };
 
   const onOpenEmbedModal = () => {
@@ -186,15 +187,12 @@ export default function AvatarEditor() {
 
   return (
     <>
-      {/* {modalStates.avatarPicker && (
-          <AvatarPicker
-            onCancel={() => toggleModal('avatarPicker')}
-            avatarPart={avatarPart}
-            onConfirm={(newIdx) =>
-              switchConfig({ index: newIdx, part: avatarPart.part })
-            }
-          />
-        )} */}
+      {modalStates.share && (
+        <ShareModal
+          onCancel={() => toggleModal('share')}
+          image={imageDataURL}
+        />
+      )}
       {modalStates.download && (
         <DownloadModal
           onCancel={() => {
@@ -217,18 +215,6 @@ export default function AvatarEditor() {
           imageType={imageType}
         />
       )}
-      {/* {modalStates.palette && (
-          <PaletteModal
-            onCancel={() => {
-              toggleModal('palette');
-            }}
-            onSelect={(background: AvatarBackgroundConfig) => {
-              setBackground({ ...background });
-              toggleModal('palette');
-            }}
-            backgroundConfig={background}
-          />
-        )} */}
       <div className="flex justify-center items-center flex-col">
         <div
           style={{

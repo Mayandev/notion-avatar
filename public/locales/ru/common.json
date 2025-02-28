@@ -33,13 +33,7 @@
   "copy": "Копировать",
   "copied": "Скопировано",
   "downloadTip": "В настоящее время поддерживаются форматы svg и png, попробуйте изменить формат в кнопке загрузки",
-  "flip": "Отразить",
-  "background": "Фон",
-  "paletteTitle": "Выбрать фон",
-  "chooseShape": "Выбрать форму",
-  "customColor": "Свой цвет",
-  "choosePart": "Выбрать",
-  "Choose item": "{{choose}} {{item}}",
-  "halloween": "Хэллоуин",
-  "christmas": "Рождество"
+  "downloadSuccess": "Загрузка завершена",
+  "shareModalHint": "Поделитесь в любимых соцсетях!",
+  "shareContent": "Я только что создал аватар с помощью Notion Avatar Maker, посмотрите!"
 }

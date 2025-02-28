@@ -39,7 +39,8 @@
     "puppeteer-core": "10.4.0",
     "raw-loader": "4.0.2",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-hot-toast": "2.5.2"
   },
   "devDependencies": {
     "@commitlint/cli": "13.2.1",

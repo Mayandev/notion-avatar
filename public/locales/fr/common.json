@@ -41,5 +41,8 @@
   "choosePart": "Choisir",
   "Choose item": "{{choose}} {{item}}",
   "halloween": "Halloween",
-  "christmas": "Noël"
+  "christmas": "Noël",
+  "downloadSuccess": "Téléchargement réussi",
+  "shareModalHint": "Partagez sur vos réseaux sociaux préférés !",
+  "shareContent": "Je viens de créer un avatar avec Notion Avatar Maker, regardez ça !"
 }

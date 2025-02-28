@@ -41,5 +41,8 @@
   "choosePart": "選択",
   "Choose item": "{{item}}を{{choose}}",
   "halloween": "ハロウィン",
-  "christmas": "クリスマス"
+  "christmas": "クリスマス",
+  "downloadSuccess": "ダウンロード完了",
+  "shareModalHint": "お気に入りのSNSでシェアしましょう！",
+  "shareContent": "Notion Avatar Makerで可愛いアバターを作りました！見てください！"
 }

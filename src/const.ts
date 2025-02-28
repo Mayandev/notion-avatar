@@ -91,4 +91,5 @@ export const ModalKeyMap = {
   embed: 'embed',
   palette: 'palette',
   avatarPicker: 'avatarPicker',
+  share: 'share',
 };

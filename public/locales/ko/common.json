@@ -41,5 +41,8 @@
   "Choose": "선택",
   "Choose item": "{{item}} {{choose}}",
   "halloween": "할로윈",
-  "christmas": "크리스마스"
+  "christmas": "크리스마스",
+  "downloadSuccess": "다운로드 성공",
+  "shareModalHint": "좋아하는 SNS에 공유해보세요!",
+  "shareContent": "Notion Avatar Maker로 귀여운 아바타를 만들었어요! 확인해보세요!"
 }

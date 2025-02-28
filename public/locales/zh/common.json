@@ -41,5 +41,8 @@
   "Choose": "选择",
   "Choose item": "{{choose}} {{item}}",
   "halloween": "万圣节装饰",
-  "christmas": "圣诞节装饰"
+  "christmas": "圣诞节装饰",
+  "downloadSuccess": "下载成功",
+  "shareModalHint": "分享到你喜欢的社交媒体吧！",
+  "shareContent": "我用 Notion 风格头像制作器生成了一个头像，快来看看吧！"
 }

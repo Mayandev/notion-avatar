@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { appWithTranslation } from 'next-i18next';
 
+import { Toaster } from 'react-hot-toast';
 import * as ga from '../lib/ga';
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
@@ -24,7 +25,13 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
       router.events.off(`routeChangeComplete`, handleRouteChange);
     };
   }, [router.events]);
-  return <AnyComponent {...pageProps} />;
+
+  return (
+    <>
+      <AnyComponent {...pageProps} />
+      <Toaster />
+    </>
+  );
 };
 
 export default appWithTranslation(MyApp);
