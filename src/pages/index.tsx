@@ -188,6 +188,13 @@ const Home: NextPage = () => {
             }),
           }}
         />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="apple-mobile-web-app-title" content="Notion Avatar" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        {/* PWA manifest */}
+        <link rel="manifest" href="/manifest.json" />
       </Head>
 
       <Header />
