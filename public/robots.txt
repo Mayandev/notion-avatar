@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://notion-avatar.app/sitemap.xml

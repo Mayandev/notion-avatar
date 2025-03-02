@@ -104,6 +104,64 @@ const Home: NextPage = () => {
         <meta name="twitter:site" content="@phillzou" />
         <meta name="twitter:title" content={t(`siteTitle`)} />
         <meta name="twitter:description" content={t(`siteDescription`)} />
+        <meta charSet="utf-8" />
+        <meta name="theme-color" content="#fffefc" />
+        <meta name="robots" content="index, follow" />
+        <meta name="googlebot" content="index, follow" />
+        <meta name="google" content="notranslate" />
+        <link rel="canonical" href="https://notion-avatar.app" />
+        {/* 添加所有语言的备用链接 */}
+        <link
+          rel="alternate"
+          hrefLang="en"
+          href="https://notion-avatar.app/en"
+        />
+        <link
+          rel="alternate"
+          hrefLang="zh"
+          href="https://notion-avatar.app/zh"
+        />
+        <link
+          rel="alternate"
+          hrefLang="ja"
+          href="https://notion-avatar.app/ja"
+        />
+        <link
+          rel="alternate"
+          hrefLang="ko"
+          href="https://notion-avatar.app/ko"
+        />
+        <link
+          rel="alternate"
+          hrefLang="es"
+          href="https://notion-avatar.app/es"
+        />
+        <link
+          rel="alternate"
+          hrefLang="fr"
+          href="https://notion-avatar.app/fr"
+        />
+        <link
+          rel="alternate"
+          hrefLang="de"
+          href="https://notion-avatar.app/de"
+        />
+        <link
+          rel="alternate"
+          hrefLang="ru"
+          href="https://notion-avatar.app/ru"
+        />
+        <link
+          rel="alternate"
+          hrefLang="pt"
+          href="https://notion-avatar.app/pt"
+        />
+        <link
+          rel="alternate"
+          hrefLang="x-default"
+          href="https://notion-avatar.app"
+        />
+        <link href="/fonts/Quicksand.tff" as="font" crossOrigin="anonymous" />
       </Head>
 
       <Header />
