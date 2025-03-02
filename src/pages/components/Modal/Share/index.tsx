@@ -49,6 +49,36 @@ export default function ShareModal({ onCancel, image }: ShareModalProps) {
     }
   };
 
+  const shareToReddit = () => {
+    const text = t('shareContent');
+    const url = window.location.href;
+    window.open(
+      `https://www.reddit.com/submit?title=${encodeURIComponent(
+        text,
+      )}&url=${encodeURIComponent(url)}`,
+      '_blank',
+    );
+  };
+
+  const shareToTikTok = async () => {
+    try {
+      const text = `${t('shareContent')}\n${window.location.href}`;
+      await navigator.clipboard.writeText(text);
+      toast.success(t('copied'), {
+        duration: 2000,
+        position: 'bottom-center',
+        style: {
+          background: '#333',
+          color: '#fff',
+          borderRadius: '24px',
+        },
+      });
+    } catch (err) {
+      console.error('Failed to copy text: ', err);
+      toast.error(t('copyFailed'));
+    }
+  };
+
   return (
     <Modal onCancel={onCancel}>
       <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
@@ -83,6 +113,22 @@ export default function ShareModal({ onCancel, image }: ShareModalProps) {
                 height={24}
                 className="mr-2 hover:cursor-pointer"
                 onClick={shareToInstagram}
+              />
+              <Image
+                src="/icon/reddit-logo.svg"
+                alt="Reddit"
+                width={24}
+                height={24}
+                className="mr-2 hover:cursor-pointer"
+                onClick={shareToReddit}
+              />
+              <Image
+                src="/icon/tiktok-logo.svg"
+                alt="TikTok"
+                width={24}
+                height={24}
+                className="mr-2 hover:cursor-pointer"
+                onClick={shareToTikTok}
               />
             </div>
           </div>
