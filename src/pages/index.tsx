@@ -92,6 +92,12 @@ const Home: NextPage = () => {
           content="/favicon/ms-icon-144x144.png"
         />
         <meta name="theme-color" content="#fffefc" />
+        <meta name="keywords" content={t('siteKeywords')} />
+        <meta name="author" content="Notion Avatar" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
         <meta content={t(`siteDescription`)} name="description" />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content={t(`siteTitle`)} />
@@ -161,7 +167,27 @@ const Home: NextPage = () => {
           hrefLang="x-default"
           href="https://notion-avatar.app"
         />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
         <link href="/fonts/Quicksand.tff" as="font" crossOrigin="anonymous" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'WebApplication',
+              name: t('siteTitle'),
+              description: t('siteDescription'),
+              url: URL,
+              applicationCategory: 'DesignApplication',
+              operatingSystem: 'Web',
+            }),
+          }}
+        />
       </Head>
 
       <Header />
