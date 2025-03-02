@@ -44,5 +44,6 @@
   "christmas": "Navidad",
   "downloadSuccess": "¡Descarga exitosa!",
   "shareModalHint": "¡Comparte en tus redes sociales favoritas!",
-  "shareContent": "¡Acabo de crear un avatar con Notion Avatar Maker, échale un vistazo!"
+  "shareContent": "¡Acabo de crear un avatar con Notion Avatar Maker, échale un vistazo!",
+	"avatarMaker": "Creador de Avatar"
 }
