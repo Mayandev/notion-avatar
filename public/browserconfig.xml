@@ -1,2 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<browserconfig><msapplication><tile><square70x70logo src="favicon/ms-icon-70x70.png"/><square150x150logo src="favicon/ms-icon-150x150.png"/><square310x310logo src="favicon/ms-icon-310x310.png"/><TileColor>#fffefc</TileColor></tile></msapplication></browserconfig>
+<browserconfig>
+    <msapplication>
+        <tile>
+            <square70x70logo src="favicon/ms-icon-70x70.png"/>
+            <square150x150logo src="favicon/ms-icon-150x150.png"/>
+            <square310x310logo src="favicon/ms-icon-310x310.png"/>
+            <TileColor>#fffefc</TileColor>
+            <TileImage src="favicon/ms-icon-144x144.png"/>
+        </tile>
+        <notification>
+            <polling-uri src="favicon/ms-icon-70x70.png"/>
+            <frequency>30</frequency>
+            <cycle>1</cycle>
+        </notification>
+        <meta name="application-name" content="Notion Avatar Maker"/>
+        <meta name="msapplication-tooltip" content="Create your own Notion-style avatar"/>
+    </msapplication>
+</browserconfig>

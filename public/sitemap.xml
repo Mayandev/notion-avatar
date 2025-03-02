@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://notion-avatar.app</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://notion-avatar.app/en"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://notion-avatar.app/zh"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://notion-avatar.app/ja"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://notion-avatar.app/ko"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://notion-avatar.app/es"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://notion-avatar.app/fr"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://notion-avatar.app/de"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://notion-avatar.app/pt"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://notion-avatar.app/ru"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://notion-avatar.app"/>
+  </url>
+</urlset>
