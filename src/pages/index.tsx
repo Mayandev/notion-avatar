@@ -5,6 +5,8 @@ import { useTranslation } from 'next-i18next';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import AvatarEditor from './components/AvatarEditor';
+import WhosUsing from './components/WhosUsing';
+import UseCases from './components/UseCases';
 
 const URL = `https://notion-avatar.app/`;
 
@@ -200,8 +202,10 @@ const Home: NextPage = () => {
       <Header />
       <main className="my-5">
         <AvatarEditor />
+        <WhosUsing />
       </main>
       <Footer />
+      {/* <UseCases /> */}
     </>
   );
 };

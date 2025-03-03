@@ -46,5 +46,11 @@
   "shareModalHint": "分享到你喜欢的社交媒体吧！",
   "shareContent": "我用 Notion 风格头像制作器生成了一个头像，快来看看吧！",
   "avatarMaker": "头像制作",
-  "siteKeywords": "Notion 头像,头像生成器,Notion Avatar,个性化头像,自定义头像"
+  "siteKeywords": "Notion 头像,头像生成器,Notion Avatar,个性化头像,自定义头像",
+  "whosUsing": "谁在使用",
+  "whosUsingDescription": "来自全球的团队和个人都在使用 Notion Avatar",
+  "notionDescription": "全球领先的协作工具平台",
+  "productHuntDescription": "发现最好的新产品",
+  "useCases": "使用场景",
+  "useCasesDescription": "探索 Notion 风格头像的多种应用场景"
 }
