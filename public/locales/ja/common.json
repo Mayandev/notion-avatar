@@ -46,5 +46,9 @@
   "shareModalHint": "お気に入りのSNSでシェアしましょう！",
   "shareContent": "Notion Avatar Makerで可愛いアバターを作りました！見てください！",
   "avatarMaker": "アバターメーカー",
-  "siteKeywords": "Notionアバター,アバターメーカー,Notion風,カスタムアバター,プロフィール画像"
+  "siteKeywords": "Notionアバター,アバターメーカー,Notion風,カスタムアバター,プロフィール画像",
+  "whosUsing": "利用者",
+  "whosUsingDescription": "世界中のチームや個人がNotion Avatarを使用しています",
+  "useCases": "使用シーン",
+  "useCasesDescription": "Notion風アバターの多様な活用方法をご紹介"
 }

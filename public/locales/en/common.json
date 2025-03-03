@@ -46,5 +46,9 @@
   "shareModalHint": "Share to your favorite social media!",
   "shareContent": "I just created an avatar with Notion Avatar Maker, check it out!",
   "avatarMaker": "Avatar Maker",
-  "siteKeywords": "Notion Avatar,Avatar Maker,Notion Style,Custom Avatar,Profile Picture"
+  "siteKeywords": "Notion Avatar,Avatar Maker,Notion Style,Custom Avatar,Profile Picture",
+  "whosUsing": "Who's Using",
+  "whosUsingDescription": "Teams and individuals around the world are using Notion Avatar",
+  "useCases": "Use Cases",
+  "useCasesDescription": "Explore the versatile applications of Notion-style avatars"
 }
