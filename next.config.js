@@ -13,9 +13,6 @@ module.exports = withPWA({
     runtimeCaching,
     buildExcludes: [/middleware-manifest.json$/],
   },
-  images: {
-    domains: ['i.imgur.com'],
-  },
   webpack: (config) => {
     config.module.rules.push({
       test: /\.svg$/,
