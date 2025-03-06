@@ -59,5 +59,13 @@
     "message4": "Thanks for sharing! Just updated mine!",
     "inputPlaceholder": "Type your message...",
     "send": "Send"
+  },
+  "socialDemo": {
+    "name": "Phill Zou",
+    "handle": "phillzou",
+    "bio": "Full-stack Engineer / Open Source Enthusiast",
+    "tweet": "Just created my new avatar with Notion Avatar Maker! Love this minimalist design style ✨",
+    "shareTitle": "Share my Notion-style Avatar",
+    "shareText": "Check out my new avatar made with Notion Avatar Maker!"
   }
 }

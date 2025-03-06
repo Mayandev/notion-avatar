@@ -1,24 +1,10 @@
 import { useTranslation } from 'next-i18next';
 import Image from 'next/legacy/image';
 import { ChatDemo } from './ChatDemo';
-
-type UseCase = {
-  title: string;
-  description: string;
-  preview: string | React.ReactElement;
-  isDemo?: boolean;
-};
+import { SocialDemo } from './SocialDemo';
 
 export default function UseCases() {
   const { t } = useTranslation('common');
-
-  const cases: UseCase[] = [
-    {
-      title: '团队聊天',
-      description: '在团队沟通中使用统一风格的头像',
-      preview: <ChatDemo />,
-    },
-  ];
 
   return (
     <section className="py-16 relative">
@@ -32,15 +18,9 @@ export default function UseCases() {
           </h2>
           <p className="mt-6 text-gray-500">{t('useCasesDescription')}</p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {cases.map((item) => (
-            <div
-              key={item.title}
-              className="group relative transition-all duration-200 hover:-translate-y-1"
-            >
-              {item.preview}
-            </div>
-          ))}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <ChatDemo />
+          <SocialDemo />
         </div>
       </div>
     </section>

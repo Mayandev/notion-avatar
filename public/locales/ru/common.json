@@ -50,5 +50,13 @@
     "message4": "Спасибо за информацию! Я только что обновил свой!",
     "inputPlaceholder": "Введите сообщение...",
     "send": "Отправить"
+  },
+  "socialDemo": {
+    "name": "Phill Zou",
+    "handle": "phillzou",
+    "bio": "Full-stack разработчик / Энтузиаст Open Source",
+    "tweet": "Только что создал свой аватар в Notion Avatar Maker! Обожаю этот минималистичный стиль ✨",
+    "shareTitle": "Поделиться моим аватаром в стиле Notion",
+    "shareText": "Посмотрите мой новый аватар, созданный в Notion Avatar Maker!"
   }
 }

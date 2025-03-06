@@ -59,5 +59,13 @@
     "message4": "共有ありがとう！私も変更しました！",
     "inputPlaceholder": "メッセージを入力...",
     "send": "送信"
+  },
+  "socialDemo": {
+    "name": "田中太郎",
+    "handle": "tarotanaka",
+    "bio": "フルスタックエンジニア / オープンソース愛好家",
+    "tweet": "Notion Avatar Maker で新しいアバターを作りました！このミニマルなデザインが素敵 ✨",
+    "shareTitle": "Notionスタイルのアバターをシェア",
+    "shareText": "Notion Avatar Maker で作った新しいアバターをチェックしてください！"
   }
 }

@@ -59,5 +59,13 @@
     "message4": "Danke fürs Teilen! Habe meinen gerade aktualisiert!",
     "inputPlaceholder": "Nachricht eingeben...",
     "send": "Senden"
+  },
+  "socialDemo": {
+    "name": "Phill Zou",
+    "handle": "phillzou",
+    "bio": "Fullstack-Entwickler / Open-Source-Enthusiast",
+    "tweet": "Habe gerade meinen Avatar mit Notion Avatar Maker erstellt! Liebe diesen minimalistischen Stil ✨",
+    "shareTitle": "Teile meinen Notion-Style Avatar",
+    "shareText": "Schau dir meinen neuen Avatar an, erstellt mit Notion Avatar Maker!"
   }
 }

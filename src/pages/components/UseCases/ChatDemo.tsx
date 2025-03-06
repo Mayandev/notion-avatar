@@ -12,7 +12,6 @@ type Message = {
 
 export function ChatDemo() {
   const { t } = useTranslation('common');
-
   const messages: Message[] = [
     {
       sender: t('you'),
@@ -37,7 +36,7 @@ export function ChatDemo() {
   ];
 
   return (
-    <div className="w-full max-w-md mx-auto bg-white rounded-xl border-3 border-black p-4">
+    <div className="w-full max-w-md mx-auto bg-white rounded-xl border-3 border-black p-4 flex flex-col h-full">
       <div className="flex items-center space-x-3 mb-6 border-b border-gray-100 pb-4">
         <div className="w-10 h-10 relative">
           <Image
@@ -53,7 +52,7 @@ export function ChatDemo() {
         </div>
       </div>
 
-      <div className="space-y-4 mb-4">
+      <div className="space-y-4 flex-1 overflow-y-auto">
         {messages.map((message) => (
           <div
             key={message.content}
@@ -102,7 +101,7 @@ export function ChatDemo() {
         ))}
       </div>
 
-      <div className="flex items-center space-x-2 mt-10">
+      <div className="flex items-center space-x-2 pt-4 mt-auto border-t border-gray-100">
         <input
           type="text"
           placeholder={t('chatDemo.inputPlaceholder')}

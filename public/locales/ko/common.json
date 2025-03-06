@@ -59,5 +59,13 @@
     "message4": "공유 감사합니다! 저도 바꿨어요!",
     "inputPlaceholder": "메시지를 입력하세요...",
     "send": "전송"
+  },
+  "socialDemo": {
+    "name": "김민준",
+    "handle": "minjunkim",
+    "bio": "풀스택 엔지니어 / 오픈소스 애호가",
+    "tweet": "Notion Avatar Maker로 새 아바타를 만들었어요! 미니멀한 디자인이 정말 마음에 들어요 ✨",
+    "shareTitle": "Notion 스타일 아바타 공유하기",
+    "shareText": "Notion Avatar Maker로 만든 새 아바타를 확인해보세요!"
   }
 }
