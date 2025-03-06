@@ -204,8 +204,8 @@ const Home: NextPage = () => {
         <AvatarEditor />
         <WhosUsing />
       </main>
+      <UseCases />
       <Footer />
-      {/* <UseCases /> */}
     </>
   );
 };

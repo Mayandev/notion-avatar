@@ -46,5 +46,22 @@
   "shareModalHint": "¡Comparte en tus redes sociales favoritas!",
   "shareContent": "¡Acabo de crear un avatar con Notion Avatar Maker, échale un vistazo!",
   "avatarMaker": "Creador de Avatar",
-  "siteKeywords": "Avatar Notion,Creador de Avatar,Estilo Notion,Avatar Personalizado,Foto de Perfil"
+  "siteKeywords": "Avatar Notion,Creador de Avatar,Estilo Notion,Avatar Personalizado,Foto de Perfil",
+  "you": "Tú",
+  "chatDemo": {
+    "message1": "¡Mira mi nuevo avatar!",
+    "message2": "¡Wow, se ve genial! ¿Dónde lo conseguiste?",
+    "message3": "en este sitio",
+    "message4": "¡Gracias por compartir! ¡Acabo de actualizar el mío!",
+    "inputPlaceholder": "Escribe tu mensaje...",
+    "send": "Enviar"
+  },
+  "socialDemo": {
+    "name": "Phill Zou",
+    "handle": "phillzou",
+    "bio": "Desarrollador Full-stack / Entusiasta del Open Source",
+    "tweet": "¡Acabo de crear mi avatar con Notion Avatar Maker! Me encanta este estilo minimalista ✨",
+    "shareTitle": "Compartir mi avatar estilo Notion",
+    "shareText": "¡Mira mi nuevo avatar hecho con Notion Avatar Maker!"
+  }
 }

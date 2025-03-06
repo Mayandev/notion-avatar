@@ -50,5 +50,22 @@
   "whosUsing": "사용자",
   "whosUsingDescription": "전 세계의 팀과 개인이 Notion Avatar를 사용하고 있습니다",
   "useCases": "활용 사례",
-  "useCasesDescription": "노션 스타일 아바타의 다양한 활용 방법 살펴보기"
+  "useCasesDescription": "노션 스타일 아바타의 다양한 활용 방법 살펴보기",
+  "you": "나",
+  "chatDemo": {
+    "message1": "내 새로운 아바타를 확인해보세요!",
+    "message2": "와, 멋지네요! 어디서 만드셨어요?",
+    "message3": "이 웹사이트에서요",
+    "message4": "공유 감사합니다! 저도 바꿨어요!",
+    "inputPlaceholder": "메시지를 입력하세요...",
+    "send": "전송"
+  },
+  "socialDemo": {
+    "name": "김민준",
+    "handle": "minjunkim",
+    "bio": "풀스택 엔지니어 / 오픈소스 애호가",
+    "tweet": "Notion Avatar Maker로 새 아바타를 만들었어요! 미니멀한 디자인이 정말 마음에 들어요 ✨",
+    "shareTitle": "Notion 스타일 아바타 공유하기",
+    "shareText": "Notion Avatar Maker로 만든 새 아바타를 확인해보세요!"
+  }
 }

@@ -50,5 +50,22 @@
   "whosUsing": "Who's Using",
   "whosUsingDescription": "Teams and individuals around the world are using Notion Avatar",
   "useCases": "Use Cases",
-  "useCasesDescription": "Explore the versatile applications of Notion-style avatars"
+  "useCasesDescription": "Explore the versatile applications of Notion-style avatars",
+  "you": "You",
+  "chatDemo": {
+    "message1": "Check out my new avatar!",
+    "message2": "Wow, looks great! Where did you get it?",
+    "message3": "from this website",
+    "message4": "Thanks for sharing! Just updated mine!",
+    "inputPlaceholder": "Type your message...",
+    "send": "Send"
+  },
+  "socialDemo": {
+    "name": "Phill Zou",
+    "handle": "phillzou",
+    "bio": "Full-stack Engineer / Open Source Enthusiast",
+    "tweet": "Just created my new avatar with Notion Avatar Maker! Love this minimalist design style ✨",
+    "shareTitle": "Share my Notion-style Avatar",
+    "shareText": "Check out my new avatar made with Notion Avatar Maker!"
+  }
 }

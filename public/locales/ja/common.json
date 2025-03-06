@@ -50,5 +50,22 @@
   "whosUsing": "利用者",
   "whosUsingDescription": "世界中のチームや個人がNotion Avatarを使用しています",
   "useCases": "使用シーン",
-  "useCasesDescription": "Notion風アバターの多様な活用方法をご紹介"
+  "useCasesDescription": "Notion風アバターの多様な活用方法をご紹介",
+  "you": "あなた",
+  "chatDemo": {
+    "message1": "新しいアバターを見てください！",
+    "message2": "すごくいいですね！どこで作ったんですか？",
+    "message3": "このサイトです",
+    "message4": "共有ありがとう！私も変更しました！",
+    "inputPlaceholder": "メッセージを入力...",
+    "send": "送信"
+  },
+  "socialDemo": {
+    "name": "田中太郎",
+    "handle": "tarotanaka",
+    "bio": "フルスタックエンジニア / オープンソース愛好家",
+    "tweet": "Notion Avatar Maker で新しいアバターを作りました！このミニマルなデザインが素敵 ✨",
+    "shareTitle": "Notionスタイルのアバターをシェア",
+    "shareText": "Notion Avatar Maker で作った新しいアバターをチェックしてください！"
+  }
 }
