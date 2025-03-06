@@ -10,7 +10,7 @@ type Message = {
   };
 };
 
-export function ChatDemo() {
+export default function ChatDemo() {
   const { t } = useTranslation('common');
   const messages: Message[] = [
     {

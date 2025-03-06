@@ -2,7 +2,7 @@ import { useTranslation } from 'next-i18next';
 import Image from 'next/legacy/image';
 import { useState } from 'react';
 
-export function SocialDemo() {
+export default function SocialDemo() {
   const { t } = useTranslation('common');
   const [liked, setLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(23);

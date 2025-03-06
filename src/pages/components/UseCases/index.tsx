@@ -1,7 +1,7 @@
 import { useTranslation } from 'next-i18next';
 import Image from 'next/legacy/image';
-import { ChatDemo } from './ChatDemo';
-import { SocialDemo } from './SocialDemo';
+import ChatDemo from './ChatDemo';
+import SocialDemo from './SocialDemo';
 
 export default function UseCases() {
   const { t } = useTranslation('common');
