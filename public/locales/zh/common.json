@@ -50,5 +50,14 @@
   "whosUsing": "谁在使用",
   "whosUsingDescription": "来自全球的团队和个人都在使用 Notion Avatar",
   "useCases": "使用场景",
-  "useCasesDescription": "探索 Notion 风格头像的多种应用场景"
+  "useCasesDescription": "探索 Notion 风格头像的多种应用场景",
+  "you": "你",
+  "chatDemo": {
+    "message1": "给你看看我新设置的头像！",
+    "message2": "哇，看起来很赞！你从哪里获取的？",
+    "message3": "这个网站",
+    "message4": "谢谢分享！已经换上了！",
+    "inputPlaceholder": "输入消息...",
+    "send": "发送"
+  }
 }

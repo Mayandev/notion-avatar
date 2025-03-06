@@ -47,5 +47,14 @@
   "whosUsing": "Quem está usando",
   "whosUsingDescription": "Equipes e indivíduos em todo o mundo estão usando o Notion Avatar",
   "useCases": "Casos de uso",
-  "useCasesDescription": "Explore as diversas aplicações dos avatares estilo Notion"
+  "useCasesDescription": "Explore as diversas aplicações dos avatares estilo Notion",
+  "you": "Você",
+  "chatDemo": {
+    "message1": "Veja meu novo avatar!",
+    "message2": "Nossa, ficou incrível! Onde você conseguiu?",
+    "message3": "neste site",
+    "message4": "Obrigado por compartilhar! Acabei de atualizar o meu!",
+    "inputPlaceholder": "Digite sua mensagem...",
+    "send": "Enviar"
+  }
 }
