@@ -27,7 +27,8 @@
   "modalCancel": "Cancelar",
   "modalConfirm": "Confirmar",
   "siteTitle": "Creador de Avatar Notion",
-  "siteDescription": "Una herramienta en línea para crear avatares estilo Notion",
+  "siteDescription": "Una herramienta de creación de avatares estilo dibujado a mano de Notion que permite personalizar características faciales, peinados, gafas, barbas y accesorios para generar avatares únicos con un solo clic. Perfecto para Notion, GitHub, Twitter y otras plataformas sociales, ideal para colaboración en equipo y marca personal. ¡Pruébalo ahora y crea fácilmente tu propio avatar estilo Notion!",
+  "siteKeywords": "Avatar Notion,Creador de Avatar,Estilo Notion,Avatar Dibujado,Avatar Personalizado,Avatar Minimalista,Avatar de Equipo,Marca Personal,Avatar para Redes Sociales,Avatar SVG,Avatar PNG,Creador de Avatar Gratis,Generador de Avatar Online,Avatar GitHub,Avatar Twitter",
   "404Title": "¡Ups! Página no encontrada",
   "404Redirect": "Volver al inicio",
   "copy": "Copiar",
@@ -46,7 +47,6 @@
   "shareModalHint": "¡Comparte en tus redes sociales favoritas!",
   "shareContent": "¡Acabo de crear un avatar con Notion Avatar Maker, échale un vistazo!",
   "avatarMaker": "Creador de Avatar",
-  "siteKeywords": "Avatar Notion,Creador de Avatar,Estilo Notion,Avatar Personalizado,Foto de Perfil",
   "you": "Tú",
   "chatDemo": {
     "message1": "¡Mira mi nuevo avatar!",
