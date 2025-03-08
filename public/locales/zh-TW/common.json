@@ -1,0 +1,90 @@
+{
+  "download": "下載",
+  "random": "隨機一下",
+  "embed": "複製連結",
+  "choose": "請選擇一種風格",
+  "face": "臉型",
+  "nose": "鼻子",
+  "mouth": "嘴巴",
+  "eyes": "眼睛",
+  "eyebrows": "眉毛",
+  "glasses": "眼鏡",
+  "hair": "髮型",
+  "accessories": "裝飾",
+  "details": "細節",
+  "beard": "鬍鬚",
+  "github": "程式碼",
+  "dribbble": "設計稿",
+  "twitter": "聯絡我",
+  "coffee": "贊助",
+  "illustrations": "插畫",
+  "underDesign": "設計且基於",
+  "designedBy": "由",
+  "license": "協議",
+  "coffeeUrl": "https://ko-fi.com/mayandev",
+  "modalTitle": "最後一步",
+  "modalHint": "長按圖片或者右鍵儲存頭像至本地相簿",
+  "modalCancel": "關閉",
+  "modalConfirm": "確認",
+  "siteTitle": "Notion 風格頭像製作",
+  "siteDescription": "一個 Notion 手繪風格頭像製作工具，支援自定義面部特徵、髮型、眼鏡、鬍鬚和配飾，一鍵生成獨特的個人頭像。適用於 Notion、GitHub、Twitter 等社交平台，完美契合團隊協作和個人品牌打造。立即體驗，輕鬆創建專屬於你的 Notion 風格頭像！",
+  "404Title": "啊喔！頁面走丟了。",
+  "404Redirect": "返回首頁",
+  "copy": "複製",
+  "copied": "已複製",
+  "downloadTip": "目前支援 svg 和 png 格式，試試在下載按鈕改變格式",
+  "flip": "翻轉",
+  "background": "背景色",
+  "paletteTitle": "請選擇一種背景顏色",
+  "chooseShape": "請選擇一種背景形狀",
+  "customColor": "更多顏色選擇",
+  "Choose": "選擇",
+  "Choose item": "{{choose}} {{item}}",
+  "halloween": "萬聖節裝飾",
+  "christmas": "聖誕節裝飾",
+  "downloadSuccess": "下載成功",
+  "shareModalHint": "分享到你喜歡的社交媒體吧！",
+  "shareContent": "我用 Notion 風格頭像製作器生成了一個頭像，快來看看吧！",
+  "avatarMaker": "頭像製作",
+  "siteKeywords": "Notion 頭像,頭像生成器,Notion Avatar,手繪風格頭像,個性化頭像,自定義頭像簡約頭像,團隊頭像,個人品牌,社交媒體頭像,SVG頭像,PNG頭像,免費頭像製作,線上頭像生成,GitHub頭像,Twitter頭像",
+  "whosUsing": "誰在使用",
+  "whosUsingDescription": "來自全球的團隊和個人都在使用 Notion Avatar",
+  "useCases": "使用場景",
+  "useCasesDescription": "探索 Notion 風格頭像的多種應用場景",
+  "you": "你",
+  "chatDemo": {
+    "message1": "給你看看我新設置的頭像！",
+    "message2": "哇，看起來很讚！你從哪裡獲取的？",
+    "message3": "這個網站",
+    "message4": "謝謝分享！已經換上了！",
+    "inputPlaceholder": "輸入訊息...",
+    "send": "發送"
+  },
+  "socialDemo": {
+    "name": "張小明",
+    "handle": "xiaoming",
+    "bio": "全端工程師 / 開源愛好者",
+    "tweet": "剛用 Notion Avatar Maker 製作了新頭像！簡約的設計風格真的太棒了 ✨",
+    "shareTitle": "分享我的 Notion 風格頭像",
+    "shareText": "快來看看我用 Notion Avatar Maker 製作的新頭像！"
+  },
+  "resourceStore": {
+    "title": "設計資源",
+    "description": "獲取 Notion Avatar Maker 的完整設計資源包，包含網站設計稿和裝飾元素",
+    "buyNow": "立即購買",
+    "designPack": {
+      "title": "完整網站設計稿",
+      "description": "包含所有頁面的 Figma 設計稿",
+      "features": {
+        "1": "響應式設計"
+      }
+    },
+    "scribblesPack": {
+      "title": "手繪裝飾元素包",
+      "description": "Notion 風格的手繪裝飾元素，為你的設計添加趣味性",
+      "features": {
+        "1": "100+ 手繪裝飾元素"
+      }
+    }
+  }
+}

@@ -132,6 +132,11 @@ const Home: NextPage = () => {
         />
         <link
           rel="alternate"
+          hrefLang="zh-TW"
+          href="https://notion-avatar.app/zh-TW"
+        />
+        <link
+          rel="alternate"
           hrefLang="ja"
           href="https://notion-avatar.app/ja"
         />

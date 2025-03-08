@@ -11,6 +11,7 @@ I18n supported:
 
 - [English](https://notion-avatar.app/en)
 - [简体中文](https://notion-avatar.app/zh)
+- [繁體中文](https://notion-avatar.app/zh-TW)
 - [한국어](https://notion-avatar.app/ko)
 - [日本語](https://notion-avatar.app/ja)
 - [Español](https://notion-avatar.app/es)
