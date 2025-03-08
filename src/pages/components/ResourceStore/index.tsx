@@ -32,7 +32,7 @@ export default function ResourceStore() {
             <h3 className="text-xl font-bold mb-4">
               {t('resourceStore.designPack.title')}
             </h3>
-            <p className="text-gray-600 mb-6">
+            <p className="text-gray-600 mb-6 h-12">
               {t('resourceStore.designPack.description')}
             </p>
             <div className="flex items-baseline mb-6">
