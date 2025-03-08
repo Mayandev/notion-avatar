@@ -67,5 +67,24 @@
     "tweet": "Habe gerade meinen Avatar mit Notion Avatar Maker erstellt! Liebe diesen minimalistischen Stil ✨",
     "shareTitle": "Teile meinen Notion-Style Avatar",
     "shareText": "Schau dir meinen neuen Avatar an, erstellt mit Notion Avatar Maker!"
+  },
+  "resourceStore": {
+    "title": "Design-Ressourcen",
+    "description": "Holen Sie sich das komplette Design-Ressourcenpaket für Notion Avatar Maker, einschließlich Website-Design und dekorativer Elemente",
+    "buyNow": "Jetzt kaufen",
+    "designPack": {
+      "title": "Komplettes Website-Design",
+      "description": "Enthält Figma-Designdateien für alle Seiten",
+      "features": {
+        "1": "Responsives Design"
+      }
+    },
+    "scribblesPack": {
+      "title": "Handgezeichnete Elemente Paket",
+      "description": "Notion-Style handgezeichnete Dekorationselemente für mehr Spaß in Ihrem Design",
+      "features": {
+        "1": "Über 100 handgezeichnete Elemente"
+      }
+    }
   }
 }

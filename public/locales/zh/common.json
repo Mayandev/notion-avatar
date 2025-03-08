@@ -67,5 +67,24 @@
     "tweet": "刚用 Notion Avatar Maker 制作了新头像！简约的设计风格真的太棒了 ✨",
     "shareTitle": "分享我的 Notion 风格头像",
     "shareText": "快来看看我用 Notion Avatar Maker 制作的新头像！"
+  },
+  "resourceStore": {
+    "title": "设计资源",
+    "description": "获取 Notion Avatar Maker 的完整设计资源包，包含网站设计稿和装饰元素",
+    "buyNow": "立即购买",
+    "designPack": {
+      "title": "完整网站设计稿",
+      "description": "包含所有页面的 Figma 设计稿",
+      "features": {
+        "1": "响应式设计"
+      }
+    },
+    "scribblesPack": {
+      "title": "手绘装饰元素包",
+      "description": "Notion 风格的手绘装饰元素，为你的设计添加趣味性",
+      "features": {
+        "1": "100+ 手绘装饰元素"
+      }
+    }
   }
 }

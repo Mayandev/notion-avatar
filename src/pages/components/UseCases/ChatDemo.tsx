@@ -101,7 +101,7 @@ export default function ChatDemo() {
         ))}
       </div>
 
-      <div className="flex items-center space-x-2 pt-4 mt-auto border-t border-gray-100">
+      <div className="flex items-center space-x-2 pt-4 mt-5 border-t border-gray-100">
         <input
           type="text"
           placeholder={t('chatDemo.inputPlaceholder')}

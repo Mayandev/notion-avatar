@@ -80,7 +80,7 @@ export default function SocialDemo() {
               <span className="text-gray-500">@{t('socialDemo.handle')}</span>
             </div>
             <p className="mt-2 text-gray-900">{t('socialDemo.tweet')}</p>
-            <div className="mt-2 w-full h-48 relative border-2 border-gray-100 rounded-lg">
+            <div className="mt-2 w-full h-48 md:36 relative border-2 border-gray-100 rounded-lg">
               <Image
                 src="/social.png"
                 alt="Notion Avatar Maker"

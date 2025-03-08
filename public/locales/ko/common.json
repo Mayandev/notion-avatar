@@ -67,5 +67,24 @@
     "tweet": "Notion Avatar Maker로 새 아바타를 만들었어요! 미니멀한 디자인이 정말 마음에 들어요 ✨",
     "shareTitle": "Notion 스타일 아바타 공유하기",
     "shareText": "Notion Avatar Maker로 만든 새 아바타를 확인해보세요!"
+  },
+  "resourceStore": {
+    "title": "디자인 리소스",
+    "description": "Notion Avatar Maker의 완전한 디자인 리소스 팩 (웹사이트 디자인과 장식 요소 포함)",
+    "buyNow": "구매하기",
+    "designPack": {
+      "title": "완전한 웹사이트 디자인",
+      "description": "모든 페이지의 Figma 디자인 파일",
+      "features": {
+        "1": "반응형 디자인"
+      }
+    },
+    "scribblesPack": {
+      "title": "손그림 요소 팩",
+      "description": "Notion 스타일의 손그림 장식 요소로 디자인에 재미를 더하세요",
+      "features": {
+        "1": "100개 이상의 손그림 요소"
+      }
+    }
   }
 }

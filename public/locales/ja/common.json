@@ -67,5 +67,24 @@
     "tweet": "Notion Avatar Maker で新しいアバターを作りました！このミニマルなデザインが素敵 ✨",
     "shareTitle": "Notionスタイルのアバターをシェア",
     "shareText": "Notion Avatar Maker で作った新しいアバターをチェックしてください！"
+  },
+  "resourceStore": {
+    "title": "デザインリソース",
+    "description": "Notion Avatar Maker の完全なデザインリソースパック（ウェブサイトデザインと装飾要素を含む）",
+    "buyNow": "今すぐ購入",
+    "designPack": {
+      "title": "完全なウェブサイトデザイン",
+      "description": "すべてのページの Figma デザインファイル",
+      "features": {
+        "1": "レスポンシブデザイン"
+      }
+    },
+    "scribblesPack": {
+      "title": "手書き要素パック",
+      "description": "Notion スタイルの手書き装飾要素でデザインに楽しさを追加",
+      "features": {
+        "1": "100以上の手書き要素"
+      }
+    }
   }
 }

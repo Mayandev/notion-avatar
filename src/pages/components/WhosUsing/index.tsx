@@ -60,7 +60,7 @@ export default function WhosUsing() {
       <div className="max-w-4xl mx-auto px-4 mt-8">
         <div className="text-center mb-16">
           <h2 className="text-2xl font-bold inline-block relative">
-            <span className="relative z-10">{t('whosUsing')}</span>
+            <span className="relative">{t('whosUsing')}</span>
           </h2>
           <p className="mt-6 text-gray-500">{t('whosUsingDescription')}</p>
         </div>

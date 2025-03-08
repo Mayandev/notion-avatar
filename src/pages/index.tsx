@@ -7,6 +7,7 @@ import Footer from './components/Footer';
 import AvatarEditor from './components/AvatarEditor';
 import WhosUsing from './components/WhosUsing';
 import UseCases from './components/UseCases';
+import ResourceStore from './components/ResourceStore';
 
 const URL = `https://notion-avatar.app/`;
 
@@ -203,8 +204,9 @@ const Home: NextPage = () => {
       <main className="my-5">
         <AvatarEditor />
         <WhosUsing />
+        <UseCases />
+        <ResourceStore /> {/* 添加新组件 */}
       </main>
-      <UseCases />
       <Footer />
     </>
   );
