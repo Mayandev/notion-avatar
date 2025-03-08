@@ -203,9 +203,9 @@ const Home: NextPage = () => {
       <Header />
       <main className="my-5">
         <AvatarEditor />
+        <ResourceStore />
         <WhosUsing />
         <UseCases />
-        <ResourceStore /> {/* 添加新组件 */}
       </main>
       <Footer />
     </>
