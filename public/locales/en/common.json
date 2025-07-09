@@ -89,5 +89,32 @@
   },
   "contactUs": "Contact Us",
   "termOfUse": "Terms of Use",
-  "privacyPolicy": "Privacy Policy"
+  "privacyPolicy": "Privacy Policy",
+  "language": "Choose Language",
+  "steps": {
+    "title": "How to Use",
+    "step1Title": "Choose Avatar Style",
+    "step1Desc": "Select from various preset styles to find your preferred avatar type",
+    "step2Title": "Customize Features",
+    "step2Desc": "Adjust hairstyle, facial features, accessories, and other details to create a unique look",
+    "step3Title": "Download & Use",
+    "step3Desc": "Click the download button to get your high-resolution avatar, ready to use on Notion or other platforms",
+    "step4Title": "Share Your Creation",
+    "step4Desc": "Share your new Notion Avatar on social media and show it off to your friends!"
+  },
+  "faq": {
+    "title": "FAQ",
+    "whatIsAvatar": "What is Notion Avatar Maker?",
+    "whatIsAvatarAnswer": "Notion Avatar Maker is a free tool that allows you to create custom avatars for use in Notion, social media, or any other digital platform.",
+    "howToUse": "How do I use the avatar editor?",
+    "howToUseAnswer": "Simply click on the different facial features, hairstyles, and accessories to customize your avatar. Use the flip button to change orientation and the background button to adjust the background style.",
+    "commercialUse": "Can I use avatars for commercial purposes?",
+    "commercialUseAnswer": "Yes, all avatars created with Notion Avatar are released under the CC0 license, allowing commercial use without attribution.",
+    "privacyConcerns": "Do you collect any user data?",
+    "privacyConcernsAnswer": "No, we do not collect or store any user data. All avatar creation happens locally in your browser.",
+    "supportedBrowsers": "Which browsers are supported?",
+    "supportedBrowsersAnswer": "Notion Avatar works best on modern browsers including Chrome, Firefox, Safari, and Edge. Internet Explorer is not supported.",
+    "isBelongToNotion": "Is Notion Avatar Maker affiliated with Notion?",
+    "isBelongToNotionAnswer": "No, Notion Avatar Maker is not affiliated with Notion. It is an independent project."
+  }
 }

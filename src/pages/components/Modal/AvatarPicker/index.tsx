@@ -4,7 +4,6 @@ import {
   FestivalTimeMapping,
 } from '@/const';
 import { AvatarPickerConfig } from '@/types';
-import { isFestival } from '@/utils';
 
 import Image from 'next/legacy/image';
 import { useState } from 'react';

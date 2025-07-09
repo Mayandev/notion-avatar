@@ -89,5 +89,17 @@
   },
   "contactUs": "聯絡我們",
   "termOfUse": "使用條款",
-  "privacyPolicy": "隱私政策"
+  "privacyPolicy": "隱私政策",
+  "language": "選擇語言",
+  "steps": {
+    "title": "使用方法",
+    "step1Title": "選擇頭像風格",
+    "step1Desc": "從各種預設風格中選擇您喜歡的頭像類型",
+    "step2Title": "自定義特徵",
+    "step2Desc": "調整髮型、面部特徵、配飾等細節，打造獨特外觀",
+    "step3Title": "下載並使用",
+    "step3Desc": "點擊下載按鈕獲取高解析度頭像，可立即在Notion或其他平台使用",
+    "step4Title": "分享您的作品",
+    "step4Desc": "在社交媒體上分享您的新Notion頭像，向朋友展示！"
+  }
 }

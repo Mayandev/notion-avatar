@@ -9,19 +9,12 @@ export default function Footer() {
     <footer className="flex flex-col items-center pb-4">
       <Image src="/icon/line.svg" width="125" height="54" />
       <div className="flex justify-center mt-10">
-        <a
-          className="transition hidden md:inline-block hover:underline"
-          href="https://dribbble.com/phillzou"
-        >
-          {t(`dribbble`)}
-        </a>
-        <span className="mx-2 hidden md:inline-block">·</span>
-        <a className="hover:underline" href="https://x.com/phillzou">
-          {t(`twitter`)}
-        </a>
-        <span className="mx-2">·</span>
         <a className="transition hover:underline" href={t(`coffeeUrl`)}>
           {t(`coffee`)}
+        </a>
+        <span className="mx-2">·</span>
+        <a className="hover:underline" href="https://x.com/phillzou">
+          {t(`twitter`)}
         </a>
         <span className="mx-2">·</span>
         <Link className="transition hover:underline" href="/privacy-policy">

@@ -85,5 +85,17 @@
   },
   "contactUs": "Contacto",
   "termOfUse": "Términos de Uso",
-  "privacyPolicy": "Política de Privacidad"
+  "privacyPolicy": "Política de Privacidad",
+  "language": "Seleccionar idioma",
+  "steps": {
+    "title": "Cómo usar",
+    "step1Title": "Elegir estilo de avatar",
+    "step1Desc": "Selecciona entre varios estilos predefinidos para encontrar tu tipo de avatar preferido",
+    "step2Title": "Personalizar características",
+    "step2Desc": "Ajusta el peinado, rasgos faciales, accesorios y otros detalles para crear un look único",
+    "step3Title": "Descargar y usar",
+    "step3Desc": "Haz clic en el botón de descarga para obtener tu avatar de alta resolución, listo para usar en Notion u otras plataformas",
+    "step4Title": "Comparte tu creación",
+    "step4Desc": "Comparte tu nuevo avatar de Notion en redes sociales y muéstralo a tus amigos!"
+  }
 }

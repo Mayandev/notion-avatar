@@ -32,7 +32,7 @@ import AvatarPickerPopover from '../Popover/AvatarPicker';
 
 export default function AvatarEditor() {
   const router = useRouter();
-
+  const [showLanguageMenu, setShowLanguageMenu] = useState(false);
   const [config, setConfig] = useState({ ...getRandomStyle() });
   const [preview, setPreview] = useState('');
   const [imageType, setImageType] = useState('png' as ImageType);
@@ -47,7 +47,7 @@ export default function AvatarEditor() {
 
   const festival = getCurrentFestival();
 
-  const { t } = useTranslation('common');
+  const { t, i18n } = useTranslation('common');
 
   // hack
   useEffect(() => {
@@ -235,6 +235,49 @@ export default function AvatarEditor() {
           <div className="flex justify-between items-center">
             <div className="text-lg my-5">{t('choose')}</div>
             <div className="flex items-center">
+              <div className="relative mr-2" id="language-picker">
+                <button
+                  className="w-8 h-8 sm:w-12 sm:h-12 tooltip"
+                  onClick={() => setShowLanguageMenu(!showLanguageMenu)}
+                  data-tip={t('language')}
+                  aria-label={t('changeLanguage')}
+                >
+                  <Image width={30} height={30} src="/icon/language.svg" />
+                </button>
+                {showLanguageMenu && (
+                  <div className="absolute right-0 mt-2 bg-white shadow-lg rounded-md p-2 z-20 min-w-[120px] border border-gray-200">
+                    {[
+                      { code: 'en', name: 'English' },
+                      { code: 'zh', name: '中文' },
+                      { code: 'zh-TW', name: '繁體中文' },
+                      { code: 'ja', name: '日本語' },
+                      { code: 'ko', name: '한국어' },
+                      { code: 'es', name: 'Español' },
+                      { code: 'fr', name: 'Français' },
+                      { code: 'de', name: 'Deutsch' },
+                      { code: 'ru', name: 'Русский' },
+                      { code: 'pt', name: 'Português' },
+                    ].map((lang) => (
+                      <button
+                        key={lang.code}
+                        className={`block w-full text-left px-4 py-2 text-sm rounded hover:bg-gray-100 transition-colors ${
+                          i18n.language === lang.code
+                            ? 'bg-gray-100 font-medium'
+                            : ''
+                        }`}
+                        onClick={() => {
+                          i18n.changeLanguage(lang.code);
+                          window.location.href = `/${lang.code}`;
+                          setShowLanguageMenu(false);
+                        }}
+                      >
+                        {lang.name}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+
               <button
                 data-tip={t('flip')}
                 className="w-8 h-8 sm:w-12 sm:h-12 tooltip"
