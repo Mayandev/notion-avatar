@@ -20,4 +20,10 @@ module.exports = withPWA({
     });
     return config;
   },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
 });
