@@ -285,7 +285,7 @@ const Home: NextPage = () => {
             </div>
           </div>
         </section>
-        <ResourceStore />
+        {/* <ResourceStore /> */}
         <WhosUsing />
         <UseCases />
 
