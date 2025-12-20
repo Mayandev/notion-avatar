@@ -242,8 +242,8 @@ export function useAIUsage() {
 
 ### Phase 4: 测试与优化
 - [x] 4.1 Mock 模式功能测试 (已验证 API 逻辑)
-- [ ] 4.2 UI/UX 测试（响应式）
-- [ ] 4.3 真实 API 集成测试（需配置 API Key）
+- [x] 4.2 UI/UX 测试（响应式）
+- [ ] 4.3 真实 API 集成测试（用户已配置 Key，待验证）
 - [ ] 4.4 Prompt 调优
 
 ---

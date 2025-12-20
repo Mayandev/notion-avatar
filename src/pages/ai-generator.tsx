@@ -8,14 +8,14 @@ import toast, { Toaster } from 'react-hot-toast';
 import { AIGenerationMode, AIGenerateResponse } from '@/types/ai';
 import { useAIUsage } from '@/hooks/useAIUsage';
 
-import Header from './components/Header';
-import Footer from './components/Footer';
-import ModeSelector from './components/AIGenerator/ModeSelector';
-import ImageUploader from './components/AIGenerator/ImageUploader';
-import TextInput from './components/AIGenerator/TextInput';
-import GeneratingStatus from './components/AIGenerator/GeneratingStatus';
-import GeneratedResult from './components/AIGenerator/GeneratedResult';
-import DailyLimitBanner from './components/AIGenerator/DailyLimitBanner';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import ModeSelector from '@/components/AIGenerator/ModeSelector';
+import ImageUploader from '@/components/AIGenerator/ImageUploader';
+import TextInput from '@/components/AIGenerator/TextInput';
+import GeneratingStatus from '@/components/AIGenerator/GeneratingStatus';
+import GeneratedResult from '@/components/AIGenerator/GeneratedResult';
+import DailyLimitBanner from '@/components/AIGenerator/DailyLimitBanner';
 
 export default function AIGeneratorPage() {
   const { t } = useTranslation('common');

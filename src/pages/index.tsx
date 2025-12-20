@@ -2,12 +2,12 @@ import type { GetStaticPropsContext, NextPage } from 'next';
 import Head from 'next/head';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import AvatarEditor from './components/AvatarEditor';
-import WhosUsing from './components/WhosUsing';
-import UseCases from './components/UseCases';
-import ResourceStore from './components/ResourceStore';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import AvatarEditor from '@/components/AvatarEditor';
+import WhosUsing from '@/components/WhosUsing';
+import UseCases from '@/components/UseCases';
+import ResourceStore from '@/components/ResourceStore';
 
 const URL = `https://notion-avatar.app/`;
 

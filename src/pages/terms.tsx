@@ -3,8 +3,8 @@ import type { GetStaticPropsContext, NextPage } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Head from 'next/head';
 import { useTranslation } from 'next-i18next';
-import Header, { BackToHome } from './components/Header';
-import Footer from './components/Footer';
+import Header, { BackToHome } from '@/components/Header';
+import Footer from '@/components/Footer';
 
 const URL = `https://notion-avatar.app/`;
 const Terms: NextPage = () => {
