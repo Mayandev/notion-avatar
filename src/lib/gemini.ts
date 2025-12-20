@@ -58,9 +58,8 @@ export async function generateAvatar(
 
   const genai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
-  // Note: Model name might change, using the preview model for now
-  // Using 'gemini-2.0-flash-exp' as per planning
-  const model = 'gemini-2.0-flash-exp';
+  // Using gemini-2.5-flash-image which supports image generation
+  const model = 'gemini-2.5-flash-image';
 
   try {
     let result;
@@ -72,17 +71,27 @@ export async function generateAvatar(
       result = await genai.models.generateContent({
         model,
         contents: [
-          { text: PHOTO_PROMPT },
-          { inlineData: { mimeType: 'image/jpeg', data: base64Data } },
+          {
+            role: 'user',
+            parts: [
+              { text: PHOTO_PROMPT },
+              { inlineData: { mimeType: 'image/jpeg', data: base64Data } },
+            ],
+          },
         ],
-        config: { responseModalities: ['image'] }, // Force image output
+        config: { responseModalities: ['IMAGE'] },
       });
     } else {
       // Input is text description
       result = await genai.models.generateContent({
         model,
-        contents: [{ text: `${TEXT_PROMPT}${input}` }],
-        config: { responseModalities: ['image'] }, // Force image output
+        contents: [
+          {
+            role: 'user',
+            parts: [{ text: `${TEXT_PROMPT}${input}` }],
+          },
+        ],
+        config: { responseModalities: ['IMAGE'] },
       });
     }
 
