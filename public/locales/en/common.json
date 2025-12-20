@@ -116,5 +116,22 @@
     "supportedBrowsersAnswer": "Notion Avatar works best on modern browsers including Chrome, Firefox, Safari, and Edge. Internet Explorer is not supported.",
     "isBelongToNotion": "Is Notion Avatar Maker affiliated with Notion?",
     "isBelongToNotionAnswer": "No, Notion Avatar Maker is not affiliated with Notion. It is an independent project."
+  },
+  "ai": {
+    "title": "AI Avatar Generator",
+    "description": "Transform your photos or ideas into Notion-style avatars with AI magic.",
+    "photo2avatar": "Photo to Avatar",
+    "text2avatar": "Text to Avatar",
+    "uploadTitle": "Upload Photo",
+    "uploadDesc": "Drag & drop or click to upload",
+    "uploadTip": "Supported formats: JPG, PNG. Max 5MB.",
+    "descPlaceholder": "Describe the avatar you want to generate, e.g., 'A girl with glasses and long hair'",
+    "generate": "Generate Avatar",
+    "generating": "Generating...",
+    "download": "Download",
+    "limitReached": "Daily limit reached",
+    "limitDesc": "You have used your free daily quota. Please come back tomorrow or upgrade for more.",
+    "upgrade": "Upgrade Now",
+    "error": "Something went wrong. Please try again."
   }
 }

@@ -1,27 +1,50 @@
 import Image from 'next/legacy/image';
 import { useTranslation } from 'next-i18next';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import Decoration from './decoration';
 
 export default function Header() {
   const { t } = useTranslation('common');
+  const router = useRouter();
 
   return (
     <header className="relative">
-      <div className="flex py-5 px-5 sm:px-16 md:px-32">
-        <Image
-          src="/logo.gif"
-          alt="Notion Avatar Logo"
-          width={50}
-          height={50}
-        />
-        <span className="text-lg">
-          Notion
-          <br />
-          {t('avatarMaker')}
-        </span>
+      <div className="flex justify-between items-center py-5 px-5 sm:px-16 md:px-32">
+        <div className="flex items-center">
+          <Link
+            href="/"
+            className="flex items-center gap-2 hover:opacity-80 transition-opacity"
+          >
+            <Image
+              src="/logo.gif"
+              alt="Notion Avatar Logo"
+              width={50}
+              height={50}
+            />
+            <span className="text-lg leading-tight">
+              Notion
+              <br />
+              {t('avatarMaker')}
+            </span>
+          </Link>
+        </div>
+
+        <nav className="flex items-center gap-4 relative z-10">
+          <Link
+            href="/ai-generator"
+            className={`flex items-center gap-2 px-4 py-2 rounded-full font-bold transition-all ${
+              router.pathname === '/ai-generator'
+                ? 'bg-black text-white'
+                : 'bg-white text-black hover:bg-gray-100'
+            }`}
+          >
+            <span className="text-lg">✨</span>
+            <span className="hidden sm:inline">{t('ai.title')}</span>
+          </Link>
+        </nav>
       </div>
-      <Decoration className="absolute top-0 right-0 w-24 sm:w-28 md:w-36" />
+      <Decoration className="absolute top-0 right-0 w-24 sm:w-28 md:w-36 pointer-events-none" />
     </header>
   );
 }

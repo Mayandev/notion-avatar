@@ -101,5 +101,22 @@
     "step3Desc": "点击下载按钮获取高分辨率头像，可立即在Notion或其他平台使用",
     "step4Title": "分享您的作品",
     "step4Desc": "在社交媒体上分享您的新Notion头像，向朋友展示！"
+  },
+  "ai": {
+    "title": "AI 头像生成",
+    "description": "使用 AI 魔法将您的照片或创意转换为 Notion 风格头像。",
+    "photo2avatar": "照片转头像",
+    "text2avatar": "文字生成",
+    "uploadTitle": "上传照片",
+    "uploadDesc": "拖拽或点击上传",
+    "uploadTip": "支持格式: JPG, PNG。最大 5MB。",
+    "descPlaceholder": "描述您想生成的头像，例如：'一个戴眼镜的长发女孩'",
+    "generate": "生成头像",
+    "generating": "生成中...",
+    "download": "下载头像",
+    "limitReached": "今日额度已用完",
+    "limitDesc": "您已使用完今日的免费额度。请明天再来，或升级解锁更多次数。",
+    "upgrade": "立即升级",
+    "error": "出错了，请重试。"
   }
 }
