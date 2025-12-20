@@ -2,7 +2,8 @@ import { useState, useEffect, useCallback } from 'react';
 import { AIUsageState } from '@/types/ai';
 
 const STORAGE_KEY = 'ai_avatar_usage';
-const FREE_DAILY_LIMIT = 1;
+// Increase limit for development/testing
+const FREE_DAILY_LIMIT = process.env.NODE_ENV === 'development' ? 1000 : 1;
 
 export function useAIUsage() {
   const [usageState, setUsageState] = useState<AIUsageState>({

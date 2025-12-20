@@ -1,7 +1,5 @@
 import { useRef, useState } from 'react';
 import { useTranslation } from 'next-i18next';
-// eslint-disable-next-line @next/next/no-img-element
-import Image from 'next/legacy/image';
 
 interface ImageUploaderProps {
   onImageSelect: (base64: string) => void;
@@ -119,6 +117,7 @@ export default function ImageUploader({
         {preview ? (
           <div className="relative w-full aspect-square max-w-[200px] mx-auto">
             {/* Using img for base64 preview is standard, suppressing warning */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={preview}
               alt="Preview"

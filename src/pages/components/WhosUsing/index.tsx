@@ -65,7 +65,7 @@ export default function WhosUsing() {
           <p className="mt-6 text-gray-500">{t('whosUsingDescription')}</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {testimonials.map((item, _) => (
+          {testimonials.map((item) => (
             <a
               key={item.handle}
               href={item.url}
