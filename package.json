@@ -30,6 +30,8 @@
   },
   "dependencies": {
     "@google/genai": "1.34.0",
+    "@supabase/ssr": "0.8.0",
+    "@supabase/supabase-js": "2.89.0",
     "chrome-aws-lambda": "8.0.2",
     "copy-to-clipboard": "3.3.1",
     "dayjs": "1.10.7",
@@ -41,7 +43,8 @@
     "raw-loader": "4.0.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-hot-toast": "2.5.2"
+    "react-hot-toast": "2.5.2",
+    "stripe": "20.1.0"
   },
   "devDependencies": {
     "@commitlint/cli": "13.2.1",

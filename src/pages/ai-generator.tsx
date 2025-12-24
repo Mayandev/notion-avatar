@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
@@ -7,6 +7,7 @@ import toast, { Toaster } from 'react-hot-toast';
 
 import { AIGenerationMode, AIGenerateResponse } from '@/types/ai';
 import { useAIUsage } from '@/hooks/useAIUsage';
+import { useAuth } from '@/contexts/AuthContext';
 
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -16,20 +17,44 @@ import TextInput from '@/components/AIGenerator/TextInput';
 import GeneratingStatus from '@/components/AIGenerator/GeneratingStatus';
 import GeneratedResult from '@/components/AIGenerator/GeneratedResult';
 import DailyLimitBanner from '@/components/AIGenerator/DailyLimitBanner';
+import AuthModal from '@/components/Auth/AuthModal';
+import UpgradeModal from '@/components/Pricing/UpgradeModal';
 
 export default function AIGeneratorPage() {
   const { t } = useTranslation('common');
+  const { user, isLoading: isAuthLoading } = useAuth();
   const [mode, setMode] = useState<AIGenerationMode>('photo2avatar');
   const [inputImage, setInputImage] = useState<string>('');
   const [inputText, setInputText] = useState<string>('');
   const [generatedImage, setGeneratedImage] = useState<string | null>(null);
   const [isGenerating, setIsGenerating] = useState(false);
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+  const [isUpgradeModalOpen, setIsUpgradeModalOpen] = useState(false);
 
-  const { usageState, incrementUsage } = useAIUsage();
+  const { usageState, incrementUsage, checkUsage } = useAIUsage();
+
+  // Check for success/canceled query params from Stripe
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('success') === 'true') {
+      toast.success('Payment successful! You can now generate more avatars.');
+      // Clean up URL
+      window.history.replaceState({}, '', '/ai-generator');
+      // Refresh usage
+      checkUsage();
+    }
+  }, [checkUsage]);
 
   const handleGenerate = async () => {
-    if (usageState.remaining <= 0 && !usageState.isUnlimited) {
-      toast.error(t('ai.limitReached'));
+    // Check if user is authenticated
+    if (!user) {
+      setIsAuthModalOpen(true);
+      return;
+    }
+
+    // Check usage limits
+    if (!usageState.isUnlimited && usageState.remaining <= 0) {
+      setIsUpgradeModalOpen(true);
       return;
     }
 
@@ -60,9 +85,19 @@ export default function AIGeneratorPage() {
 
       const data: AIGenerateResponse = await response.json();
 
+      if (response.status === 401) {
+        setIsAuthModalOpen(true);
+        return;
+      }
+
+      if (response.status === 402) {
+        setIsUpgradeModalOpen(true);
+        return;
+      }
+
       if (data.success && data.image) {
         setGeneratedImage(data.image);
-        incrementUsage();
+        await incrementUsage();
         toast.success('Avatar generated successfully!');
       } else {
         throw new Error(data.error || 'Unknown error');
@@ -86,6 +121,9 @@ export default function AIGeneratorPage() {
     document.body.removeChild(link);
   };
 
+  const canGenerate = usageState.isUnlimited || usageState.remaining > 0;
+  const isDisabled = !canGenerate && !!user;
+
   const renderContent = () => {
     if (isGenerating) {
       return <GeneratingStatus />;
@@ -104,36 +142,50 @@ export default function AIGeneratorPage() {
     return (
       <div className="w-full flex flex-col items-center animate-in fade-in slide-in-from-bottom-4 duration-500">
         {mode === 'photo2avatar' ? (
-          <ImageUploader
-            onImageSelect={setInputImage}
-            disabled={usageState.remaining <= 0}
-          />
+          <ImageUploader onImageSelect={setInputImage} disabled={isDisabled} />
         ) : (
           <TextInput
             value={inputText}
             onChange={setInputText}
-            disabled={usageState.remaining <= 0}
+            disabled={isDisabled}
           />
         )}
 
         <button
           onClick={handleGenerate}
           disabled={
-            usageState.remaining <= 0 ||
+            isGenerating ||
             (mode === 'photo2avatar' && !inputImage) ||
             (mode === 'text2avatar' && !inputText)
           }
           type="button"
           className="mt-8 py-3 px-12 rounded-full bg-black text-white font-bold text-lg hover:scale-105 active:scale-95 transition-all disabled:opacity-50 disabled:hover:scale-100 disabled:cursor-not-allowed shadow-lg hover:shadow-xl"
         >
-          {t('ai.generate')}
+          {!user ? `${t('ai.generate')} (Sign In Required)` : t('ai.generate')}
         </button>
 
-        <DailyLimitBanner
-          remaining={usageState.remaining}
-          total={usageState.total}
-          isUnlimited={usageState.isUnlimited}
-        />
+        {user && (
+          <DailyLimitBanner
+            remaining={usageState.remaining}
+            total={usageState.total}
+            isUnlimited={usageState.isUnlimited}
+          />
+        )}
+
+        {!user && !isAuthLoading && (
+          <div className="mt-6 text-center">
+            <p className="text-gray-600 mb-2">
+              Sign in to start generating avatars
+            </p>
+            <button
+              onClick={() => setIsAuthModalOpen(true)}
+              type="button"
+              className="text-black font-medium hover:underline"
+            >
+              Sign In / Sign Up
+            </button>
+          </div>
+        )}
       </div>
     );
   };
@@ -148,6 +200,18 @@ export default function AIGeneratorPage() {
       <div className="min-h-screen flex flex-col bg-[#fffefc]">
         <Header />
         <Toaster position="top-center" />
+        <AuthModal
+          isOpen={isAuthModalOpen}
+          onClose={() => setIsAuthModalOpen(false)}
+        />
+        <UpgradeModal
+          isOpen={isUpgradeModalOpen}
+          onClose={() => setIsUpgradeModalOpen(false)}
+          onLoginClick={() => {
+            setIsUpgradeModalOpen(false);
+            setIsAuthModalOpen(true);
+          }}
+        />
 
         <main className="flex-grow container mx-auto px-4 py-12">
           <div className="text-center mb-12">

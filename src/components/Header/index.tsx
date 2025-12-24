@@ -1,12 +1,16 @@
+import { useState } from 'react';
 import Image from 'next/legacy/image';
 import { useTranslation } from 'next-i18next';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import UserMenu from '@/components/Auth/UserMenu';
+import AuthModal from '@/components/Auth/AuthModal';
 import Decoration from './decoration';
 
 export default function Header() {
   const { t } = useTranslation('common');
   const router = useRouter();
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
 
   return (
     <header className="relative">
@@ -42,9 +46,14 @@ export default function Header() {
             <span className="text-lg">✨</span>
             <span className="hidden sm:inline">{t('ai.title')}</span>
           </Link>
+          <UserMenu onLoginClick={() => setIsAuthModalOpen(true)} />
         </nav>
       </div>
       <Decoration className="absolute top-0 right-0 w-24 sm:w-28 md:w-36 pointer-events-none" />
+      <AuthModal
+        isOpen={isAuthModalOpen}
+        onClose={() => setIsAuthModalOpen(false)}
+      />
     </header>
   );
 }
