@@ -59,25 +59,45 @@ export default async function handler(
         if (!userId) break;
 
         if (priceType === 'monthly' && session.subscription) {
-          // Handle subscription
-          const subscriptionData = (await stripe.subscriptions.retrieve(
+          // Handle subscription - use any to handle Stripe API response flexibility
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          const subscriptionData: any = await stripe.subscriptions.retrieve(
             session.subscription as string,
-          )) as any;
+          );
 
-          await supabase
+          console.log(
+            'Subscription data:',
+            JSON.stringify(subscriptionData, null, 2),
+          );
+
+          // Safely convert timestamps
+          const startTs = subscriptionData.current_period_start;
+          const endTs = subscriptionData.current_period_end;
+          const periodStart = startTs
+            ? new Date(startTs * 1000).toISOString()
+            : null;
+          const periodEnd = endTs ? new Date(endTs * 1000).toISOString() : null;
+
+          // Use upsert to handle cases where subscription record may not exist
+          const { error: upsertError } = await supabase
             .from('subscriptions')
-            .update({
-              stripe_subscription_id: subscriptionData.id,
-              status: 'active',
-              plan_type: 'monthly',
-              current_period_start: new Date(
-                subscriptionData.current_period_start * 1000,
-              ).toISOString(),
-              current_period_end: new Date(
-                subscriptionData.current_period_end * 1000,
-              ).toISOString(),
-            })
-            .eq('user_id', userId);
+            .upsert(
+              {
+                user_id: userId,
+                stripe_subscription_id: subscriptionData.id,
+                status: 'active',
+                plan_type: 'monthly',
+                current_period_start: periodStart,
+                current_period_end: periodEnd,
+              },
+              { onConflict: 'user_id' },
+            );
+
+          if (upsertError) {
+            console.error('Subscription upsert error:', upsertError);
+          } else {
+            console.log('Subscription updated successfully for user:', userId);
+          }
         } else if (priceType === 'credits') {
           // Handle credit purchase (10 credits per package)
           await supabase.from('credit_packages').insert({
