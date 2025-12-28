@@ -101,5 +101,32 @@
     "step3Desc": "Cliquez sur le bouton de téléchargement pour obtenir votre avatar haute résolution, prêt à être utilisé sur Notion ou d'autres plateformes",
     "step4Title": "Partagez votre création",
     "step4Desc": "Partagez votre nouvel avatar Notion sur les réseaux sociaux et montrez-le à vos amis !"
+  },
+  "ai": {
+    "title": "Générateur d'Avatar IA",
+    "description": "Transformez vos photos ou idées en avatares style Notion avec la magie de l'IA.",
+    "photo2avatar": "Photo vers Avatar",
+    "text2avatar": "Texte vers Avatar",
+    "uploadTitle": "Télécharger une Photo",
+    "uploadDesc": "Glisser-déposer ou cliquer pour télécharger",
+    "uploadTip": "Formats supportés : JPG, PNG. Max 5MB.",
+    "descPlaceholder": "Décrivez l'avatar que vous souhaitez générer, ex. : 'Une fille avec des lunettes et les cheveux longs'",
+    "generate": "Générer l'Avatar",
+    "generating": "Génération...",
+    "download": "Télécharger",
+    "limitReached": "Limite quotidienne atteinte",
+    "limitDesc": "Vous avez utilisé votre quota quotidien gratuit. Revenez demain ou mettez à niveau pour plus.",
+    "upgrade": "Mettre à niveau maintenant",
+    "error": "Quelque chose s'est mal passé. Veuillez réessayer."
+  },
+  "aiFeatureIntro": {
+    "title": "Nouvelle Fonctionnalité Générateur d'Avatar IA",
+    "description": "Vous pouvez maintenant utiliser la technologie IA pour générer rapidement des avatares style Notion !",
+    "feature1Title": "Photo vers Avatar",
+    "feature1Desc": "Téléchargez votre photo et l'IA la convertira automatiquement en avatar style Notion",
+    "feature2Title": "Texte vers Avatar",
+    "feature2Desc": "Décrivez simplement l'avatar que vous voulez et l'IA le générera pour vous",
+    "tryNow": "Essayer Maintenant",
+    "dontShowAgain": "Ne plus afficher"
   }
 }

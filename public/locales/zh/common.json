@@ -118,5 +118,15 @@
     "limitDesc": "您已使用完今日的免费额度。请明天再来，或升级解锁更多次数。",
     "upgrade": "立即升级",
     "error": "出错了，请重试。"
+  },
+  "aiFeatureIntro": {
+    "title": "全新 AI 头像生成功能",
+    "description": "现在您可以使用 AI 技术快速生成 Notion 风格的头像了！",
+    "feature1Title": "照片转头像",
+    "feature1Desc": "上传您的照片，AI 会自动转换为 Notion 风格的头像",
+    "feature2Title": "文字生成头像",
+    "feature2Desc": "只需描述您想要的头像，AI 就能为您生成",
+    "tryNow": "立即体验",
+    "dontShowAgain": "不再显示"
   }
 }

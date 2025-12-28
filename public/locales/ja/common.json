@@ -101,5 +101,32 @@
     "step3Desc": "ダウンロードボタンをクリックして高解像度のアバターを取得し、Notionやその他のプラットフォームですぐに使用できます",
     "step4Title": "あなたの作品を共有",
     "step4Desc": "新しいNotionアバターをソーシャルメディアで共有して友達に見せよう！"
+  },
+  "ai": {
+    "title": "AI アバター生成",
+    "description": "AIの魔法で写真やアイデアをNotionスタイルのアバターに変換します。",
+    "photo2avatar": "写真からアバター",
+    "text2avatar": "テキストからアバター",
+    "uploadTitle": "写真をアップロード",
+    "uploadDesc": "ドラッグ&ドロップまたはクリックしてアップロード",
+    "uploadTip": "対応形式: JPG, PNG。最大5MB。",
+    "descPlaceholder": "生成したいアバターを説明してください。例：「メガネをかけた長髪の女の子」",
+    "generate": "アバターを生成",
+    "generating": "生成中...",
+    "download": "ダウンロード",
+    "limitReached": "本日の上限に達しました",
+    "limitDesc": "本日の無料クォータを使い切りました。明日また来るか、アップグレードしてより多くの回数をアンロックしてください。",
+    "upgrade": "今すぐアップグレード",
+    "error": "エラーが発生しました。もう一度お試しください。"
+  },
+  "aiFeatureIntro": {
+    "title": "新しい AI アバター生成機能",
+    "description": "AI技術を使用してNotionスタイルのアバターを素早く生成できるようになりました！",
+    "feature1Title": "写真からアバター",
+    "feature1Desc": "写真をアップロードすると、AIが自動的にNotionスタイルのアバターに変換します",
+    "feature2Title": "テキストからアバター",
+    "feature2Desc": "欲しいアバターを説明するだけで、AIが生成してくれます",
+    "tryNow": "今すぐ試す",
+    "dontShowAgain": "今後表示しない"
   }
 }

@@ -133,5 +133,15 @@
     "limitDesc": "You have used your free daily quota. Please come back tomorrow or upgrade for more.",
     "upgrade": "Upgrade Now",
     "error": "Something went wrong. Please try again."
+  },
+  "aiFeatureIntro": {
+    "title": "New AI Avatar Generator Feature",
+    "description": "Now you can use AI technology to quickly generate Notion-style avatars!",
+    "feature1Title": "Photo to Avatar",
+    "feature1Desc": "Upload your photo and AI will automatically convert it to a Notion-style avatar",
+    "feature2Title": "Text to Avatar",
+    "feature2Desc": "Just describe the avatar you want, and AI will generate it for you",
+    "tryNow": "Try Now",
+    "dontShowAgain": "Don't show again"
   }
 }

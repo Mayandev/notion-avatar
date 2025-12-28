@@ -101,5 +101,32 @@
     "step3Desc": "다운로드 버튼을 클릭하여 고해상도 아바타를 얻고 Notion 또는 기타 플랫폼에서 바로 사용할 수 있습니다",
     "step4Title": "작품 공유",
     "step4Desc": "새로운 Notion 아바타를 소셜 미디어에 공유하고 친구들에게 보여주세요!"
+  },
+  "ai": {
+    "title": "AI 아바타 생성",
+    "description": "AI 마법으로 사진이나 아이디어를 Notion 스타일 아바타로 변환하세요.",
+    "photo2avatar": "사진에서 아바타",
+    "text2avatar": "텍스트에서 아바타",
+    "uploadTitle": "사진 업로드",
+    "uploadDesc": "드래그 앤 드롭 또는 클릭하여 업로드",
+    "uploadTip": "지원 형식: JPG, PNG. 최대 5MB.",
+    "descPlaceholder": "생성하고 싶은 아바타를 설명하세요. 예: '안경을 쓴 긴 머리 소녀'",
+    "generate": "아바타 생성",
+    "generating": "생성 중...",
+    "download": "다운로드",
+    "limitReached": "오늘 한도에 도달했습니다",
+    "limitDesc": "오늘의 무료 할당량을 모두 사용했습니다. 내일 다시 오시거나 업그레이드하여 더 많은 횟수를 잠금 해제하세요.",
+    "upgrade": "지금 업그레이드",
+    "error": "문제가 발생했습니다. 다시 시도해주세요."
+  },
+  "aiFeatureIntro": {
+    "title": "새로운 AI 아바타 생성 기능",
+    "description": "이제 AI 기술을 사용하여 Notion 스타일 아바타를 빠르게 생성할 수 있습니다!",
+    "feature1Title": "사진에서 아바타",
+    "feature1Desc": "사진을 업로드하면 AI가 자동으로 Notion 스타일 아바타로 변환합니다",
+    "feature2Title": "텍스트에서 아바타",
+    "feature2Desc": "원하는 아바타를 설명하기만 하면 AI가 생성해드립니다",
+    "tryNow": "지금 시도하기",
+    "dontShowAgain": "다시 표시하지 않기"
   }
 }

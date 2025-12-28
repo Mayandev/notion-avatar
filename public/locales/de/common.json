@@ -101,5 +101,32 @@
     "step3Desc": "Klicken Sie auf die Download-Schaltfläche, um Ihren hochauflösenden Avatar zu erhalten, der sofort in Notion oder anderen Plattformen verwendet werden kann",
     "step4Title": "Teile deine Kreation",
     "step4Desc": "Teile deinen neuen Notion-Avatar auf sozialen Medien und zeige ihn deinen Freunden!"
+  },
+  "ai": {
+    "title": "KI-Avatar-Generator",
+    "description": "Verwandle deine Fotos oder Ideen mit KI-Magie in Notion-style Avatare.",
+    "photo2avatar": "Foto zu Avatar",
+    "text2avatar": "Text zu Avatar",
+    "uploadTitle": "Foto hochladen",
+    "uploadDesc": "Ziehen und ablegen oder klicken zum Hochladen",
+    "uploadTip": "Unterstützte Formate: JPG, PNG. Max. 5MB.",
+    "descPlaceholder": "Beschreibe den Avatar, den du generieren möchtest, z.B.: 'Ein Mädchen mit Brille und langen Haaren'",
+    "generate": "Avatar generieren",
+    "generating": "Generiere...",
+    "download": "Herunterladen",
+    "limitReached": "Tageslimit erreicht",
+    "limitDesc": "Du hast dein kostenloses Tageskontingent aufgebraucht. Komm morgen wieder oder upgrade für mehr.",
+    "upgrade": "Jetzt upgraden",
+    "error": "Etwas ist schief gelaufen. Bitte versuche es erneut."
+  },
+  "aiFeatureIntro": {
+    "title": "Neue KI-Avatar-Generator-Funktion",
+    "description": "Du kannst jetzt KI-Technologie verwenden, um schnell Notion-style Avatare zu generieren!",
+    "feature1Title": "Foto zu Avatar",
+    "feature1Desc": "Lade dein Foto hoch und KI wird es automatisch in einen Notion-style Avatar umwandeln",
+    "feature2Title": "Text zu Avatar",
+    "feature2Desc": "Beschreibe einfach den Avatar, den du möchtest, und KI wird ihn für dich generieren",
+    "tryNow": "Jetzt ausprobieren",
+    "dontShowAgain": "Nicht mehr anzeigen"
   }
 }

@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import type { GetStaticPropsContext, NextPage } from 'next';
 import Head from 'next/head';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -7,13 +8,38 @@ import Footer from '@/components/Footer';
 import AvatarEditor from '@/components/AvatarEditor';
 import WhosUsing from '@/components/WhosUsing';
 import UseCases from '@/components/UseCases';
-import ResourceStore from '@/components/ResourceStore';
+import AIFeatureIntroModal from '@/components/Modal/AIFeatureIntro';
 
 const URL = `https://notion-avatar.app/`;
 
+const AI_FEATURE_INTRO_KEY = 'ai-feature-intro-dismissed';
+
 const Home: NextPage = () => {
   const { t } = useTranslation(`common`);
-  // 移除FAQ手风琴状态管理
+  const [isAIFeatureModalOpen, setIsAIFeatureModalOpen] = useState(false);
+
+  // 检查是否应该显示 AI 功能弹窗
+  // eslint-disable-next-line consistent-return
+  useEffect(() => {
+    // 只在客户端检查 localStorage
+    if (typeof window !== 'undefined') {
+      const dismissed = localStorage.getItem(AI_FEATURE_INTRO_KEY);
+      if (!dismissed) {
+        // 延迟显示，让页面先加载
+        const timer = setTimeout(() => {
+          setIsAIFeatureModalOpen(true);
+        }, 1000);
+        return () => clearTimeout(timer);
+      }
+    }
+  }, []);
+
+  const handleDontShowAgain = () => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem(AI_FEATURE_INTRO_KEY, 'true');
+    }
+    setIsAIFeatureModalOpen(false);
+  };
 
   // FAQ数据
   const faqItems = [
@@ -313,6 +339,11 @@ const Home: NextPage = () => {
         </section>
       </main>
       <Footer />
+      <AIFeatureIntroModal
+        isOpen={isAIFeatureModalOpen}
+        onClose={() => setIsAIFeatureModalOpen(false)}
+        onDontShowAgain={handleDontShowAgain}
+      />
     </>
   );
 };

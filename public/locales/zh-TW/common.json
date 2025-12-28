@@ -101,5 +101,32 @@
     "step3Desc": "點擊下載按鈕獲取高解析度頭像，可立即在Notion或其他平台使用",
     "step4Title": "分享您的作品",
     "step4Desc": "在社交媒體上分享您的新Notion頭像，向朋友展示！"
+  },
+  "ai": {
+    "title": "AI 頭像生成",
+    "description": "使用 AI 魔法將您的照片或創意轉換為 Notion 風格頭像。",
+    "photo2avatar": "照片轉頭像",
+    "text2avatar": "文字生成",
+    "uploadTitle": "上傳照片",
+    "uploadDesc": "拖拽或點擊上傳",
+    "uploadTip": "支援格式: JPG, PNG。最大 5MB。",
+    "descPlaceholder": "描述您想生成的頭像，例如：'一個戴眼鏡的長髮女孩'",
+    "generate": "生成頭像",
+    "generating": "生成中...",
+    "download": "下載頭像",
+    "limitReached": "今日額度已用完",
+    "limitDesc": "您已使用完今日的免費額度。請明天再來，或升級解鎖更多次數。",
+    "upgrade": "立即升級",
+    "error": "出錯了，請重試。"
+  },
+  "aiFeatureIntro": {
+    "title": "全新 AI 頭像生成功能",
+    "description": "現在您可以使用 AI 技術快速生成 Notion 風格的頭像了！",
+    "feature1Title": "照片轉頭像",
+    "feature1Desc": "上傳您的照片，AI 會自動轉換為 Notion 風格的頭像",
+    "feature2Title": "文字生成頭像",
+    "feature2Desc": "只需描述您想要的頭像，AI 就能為您生成",
+    "tryNow": "立即體驗",
+    "dontShowAgain": "不再顯示"
   }
 }
