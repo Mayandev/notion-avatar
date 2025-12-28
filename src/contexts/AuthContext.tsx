@@ -110,10 +110,24 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, [fetchSession, fetchSubscription]);
 
   const signInWithGoogle = async () => {
+    // Get the current page or saved redirect URL to redirect back after login
+    const savedRedirect =
+      typeof window !== 'undefined'
+        ? sessionStorage.getItem('auth_redirect')
+        : null;
+    const next =
+      savedRedirect ||
+      (typeof window !== 'undefined' ? window.location.pathname : '/');
+
+    // Clear saved redirect
+    if (typeof window !== 'undefined') {
+      sessionStorage.removeItem('auth_redirect');
+    }
+
     const response = await fetch('/api/auth/signin', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ provider: 'google' }),
+      body: JSON.stringify({ provider: 'google', next }),
     });
 
     const data = await response.json();
@@ -127,10 +141,24 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   const signInWithGithub = async () => {
+    // Get the current page or saved redirect URL to redirect back after login
+    const savedRedirect =
+      typeof window !== 'undefined'
+        ? sessionStorage.getItem('auth_redirect')
+        : null;
+    const next =
+      savedRedirect ||
+      (typeof window !== 'undefined' ? window.location.pathname : '/');
+
+    // Clear saved redirect
+    if (typeof window !== 'undefined') {
+      sessionStorage.removeItem('auth_redirect');
+    }
+
     const response = await fetch('/api/auth/signin', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ provider: 'github' }),
+      body: JSON.stringify({ provider: 'github', next }),
     });
 
     const data = await response.json();

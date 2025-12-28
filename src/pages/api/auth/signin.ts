@@ -18,11 +18,15 @@ export default async function handler(
     if (provider === 'google' || provider === 'github') {
       const origin =
         req.headers.origin || req.headers.referer?.replace(/\/$/, '') || '';
+      const { next } = req.body;
+      const redirectTo = next
+        ? `${origin}/api/auth/callback?next=${encodeURIComponent(next)}`
+        : `${origin}/api/auth/callback`;
 
       const { data, error } = await supabase.auth.signInWithOAuth({
         provider,
         options: {
-          redirectTo: `${origin}/api/auth/callback`,
+          redirectTo,
         },
       });
 

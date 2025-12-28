@@ -20,15 +20,30 @@ export default function AuthCallback() {
 
       // 如果有 code，重定向到 API 处理
       if (code && typeof code === 'string') {
-        // 将 code 发送到 API 处理
+        // 获取 next 参数或从 sessionStorage 获取保存的 redirect
+        const { next } = router.query;
+        const savedRedirect =
+          typeof window !== 'undefined'
+            ? sessionStorage.getItem('auth_redirect')
+            : null;
+        const redirectTo = next || savedRedirect || '/';
+
+        // 清除保存的 redirect
+        if (typeof window !== 'undefined') {
+          sessionStorage.removeItem('auth_redirect');
+        }
+
+        // 将 code 和 next 发送到 API 处理
+        const nextParam =
+          redirectTo !== '/' ? `&next=${encodeURIComponent(redirectTo)}` : '';
         window.location.href = `/api/auth/callback?code=${encodeURIComponent(
           code,
-        )}`;
+        )}${nextParam}`;
         return;
       }
 
-      // 没有 code 也没有错误，尝试跳转到目标页面
-      router.push('/ai-generator');
+      // 没有 code 也没有错误，跳转到首页
+      router.push('/');
     };
 
     handleCallback();

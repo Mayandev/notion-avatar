@@ -1,8 +1,97 @@
+import { useState } from 'react';
 import { useTranslation } from 'next-i18next';
 import Image from 'next/legacy/image';
+import { useAuth } from '@/contexts/AuthContext';
+import AuthModal from '@/components/Auth/AuthModal';
+import toast from 'react-hot-toast';
 
-export default function ResourceStore() {
+interface ResourceStoreProps {
+  purchasedPacks?: string[];
+  onDownload?: (packId: string) => void;
+  showDownloadButton?: boolean;
+}
+
+export default function ResourceStore({
+  purchasedPacks = [],
+  onDownload,
+  showDownloadButton = false,
+}: ResourceStoreProps) {
   const { t } = useTranslation('common');
+  const { user } = useAuth();
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+  const [loadingPack, setLoadingPack] = useState<string | null>(null);
+  const [downloadingPack, setDownloadingPack] = useState<string | null>(null);
+
+  const handlePurchase = async (
+    resourcePackId: 'design-pack' | 'scribbles-pack',
+  ) => {
+    if (!user) {
+      setIsAuthModalOpen(true);
+      return;
+    }
+
+    setLoadingPack(resourcePackId);
+
+    try {
+      const response = await fetch('/api/stripe/resource-checkout', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ resourcePackId }),
+      });
+
+      const data = await response.json();
+
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        throw new Error(data.error || 'Failed to create checkout');
+      }
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error('Purchase error:', error);
+      toast.error('Failed to start checkout. Please try again.');
+      setLoadingPack(null);
+    }
+  };
+
+  const handleDownload = async (packId: 'design-pack' | 'scribbles-pack') => {
+    if (!user) {
+      setIsAuthModalOpen(true);
+      return;
+    }
+
+    setDownloadingPack(packId);
+
+    try {
+      if (onDownload) {
+        // Use provided download handler
+        await onDownload(packId);
+        // If download succeeds but doesn't redirect, clear loading state
+        // (onDownload might throw error or redirect, so this handles non-redirect case)
+        setDownloadingPack(null);
+      } else {
+        // Default download handler
+        const response = await fetch(`/api/resources/download?pack=${packId}`);
+        const data = await response.json();
+
+        if (response.ok && data.url) {
+          // Will redirect, so don't clear loading state here
+          window.location.href = data.url;
+        } else {
+          throw new Error(data.error || 'Failed to download');
+        }
+      }
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error('Download error:', error);
+      toast.error('Failed to download resource pack. Please try again.');
+      setDownloadingPack(null);
+    }
+  };
+
+  const isPurchased = (packId: string) => purchasedPacks.includes(packId);
 
   return (
     <section className="py-16">
@@ -63,14 +152,37 @@ export default function ResourceStore() {
                 </span>
               </div>
             </div>
-            <a
-              href="https://mayandev.gumroad.com/l/notion-avatar-maker"
-              className="block w-full text-center py-3 px-6 bg-black text-white rounded-full hover:bg-gray-800 transition-colors"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {t('resourceStore.buyNow')}
-            </a>
+            {showDownloadButton && isPurchased('design-pack') ? (
+              <button
+                onClick={() => handleDownload('design-pack')}
+                disabled={downloadingPack === 'design-pack'}
+                type="button"
+                className="w-full text-center py-3 px-6 bg-black text-white rounded-full hover:bg-gray-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {downloadingPack === 'design-pack'
+                  ? 'Downloading...'
+                  : 'Download'}
+              </button>
+            ) : user ? (
+              <button
+                onClick={() => handlePurchase('design-pack')}
+                disabled={loadingPack === 'design-pack'}
+                type="button"
+                className="w-full text-center py-3 px-6 bg-black text-white rounded-full hover:bg-gray-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {loadingPack === 'design-pack'
+                  ? 'Processing...'
+                  : t('resourceStore.buyNow')}
+              </button>
+            ) : (
+              <button
+                onClick={() => setIsAuthModalOpen(true)}
+                type="button"
+                className="w-full text-center py-3 px-6 bg-black text-white rounded-full hover:bg-gray-800 transition-colors"
+              >
+                Sign In to Purchase
+              </button>
+            )}
           </div>
 
           {/* Scribbles 资源包 */}
@@ -118,17 +230,44 @@ export default function ResourceStore() {
                 </span>
               </div>
             </div>
-            <a
-              href="https://mayandev.gumroad.com/l/notion-scribbles"
-              className="block w-full text-center py-3 px-6 bg-black text-white rounded-full hover:bg-gray-800 transition-colors"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {t('resourceStore.buyNow')}
-            </a>
+            {showDownloadButton && isPurchased('scribbles-pack') ? (
+              <button
+                onClick={() => handleDownload('scribbles-pack')}
+                disabled={downloadingPack === 'scribbles-pack'}
+                type="button"
+                className="w-full text-center py-3 px-6 bg-black text-white rounded-full hover:bg-gray-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {downloadingPack === 'scribbles-pack'
+                  ? 'Downloading...'
+                  : 'Download'}
+              </button>
+            ) : user ? (
+              <button
+                onClick={() => handlePurchase('scribbles-pack')}
+                disabled={loadingPack === 'scribbles-pack'}
+                type="button"
+                className="w-full text-center py-3 px-6 bg-black text-white rounded-full hover:bg-gray-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {loadingPack === 'scribbles-pack'
+                  ? 'Processing...'
+                  : t('resourceStore.buyNow')}
+              </button>
+            ) : (
+              <button
+                onClick={() => setIsAuthModalOpen(true)}
+                type="button"
+                className="w-full text-center py-3 px-6 bg-black text-white rounded-full hover:bg-gray-800 transition-colors"
+              >
+                Sign In to Purchase
+              </button>
+            )}
           </div>
         </div>
       </div>
+      <AuthModal
+        isOpen={isAuthModalOpen}
+        onClose={() => setIsAuthModalOpen(false)}
+      />
     </section>
   );
 }

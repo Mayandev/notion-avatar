@@ -1,22 +1,34 @@
-import { useState, useEffect } from 'react';
-import type { GetStaticPropsContext, NextPage } from 'next';
+import { useState, useEffect, useCallback } from 'react';
+import type { GetServerSidePropsContext, NextPage } from 'next';
 import Head from 'next/head';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
+import toast from 'react-hot-toast';
+import { useAuth } from '@/contexts/AuthContext';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import AvatarEditor from '@/components/AvatarEditor';
 import WhosUsing from '@/components/WhosUsing';
 import UseCases from '@/components/UseCases';
 import AIFeatureIntroModal from '@/components/Modal/AIFeatureIntro';
+import ResourceStore from '@/components/ResourceStore';
+import { createServerSideClient } from '@/lib/supabase/server';
 
 const URL = `https://notion-avatar.app/`;
 
 const AI_FEATURE_INTRO_KEY = 'ai-feature-intro-dismissed';
 
-const Home: NextPage = () => {
+interface HomeProps {
+  initialPurchasedPacks: string[];
+}
+
+const Home: NextPage<HomeProps> = ({ initialPurchasedPacks }) => {
   const { t } = useTranslation(`common`);
+  const { user, isLoading: isAuthLoading } = useAuth();
   const [isAIFeatureModalOpen, setIsAIFeatureModalOpen] = useState(false);
+  const [purchasedPacks, setPurchasedPacks] = useState<string[]>(
+    initialPurchasedPacks,
+  );
 
   // 检查是否应该显示 AI 功能弹窗
   // eslint-disable-next-line consistent-return
@@ -40,6 +52,111 @@ const Home: NextPage = () => {
     }
     setIsAIFeatureModalOpen(false);
   };
+
+  // Refresh purchased packs when payment succeeds
+  const refreshPurchasedPacks = useCallback(async () => {
+    if (!user) {
+      return;
+    }
+
+    try {
+      const response = await fetch('/api/resources/purchased');
+      if (response.ok) {
+        const data = await response.json();
+        setPurchasedPacks(data.packs || []);
+      }
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error('Failed to fetch purchased packs:', error);
+    }
+  }, [user]);
+
+  // Fallback: If SSR failed and user is logged in, fetch in CSR
+  useEffect(() => {
+    if (
+      !isAuthLoading &&
+      user &&
+      initialPurchasedPacks.length === 0 &&
+      purchasedPacks.length === 0
+    ) {
+      // SSR might have failed, try fetching in CSR
+      refreshPurchasedPacks();
+    }
+  }, [
+    user,
+    isAuthLoading,
+    initialPurchasedPacks.length,
+    purchasedPacks.length,
+    refreshPurchasedPacks,
+  ]);
+
+  // Handle download
+  const handleDownload = async (packId: string) => {
+    if (!user) {
+      return;
+    }
+
+    try {
+      const response = await fetch(`/api/resources/download?pack=${packId}`);
+      const data = await response.json();
+
+      if (response.ok && data.url) {
+        // Open the signed URL in a new window/tab to trigger download
+        // Note: This will navigate away, so loading state will be cleared
+        window.location.href = data.url;
+      } else {
+        throw new Error(data.error || 'Failed to download');
+      }
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error('Download error:', error);
+      toast.error('Failed to download resource pack. Please try again.');
+      // Re-throw to let ResourceStore component handle loading state
+      throw error;
+    }
+  };
+
+  // Check for success query param from Stripe and scroll to resource store
+  useEffect(() => {
+    if (typeof window === 'undefined' || isAuthLoading) return;
+
+    const { hash, search } = window.location;
+    const urlParams = new URLSearchParams(search);
+    const hashParams = hash.includes('?')
+      ? new URLSearchParams(hash.split('?')[1])
+      : null;
+
+    // Check for success in query params or hash params
+    const successParam =
+      urlParams.get('success') || hashParams?.get('success') || null;
+    const packParam = urlParams.get('pack') || hashParams?.get('pack') || null;
+
+    if (successParam === 'true' && packParam) {
+      if (user) {
+        toast.success(
+          'Payment successful! You can now download your resource pack.',
+        );
+        refreshPurchasedPacks();
+      }
+      // Clean up URL and set hash
+      window.history.replaceState({}, '', '#resource-store');
+      // Scroll to resource store section after a short delay
+      setTimeout(() => {
+        const element = document.getElementById('resource-store');
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 500);
+    } else if (hash === '#resource-store') {
+      // Just scroll if hash is present without success param
+      setTimeout(() => {
+        const element = document.getElementById('resource-store');
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 300);
+    }
+  }, [refreshPurchasedPacks, user, isAuthLoading]);
 
   // FAQ数据
   const faqItems = [
@@ -311,7 +428,13 @@ const Home: NextPage = () => {
             </div>
           </div>
         </section>
-        {/* <ResourceStore /> */}
+        <div id="resource-store">
+          <ResourceStore
+            purchasedPacks={purchasedPacks}
+            onDownload={handleDownload}
+            showDownloadButton
+          />
+        </div>
         <WhosUsing />
         <UseCases />
 
@@ -348,11 +471,38 @@ const Home: NextPage = () => {
   );
 };
 
-export async function getStaticProps({
-  locale,
-}: GetStaticPropsContext & { locale: string }) {
+export async function getServerSideProps(
+  context: GetServerSidePropsContext & { locale: string },
+) {
+  const { locale } = context;
+  let purchasedPacks: string[] = [];
+
+  try {
+    const supabase = createServerSideClient(context);
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+
+    if (user) {
+      // Fetch user's purchased resource packs
+      const { data: purchases, error } = await supabase
+        .from('resource_purchases')
+        .select('resource_pack_id')
+        .eq('user_id', user.id);
+
+      if (!error && purchases) {
+        purchasedPacks = purchases.map((p) => p.resource_pack_id);
+      }
+    }
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error('Error fetching purchased packs in SSR:', error);
+    // Continue with empty array if error occurs
+  }
+
   return {
     props: {
+      initialPurchasedPacks: purchasedPacks,
       ...(await serverSideTranslations(locale, [`common`])),
     },
   };

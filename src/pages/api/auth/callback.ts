@@ -23,7 +23,7 @@ export default async function handler(
     console.log('Auth callback success, user:', data.user?.email);
   }
 
-  // Redirect to the next page or AI generator
-  const redirectTo = typeof next === 'string' ? next : '/ai-generator';
+  // Redirect to the next page or home page
+  const redirectTo = typeof next === 'string' ? decodeURIComponent(next) : '/';
   return res.redirect(redirectTo);
 }

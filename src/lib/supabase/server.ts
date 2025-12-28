@@ -1,6 +1,7 @@
 import { createServerClient, CookieOptions } from '@supabase/ssr';
 import { createClient as createSupabaseClient } from '@supabase/supabase-js';
 import { NextApiRequest, NextApiResponse } from 'next';
+import type { GetServerSidePropsContext } from 'next';
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
@@ -42,6 +43,40 @@ export function createServiceClient() {
     auth: {
       autoRefreshToken: false,
       persistSession: false,
+    },
+  });
+}
+
+// Create a client for getServerSideProps
+export function createServerSideClient(context: GetServerSidePropsContext) {
+  const { req, res } = context;
+
+  return createServerClient(supabaseUrl, supabaseAnonKey, {
+    cookies: {
+      getAll() {
+        const cookies: { name: string; value: string }[] = [];
+        if (req.cookies) {
+          Object.entries(req.cookies).forEach(([name, value]) => {
+            if (value) {
+              cookies.push({ name, value });
+            }
+          });
+        }
+        return cookies;
+      },
+      setAll(
+        cookiesToSet: { name: string; value: string; options: CookieOptions }[],
+      ) {
+        cookiesToSet.forEach(({ name, value, options }) => {
+          const cookieParts = [`${name}=${value}`];
+          cookieParts.push(`Path=${options.path || '/'}`);
+          if (options.httpOnly) cookieParts.push('HttpOnly');
+          if (options.secure) cookieParts.push('Secure');
+          cookieParts.push(`SameSite=${options.sameSite || 'Lax'}`);
+          if (options.maxAge) cookieParts.push(`Max-Age=${options.maxAge}`);
+          res.setHeader('Set-Cookie', cookieParts.join('; '));
+        });
+      },
     },
   });
 }

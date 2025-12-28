@@ -106,6 +106,29 @@ export default async function handler(
             credits_remaining: 10,
             stripe_payment_intent_id: session.payment_intent as string,
           });
+        } else if (priceType === 'resource-pack') {
+          // Handle resource pack purchase
+          const resourcePackId = session.metadata?.resource_pack_id;
+          if (resourcePackId) {
+            const { error: purchaseError } = await supabase
+              .from('resource_purchases')
+              .insert({
+                user_id: userId,
+                resource_pack_id: resourcePackId,
+                stripe_payment_intent_id: session.payment_intent as string,
+              });
+
+            if (purchaseError) {
+              console.error('Resource purchase insert error:', purchaseError);
+            } else {
+              console.log(
+                'Resource purchase recorded successfully for user:',
+                userId,
+                'pack:',
+                resourcePackId,
+              );
+            }
+          }
         }
         break;
       }

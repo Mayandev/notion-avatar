@@ -24,7 +24,14 @@ export default async function handler(
       return res.status(401).json({ error: 'Unauthorized' });
     }
 
-    const { priceType } = req.body; // 'monthly' or 'credits'
+    const { resourcePackId } = req.body; // 'design-pack' or 'scribbles-pack'
+
+    if (
+      !resourcePackId ||
+      !['design-pack', 'scribbles-pack'].includes(resourcePackId)
+    ) {
+      return res.status(400).json({ error: 'Invalid resource pack ID' });
+    }
 
     // Get or create Stripe customer
     const { data: profile } = await supabase
@@ -68,11 +75,11 @@ export default async function handler(
         .eq('id', user.id);
     }
 
-    // Determine the price ID based on type
+    // Determine the price ID based on resource pack
     const priceId =
-      priceType === 'monthly'
-        ? process.env.STRIPE_MONTHLY_PRICE_ID
-        : process.env.STRIPE_CREDITS_PRICE_ID;
+      resourcePackId === 'design-pack'
+        ? process.env.STRIPE_DESIGN_PACK_PRICE_ID
+        : process.env.STRIPE_SCRIBBLES_PACK_PRICE_ID;
 
     if (!priceId) {
       return res.status(500).json({ error: 'Price not configured' });
@@ -81,7 +88,7 @@ export default async function handler(
     // Create checkout session
     const session = await stripe.checkout.sessions.create({
       customer: customerId,
-      mode: priceType === 'monthly' ? 'subscription' : 'payment',
+      mode: 'payment',
       payment_method_types: ['card'],
       line_items: [
         {
@@ -89,17 +96,18 @@ export default async function handler(
           quantity: 1,
         },
       ],
-      success_url: `${req.headers.origin}/ai-generator?success=true`,
-      cancel_url: `${req.headers.origin}/pricing?canceled=true`,
+      success_url: `${req.headers.origin}/#resource-store?success=true&pack=${resourcePackId}`,
+      cancel_url: `${req.headers.origin}/?canceled=true`,
       metadata: {
         user_id: user.id,
-        price_type: priceType,
+        price_type: 'resource-pack',
+        resource_pack_id: resourcePackId,
       },
     });
 
     return res.status(200).json({ url: session.url });
   } catch (error) {
-    console.error('Stripe checkout error:', error);
+    console.error('Stripe resource checkout error:', error);
     return res.status(500).json({ error: 'Failed to create checkout session' });
   }
 }

@@ -24,6 +24,10 @@ export default function LoginPage() {
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
+  // Get the redirect URL from query params or default to current page
+  const redirectTo =
+    (router.query.next as string) || (router.query.redirect as string) || '/';
+
   const handleEmailAuth = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
@@ -38,7 +42,8 @@ export default function LoginPage() {
       } else if (isSignUp) {
         toast.success('Check your email to confirm your account!');
       } else {
-        router.push('/ai-generator');
+        // 登录成功后跳转回原页面或首页
+        router.push(redirectTo);
       }
     } catch (err) {
       toast.error('An error occurred. Please try again.');
@@ -49,6 +54,10 @@ export default function LoginPage() {
 
   const handleOAuthLogin = async (provider: 'google' | 'github') => {
     try {
+      // Save redirect URL to localStorage so it can be used after OAuth callback
+      if (redirectTo && redirectTo !== '/') {
+        sessionStorage.setItem('auth_redirect', redirectTo);
+      }
       if (provider === 'google') {
         await signInWithGoogle();
       } else {
