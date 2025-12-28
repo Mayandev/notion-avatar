@@ -447,7 +447,7 @@ const Home: NextPage<HomeProps> = ({ initialPurchasedPacks }) => {
               {faqItems.map((item) => (
                 <div
                   key={item.answer}
-                  className="bg-white rounded-lg shadow-sm p-6 border border-gray-200"
+                  className="bg-white rounded-lg shadow-sm p-6 border-3 border-black"
                 >
                   <h3 className="text-xl font-semibold text-gray-800 mb-3">
                     {t(item.question)}

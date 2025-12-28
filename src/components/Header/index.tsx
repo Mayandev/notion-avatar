@@ -34,7 +34,7 @@ export default function Header() {
           </Link>
         </div>
 
-        <nav className="flex items-center gap-4 relative z-10">
+        <nav className="flex items-center gap-4 relative z-10 mr-5">
           <Link
             href="/ai-generator"
             className={`flex items-center gap-2 px-4 py-2 rounded-full font-bold transition-all ${
@@ -43,7 +43,6 @@ export default function Header() {
                 : 'bg-white text-black hover:bg-gray-100'
             }`}
           >
-            <span className="text-lg">✨</span>
             <span className="hidden sm:inline">{t('ai.title')}</span>
           </Link>
           <UserMenu onLoginClick={() => setIsAuthModalOpen(true)} />

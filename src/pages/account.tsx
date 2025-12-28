@@ -30,6 +30,9 @@ export default function AccountPage() {
   const [usageHistory, setUsageHistory] = useState<UsageRecord[]>([]);
   const [isLoadingHistory, setIsLoadingHistory] = useState(true);
   const [isManagingBilling, setIsManagingBilling] = useState(false);
+  const [purchasedPacks, setPurchasedPacks] = useState<string[]>([]);
+  const [isLoadingPacks, setIsLoadingPacks] = useState(true);
+  const [downloadingPack, setDownloadingPack] = useState<string | null>(null);
 
   useEffect(() => {
     if (!isLoading && !user) {
@@ -57,6 +60,31 @@ export default function AccountPage() {
     }
   }, [user]);
 
+  useEffect(() => {
+    const fetchPurchasedPacks = async () => {
+      if (!user) {
+        setIsLoadingPacks(false);
+        return;
+      }
+
+      try {
+        const response = await fetch('/api/resources/purchased');
+        if (response.ok) {
+          const data = await response.json();
+          setPurchasedPacks(data.packs || []);
+        }
+      } catch (error) {
+        console.error('Failed to fetch purchased packs:', error);
+      } finally {
+        setIsLoadingPacks(false);
+      }
+    };
+
+    if (user) {
+      fetchPurchasedPacks();
+    }
+  }, [user]);
+
   const handleManageBilling = async () => {
     setIsManagingBilling(true);
     try {
@@ -75,6 +103,39 @@ export default function AccountPage() {
       toast.error('Failed to open billing portal');
     } finally {
       setIsManagingBilling(false);
+    }
+  };
+
+  const handleDownload = async (packId: string) => {
+    setDownloadingPack(packId);
+    try {
+      const response = await fetch(`/api/resources/download?pack=${packId}`);
+      const data = await response.json();
+
+      if (response.ok && data.url) {
+        window.location.href = data.url;
+        // 延迟清除 loading 状态，给下载一些时间
+        setTimeout(() => {
+          setDownloadingPack(null);
+        }, 2000);
+      } else {
+        throw new Error(data.error || 'Failed to download');
+      }
+    } catch (error) {
+      console.error('Download error:', error);
+      toast.error('Failed to download resource pack. Please try again.');
+      setDownloadingPack(null);
+    }
+  };
+
+  const getPackName = (packId: string) => {
+    switch (packId) {
+      case 'design-pack':
+        return t('resourceStore.designPack.title');
+      case 'scribbles-pack':
+        return t('resourceStore.scribblesPack.title');
+      default:
+        return packId;
     }
   };
 
@@ -214,6 +275,59 @@ export default function AccountPage() {
                 </div>
               </div>
             )}
+
+            {/* Purchased Resources */}
+            <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 mb-6">
+              <h2 className="text-lg font-bold text-gray-900 mb-4">
+                已购买的资源
+              </h2>
+              {isLoadingPacks ? (
+                <div className="text-center py-8">
+                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-black mx-auto" />
+                </div>
+              ) : purchasedPacks.length > 0 ? (
+                <div className="space-y-3">
+                  {purchasedPacks.map((packId) => (
+                    <div
+                      key={packId}
+                      className="flex items-center justify-between py-3 border-b border-gray-100 last:border-0"
+                    >
+                      <div>
+                        <p className="font-medium text-gray-900">
+                          {getPackName(packId)}
+                        </p>
+                        <p className="text-sm text-gray-500">资源包</p>
+                      </div>
+                      <button
+                        onClick={() => handleDownload(packId)}
+                        disabled={downloadingPack === packId}
+                        type="button"
+                        className="px-4 py-2 text-sm bg-black text-white rounded-lg hover:bg-gray-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+                      >
+                        {downloadingPack === packId ? (
+                          <>
+                            <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white" />
+                            <span>下载中...</span>
+                          </>
+                        ) : (
+                          t('download')
+                        )}
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <p className="text-gray-500 text-center py-8">
+                  还没有购买任何资源。{' '}
+                  <Link
+                    href="/resources"
+                    className="text-black font-medium hover:underline"
+                  >
+                    浏览资源包
+                  </Link>
+                </p>
+              )}
+            </div>
 
             {/* Usage History */}
             <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 mb-6">

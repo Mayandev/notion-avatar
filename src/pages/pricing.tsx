@@ -196,7 +196,8 @@ export default function PricingPage() {
                 <button
                   onClick={() => handleSelectPlan(plan.priceType)}
                   disabled={
-                    isCurrentPlan(plan.name) || loadingPlan === plan.priceType
+                    isCurrentPlan(plan.name) ||
+                    (loadingPlan !== null && loadingPlan === plan.priceType)
                   }
                   type="button"
                   className={`w-full py-3 px-4 rounded-xl font-bold transition-all ${
@@ -207,7 +208,7 @@ export default function PricingPage() {
                       : 'bg-white text-black border-2 border-black hover:bg-gray-50'
                   } disabled:opacity-50`}
                 >
-                  {loadingPlan === plan.priceType
+                  {loadingPlan !== null && loadingPlan === plan.priceType
                     ? 'Loading...'
                     : isCurrentPlan(plan.name)
                     ? 'Current Plan'
