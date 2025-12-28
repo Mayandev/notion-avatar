@@ -46,7 +46,35 @@ export default async function handler(
       });
 
       if (error) {
-        return res.status(400).json({ error: error.message });
+        // Provide more specific error messages
+        let errorMessage = error.message;
+        if (error.message === 'Invalid login credentials') {
+          errorMessage =
+            'Invalid email or password. Please check your credentials and try again.';
+        } else if (error.message.includes('Email not confirmed')) {
+          errorMessage =
+            'Please confirm your email address before signing in. Check your inbox for the confirmation link.';
+        }
+        return res.status(400).json({ error: errorMessage });
+      }
+
+      // Verify session was created
+      if (!data.session) {
+        return res.status(400).json({
+          error: 'Session creation failed. Please try again.',
+        });
+      }
+
+      // Session cookie is automatically set by createServerClient
+      // Verify the session is accessible
+      const {
+        data: { session: currentSession },
+      } = await supabase.auth.getSession();
+
+      if (!currentSession) {
+        return res.status(500).json({
+          error: 'Failed to establish session. Please try again.',
+        });
       }
 
       return res.status(200).json({

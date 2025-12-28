@@ -22,7 +22,16 @@ export function createClient(req: NextApiRequest, res: NextApiResponse) {
       setAll(
         cookiesToSet: { name: string; value: string; options: CookieOptions }[],
       ) {
-        const cookies = cookiesToSet.map(({ name, value, options }) => {
+        // Get existing Set-Cookie headers
+        const existingCookies = res.getHeader('Set-Cookie');
+        const existingCookiesArray: string[] = Array.isArray(existingCookies)
+          ? existingCookies.map(String)
+          : existingCookies
+          ? [String(existingCookies)]
+          : [];
+
+        // Create new cookie strings
+        const newCookies = cookiesToSet.map(({ name, value, options }) => {
           const parts = [`${name}=${value}`];
           parts.push(`Path=${options.path || '/'}`);
           if (options.httpOnly) parts.push('HttpOnly');
@@ -31,7 +40,9 @@ export function createClient(req: NextApiRequest, res: NextApiResponse) {
           if (options.maxAge) parts.push(`Max-Age=${options.maxAge}`);
           return parts.join('; ');
         });
-        res.setHeader('Set-Cookie', cookies);
+
+        // Combine existing and new cookies
+        res.setHeader('Set-Cookie', [...existingCookiesArray, ...newCookies]);
       },
     },
   });

@@ -5,12 +5,16 @@ interface DailyLimitBannerProps {
   remaining: number;
   total: number;
   isUnlimited: boolean;
+  freeRemaining?: number;
+  paidCredits?: number;
 }
 
 export default function DailyLimitBanner({
   remaining,
   total,
   isUnlimited,
+  freeRemaining,
+  paidCredits,
 }: DailyLimitBannerProps) {
   const { t } = useTranslation('common');
   const router = useRouter();
@@ -33,6 +37,23 @@ export default function DailyLimitBanner({
   }
 
   if (remaining > 0) {
+    // If user has paid credits, show total available
+    if (paidCredits && paidCredits > 0) {
+      return (
+        <div className="text-center text-sm text-gray-500 mt-6">
+          <span className="font-bold text-black">{remaining}</span> generations
+          available
+          {freeRemaining !== undefined && freeRemaining > 0 && (
+            <span className="text-gray-400">
+              {' '}
+              ({freeRemaining} free today + {paidCredits} credits)
+            </span>
+          )}
+        </div>
+      );
+    }
+
+    // Only free generations
     return (
       <div className="text-center text-sm text-gray-500 mt-6">
         Remaining free generations today:{' '}

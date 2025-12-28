@@ -224,7 +224,7 @@ export default function PricingPage() {
               Frequently Asked Questions
             </h2>
             <div className="space-y-6">
-              <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+              <div className="bg-white rounded-xl p-6 shadow-sm border-2 border-black">
                 <h3 className="font-bold text-gray-900 mb-2">
                   What happens when I run out of free generations?
                 </h3>
@@ -234,7 +234,7 @@ export default function PricingPage() {
                   subscribe to Pro for unlimited access.
                 </p>
               </div>
-              <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+              <div className="bg-white rounded-xl p-6 shadow-sm border-2 border-black">
                 <h3 className="font-bold text-gray-900 mb-2">
                   Do credits expire?
                 </h3>
@@ -242,7 +242,7 @@ export default function PricingPage() {
                   No! Credits never expire. Use them whenever you need them.
                 </p>
               </div>
-              <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+              <div className="bg-white rounded-xl p-6 shadow-sm border-2 border-black">
                 <h3 className="font-bold text-gray-900 mb-2">
                   Can I cancel my subscription anytime?
                 </h3>

@@ -34,11 +34,31 @@ export default async function handler(
       .eq('user_id', user.id)
       .single();
 
-    // If user has active paid subscription, they have unlimited usage
+    // Check if subscription has expired
+    let isSubscriptionActive = false;
     if (
       subscription?.plan_type === 'monthly' &&
-      subscription?.status === 'active'
+      subscription?.status === 'active' &&
+      subscription?.current_period_end
     ) {
+      const periodEnd = new Date(subscription.current_period_end);
+      const now = new Date();
+      isSubscriptionActive = periodEnd >= now;
+
+      // If subscription has expired, update it
+      if (!isSubscriptionActive) {
+        await supabase
+          .from('subscriptions')
+          .update({
+            status: 'canceled',
+            plan_type: 'free',
+          })
+          .eq('user_id', user.id);
+      }
+    }
+
+    // If user has active paid subscription, they have unlimited usage
+    if (isSubscriptionActive) {
       return res.status(200).json({
         remaining: -1, // -1 indicates unlimited
         total: -1,

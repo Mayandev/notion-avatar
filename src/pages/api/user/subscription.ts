@@ -31,6 +31,35 @@ export default async function handler(
       .eq('user_id', userId)
       .single();
 
+    // Check if subscription has expired
+    let finalSubscription = subscription;
+    if (
+      subscription &&
+      subscription.plan_type === 'monthly' &&
+      subscription.status === 'active' &&
+      subscription.current_period_end
+    ) {
+      const periodEnd = new Date(subscription.current_period_end);
+      const now = new Date();
+
+      // If subscription has expired, update it to inactive
+      if (periodEnd < now) {
+        await supabase
+          .from('subscriptions')
+          .update({
+            status: 'canceled',
+            plan_type: 'free',
+          })
+          .eq('user_id', userId);
+
+        finalSubscription = {
+          ...subscription,
+          status: 'canceled',
+          plan_type: 'free',
+        };
+      }
+    }
+
     // Fetch remaining credits
     const { data: creditData } = await supabase
       .from('credit_packages')
@@ -42,7 +71,7 @@ export default async function handler(
       creditData?.reduce((sum, pkg) => sum + pkg.credits_remaining, 0) || 0;
 
     return res.status(200).json({
-      subscription: subscription || null,
+      subscription: finalSubscription || null,
       credits: totalCredits,
     });
   } catch (error) {

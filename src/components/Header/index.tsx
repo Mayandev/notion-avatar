@@ -26,10 +26,21 @@ export default function Header() {
               width={50}
               height={50}
             />
-            <span className="text-lg leading-tight">
-              Notion
+            <span className="text-lg leading-tight relative inline-block">
+              Notion {router.pathname === '/ai-generator' ? 'AI' : ''}
               <br />
               {t('avatarMaker')}
+              {router.pathname === '/ai-generator' && (
+                <span className="absolute top-0 right-4 transition-opacity">
+                  <Image
+                    src="/icon/ai-stars.svg"
+                    alt="AI Stars"
+                    width={18}
+                    height={18}
+                    className="drop-shadow-sm"
+                  />
+                </span>
+              )}
             </span>
           </Link>
         </div>

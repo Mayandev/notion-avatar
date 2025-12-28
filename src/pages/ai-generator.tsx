@@ -169,6 +169,8 @@ export default function AIGeneratorPage() {
             remaining={usageState.remaining}
             total={usageState.total}
             isUnlimited={usageState.isUnlimited}
+            freeRemaining={usageState.freeRemaining}
+            paidCredits={usageState.paidCredits}
           />
         )}
 

@@ -22,16 +22,19 @@ import { useRouter } from 'next/router';
 import * as ga from '@/lib/ga';
 import { useTranslation } from 'next-i18next';
 import { useModalStates } from '@/hooks/useModalState';
+import { useAuth } from '@/contexts/AuthContext';
 import SelectionWrapper from './SelectionWrapper';
 import DownloadModal from '../Modal/Download';
 import EmbedModal from '../Modal/Embed';
 import ShareModal from '../Modal/Share';
+import AuthModal from '../Auth/AuthModal';
 
 import PalettePopover from '../Popover/Palette';
 import AvatarPickerPopover from '../Popover/AvatarPicker';
 
 export default function AvatarEditor() {
   const router = useRouter();
+  const { user, subscription } = useAuth();
   const [showLanguageMenu, setShowLanguageMenu] = useState(false);
   const [config, setConfig] = useState({ ...getRandomStyle() });
   const [preview, setPreview] = useState('');
@@ -44,6 +47,7 @@ export default function AvatarEditor() {
   // default placeholder for compatible modal
   const [imageDataURL, setImageDataURL] = useState('/logo.gif');
   const [avatarPart, setAvatarPart] = useState<AvatarPickerConfig | null>(null);
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
 
   const festival = getCurrentFestival();
 
@@ -176,6 +180,7 @@ export default function AvatarEditor() {
   };
 
   const onOpenEmbedModal = () => {
+    // Allow everyone to open the modal, but only show links to premium members
     toggleModal('embed');
     // record embed action
     ga.event({ action: 'embed', params: { ...config } });
@@ -187,6 +192,10 @@ export default function AvatarEditor() {
 
   return (
     <>
+      <AuthModal
+        isOpen={isAuthModalOpen}
+        onClose={() => setIsAuthModalOpen(false)}
+      />
       {modalStates.share && (
         <ShareModal
           onCancel={() => toggleModal('share')}
@@ -213,6 +222,18 @@ export default function AvatarEditor() {
             shape: background.shape,
           }}
           imageType={imageType}
+          isPremium={
+            subscription?.plan_type === 'monthly' &&
+            subscription?.status === 'active'
+          }
+          onUpgrade={() => {
+            toggleModal('embed');
+            if (!user) {
+              setIsAuthModalOpen(true);
+            } else {
+              router.push('/pricing');
+            }
+          }}
         />
       )}
       <div className="flex justify-center items-center flex-col">

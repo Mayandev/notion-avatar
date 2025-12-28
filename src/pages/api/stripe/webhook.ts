@@ -136,17 +136,44 @@ export default async function handler(
       case 'customer.subscription.updated': {
         const subscriptionData = event.data.object as any;
 
+        // Check if subscription has expired
+        const periodEnd = new Date(subscriptionData.current_period_end * 1000);
+        const now = new Date();
+        const isExpired = periodEnd < now;
+
+        // Determine status: if expired or status is not active, mark as inactive
+        let status = 'inactive';
+        let planType = 'free';
+
+        if (
+          subscriptionData.status === 'active' &&
+          !isExpired &&
+          !subscriptionData.cancel_at_period_end
+        ) {
+          status = 'active';
+          planType = 'monthly';
+        } else if (subscriptionData.status === 'active' && isExpired) {
+          // Subscription expired but Stripe hasn't sent deleted event yet
+          status = 'canceled';
+          planType = 'free';
+        } else if (
+          subscriptionData.status === 'active' &&
+          subscriptionData.cancel_at_period_end
+        ) {
+          // Subscription is active but will cancel at period end
+          status = 'active';
+          planType = 'monthly';
+        }
+
         await supabase
           .from('subscriptions')
           .update({
-            status:
-              subscriptionData.status === 'active' ? 'active' : 'inactive',
+            status,
+            plan_type: planType,
             current_period_start: new Date(
               subscriptionData.current_period_start * 1000,
             ).toISOString(),
-            current_period_end: new Date(
-              subscriptionData.current_period_end * 1000,
-            ).toISOString(),
+            current_period_end: periodEnd.toISOString(),
             cancel_at_period_end: subscriptionData.cancel_at_period_end,
           })
           .eq('stripe_subscription_id', subscriptionData.id);
