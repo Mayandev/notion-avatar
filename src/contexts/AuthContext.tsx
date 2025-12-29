@@ -116,9 +116,24 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       typeof window !== 'undefined'
         ? sessionStorage.getItem('auth_redirect')
         : null;
-    const next =
-      savedRedirect ||
-      (typeof window !== 'undefined' ? window.location.pathname : '/');
+
+    // Get locale from pathname or default to 'en'
+    const pathname =
+      typeof window !== 'undefined' ? window.location.pathname : '/';
+    const localeMatch = pathname.match(/^\/(zh|zh-TW|ko|ja|es|fr|de|ru|pt)/);
+    const locale = localeMatch ? localeMatch[1] : 'en';
+    const homePath = locale === 'en' ? '/' : `/${locale}`;
+
+    // Use saved redirect, or current pathname if not login page, or home
+    let next = savedRedirect || homePath;
+    if (!savedRedirect && pathname && !pathname.includes('/auth/login')) {
+      next = pathname;
+    }
+
+    // If next is login page, redirect to home instead
+    if (next.includes('/auth/login')) {
+      next = homePath;
+    }
 
     // Clear saved redirect
     if (typeof window !== 'undefined') {
@@ -147,9 +162,24 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       typeof window !== 'undefined'
         ? sessionStorage.getItem('auth_redirect')
         : null;
-    const next =
-      savedRedirect ||
-      (typeof window !== 'undefined' ? window.location.pathname : '/');
+
+    // Get locale from pathname or default to 'en'
+    const pathname =
+      typeof window !== 'undefined' ? window.location.pathname : '/';
+    const localeMatch = pathname.match(/^\/(zh|zh-TW|ko|ja|es|fr|de|ru|pt)/);
+    const locale = localeMatch ? localeMatch[1] : 'en';
+    const homePath = locale === 'en' ? '/' : `/${locale}`;
+
+    // Use saved redirect, or current pathname if not login page, or home
+    let next = savedRedirect || homePath;
+    if (!savedRedirect && pathname && !pathname.includes('/auth/login')) {
+      next = pathname;
+    }
+
+    // If next is login page, redirect to home instead
+    if (next.includes('/auth/login')) {
+      next = homePath;
+    }
 
     // Clear saved redirect
     if (typeof window !== 'undefined') {

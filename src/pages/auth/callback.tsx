@@ -26,7 +26,16 @@ export default function AuthCallback() {
           typeof window !== 'undefined'
             ? sessionStorage.getItem('auth_redirect')
             : null;
-        const redirectTo = next || savedRedirect || '/';
+
+        // Get locale from router
+        const locale = router.locale || 'en';
+        const homePath = locale === 'en' ? '/' : `/${locale}`;
+        let redirectTo = (next as string) || savedRedirect || homePath;
+
+        // If redirectTo is login page, redirect to home instead
+        if (redirectTo.includes('/auth/login')) {
+          redirectTo = homePath;
+        }
 
         // 清除保存的 redirect
         if (typeof window !== 'undefined') {
@@ -35,15 +44,19 @@ export default function AuthCallback() {
 
         // 将 code 和 next 发送到 API 处理
         const nextParam =
-          redirectTo !== '/' ? `&next=${encodeURIComponent(redirectTo)}` : '';
+          redirectTo !== '/' && redirectTo !== homePath
+            ? `&next=${encodeURIComponent(redirectTo)}`
+            : '';
         window.location.href = `/api/auth/callback?code=${encodeURIComponent(
           code,
         )}${nextParam}`;
         return;
       }
 
-      // 没有 code 也没有错误，跳转到首页
-      router.push('/');
+      // 没有 code 也没有错误，跳转到首页（带语言前缀）
+      const locale = router.locale || 'en';
+      const homePath = locale === 'en' ? '/' : `/${locale}`;
+      router.push(homePath);
     };
 
     handleCallback();

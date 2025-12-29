@@ -24,9 +24,25 @@ export default function LoginPage() {
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  // Get the redirect URL from query params or default to current page
-  const redirectTo =
-    (router.query.next as string) || (router.query.redirect as string) || '/';
+  // Get the redirect URL from query params or default to home page
+  // If redirectTo is the login page itself, redirect to home instead
+  const getRedirectTo = () => {
+    const locale = router.locale || 'en';
+    const homePath = locale === 'en' ? '/' : `/${locale}`;
+    const rawRedirect =
+      (router.query.next as string) ||
+      (router.query.redirect as string) ||
+      homePath;
+
+    // If redirect is login page, redirect to home instead
+    if (rawRedirect.includes('/auth/login')) {
+      return homePath;
+    }
+
+    return rawRedirect;
+  };
+
+  const redirectTo = getRedirectTo();
 
   const handleEmailAuth = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -45,7 +61,7 @@ export default function LoginPage() {
         // 登录成功后跳转回原页面或首页
         router.push(redirectTo);
       }
-    } catch (err) {
+    } catch {
       toast.error('An error occurred. Please try again.');
     } finally {
       setIsLoading(false);
@@ -54,8 +70,9 @@ export default function LoginPage() {
 
   const handleOAuthLogin = async (provider: 'google' | 'github') => {
     try {
-      // Save redirect URL to localStorage so it can be used after OAuth callback
-      if (redirectTo && redirectTo !== '/') {
+      // Save redirect URL to sessionStorage so it can be used after OAuth callback
+      // Only save if it's not the login page itself
+      if (redirectTo && !redirectTo.includes('/auth/login')) {
         sessionStorage.setItem('auth_redirect', redirectTo);
       }
       if (provider === 'google') {
@@ -63,7 +80,7 @@ export default function LoginPage() {
       } else {
         await signInWithGithub();
       }
-    } catch (err) {
+    } catch {
       toast.error('An error occurred. Please try again.');
     }
   };
