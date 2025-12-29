@@ -103,8 +103,8 @@
     "step4Desc": "Teile deinen neuen Notion-Avatar auf sozialen Medien und zeige ihn deinen Freunden!"
   },
   "ai": {
-    "title": "Notion KI-Avatar-Generator",
-    "description": "Verwandle deine Fotos oder Ideen mit KI-Magie in Notion-style Avatare.",
+    "title": "Notion AI Avatar",
+    "description": "Verwandle deine Fotos oder Ideen mit AI-Magie in Notion-style Avatare.",
     "heroSubtitle": "Verwandle deine Fotos oder Textbeschreibungen in einzigartige Notion-style Avatare in nur wenigen Sekunden",
     "heroCTA": "Loslegen",
     "photo2avatar": "Foto zu Avatar",
@@ -122,9 +122,9 @@
     "error": "Etwas ist schief gelaufen. Bitte versuche es erneut.",
     "examples": {
       "photoTitle": "Foto-Transformation",
-      "photoDesc": "Sieh, wie KI deine echten Fotos in Notion-style Avatare verwandelt",
+      "photoDesc": "Sieh, wie AI deine echten Fotos in Notion-style Avatare verwandelt",
       "textTitle": "Text-Generierungsbeispiele",
-      "textDesc": "Beschreibe einfach, was du willst, und KI wird es für dich generieren",
+      "textDesc": "Beschreibe einfach, was du willst, und AI wird es für dich generieren",
       "before": "Vorher",
       "after": "Nachher",
       "apply": "Diesen Prompt Anwenden",
@@ -133,11 +133,11 @@
       "prompt3": "Eine Frau mit kurzen Haaren, Ohrringe, selbstbewusster Ausdruck"
     },
     "features": {
-      "title": "Leistungsstarke KI-Funktionen",
+      "title": "Leistungsstarke AI-Funktionen",
       "photo2avatarTitle": "Foto zu Avatar",
-      "photo2avatarDesc": "Lade dein Foto hoch und KI erkennt und konvertiert es automatisch in einen Notion-style Avatar und bewahrt deine einzigartigen Merkmale",
+      "photo2avatarDesc": "Lade dein Foto hoch und AI erkennt und konvertiert es automatisch in einen Notion-style Avatar und bewahrt deine einzigartigen Merkmale",
       "text2avatarTitle": "Text zu Avatar",
-      "text2avatarDesc": "Beschreibe einfach die Avatar-Merkmale, die du möchtest, und KI generiert einen personalisierten Notion-style Avatar für dich"
+      "text2avatarDesc": "Beschreibe einfach die Avatar-Merkmale, die du möchtest, und AI generiert einen personalisierten Notion-style Avatar für dich"
     },
     "steps": {
       "title": "Wie Es Funktioniert",
@@ -145,8 +145,8 @@
       "step1Desc": "Wähle Foto-zu-Avatar oder Text-zu-Avatar Modus",
       "step2Title": "Hochladen oder Beschreiben",
       "step2Desc": "Lade dein Foto hoch oder gib eine Textbeschreibung deines gewünschten Avatars ein",
-      "step3Title": "KI-Generierung",
-      "step3Desc": "Klicke auf Generieren und KI erstellt deinen Avatar in Sekunden",
+      "step3Title": "AI-Generierung",
+      "step3Desc": "Klicke auf Generieren und AI erstellt deinen Avatar in Sekunden",
       "step4Title": "Herunterladen & Verwenden",
       "step4Desc": "Lade deinen generierten Avatar herunter und verwende ihn auf Notion, sozialen Medien und mehr"
     },
@@ -169,8 +169,8 @@
     },
     "faq": {
       "title": "Häufig Gestellte Fragen",
-      "q1": "Wie lange dauert die KI-Generierung?",
-      "a1": "Normalerweise nur wenige Sekunden. KI verarbeitet deine Anfrage im Hintergrund und du kannst herunterladen, sobald es fertig ist.",
+      "q1": "Wie lange dauert die AI-Generierung?",
+      "a1": "Normalerweise nur wenige Sekunden. AI verarbeitet deine Anfrage im Hintergrund und du kannst herunterladen, sobald es fertig ist.",
       "q2": "Wie viele Generierungen können kostenlose Benutzer pro Tag machen?",
       "a2": "Kostenlose Benutzer können 1 Avatar pro Tag generieren. Upgrade auf Pro für unbegrenzte Generierungen.",
       "q3": "Wie upgrade ich auf Pro?",
@@ -178,15 +178,15 @@
       "q4": "Kann ich generierte Avatare kommerziell verwenden?",
       "a4": "Ja, alle generierten Avatare folgen der CC0-Lizenz und können ohne Namensnennung für kommerzielle Zwecke verwendet werden."
     },
-    "seoKeywords": "KI-Avatar-Generator,KI-Avatar-Ersteller,Notion KI-Avatar,Foto zu KI-Avatar,Text zu KI-Avatar,KI-Avatar-Ersteller,Notion-Stil KI-Avatar,KI-generierter Avatar,Kostenloser KI-Avatar-Generator,Online KI-Avatar-Ersteller,KI-Avatar-Tool,Künstliche Intelligenz Avatar,KI-Profilbild-Generator,KI-Avatar-Design,Intelligenter Avatar-Generator"
+    "seoKeywords": "AI-Avatar-Generator,AI-Avatar-Ersteller,Notion AI-Avatar,Foto zu AI-Avatar,Text zu AI-Avatar,AI-Avatar-Ersteller,Notion-Stil AI-Avatar,AI-generierter Avatar,Kostenloser AI-Avatar-Generator,Online AI-Avatar-Ersteller,AI-Avatar-Tool,Künstliche Intelligenz Avatar,AI-Profilbild-Generator,AI-Avatar-Design,Intelligenter Avatar-Generator"
   },
   "aiFeatureIntro": {
-    "title": "Neue KI-Avatar-Generator-Funktion",
-    "description": "Du kannst jetzt KI-Technologie verwenden, um schnell Notion-style Avatare zu generieren!",
+    "title": "Neue AI-Avatar-Generator-Funktion",
+    "description": "Du kannst jetzt AI-Technologie verwenden, um schnell Notion-style Avatare zu generieren!",
     "feature1Title": "Foto zu Avatar",
-    "feature1Desc": "Lade dein Foto hoch und KI wird es automatisch in einen Notion-style Avatar umwandeln",
+    "feature1Desc": "Lade dein Foto hoch und AI wird es automatisch in einen Notion-style Avatar umwandeln",
     "feature2Title": "Text zu Avatar",
-    "feature2Desc": "Beschreibe einfach den Avatar, den du möchtest, und KI wird ihn für dich generieren",
+    "feature2Desc": "Beschreibe einfach den Avatar, den du möchtest, und AI wird ihn für dich generieren",
     "tryNow": "Jetzt ausprobieren",
     "dontShowAgain": "Nicht mehr anzeigen"
   }

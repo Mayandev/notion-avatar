@@ -23,7 +23,16 @@ export default function UserMenu({ onLoginClick }: UserMenuProps) {
   }, []);
 
   if (isLoading) {
-    return <div className="w-8 h-8 rounded-full bg-gray-200 animate-pulse" />;
+    return (
+      <button
+        type="button"
+        disabled
+        className="flex items-center gap-2 p-1 rounded-full"
+        aria-label="Loading"
+      >
+        <div className="w-8 h-8 rounded-full bg-gray-200 animate-pulse" />
+      </button>
+    );
   }
 
   if (!user) {
@@ -38,8 +47,7 @@ export default function UserMenu({ onLoginClick }: UserMenuProps) {
     );
   }
 
-  const avatarUrl =
-    user.user_metadata?.avatar_url || user.user_metadata?.picture;
+  const avatarUrl = user.user_metadata?.avatar_url;
   const displayName =
     user.user_metadata?.full_name || user.user_metadata?.name || user.email;
   const planLabel =

@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import UserMenu from '@/components/Auth/UserMenu';
 import AuthModal from '@/components/Auth/AuthModal';
-import Decoration from './decoration';
+import Decoration, { WaveDecoration } from './decoration';
 
 export default function Header() {
   const { t } = useTranslation('common');
@@ -48,13 +48,14 @@ export default function Header() {
         <nav className="flex items-center gap-4 relative z-10 mr-5">
           <Link
             href="/ai-generator"
-            className={`flex items-center gap-2 px-4 py-2 rounded-full font-bold transition-all ${
-              router.pathname === '/ai-generator'
-                ? 'bg-black text-white'
-                : 'bg-white text-black hover:bg-gray-100'
-            }`}
+            className="group flex items-center gap-2 px-4 py-2 transition-all relative text-black font-bold"
           >
-            <span className="hidden sm:inline">{t('ai.title')}</span>
+            <span className="hidden sm:inline relative z-10">
+              {t('ai.title')}
+            </span>
+            <span className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 pointer-events-none rotate-3">
+              <WaveDecoration />
+            </span>
           </Link>
           <UserMenu onLoginClick={() => setIsAuthModalOpen(true)} />
         </nav>

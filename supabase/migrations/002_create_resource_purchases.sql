@@ -35,3 +35,4 @@ DROP POLICY IF EXISTS "Service role can manage all purchases" ON public.resource
 CREATE POLICY "Service role can manage all purchases" ON public.resource_purchases
   FOR ALL USING (auth.jwt() ->> 'role' = 'service_role');
 
+
