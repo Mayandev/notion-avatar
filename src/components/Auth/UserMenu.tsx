@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
+import { useTranslation } from 'next-i18next';
 import { useAuth } from '@/contexts/AuthContext';
 
 interface UserMenuProps {
@@ -7,6 +8,7 @@ interface UserMenuProps {
 }
 
 export default function UserMenu({ onLoginClick }: UserMenuProps) {
+  const { t } = useTranslation('common');
   const { user, subscription, credits, signOut, isLoading } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
@@ -28,7 +30,7 @@ export default function UserMenu({ onLoginClick }: UserMenuProps) {
         type="button"
         disabled
         className="flex items-center gap-2 p-1 rounded-full"
-        aria-label="Loading"
+        aria-label={t('menu.loading') || 'Loading'}
       >
         <div className="w-8 h-8 rounded-full bg-gray-200 animate-pulse" />
       </button>
@@ -42,7 +44,7 @@ export default function UserMenu({ onLoginClick }: UserMenuProps) {
         type="button"
         className="px-4 py-2 bg-black text-white text-sm font-medium rounded-lg hover:bg-gray-800 transition-colors"
       >
-        Sign In
+        {t('menu.signIn')}
       </button>
     );
   }
@@ -52,10 +54,10 @@ export default function UserMenu({ onLoginClick }: UserMenuProps) {
     user.user_metadata?.full_name || user.user_metadata?.name || user.email;
   const planLabel =
     subscription?.plan_type === 'monthly'
-      ? 'Pro'
+      ? t('menu.pro')
       : subscription?.plan_type === 'yearly'
-      ? 'Pro'
-      : 'Free';
+      ? t('menu.pro')
+      : t('menu.free');
 
   return (
     <div ref={menuRef} className="relative">
@@ -87,15 +89,18 @@ export default function UserMenu({ onLoginClick }: UserMenuProps) {
             <div className="flex items-center gap-2 mt-2">
               <span
                 className={`px-2 py-0.5 text-xs font-medium rounded-full ${
-                  planLabel === 'Pro'
-                    ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white'
+                  subscription?.plan_type === 'monthly' ||
+                  subscription?.plan_type === 'yearly'
+                    ? 'bg-black text-white'
                     : 'bg-gray-100 text-gray-600'
                 }`}
               >
                 {planLabel}
               </span>
               {credits > 0 && (
-                <span className="text-xs text-gray-500">{credits} credits</span>
+                <span className="text-xs text-gray-500">
+                  {credits} {t('menu.credits')}
+                </span>
               )}
             </div>
           </div>
@@ -107,14 +112,14 @@ export default function UserMenu({ onLoginClick }: UserMenuProps) {
               className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
               onClick={() => setIsOpen(false)}
             >
-              Account Settings
+              {t('menu.accountSettings')}
             </Link>
             <Link
               href="/pricing"
               className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
               onClick={() => setIsOpen(false)}
             >
-              Upgrade Plan
+              {t('menu.upgradePlan')}
             </Link>
           </div>
 
@@ -128,7 +133,7 @@ export default function UserMenu({ onLoginClick }: UserMenuProps) {
               type="button"
               className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors"
             >
-              Sign Out
+              {t('menu.signOut')}
             </button>
           </div>
         </div>

@@ -426,10 +426,10 @@ export default function AIGeneratorPage() {
           {/* Enhanced Hero Section */}
           <section className="text-center mb-16 animate-in fade-in slide-in-from-bottom-4 duration-500">
             <div className="relative inline-block mb-6">
-              <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-4 relative">
+              <h1 className="text-5xl md:text-6xl w-64 md:w-full font-bold text-gray-900 mb-4 relative">
                 {t('ai.title')}
               </h1>
-              <div className="absolute right-0 -top-4 sm:-top-8 sm:-right-14 ">
+              <div className="absolute -right-8 -top-4 md:-top-8 md:-right-14 ">
                 <Image
                   src="/icon/ai-stars.svg"
                   width={60}
@@ -460,6 +460,10 @@ export default function AIGeneratorPage() {
           </section>
 
           {/* Steps Section */}
+
+          <div className="mt-6 mx-auto flex justify-center">
+            <Image src="/icon/arrow.svg" alt="Arrow" width={59} height={126} />
+          </div>
           <section className="py-16 mb-12 animate-in fade-in slide-in-from-bottom-4 duration-500 delay-200">
             <div className="container mx-auto px-4 md:px-8">
               <h2 className="text-3xl font-bold text-center mb-12 text-gray-900">

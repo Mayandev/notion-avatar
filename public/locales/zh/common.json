@@ -189,5 +189,19 @@
     "feature2Desc": "只需描述您想要的头像，AI 就能为您生成",
     "tryNow": "立即体验",
     "dontShowAgain": "不再显示"
+  },
+  "menu": {
+    "title": "菜单",
+    "open": "打开菜单",
+    "close": "关闭菜单",
+    "navigation": "导航菜单",
+    "home": "首页",
+    "signIn": "登录",
+    "signOut": "退出登录",
+    "pro": "专业版",
+    "free": "免费版",
+    "credits": "积分",
+    "accountSettings": "账户设置",
+    "upgradePlan": "升级计划"
   }
 }

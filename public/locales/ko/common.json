@@ -189,5 +189,19 @@
     "feature2Desc": "원하는 아바타를 설명하기만 하면 AI가 생성해드립니다",
     "tryNow": "지금 시도하기",
     "dontShowAgain": "다시 표시하지 않기"
+  },
+  "menu": {
+    "title": "메뉴",
+    "open": "메뉴 열기",
+    "close": "메뉴 닫기",
+    "navigation": "내비게이션 메뉴",
+    "home": "홈",
+    "signIn": "로그인",
+    "signOut": "로그아웃",
+    "pro": "프로",
+    "free": "무료",
+    "credits": "크레딧",
+    "accountSettings": "계정 설정",
+    "upgradePlan": "플랜 업그레이드"
   }
 }

@@ -189,5 +189,19 @@
     "feature2Desc": "欲しいアバターを説明するだけで、AIが生成してくれます",
     "tryNow": "今すぐ試す",
     "dontShowAgain": "今後表示しない"
+  },
+  "menu": {
+    "title": "メニュー",
+    "open": "メニューを開く",
+    "close": "メニューを閉じる",
+    "navigation": "ナビゲーションメニュー",
+    "home": "ホーム",
+    "signIn": "サインイン",
+    "signOut": "サインアウト",
+    "pro": "プロ",
+    "free": "無料",
+    "credits": "クレジット",
+    "accountSettings": "アカウント設定",
+    "upgradePlan": "プランをアップグレード"
   }
 }

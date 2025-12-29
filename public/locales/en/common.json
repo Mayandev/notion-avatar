@@ -204,5 +204,19 @@
     "feature2Desc": "Just describe the avatar you want, and AI will generate it for you",
     "tryNow": "Try Now",
     "dontShowAgain": "Don't show again"
+  },
+  "menu": {
+    "title": "Menu",
+    "open": "Open menu",
+    "close": "Close menu",
+    "navigation": "Navigation menu",
+    "home": "Home",
+    "signIn": "Sign In",
+    "signOut": "Sign Out",
+    "pro": "Pro",
+    "free": "Free",
+    "credits": "credits",
+    "accountSettings": "Account Settings",
+    "upgradePlan": "Upgrade Plan"
   }
 }

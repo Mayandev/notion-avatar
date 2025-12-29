@@ -187,6 +187,14 @@ export default function ExamplesShowcase({
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4 inline-block relative">
               <span className="relative">{t('ai.examples.photoTitle')}</span>
+              <span className="absolute top-[-32px] left-[-32px]">
+                <Image
+                  src="/icon/bling.svg"
+                  width={32}
+                  height={34}
+                  alt="Bling"
+                />
+              </span>
             </h2>
             <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
               {t('ai.examples.photoDesc')}
@@ -224,7 +232,7 @@ export default function ExamplesShowcase({
 
         {/* Text to Avatar Examples */}
         <div>
-          <div className="text-center mb-12">
+          <div className="text-center mb-12 relative">
             <h2 className="text-3xl font-bold text-gray-900 mb-4 inline-block relative">
               <span className="relative">{t('ai.examples.textTitle')}</span>
             </h2>

@@ -189,5 +189,19 @@
     "feature2Desc": "只需描述您想要的頭像，AI 就能為您生成",
     "tryNow": "立即體驗",
     "dontShowAgain": "不再顯示"
+  },
+  "menu": {
+    "title": "選單",
+    "open": "開啟選單",
+    "close": "關閉選單",
+    "navigation": "導航選單",
+    "home": "首頁",
+    "signIn": "登入",
+    "signOut": "登出",
+    "pro": "專業版",
+    "free": "免費版",
+    "credits": "積分",
+    "accountSettings": "帳戶設定",
+    "upgradePlan": "升級方案"
   }
 }

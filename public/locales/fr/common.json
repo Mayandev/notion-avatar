@@ -189,5 +189,19 @@
     "feature2Desc": "Décrivez simplement l'avatar que vous voulez et l'AI le générera pour vous",
     "tryNow": "Essayer Maintenant",
     "dontShowAgain": "Ne plus afficher"
+  },
+  "menu": {
+    "title": "Menu",
+    "open": "Ouvrir le menu",
+    "close": "Fermer le menu",
+    "navigation": "Menu de navigation",
+    "home": "Accueil",
+    "signIn": "Se connecter",
+    "signOut": "Se déconnecter",
+    "pro": "Pro",
+    "free": "Gratuit",
+    "credits": "crédits",
+    "accountSettings": "Paramètres du compte",
+    "upgradePlan": "Mettre à niveau le plan"
   }
 }

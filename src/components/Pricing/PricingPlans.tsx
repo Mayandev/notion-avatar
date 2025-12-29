@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import toast from 'react-hot-toast';
+import Image from 'next/legacy/image';
 import { useAuth } from '@/contexts/AuthContext';
 
 interface Plan {

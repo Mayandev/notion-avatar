@@ -185,5 +185,19 @@
     "feature2Desc": "Solo describe el avatar que quieres y AI lo generará para ti",
     "tryNow": "Probar Ahora",
     "dontShowAgain": "No volver a mostrar"
+  },
+  "menu": {
+    "title": "Menú",
+    "open": "Abrir menú",
+    "close": "Cerrar menú",
+    "navigation": "Menú de navegación",
+    "home": "Inicio",
+    "signIn": "Iniciar sesión",
+    "signOut": "Cerrar sesión",
+    "pro": "Pro",
+    "free": "Gratis",
+    "credits": "créditos",
+    "accountSettings": "Configuración de cuenta",
+    "upgradePlan": "Actualizar plan"
   }
 }
