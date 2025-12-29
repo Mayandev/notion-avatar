@@ -62,7 +62,7 @@ export default function EmbedModal({
 
           {!isPremium && (
             <div className="mt-8 pt-6 border-t border-gray-200">
-              <div className="bg-gray-50 rounded-xl p-6 text-center border-2 border-gray-200">
+              <div className="bg-gray-50 rounded-lg p-6 text-center border-2 border-gray-200">
                 <div className="mb-3">
                   <div className="inline-flex items-center justify-center w-12 h-12 bg-black rounded-full">
                     <svg

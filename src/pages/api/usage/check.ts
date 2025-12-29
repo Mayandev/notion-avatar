@@ -38,22 +38,26 @@ export default async function handler(
     let isSubscriptionActive = false;
     if (
       subscription?.plan_type === 'monthly' &&
-      subscription?.status === 'active' &&
-      subscription?.current_period_end
+      subscription?.status === 'active'
     ) {
-      const periodEnd = new Date(subscription.current_period_end);
-      const now = new Date();
-      isSubscriptionActive = periodEnd >= now;
+      // If current_period_end is null, consider subscription as active
+      if (!subscription.current_period_end) {
+        isSubscriptionActive = true;
+      } else {
+        const periodEnd = new Date(subscription.current_period_end);
+        const now = new Date();
+        isSubscriptionActive = periodEnd >= now;
 
-      // If subscription has expired, update it
-      if (!isSubscriptionActive) {
-        await supabase
-          .from('subscriptions')
-          .update({
-            status: 'canceled',
-            plan_type: 'free',
-          })
-          .eq('user_id', user.id);
+        // If subscription has expired, update it
+        if (!isSubscriptionActive) {
+          await supabase
+            .from('subscriptions')
+            .update({
+              status: 'canceled',
+              plan_type: 'free',
+            })
+            .eq('user_id', user.id);
+        }
       }
     }
 

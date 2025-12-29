@@ -43,6 +43,9 @@ export default function Header() {
               )}
             </span>
           </Link>
+        </div>
+
+        <nav className="flex items-center gap-4 relative z-10 mr-5">
           <Link
             href="/ai-generator"
             className={`flex items-center gap-2 px-4 py-2 rounded-full font-bold transition-all ${
@@ -53,9 +56,6 @@ export default function Header() {
           >
             <span className="hidden sm:inline">{t('ai.title')}</span>
           </Link>
-        </div>
-
-        <nav className="flex items-center gap-4 relative z-10 mr-5">
           <UserMenu onLoginClick={() => setIsAuthModalOpen(true)} />
         </nav>
       </div>

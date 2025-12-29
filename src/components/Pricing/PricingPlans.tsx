@@ -101,7 +101,7 @@ export default function PricingPlans({
         {plans.map((plan) => (
           <div
             key={plan.name}
-            className={`relative bg-white rounded-2xl shadow-lg border-2 p-8 flex flex-col ${
+            className={`relative bg-white rounded-2xl shadow-lg border-3 p-8 flex flex-col ${
               plan.popular ? 'border-black scale-105' : 'border-gray-100'
             }`}
           >

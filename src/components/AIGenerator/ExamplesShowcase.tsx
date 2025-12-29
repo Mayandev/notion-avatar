@@ -197,7 +197,7 @@ export default function ExamplesShowcase({
             {photoExamples.map((example) => (
               <div
                 key={`photo-${example.before}-${example.after}`}
-                className="bg-white border-3 border-black rounded-xl p-6 hover:scale-105 transition-transform duration-200 shadow-sm"
+                className="bg-white border-3 border-black rounded-xl p-6 transition-transform duration-200 shadow-sm"
               >
                 {example.before ? (
                   <ImageComparison
@@ -237,7 +237,7 @@ export default function ExamplesShowcase({
             {textExamples.map((example) => (
               <div
                 key={`text-${example.after}-${example.prompt || ''}`}
-                className="bg-white border-3 border-black rounded-xl p-6 hover:scale-105 transition-transform duration-200 flex flex-col shadow-sm"
+                className="bg-white border-3 border-black rounded-xl p-6 transition-transform duration-200 flex flex-col shadow-sm"
               >
                 {/* Prompt */}
                 {example.prompt && (
@@ -289,7 +289,7 @@ export default function ExamplesShowcase({
                       }
                     }}
                     type="button"
-                    className="w-full py-3 px-4 rounded-full bg-black text-white font-bold text-sm hover:scale-105 active:scale-95 transition-all border-3 border-black shadow-sm hover:shadow-md"
+                    className="w-full py-3 px-4 rounded-full bg-black text-white font-bold text-sm transition-all border-3 border-black shadow-sm hover:shadow-md"
                   >
                     {t('ai.examples.apply')}
                   </button>

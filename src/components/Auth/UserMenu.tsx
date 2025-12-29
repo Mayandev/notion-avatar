@@ -71,7 +71,7 @@ export default function UserMenu({ onLoginClick }: UserMenuProps) {
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-64 bg-white rounded-xl shadow-xl border border-gray-100 py-2 z-50 animate-in fade-in slide-in-from-top-2 duration-200">
+        <div className="absolute right-0 mt-2 w-64 bg-white rounded-xl shadow-xl border border-gray-100 py-2 z-100 animate-in fade-in slide-in-from-top-2 duration-200">
           {/* User Info */}
           <div className="px-4 py-3 border-b border-gray-100">
             <p className="font-medium text-gray-900 truncate">{displayName}</p>

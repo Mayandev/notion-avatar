@@ -20,7 +20,6 @@ import DailyLimitBanner from '@/components/AIGenerator/DailyLimitBanner';
 import AuthModal from '@/components/Auth/AuthModal';
 import UpgradeModal from '@/components/Pricing/UpgradeModal';
 import PricingPlans from '@/components/Pricing/PricingPlans';
-import UseCases from '@/components/UseCases';
 import ExamplesShowcase from '@/components/AIGenerator/ExamplesShowcase';
 import Image from 'next/legacy/image';
 
@@ -390,9 +389,6 @@ export default function AIGeneratorPage() {
               </div>
             </div>
           </section>
-
-          {/* Use Cases Section */}
-          <UseCases />
 
           {/* Examples Showcase Section */}
           <ExamplesShowcase onApplyPrompt={handleApplyPrompt} />

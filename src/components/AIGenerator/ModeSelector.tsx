@@ -26,7 +26,7 @@ export default function ModeSelector({
             : 'text-gray-500 hover:text-black'
         } ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`}
       >
-        📸 {t('ai.photo2avatar')}
+        {t('ai.photo2avatar')}
       </button>
       <button
         type="button"
@@ -38,7 +38,7 @@ export default function ModeSelector({
             : 'text-gray-500 hover:text-black'
         } ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`}
       >
-        ✨ {t('ai.text2avatar')}
+        {t('ai.text2avatar')}
       </button>
     </div>
   );

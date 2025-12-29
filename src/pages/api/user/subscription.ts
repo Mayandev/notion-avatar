@@ -59,6 +59,7 @@ export default async function handler(
         };
       }
     }
+    // If subscription is active but current_period_end is null, keep it as is
 
     // Fetch remaining credits
     const { data: creditData } = await supabase
