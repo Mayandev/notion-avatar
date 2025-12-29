@@ -91,3 +91,44 @@ export function createServerSideClient(context: GetServerSidePropsContext) {
     },
   });
 }
+
+/**
+ * Convert base64 image data URL to Buffer
+ * @param base64DataUrl - Base64 data URL (e.g., "data:image/png;base64,...")
+ * @returns Buffer containing image data
+ */
+export function base64ToBuffer(base64DataUrl: string): Buffer {
+  // Remove data URL prefix if present
+  const base64Data = base64DataUrl.replace(/^data:image\/\w+;base64,/, '');
+  return Buffer.from(base64Data, 'base64');
+}
+
+/**
+ * Upload image to Supabase Storage private bucket
+ * @param imageBuffer - Buffer containing image data
+ * @param userId - User ID for path organization
+ * @param bucketName - Storage bucket name (default: 'generated-avatars')
+ * @returns File path in storage (e.g., "{userId}/{timestamp}.png")
+ */
+export async function uploadImageToStorage(
+  imageBuffer: Buffer,
+  userId: string,
+  bucketName = 'generated-avatars',
+): Promise<string> {
+  const serviceClient = createServiceClient();
+  const timestamp = Date.now();
+  const filePath = `${userId}/${timestamp}.png`;
+
+  const { error } = await serviceClient.storage
+    .from(bucketName)
+    .upload(filePath, imageBuffer, {
+      contentType: 'image/png',
+      upsert: false, // Don't overwrite existing files
+    });
+
+  if (error) {
+    throw new Error(`Failed to upload image to storage: ${error.message}`);
+  }
+
+  return filePath;
+}

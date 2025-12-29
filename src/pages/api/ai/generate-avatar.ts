@@ -1,7 +1,12 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { generateAvatar } from '@/lib/gemini';
 import { AIGenerateRequest, AIGenerateResponse } from '@/types/ai';
-import { createClient, createServiceClient } from '@/lib/supabase/server';
+import {
+  createClient,
+  createServiceClient,
+  base64ToBuffer,
+  uploadImageToStorage,
+} from '@/lib/supabase/server';
 
 const FREE_DAILY_LIMIT = 1;
 
@@ -115,14 +120,26 @@ export default async function handler(
     const input = mode === 'photo2avatar' ? image! : description!;
     const generatedImage = await generateAvatar(mode, input);
 
+    // Upload image to Supabase Storage
+    let imagePath: string | null = null;
+    try {
+      const imageBuffer = base64ToBuffer(generatedImage);
+      imagePath = await uploadImageToStorage(imageBuffer, user!.id);
+    } catch (uploadError) {
+      console.error('Failed to upload image to storage:', uploadError);
+      // Continue without storing image path - don't fail the request
+      // The base64 image is still returned to the client
+    }
+
     // Record usage
     const serviceClient = createServiceClient();
 
-    // Insert usage record
+    // Insert usage record with image_path if upload succeeded
     await serviceClient.from('usage_records').insert({
       user_id: user!.id,
       generation_mode: mode,
       input_type: mode === 'photo2avatar' ? 'image' : 'text',
+      image_path: imagePath,
     });
 
     // Update daily usage or credits

@@ -6,6 +6,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
 import { GetStaticPropsContext } from 'next';
 import toast, { Toaster } from 'react-hot-toast';
+import Image from 'next/legacy/image';
 import { useAuth } from '@/contexts/AuthContext';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -14,25 +15,20 @@ interface UsageRecord {
   id: string;
   generation_mode: string;
   created_at: string;
+  image_path?: string;
 }
 
 export default function AccountPage() {
   const { t } = useTranslation('common');
   const router = useRouter();
-  const {
-    user,
-    subscription,
-    credits,
-    isLoading,
-    signOut,
-    refreshSubscription,
-  } = useAuth();
+  const { user, subscription, credits, isLoading, signOut } = useAuth();
   const [usageHistory, setUsageHistory] = useState<UsageRecord[]>([]);
   const [isLoadingHistory, setIsLoadingHistory] = useState(true);
   const [isManagingBilling, setIsManagingBilling] = useState(false);
   const [purchasedPacks, setPurchasedPacks] = useState<string[]>([]);
   const [isLoadingPacks, setIsLoadingPacks] = useState(true);
   const [downloadingPack, setDownloadingPack] = useState<string | null>(null);
+  const [imageUrls, setImageUrls] = useState<Record<string, string>>({});
 
   useEffect(() => {
     if (!isLoading && !user) {
@@ -47,7 +43,38 @@ export default function AccountPage() {
       try {
         const response = await fetch('/api/usage/history?limit=10');
         const data = await response.json();
-        setUsageHistory(data.records || []);
+        const records = data.records || [];
+        setUsageHistory(records);
+
+        // Fetch signed URLs for records with image_path
+        const urlPromises = records
+          .filter((record: UsageRecord) => record.image_path)
+          .map(async (record: UsageRecord) => {
+            try {
+              const urlResponse = await fetch(
+                `/api/usage/image-url?record_id=${record.id}`,
+              );
+              const urlData = await urlResponse.json();
+              if (urlData.url) {
+                return { id: record.id, url: urlData.url };
+              }
+            } catch (error) {
+              console.error(
+                `Failed to fetch image URL for record ${record.id}:`,
+                error,
+              );
+            }
+            return null;
+          });
+
+        const urlResults = await Promise.all(urlPromises);
+        const urlMap: Record<string, string> = {};
+        urlResults.forEach((result) => {
+          if (result) {
+            urlMap[result.id] = result.url;
+          }
+        });
+        setImageUrls(urlMap);
       } catch (error) {
         console.error('Failed to fetch history:', error);
       } finally {
@@ -342,23 +369,55 @@ export default function AccountPage() {
                 </div>
               ) : usageHistory.length > 0 ? (
                 <div className="space-y-3">
-                  {usageHistory.map((record) => (
-                    <div
-                      key={record.id}
-                      className="flex items-center justify-between py-3 border-b border-gray-100 last:border-0"
-                    >
-                      <div>
-                        <p className="font-medium text-gray-900">
-                          {record.generation_mode === 'photo2avatar'
-                            ? t('ai.photo2avatar')
-                            : t('ai.text2avatar')}
-                        </p>
-                        <p className="text-sm text-gray-500">
-                          {new Date(record.created_at).toLocaleString()}
-                        </p>
+                  {usageHistory.map((record) => {
+                    const imageUrl = imageUrls[record.id];
+                    return (
+                      <div
+                        key={record.id}
+                        className="flex items-center justify-between py-3 border-b border-gray-100 last:border-0"
+                      >
+                        <div className="flex items-center gap-4 flex-1">
+                          {imageUrl ? (
+                            <div className="relative w-16 h-16 rounded-lg overflow-hidden border border-gray-200 flex-shrink-0">
+                              <Image
+                                src={imageUrl}
+                                alt="Generated avatar"
+                                layout="fill"
+                                objectFit="cover"
+                                className="rounded-lg"
+                              />
+                            </div>
+                          ) : (
+                            <div className="w-16 h-16 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center flex-shrink-0">
+                              <svg
+                                className="w-8 h-8 text-gray-400"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth={2}
+                                  d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                                />
+                              </svg>
+                            </div>
+                          )}
+                          <div>
+                            <p className="font-medium text-gray-900">
+                              {record.generation_mode === 'photo2avatar'
+                                ? t('ai.photo2avatar')
+                                : t('ai.text2avatar')}
+                            </p>
+                            <p className="text-sm text-gray-500">
+                              {new Date(record.created_at).toLocaleString()}
+                            </p>
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               ) : (
                 <p className="text-gray-500 text-center py-8">
