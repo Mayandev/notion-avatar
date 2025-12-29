@@ -104,6 +104,7 @@
   },
   "ai": {
     "title": "Notion AI アバター生成",
+    "navTitle": "Notion AI アバター",
     "description": "AIの魔法で写真やアイデアをNotionスタイルのアバターに変換します。",
     "heroSubtitle": "数秒で写真やテキストの説明をユニークなNotionスタイルのアバターに変換",
     "heroCTA": "始める",

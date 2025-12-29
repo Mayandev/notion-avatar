@@ -104,6 +104,7 @@
   },
   "ai": {
     "title": "Notion AI 아바타 생성",
+    "navTitle": "Notion AI 아바타",
     "description": "AI 마법으로 사진이나 아이디어를 Notion 스타일 아바타로 변환하세요.",
     "heroSubtitle": "몇 초 만에 사진이나 텍스트 설명을 고유한 Notion 스타일 아바타로 변환",
     "heroCTA": "시작하기",

@@ -119,6 +119,7 @@
   },
   "ai": {
     "title": "Notion AI Avatar",
+    "navTitle": "Notion AI Avatar",
     "description": "Transform your photos or ideas into Notion-style avatars with AI magic.",
     "heroSubtitle": "Transform your photos or text descriptions into unique Notion-style avatars in just seconds",
     "heroCTA": "Get Started",

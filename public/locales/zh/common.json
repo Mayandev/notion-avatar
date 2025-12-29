@@ -104,6 +104,7 @@
   },
   "ai": {
     "title": "Notion AI 头像生成",
+    "navTitle": "Notion AI 头像",
     "description": "使用 AI 魔法将您的照片或创意转换为 Notion 风格头像。",
     "heroSubtitle": "几秒钟内将您的照片或文字描述转换为独特的 Notion 风格头像",
     "heroCTA": "开始使用",

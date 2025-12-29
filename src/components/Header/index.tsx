@@ -67,7 +67,7 @@ export default function Header() {
             href="/ai-generator"
             className="group flex items-center gap-2 px-4 py-2 transition-all relative text-black font-bold"
           >
-            <span className="relative z-10">{t('ai.title')}</span>
+            <span className="relative z-10">{t('ai.navTitle')}</span>
             <span className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 pointer-events-none rotate-3">
               <WaveDecoration />
             </span>
