@@ -87,13 +87,7 @@ function ImageComparison({
     >
       {/* Before Image (Background) */}
       <div className="absolute inset-0">
-        <Image
-          src={before}
-          alt="Before"
-          layout="fill"
-          objectFit="cover"
-          className="rounded-lg"
-        />
+        <Image src={before} alt="Before" layout="fill" objectFit="cover" />
       </div>
 
       {/* After Image (Clipped) */}
@@ -101,13 +95,7 @@ function ImageComparison({
         className="absolute inset-0 overflow-hidden"
         style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
       >
-        <Image
-          src={after}
-          alt="After"
-          layout="fill"
-          objectFit="cover"
-          className="rounded-lg"
-        />
+        <Image src={after} alt="After" layout="fill" objectFit="cover" />
       </div>
 
       {/* Slider Line */}
@@ -151,13 +139,17 @@ export default function ExamplesShowcase({
       type: 'photo2avatar',
     },
     {
-      before: '/image/avatar-3.jpg',
-      after: '/image/avatar-4.jpg',
+      before:
+        'https://uclqvnpqvartezdtmgpn.supabase.co/storage/v1/object/public/static-resource/ai-image-demo2-final.png',
+      after:
+        'https://uclqvnpqvartezdtmgpn.supabase.co/storage/v1/object/public/static-resource/ai-image-demo2-original.png',
       type: 'photo2avatar',
     },
     {
-      before: '/image/avatar-5.png',
-      after: '/image/avatar-6.png',
+      before:
+        'https://uclqvnpqvartezdtmgpn.supabase.co/storage/v1/object/public/static-resource/ai-image-demo3-final.png',
+      after:
+        'https://uclqvnpqvartezdtmgpn.supabase.co/storage/v1/object/public/static-resource/ai-image-demo3-original.png',
       type: 'photo2avatar',
     },
   ];
@@ -166,19 +158,19 @@ export default function ExamplesShowcase({
   const textExamples: Example[] = [
     {
       after:
-        'https://uclqvnpqvartezdtmgpn.supabase.co/storage/v1/object/public/static-resource/notion-avatar-ai-1767025735126.png',
+        'https://uclqvnpqvartezdtmgpn.supabase.co/storage/v1/object/public/static-resource/notion-avatar-ai-1767027617275.png',
       prompt: t('ai.examples.prompt1'),
       type: 'text2avatar',
     },
     {
       after:
-        'https://uclqvnpqvartezdtmgpn.supabase.co/storage/v1/object/public/static-resource/notion-avatar-ai-1767025604623.png',
+        'https://uclqvnpqvartezdtmgpn.supabase.co/storage/v1/object/public/static-resource/notion-avatar-ai-1767027711321.png',
       prompt: t('ai.examples.prompt2'),
       type: 'text2avatar',
     },
     {
       after:
-        'https://uclqvnpqvartezdtmgpn.supabase.co/storage/v1/object/public/static-resource/notion-avatar-ai-1767025641207.pngg',
+        'https://uclqvnpqvartezdtmgpn.supabase.co/storage/v1/object/public/static-resource/notion-avatar-ai-1767027802302.png',
       prompt: t('ai.examples.prompt3'),
       type: 'text2avatar',
     },
@@ -210,7 +202,7 @@ export default function ExamplesShowcase({
             {photoExamples.map((example) => (
               <div
                 key={`photo-${example.before}-${example.after}`}
-                className="bg-white border-3 border-black rounded-xl p-6 transition-transform duration-200 shadow-sm"
+                className="bg-white border-3 border-black rounded-lg p-6 transition-transform duration-200 shadow-sm"
               >
                 {example.before ? (
                   <ImageComparison
@@ -288,7 +280,6 @@ export default function ExamplesShowcase({
                       alt="Generated Avatar"
                       layout="fill"
                       objectFit="cover"
-                      className="rounded-lg"
                     />
                   </div>
                 </div>
