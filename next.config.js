@@ -12,6 +12,11 @@ module.exports = withPWA({
         hostname: 'uclqvnpqvartezdtmgpn.supabase.co',
         pathname: '/storage/v1/object/public/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'uclqvnpqvartezdtmgpn.supabase.co',
+        pathname: '/storage/v1/object/sign/**',
+      },
     ],
   },
   pwa: {

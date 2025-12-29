@@ -264,6 +264,10 @@
     "createFirstAvatar": "Erstelle deinen ersten Avatar!",
     "signOut": "Abmelden",
     "failedToOpenBillingPortal": "Rechnungsverwaltungsseite konnte nicht geöffnet werden",
-    "failedToDownload": "Ressourcenpaket konnte nicht heruntergeladen werden. Bitte versuchen Sie es erneut."
+    "failedToDownload": "Ressourcenpaket konnte nicht heruntergeladen werden. Bitte versuchen Sie es erneut.",
+    "subscriptionWillCancel": "Ihr Abonnement wird am Ende des Abrechnungszeitraums gekündigt",
+    "expiresOn": "Läuft ab am",
+    "subscriptionCanceled": "Ihr Abonnement wurde gekündigt",
+    "resubscribe": "Erneut abonnieren"
   }
 }

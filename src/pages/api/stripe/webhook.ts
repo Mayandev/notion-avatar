@@ -136,10 +136,23 @@ export default async function handler(
       case 'customer.subscription.updated': {
         const subscriptionData = event.data.object as any;
 
-        // Check if subscription has expired
-        const periodEnd = new Date(subscriptionData.current_period_end * 1000);
+        // Safely convert timestamps with validation
+        const startTs = subscriptionData.current_period_start;
+        const endTs = subscriptionData.current_period_end;
+
+        // Validate timestamps before creating Date objects
+        const periodStart =
+          startTs && typeof startTs === 'number'
+            ? new Date(startTs * 1000).toISOString()
+            : null;
+        const periodEnd =
+          endTs && typeof endTs === 'number'
+            ? new Date(endTs * 1000).toISOString()
+            : null;
+
+        // Check if subscription has expired (only if we have valid periodEnd)
         const now = new Date();
-        const isExpired = periodEnd < now;
+        const isExpired = periodEnd ? new Date(periodEnd) < now : false;
 
         // Determine status: if expired or status is not active, mark as inactive
         let status = 'inactive';
@@ -170,10 +183,8 @@ export default async function handler(
           .update({
             status,
             plan_type: planType,
-            current_period_start: new Date(
-              subscriptionData.current_period_start * 1000,
-            ).toISOString(),
-            current_period_end: periodEnd.toISOString(),
+            current_period_start: periodStart,
+            current_period_end: periodEnd,
             cancel_at_period_end: subscriptionData.cancel_at_period_end,
           })
           .eq('stripe_subscription_id', subscriptionData.id);

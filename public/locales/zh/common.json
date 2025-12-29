@@ -264,6 +264,10 @@
     "createFirstAvatar": "创建你的第一个头像！",
     "signOut": "退出登录",
     "failedToOpenBillingPortal": "无法打开账单管理页面",
-    "failedToDownload": "下载资源包失败，请重试。"
+    "failedToDownload": "下载资源包失败，请重试。",
+    "subscriptionWillCancel": "您的订阅将在计费周期结束时取消",
+    "expiresOn": "到期时间",
+    "subscriptionCanceled": "您的订阅已取消",
+    "resubscribe": "重新订阅"
   }
 }

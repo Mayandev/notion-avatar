@@ -261,6 +261,10 @@
     "createFirstAvatar": "Crie seu primeiro avatar!",
     "signOut": "Sair",
     "failedToOpenBillingPortal": "Falha ao abrir o portal de cobrança",
-    "failedToDownload": "Falha ao baixar o pacote de recursos. Por favor, tente novamente."
+    "failedToDownload": "Falha ao baixar o pacote de recursos. Por favor, tente novamente.",
+    "subscriptionWillCancel": "Sua assinatura será cancelada no final do período de cobrança",
+    "expiresOn": "Expira em",
+    "subscriptionCanceled": "Sua assinatura foi cancelada",
+    "resubscribe": "Reassinar"
   }
 }

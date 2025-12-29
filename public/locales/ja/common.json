@@ -264,6 +264,10 @@
     "createFirstAvatar": "最初のアバターを作成しましょう！",
     "signOut": "サインアウト",
     "failedToOpenBillingPortal": "請求管理ページを開けませんでした",
-    "failedToDownload": "リソースパックのダウンロードに失敗しました。もう一度お試しください。"
+    "failedToDownload": "リソースパックのダウンロードに失敗しました。もう一度お試しください。",
+    "subscriptionWillCancel": "サブスクリプションは請求期間の終了時にキャンセルされます",
+    "expiresOn": "有効期限",
+    "subscriptionCanceled": "サブスクリプションがキャンセルされました",
+    "resubscribe": "再購読"
   }
 }

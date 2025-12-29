@@ -264,6 +264,10 @@
     "createFirstAvatar": "첫 번째 아바타를 만들어보세요!",
     "signOut": "로그아웃",
     "failedToOpenBillingPortal": "결제 관리 페이지를 열 수 없습니다",
-    "failedToDownload": "리소스 팩 다운로드에 실패했습니다. 다시 시도해주세요."
+    "failedToDownload": "리소스 팩 다운로드에 실패했습니다. 다시 시도해주세요.",
+    "subscriptionWillCancel": "구독이 청구 기간 종료 시 취소됩니다",
+    "expiresOn": "만료일",
+    "subscriptionCanceled": "구독이 취소되었습니다",
+    "resubscribe": "재구독"
   }
 }

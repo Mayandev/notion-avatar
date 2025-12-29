@@ -22,6 +22,7 @@ interface Subscription {
   status: string;
   plan_type: string;
   current_period_end: string | null;
+  cancel_at_period_end?: boolean;
 }
 
 interface AuthContextType {

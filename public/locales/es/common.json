@@ -260,6 +260,10 @@
     "createFirstAvatar": "¡Crea tu primer avatar!",
     "signOut": "Cerrar Sesión",
     "failedToOpenBillingPortal": "No se pudo abrir el portal de facturación",
-    "failedToDownload": "Error al descargar el paquete de recursos. Por favor, inténtalo de nuevo."
+    "failedToDownload": "Error al descargar el paquete de recursos. Por favor, inténtalo de nuevo.",
+    "subscriptionWillCancel": "Tu suscripción se cancelará al final del período de facturación",
+    "expiresOn": "Expira el",
+    "subscriptionCanceled": "Tu suscripción ha sido cancelada",
+    "resubscribe": "Volver a suscribirse"
   }
 }

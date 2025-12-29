@@ -264,6 +264,10 @@
     "createFirstAvatar": "Créez votre premier avatar !",
     "signOut": "Se Déconnecter",
     "failedToOpenBillingPortal": "Impossible d'ouvrir le portail de facturation",
-    "failedToDownload": "Échec du téléchargement du pack de ressources. Veuillez réessayer."
+    "failedToDownload": "Échec du téléchargement du pack de ressources. Veuillez réessayer.",
+    "subscriptionWillCancel": "Votre abonnement sera annulé à la fin de la période de facturation",
+    "expiresOn": "Expire le",
+    "subscriptionCanceled": "Votre abonnement a été annulé",
+    "resubscribe": "Réabonner"
   }
 }

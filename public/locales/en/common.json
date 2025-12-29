@@ -264,6 +264,10 @@
     "createFirstAvatar": "Create your first avatar!",
     "signOut": "Sign Out",
     "failedToOpenBillingPortal": "Failed to open billing portal",
-    "failedToDownload": "Failed to download resource pack. Please try again."
+    "failedToDownload": "Failed to download resource pack. Please try again.",
+    "subscriptionWillCancel": "Your subscription will cancel at the end of the billing period",
+    "expiresOn": "Expires on",
+    "subscriptionCanceled": "Your subscription has been canceled",
+    "resubscribe": "Resubscribe"
   }
 }

@@ -264,6 +264,10 @@
     "createFirstAvatar": "創建你的第一個頭像！",
     "signOut": "登出",
     "failedToOpenBillingPortal": "無法打開帳單管理頁面",
-    "failedToDownload": "下載資源包失敗，請重試。"
+    "failedToDownload": "下載資源包失敗，請重試。",
+    "subscriptionWillCancel": "您的訂閱將在計費週期結束時取消",
+    "expiresOn": "到期時間",
+    "subscriptionCanceled": "您的訂閱已取消",
+    "resubscribe": "重新訂閱"
   }
 }
