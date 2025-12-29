@@ -102,6 +102,21 @@
     "step4Title": "あなたの作品を共有",
     "step4Desc": "新しいNotionアバターをソーシャルメディアで共有して友達に見せよう！"
   },
+  "faq": {
+    "title": "よくある質問",
+    "whatIsAvatar": "Notion Avatar Makerとは何ですか？",
+    "whatIsAvatarAnswer": "Notion Avatar Makerは、Notion、ソーシャルメディア、またはその他のデジタルプラットフォームで使用するカスタムアバターを作成できる無料ツールです。",
+    "howToUse": "アバターエディターの使い方は？",
+    "howToUseAnswer": "さまざまな顔の特徴、ヘアスタイル、アクセサリーをクリックしてアバターをカスタマイズします。フリップボタンで向きを変更し、背景ボタンで背景スタイルを調整できます。",
+    "commercialUse": "アバターを商用目的で使用できますか？",
+    "commercialUseAnswer": "はい、Notion Avatarで作成されたすべてのアバターはCC0ライセンスの下でリリースされており、帰属表示なしで商用利用できます。",
+    "privacyConcerns": "ユーザーデータを収集しますか？",
+    "privacyConcernsAnswer": "いいえ、ユーザーデータを収集または保存することはありません。すべてのアバター作成はブラウザ内でローカルに実行されます。",
+    "supportedBrowsers": "どのブラウザがサポートされていますか？",
+    "supportedBrowsersAnswer": "Notion Avatarは、Chrome、Firefox、Safari、Edgeなどのモダンブラウザで最適に動作します。Internet Explorerはサポートされていません。",
+    "isBelongToNotion": "Notion Avatar MakerはNotionと提携していますか？",
+    "isBelongToNotionAnswer": "いいえ、Notion Avatar MakerはNotionと提携していません。これは独立したプロジェクトです。"
+  },
   "ai": {
     "title": "Notion AI アバター生成",
     "navTitle": "Notion AI アバター",
@@ -224,5 +239,31 @@
     "closeModal": "モーダルを閉じる",
     "checkEmail": "アカウントを確認するためにメールを確認してください！",
     "error": "エラーが発生しました。もう一度お試しください。"
+  },
+  "account": {
+    "title": "アカウント設定",
+    "pageTitle": "アカウント | Notion Avatar Maker",
+    "profile": "プロフィール",
+    "subscription": "サブスクリプション",
+    "unlimitedGenerations": "Proサブスクリプションで無制限生成",
+    "cancelsOn": "キャンセル日",
+    "renewsOn": "更新日",
+    "manageBilling": "請求管理",
+    "freeGenerationPerDay": "1日1回の無料生成",
+    "upgradeToPro": "Proにアップグレード",
+    "credits": "クレジット",
+    "creditsRemaining": "残りのクレジット",
+    "buyMore": "さらに購入",
+    "purchasedResources": "購入したリソース",
+    "resourcePack": "リソースパック",
+    "downloading": "ダウンロード中...",
+    "noResourcesPurchased": "まだリソースを購入していません。",
+    "browseResourcePacks": "リソースパックを閲覧",
+    "recentGenerations": "最近の生成",
+    "noGenerationsYet": "まだ生成がありません。",
+    "createFirstAvatar": "最初のアバターを作成しましょう！",
+    "signOut": "サインアウト",
+    "failedToOpenBillingPortal": "請求管理ページを開けませんでした",
+    "failedToDownload": "リソースパックのダウンロードに失敗しました。もう一度お試しください。"
   }
 }

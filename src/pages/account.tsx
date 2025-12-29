@@ -96,11 +96,11 @@ export default function AccountPage() {
       if (data.url) {
         window.location.href = data.url;
       } else {
-        throw new Error(data.error || 'Failed to open billing portal');
+        throw new Error(data.error || t('account.failedToOpenBillingPortal'));
       }
     } catch (error) {
       console.error('Billing portal error:', error);
-      toast.error('Failed to open billing portal');
+      toast.error(t('account.failedToOpenBillingPortal'));
     } finally {
       setIsManagingBilling(false);
     }
@@ -123,7 +123,7 @@ export default function AccountPage() {
       }
     } catch (error) {
       console.error('Download error:', error);
-      toast.error('Failed to download resource pack. Please try again.');
+      toast.error(t('account.failedToDownload'));
       setDownloadingPack(null);
     }
   };
@@ -151,16 +151,16 @@ export default function AccountPage() {
     return null;
   }
 
-  const planLabel = subscription?.plan_type === 'monthly' ? 'Pro' : 'Free';
-  const avatarUrl =
-    user.user_metadata?.avatar_url || user.user_metadata?.picture;
+  const isPro = subscription?.plan_type === 'monthly';
+  const planLabel = isPro ? t('menu.pro') : t('menu.free');
+  const avatarUrl = user.user_metadata?.avatar_url;
   const displayName =
     user.user_metadata?.full_name || user.user_metadata?.name || user.email;
 
   return (
     <>
       <Head>
-        <title>Account | Notion Avatar Maker</title>
+        <title>{t('account.pageTitle')}</title>
       </Head>
 
       <div className="min-h-screen flex flex-col bg-[#fffefc]">
@@ -170,12 +170,14 @@ export default function AccountPage() {
         <main className="flex-grow container mx-auto px-4 py-12">
           <div className="max-w-3xl mx-auto">
             <h1 className="text-3xl font-bold text-gray-900 mb-8">
-              Account Settings
+              {t('account.title')}
             </h1>
 
             {/* Profile Section */}
             <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 mb-6">
-              <h2 className="text-lg font-bold text-gray-900 mb-4">Profile</h2>
+              <h2 className="text-lg font-bold text-gray-900 mb-4">
+                {t('account.profile')}
+              </h2>
               <div className="flex items-center gap-4">
                 {avatarUrl ? (
                   <img
@@ -199,13 +201,11 @@ export default function AccountPage() {
             <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 mb-6">
               <div className="flex items-center justify-between mb-4">
                 <h2 className="text-lg font-bold text-gray-900">
-                  Subscription
+                  {t('account.subscription')}
                 </h2>
                 <span
                   className={`px-3 py-1 text-sm font-medium rounded-full ${
-                    planLabel === 'Pro'
-                      ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white'
-                      : 'bg-gray-100 text-gray-600'
+                    isPro ? 'bg-black text-white' : 'bg-gray-100 text-gray-600'
                   }`}
                 >
                   {planLabel}
@@ -215,17 +215,13 @@ export default function AccountPage() {
               {subscription?.plan_type === 'monthly' ? (
                 <div className="space-y-3">
                   <p className="text-gray-600">
-                    Unlimited generations with Pro subscription
+                    {t('account.unlimitedGenerations')}
                   </p>
                   {subscription.current_period_end && (
                     <p className="text-sm text-gray-500">
-                      {subscription.cancel_at_period_end
-                        ? `Cancels on ${new Date(
-                            subscription.current_period_end,
-                          ).toLocaleDateString()}`
-                        : `Renews on ${new Date(
-                            subscription.current_period_end,
-                          ).toLocaleDateString()}`}
+                      {`${t('account.renewsOn')} ${new Date(
+                        subscription.current_period_end,
+                      ).toLocaleDateString()}`}
                     </p>
                   )}
                   <button
@@ -234,20 +230,22 @@ export default function AccountPage() {
                     type="button"
                     className="px-4 py-2 text-sm border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors disabled:opacity-50"
                   >
-                    {isManagingBilling ? 'Loading...' : 'Manage Billing'}
+                    {isManagingBilling
+                      ? t('auth.loading')
+                      : t('account.manageBilling')}
                   </button>
                 </div>
               ) : (
                 <div className="space-y-3">
                   <p className="text-gray-600">
-                    1 free generation per day
-                    {credits > 0 && ` + ${credits} credits`}
+                    {t('account.freeGenerationPerDay')}
+                    {credits > 0 && ` + ${credits} ${t('menu.credits')}`}
                   </p>
                   <Link
                     href="/pricing"
                     className="inline-block px-4 py-2 bg-black text-white text-sm font-medium rounded-lg hover:bg-gray-800 transition-colors"
                   >
-                    Upgrade to Pro
+                    {t('account.upgradeToPro')}
                   </Link>
                 </div>
               )}
@@ -257,20 +255,22 @@ export default function AccountPage() {
             {credits > 0 && (
               <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 mb-6">
                 <h2 className="text-lg font-bold text-gray-900 mb-4">
-                  Credits
+                  {t('account.credits')}
                 </h2>
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-3xl font-bold text-gray-900">
                       {credits}
                     </p>
-                    <p className="text-gray-500">credits remaining</p>
+                    <p className="text-gray-500">
+                      {t('account.creditsRemaining')}
+                    </p>
                   </div>
                   <Link
                     href="/pricing"
                     className="px-4 py-2 text-sm border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
                   >
-                    Buy More
+                    {t('account.buyMore')}
                   </Link>
                 </div>
               </div>
@@ -279,7 +279,7 @@ export default function AccountPage() {
             {/* Purchased Resources */}
             <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 mb-6">
               <h2 className="text-lg font-bold text-gray-900 mb-4">
-                已购买的资源
+                {t('account.purchasedResources')}
               </h2>
               {isLoadingPacks ? (
                 <div className="text-center py-8">
@@ -296,7 +296,9 @@ export default function AccountPage() {
                         <p className="font-medium text-gray-900">
                           {getPackName(packId)}
                         </p>
-                        <p className="text-sm text-gray-500">资源包</p>
+                        <p className="text-sm text-gray-500">
+                          {t('account.resourcePack')}
+                        </p>
                       </div>
                       <button
                         onClick={() => handleDownload(packId)}
@@ -307,7 +309,7 @@ export default function AccountPage() {
                         {downloadingPack === packId ? (
                           <>
                             <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white" />
-                            <span>下载中...</span>
+                            <span>{t('account.downloading')}</span>
                           </>
                         ) : (
                           t('download')
@@ -318,12 +320,12 @@ export default function AccountPage() {
                 </div>
               ) : (
                 <p className="text-gray-500 text-center py-8">
-                  还没有购买任何资源。{' '}
+                  {t('account.noResourcesPurchased')}{' '}
                   <Link
                     href="/resources"
                     className="text-black font-medium hover:underline"
                   >
-                    浏览资源包
+                    {t('account.browseResourcePacks')}
                   </Link>
                 </p>
               )}
@@ -332,7 +334,7 @@ export default function AccountPage() {
             {/* Usage History */}
             <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 mb-6">
               <h2 className="text-lg font-bold text-gray-900 mb-4">
-                Recent Generations
+                {t('account.recentGenerations')}
               </h2>
               {isLoadingHistory ? (
                 <div className="text-center py-8">
@@ -348,8 +350,8 @@ export default function AccountPage() {
                       <div>
                         <p className="font-medium text-gray-900">
                           {record.generation_mode === 'photo2avatar'
-                            ? 'Photo to Avatar'
-                            : 'Text to Avatar'}
+                            ? t('ai.photo2avatar')
+                            : t('ai.text2avatar')}
                         </p>
                         <p className="text-sm text-gray-500">
                           {new Date(record.created_at).toLocaleString()}
@@ -360,12 +362,12 @@ export default function AccountPage() {
                 </div>
               ) : (
                 <p className="text-gray-500 text-center py-8">
-                  No generations yet.{' '}
+                  {t('account.noGenerationsYet')}{' '}
                   <Link
                     href="/ai-generator"
                     className="text-black font-medium hover:underline"
                   >
-                    Create your first avatar!
+                    {t('account.createFirstAvatar')}
                   </Link>
                 </p>
               )}
@@ -378,7 +380,7 @@ export default function AccountPage() {
                 type="button"
                 className="text-red-600 hover:text-red-700 font-medium"
               >
-                Sign Out
+                {t('account.signOut')}
               </button>
             </div>
           </div>

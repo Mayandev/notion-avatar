@@ -93,6 +93,21 @@
     "step4Title": "Поделитесь вашим творением",
     "step4Desc": "Поделитесь новым аватаром Notion в социальных сетях и покажите его друзьям!"
   },
+  "faq": {
+    "title": "Часто Задаваемые Вопросы",
+    "whatIsAvatar": "Что такое Notion Avatar Maker?",
+    "whatIsAvatarAnswer": "Notion Avatar Maker - это бесплатный инструмент, который позволяет создавать пользовательские аватары для использования в Notion, социальных сетях или любой другой цифровой платформе.",
+    "howToUse": "Как использовать редактор аватаров?",
+    "howToUseAnswer": "Просто нажмите на различные черты лица, прически и аксессуары, чтобы настроить свой аватар. Используйте кнопку переворота, чтобы изменить ориентацию, и кнопку фона, чтобы настроить стиль фона.",
+    "commercialUse": "Могу ли я использовать аватары в коммерческих целях?",
+    "commercialUseAnswer": "Да, все аватары, созданные с помощью Notion Avatar, выпускаются под лицензией CC0, что позволяет коммерческое использование без указания авторства.",
+    "privacyConcerns": "Собираете ли вы данные пользователей?",
+    "privacyConcernsAnswer": "Нет, мы не собираем и не храним данные пользователей. Вся разработка аватаров происходит локально в вашем браузере.",
+    "supportedBrowsers": "Какие браузеры поддерживаются?",
+    "supportedBrowsersAnswer": "Notion Avatar лучше всего работает в современных браузерах, включая Chrome, Firefox, Safari и Edge. Internet Explorer не поддерживается.",
+    "isBelongToNotion": "Связан ли Notion Avatar Maker с Notion?",
+    "isBelongToNotionAnswer": "Нет, Notion Avatar Maker не связан с Notion. Это независимый проект."
+  },
   "ai": {
     "title": "Аватар AI Notion",
     "navTitle": "Notion AI Аватар",
@@ -215,5 +230,31 @@
     "closeModal": "Закрыть окно",
     "checkEmail": "Проверьте свою электронную почту, чтобы подтвердить аккаунт!",
     "error": "Произошла ошибка. Пожалуйста, попробуйте снова."
+  },
+  "account": {
+    "title": "Настройки Аккаунта",
+    "pageTitle": "Аккаунт | Notion Avatar Maker",
+    "profile": "Профиль",
+    "subscription": "Подписка",
+    "unlimitedGenerations": "Неограниченные генерации с Pro подпиской",
+    "cancelsOn": "Отменяется",
+    "renewsOn": "Обновляется",
+    "manageBilling": "Управление Биллингом",
+    "freeGenerationPerDay": "1 бесплатная генерация в день",
+    "upgradeToPro": "Обновить до Pro",
+    "credits": "Кредиты",
+    "creditsRemaining": "осталось кредитов",
+    "buyMore": "Купить Больше",
+    "purchasedResources": "Купленные Ресурсы",
+    "resourcePack": "Пакет Ресурсов",
+    "downloading": "Загрузка...",
+    "noResourcesPurchased": "Ресурсы еще не куплены.",
+    "browseResourcePacks": "Просмотреть Пакеты Ресурсов",
+    "recentGenerations": "Последние Генерации",
+    "noGenerationsYet": "Генераций пока нет.",
+    "createFirstAvatar": "Создайте свой первый аватар!",
+    "signOut": "Выйти",
+    "failedToOpenBillingPortal": "Не удалось открыть портал биллинга",
+    "failedToDownload": "Не удалось загрузить пакет ресурсов. Пожалуйста, попробуйте снова."
   }
 }

@@ -102,6 +102,21 @@
     "step4Title": "작품 공유",
     "step4Desc": "새로운 Notion 아바타를 소셜 미디어에 공유하고 친구들에게 보여주세요!"
   },
+  "faq": {
+    "title": "자주 묻는 질문",
+    "whatIsAvatar": "Notion Avatar Maker란 무엇인가요?",
+    "whatIsAvatarAnswer": "Notion Avatar Maker는 Notion, 소셜 미디어 또는 기타 디지털 플랫폼에서 사용할 수 있는 맞춤형 아바타를 만들 수 있는 무료 도구입니다.",
+    "howToUse": "아바타 에디터를 어떻게 사용하나요?",
+    "howToUseAnswer": "다양한 얼굴 특징, 헤어스타일, 액세서리를 클릭하여 아바타를 맞춤 설정하세요. 뒤집기 버튼으로 방향을 변경하고 배경 버튼으로 배경 스타일을 조정할 수 있습니다.",
+    "commercialUse": "아바타를 상업적 목적으로 사용할 수 있나요?",
+    "commercialUseAnswer": "네, Notion Avatar로 만든 모든 아바타는 CC0 라이선스에 따라 출시되며 귀속 표시 없이 상업적으로 사용할 수 있습니다.",
+    "privacyConcerns": "사용자 데이터를 수집하나요?",
+    "privacyConcernsAnswer": "아니요, 사용자 데이터를 수집하거나 저장하지 않습니다. 모든 아바타 생성은 브라우저에서 로컬로 이루어집니다.",
+    "supportedBrowsers": "어떤 브라우저가 지원되나요?",
+    "supportedBrowsersAnswer": "Notion Avatar는 Chrome, Firefox, Safari, Edge를 포함한 최신 브라우저에서 가장 잘 작동합니다. Internet Explorer는 지원되지 않습니다.",
+    "isBelongToNotion": "Notion Avatar Maker가 Notion과 제휴되어 있나요?",
+    "isBelongToNotionAnswer": "아니요, Notion Avatar Maker는 Notion과 제휴되어 있지 않습니다. 독립적인 프로젝트입니다."
+  },
   "ai": {
     "title": "Notion AI 아바타 생성",
     "navTitle": "Notion AI 아바타",
@@ -224,5 +239,31 @@
     "closeModal": "모달 닫기",
     "checkEmail": "계정을 확인하려면 이메일을 확인하세요!",
     "error": "오류가 발생했습니다. 다시 시도해주세요."
+  },
+  "account": {
+    "title": "계정 설정",
+    "pageTitle": "계정 | Notion Avatar Maker",
+    "profile": "프로필",
+    "subscription": "구독",
+    "unlimitedGenerations": "Pro 구독으로 무제한 생성",
+    "cancelsOn": "취소일",
+    "renewsOn": "갱신일",
+    "manageBilling": "결제 관리",
+    "freeGenerationPerDay": "하루 1회 무료 생성",
+    "upgradeToPro": "Pro로 업그레이드",
+    "credits": "크레딧",
+    "creditsRemaining": "남은 크레딧",
+    "buyMore": "더 구매하기",
+    "purchasedResources": "구매한 리소스",
+    "resourcePack": "리소스 팩",
+    "downloading": "다운로드 중...",
+    "noResourcesPurchased": "아직 리소스를 구매하지 않았습니다.",
+    "browseResourcePacks": "리소스 팩 둘러보기",
+    "recentGenerations": "최근 생성",
+    "noGenerationsYet": "아직 생성이 없습니다.",
+    "createFirstAvatar": "첫 번째 아바타를 만들어보세요!",
+    "signOut": "로그아웃",
+    "failedToOpenBillingPortal": "결제 관리 페이지를 열 수 없습니다",
+    "failedToDownload": "리소스 팩 다운로드에 실패했습니다. 다시 시도해주세요."
   }
 }

@@ -98,6 +98,21 @@
     "step4Title": "Comparte tu creación",
     "step4Desc": "Comparte tu nuevo avatar de Notion en redes sociales y muéstralo a tus amigos!"
   },
+  "faq": {
+    "title": "Preguntas Frecuentes",
+    "whatIsAvatar": "¿Qué es Notion Avatar Maker?",
+    "whatIsAvatarAnswer": "Notion Avatar Maker es una herramienta gratuita que te permite crear avatares personalizados para usar en Notion, redes sociales o cualquier otra plataforma digital.",
+    "howToUse": "¿Cómo uso el editor de avatares?",
+    "howToUseAnswer": "Simplemente haz clic en las diferentes características faciales, peinados y accesorios para personalizar tu avatar. Usa el botón de voltear para cambiar la orientación y el botón de fondo para ajustar el estilo de fondo.",
+    "commercialUse": "¿Puedo usar avatares con fines comerciales?",
+    "commercialUseAnswer": "Sí, todos los avatares creados con Notion Avatar se publican bajo la licencia CC0, lo que permite el uso comercial sin atribución.",
+    "privacyConcerns": "¿Recopilan datos de usuarios?",
+    "privacyConcernsAnswer": "No, no recopilamos ni almacenamos datos de usuarios. Toda la creación de avatares ocurre localmente en tu navegador.",
+    "supportedBrowsers": "¿Qué navegadores son compatibles?",
+    "supportedBrowsersAnswer": "Notion Avatar funciona mejor en navegadores modernos, incluidos Chrome, Firefox, Safari y Edge. Internet Explorer no es compatible.",
+    "isBelongToNotion": "¿Notion Avatar Maker está afiliado con Notion?",
+    "isBelongToNotionAnswer": "No, Notion Avatar Maker no está afiliado con Notion. Es un proyecto independiente."
+  },
   "ai": {
     "title": "Avatar AI Notion",
     "navTitle": "Notion AI Avatar",
@@ -220,5 +235,31 @@
     "closeModal": "Cerrar modal",
     "checkEmail": "¡Revisa tu correo electrónico para confirmar tu cuenta!",
     "error": "Ocurrió un error. Por favor, inténtalo de nuevo."
+  },
+  "account": {
+    "title": "Configuración de Cuenta",
+    "pageTitle": "Cuenta | Notion Avatar Maker",
+    "profile": "Perfil",
+    "subscription": "Suscripción",
+    "unlimitedGenerations": "Generaciones ilimitadas con suscripción Pro",
+    "cancelsOn": "Cancela el",
+    "renewsOn": "Renueva el",
+    "manageBilling": "Gestionar Facturación",
+    "freeGenerationPerDay": "1 generación gratuita por día",
+    "upgradeToPro": "Actualizar a Pro",
+    "credits": "Créditos",
+    "creditsRemaining": "créditos restantes",
+    "buyMore": "Comprar Más",
+    "purchasedResources": "Recursos Comprados",
+    "resourcePack": "Paquete de Recursos",
+    "downloading": "Descargando...",
+    "noResourcesPurchased": "Aún no has comprado ningún recurso.",
+    "browseResourcePacks": "Explorar Paquetes de Recursos",
+    "recentGenerations": "Generaciones Recientes",
+    "noGenerationsYet": "Aún no hay generaciones.",
+    "createFirstAvatar": "¡Crea tu primer avatar!",
+    "signOut": "Cerrar Sesión",
+    "failedToOpenBillingPortal": "No se pudo abrir el portal de facturación",
+    "failedToDownload": "Error al descargar el paquete de recursos. Por favor, inténtalo de nuevo."
   }
 }

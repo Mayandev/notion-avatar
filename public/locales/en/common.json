@@ -239,5 +239,31 @@
     "closeModal": "Close modal",
     "checkEmail": "Check your email to confirm your account!",
     "error": "An error occurred. Please try again."
+  },
+  "account": {
+    "title": "Account Settings",
+    "pageTitle": "Account | Notion Avatar Maker",
+    "profile": "Profile",
+    "subscription": "Subscription",
+    "unlimitedGenerations": "Unlimited generations with Pro subscription",
+    "cancelsOn": "Cancels on",
+    "renewsOn": "Renews on",
+    "manageBilling": "Manage Billing",
+    "freeGenerationPerDay": "1 free generation per day",
+    "upgradeToPro": "Upgrade to Pro",
+    "credits": "Credits",
+    "creditsRemaining": "credits remaining",
+    "buyMore": "Buy More",
+    "purchasedResources": "Purchased Resources",
+    "resourcePack": "Resource Pack",
+    "downloading": "Downloading...",
+    "noResourcesPurchased": "No resources purchased yet.",
+    "browseResourcePacks": "Browse Resource Packs",
+    "recentGenerations": "Recent Generations",
+    "noGenerationsYet": "No generations yet.",
+    "createFirstAvatar": "Create your first avatar!",
+    "signOut": "Sign Out",
+    "failedToOpenBillingPortal": "Failed to open billing portal",
+    "failedToDownload": "Failed to download resource pack. Please try again."
   }
 }

@@ -102,6 +102,21 @@
     "step4Title": "分享您的作品",
     "step4Desc": "在社交媒体上分享您的新Notion头像，向朋友展示！"
   },
+  "faq": {
+    "title": "常见问题",
+    "whatIsAvatar": "什么是 Notion Avatar Maker？",
+    "whatIsAvatarAnswer": "Notion Avatar Maker 是一个免费工具，允许您创建自定义头像，用于 Notion、社交媒体或任何其他数字平台。",
+    "howToUse": "如何使用头像编辑器？",
+    "howToUseAnswer": "只需点击不同的面部特征、发型和配饰来自定义您的头像。使用翻转按钮改变方向，使用背景按钮调整背景样式。",
+    "commercialUse": "我可以将头像用于商业目的吗？",
+    "commercialUseAnswer": "可以，所有使用 Notion Avatar 创建的头像都遵循 CC0 许可证，允许商业使用且无需署名。",
+    "privacyConcerns": "你们会收集用户数据吗？",
+    "privacyConcernsAnswer": "不会，我们不会收集或存储任何用户数据。所有头像创建都在您的浏览器本地完成。",
+    "supportedBrowsers": "支持哪些浏览器？",
+    "supportedBrowsersAnswer": "Notion Avatar 在现代浏览器上运行最佳，包括 Chrome、Firefox、Safari 和 Edge。不支持 Internet Explorer。",
+    "isBelongToNotion": "Notion Avatar Maker 与 Notion 有关联吗？",
+    "isBelongToNotionAnswer": "没有，Notion Avatar Maker 与 Notion 无关。这是一个独立项目。"
+  },
   "ai": {
     "title": "Notion AI 头像生成",
     "navTitle": "Notion AI 头像",
@@ -224,5 +239,31 @@
     "closeModal": "关闭弹窗",
     "checkEmail": "请检查您的邮箱以确认账户！",
     "error": "出错了，请重试。"
+  },
+  "account": {
+    "title": "账户设置",
+    "pageTitle": "账户 | Notion Avatar Maker",
+    "profile": "个人资料",
+    "subscription": "订阅",
+    "unlimitedGenerations": "Pro 订阅无限生成",
+    "cancelsOn": "取消于",
+    "renewsOn": "续费于",
+    "manageBilling": "管理账单",
+    "freeGenerationPerDay": "每天 1 次免费生成",
+    "upgradeToPro": "升级到 Pro",
+    "credits": "积分",
+    "creditsRemaining": "剩余积分",
+    "buyMore": "购买更多",
+    "purchasedResources": "已购买的资源",
+    "resourcePack": "资源包",
+    "downloading": "下载中...",
+    "noResourcesPurchased": "还没有购买任何资源。",
+    "browseResourcePacks": "浏览资源包",
+    "recentGenerations": "最近生成",
+    "noGenerationsYet": "还没有生成记录。",
+    "createFirstAvatar": "创建你的第一个头像！",
+    "signOut": "退出登录",
+    "failedToOpenBillingPortal": "无法打开账单管理页面",
+    "failedToDownload": "下载资源包失败，请重试。"
   }
 }

@@ -102,6 +102,21 @@
     "step4Title": "Teile deine Kreation",
     "step4Desc": "Teile deinen neuen Notion-Avatar auf sozialen Medien und zeige ihn deinen Freunden!"
   },
+  "faq": {
+    "title": "FAQ",
+    "whatIsAvatar": "Was ist Notion Avatar Maker?",
+    "whatIsAvatarAnswer": "Notion Avatar Maker ist ein kostenloses Tool, mit dem Sie benutzerdefinierte Avatare für die Verwendung in Notion, sozialen Medien oder jeder anderen digitalen Plattform erstellen können.",
+    "howToUse": "Wie verwende ich den Avatar-Editor?",
+    "howToUseAnswer": "Klicken Sie einfach auf die verschiedenen Gesichtszüge, Frisuren und Accessoires, um Ihren Avatar anzupassen. Verwenden Sie die Spiegeln-Schaltfläche, um die Ausrichtung zu ändern, und die Hintergrund-Schaltfläche, um den Hintergrundstil anzupassen.",
+    "commercialUse": "Kann ich Avatare für kommerzielle Zwecke verwenden?",
+    "commercialUseAnswer": "Ja, alle mit Notion Avatar erstellten Avatare werden unter der CC0-Lizenz veröffentlicht und ermöglichen die kommerzielle Nutzung ohne Namensnennung.",
+    "privacyConcerns": "Sammeln Sie Benutzerdaten?",
+    "privacyConcernsAnswer": "Nein, wir sammeln oder speichern keine Benutzerdaten. Die gesamte Avatar-Erstellung erfolgt lokal in Ihrem Browser.",
+    "supportedBrowsers": "Welche Browser werden unterstützt?",
+    "supportedBrowsersAnswer": "Notion Avatar funktioniert am besten in modernen Browsern, einschließlich Chrome, Firefox, Safari und Edge. Internet Explorer wird nicht unterstützt.",
+    "isBelongToNotion": "Ist Notion Avatar Maker mit Notion verbunden?",
+    "isBelongToNotionAnswer": "Nein, Notion Avatar Maker ist nicht mit Notion verbunden. Es ist ein unabhängiges Projekt."
+  },
   "ai": {
     "title": "Notion AI Avatar",
     "navTitle": "Notion AI Avatar",
@@ -224,5 +239,31 @@
     "closeModal": "Modal schließen",
     "checkEmail": "Überprüfen Sie Ihre E-Mail, um Ihr Konto zu bestätigen!",
     "error": "Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut."
+  },
+  "account": {
+    "title": "Kontoeinstellungen",
+    "pageTitle": "Konto | Notion Avatar Maker",
+    "profile": "Profil",
+    "subscription": "Abonnement",
+    "unlimitedGenerations": "Unbegrenzte Generierungen mit Pro-Abonnement",
+    "cancelsOn": "Kündigt am",
+    "renewsOn": "Erneuert am",
+    "manageBilling": "Rechnungsverwaltung",
+    "freeGenerationPerDay": "1 kostenlose Generierung pro Tag",
+    "upgradeToPro": "Auf Pro upgraden",
+    "credits": "Credits",
+    "creditsRemaining": "verbleibende Credits",
+    "buyMore": "Mehr kaufen",
+    "purchasedResources": "Gekaufte Ressourcen",
+    "resourcePack": "Ressourcenpaket",
+    "downloading": "Wird heruntergeladen...",
+    "noResourcesPurchased": "Noch keine Ressourcen gekauft.",
+    "browseResourcePacks": "Ressourcenpakete durchsuchen",
+    "recentGenerations": "Letzte Generierungen",
+    "noGenerationsYet": "Noch keine Generierungen.",
+    "createFirstAvatar": "Erstelle deinen ersten Avatar!",
+    "signOut": "Abmelden",
+    "failedToOpenBillingPortal": "Rechnungsverwaltungsseite konnte nicht geöffnet werden",
+    "failedToDownload": "Ressourcenpaket konnte nicht heruntergeladen werden. Bitte versuchen Sie es erneut."
   }
 }
