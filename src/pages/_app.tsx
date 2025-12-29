@@ -6,6 +6,7 @@ import { useRouter } from 'next/router';
 import { appWithTranslation } from 'next-i18next';
 
 import { Toaster } from 'react-hot-toast';
+import { AuthProvider } from '@/contexts/AuthContext';
 import * as ga from '../lib/ga';
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
@@ -27,10 +28,10 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   }, [router.events]);
 
   return (
-    <>
+    <AuthProvider>
       <AnyComponent {...pageProps} />
       <Toaster />
-    </>
+    </AuthProvider>
   );
 };
 

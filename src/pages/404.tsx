@@ -3,7 +3,7 @@ import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Link from 'next/link';
 
-import Header from './components/Header';
+import Header from '@/components/Header';
 
 export default function PageNotFount() {
   const { t } = useTranslation(`common`);

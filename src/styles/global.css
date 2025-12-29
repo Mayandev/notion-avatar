@@ -45,3 +45,27 @@ body {
 .tooltip:hover:before {
   @apply transform-gpu translate-y-0 opacity-100;
 }
+
+/* Wave decoration drawing animation */
+.wave-decoration-svg {
+  transition: transform 0.3s ease-out;
+}
+
+/* 初始状态：完全隐藏 */
+.wave-decoration-path {
+  opacity: 0;
+  clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+  transition: opacity 0.5s ease-out, clip-path 0.5s ease-out;
+}
+
+/* AI页面：直接显示 */
+.wave-decoration-path.wave-decoration-visible {
+  opacity: 1;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+/* hover状态：显示并绘制整条线 */
+.group:hover .wave-decoration-path:not(.wave-decoration-visible) {
+  opacity: 1;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
