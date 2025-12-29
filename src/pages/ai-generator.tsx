@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
 import { GetStaticPropsContext } from 'next';
@@ -25,6 +26,7 @@ import Image from 'next/legacy/image';
 
 export default function AIGeneratorPage() {
   const { t } = useTranslation('common');
+  const router = useRouter();
   const { user, isLoading: isAuthLoading } = useAuth();
   const [mode, setMode] = useState<AIGenerationMode>('photo2avatar');
   const [inputImage, setInputImage] = useState<string>('');
@@ -146,6 +148,37 @@ export default function AIGeneratorPage() {
       scrollToGenerator();
     }, 100);
   };
+
+  // Generate SEO URLs based on current locale
+  const currentLocale = router.locale || 'en';
+  const baseUrl = 'https://notion-avatar.app';
+  const pagePath = '/ai-generator';
+  const canonicalUrl =
+    currentLocale === 'en'
+      ? `${baseUrl}${pagePath}`
+      : `${baseUrl}/${currentLocale}${pagePath}`;
+  const pageTitle = `${t('ai.title')} | Notion Avatar Maker`;
+  const pageDescription = t('ai.description');
+  const pageKeywords = t('ai.seoKeywords') || t('siteKeywords');
+  const ogImage = 'https://i.imgur.com/F5R0K03.png';
+
+  // Generate hreflang URLs
+  const locales = [
+    'en',
+    'zh',
+    'zh-TW',
+    'ja',
+    'ko',
+    'es',
+    'fr',
+    'de',
+    'ru',
+    'pt',
+  ];
+  const generateHreflangUrl = (locale: string) =>
+    locale === 'en'
+      ? `${baseUrl}${pagePath}`
+      : `${baseUrl}/${locale}${pagePath}`;
 
   const plans = [
     {
@@ -270,8 +303,107 @@ export default function AIGeneratorPage() {
   return (
     <>
       <Head>
-        <title>{t('ai.title')} | Notion Avatar Maker</title>
-        <meta name="description" content={t('ai.description')} />
+        <title>{pageTitle}</title>
+        <meta name="description" content={pageDescription} />
+        <meta name="keywords" content={pageKeywords} />
+        <meta name="author" content="Notion Avatar" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <meta name="theme-color" content="#fffefc" />
+        <meta name="msapplication-TileColor" content="#fffefc" />
+        <meta
+          name="msapplication-TileImage"
+          content="/favicon/ms-icon-144x144.png"
+        />
+        <meta name="robots" content="index, follow" />
+        <meta name="googlebot" content="index, follow" />
+        <meta name="google" content="notranslate" />
+        <meta charSet="utf-8" />
+
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content={t('siteTitle')} />
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={pageDescription} />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:image" content={ogImage} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@phillzou" />
+        <meta name="twitter:title" content={pageTitle} />
+        <meta name="twitter:description" content={pageDescription} />
+        <meta name="twitter:image" content={ogImage} />
+
+        {/* Canonical URL */}
+        <link rel="canonical" href={canonicalUrl} />
+
+        {/* Hreflang links */}
+        {locales.map((locale) => (
+          <link
+            key={locale}
+            rel="alternate"
+            hrefLang={locale}
+            href={generateHreflangUrl(locale)}
+          />
+        ))}
+        <link
+          rel="alternate"
+          hrefLang="x-default"
+          href={`${baseUrl}${pagePath}`}
+        />
+
+        {/* Favicon links */}
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="/favicon/favicon-32x32.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="96x96"
+          href="/favicon/favicon-96x96.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="/favicon/favicon-16x16.png"
+        />
+        <link rel="manifest" href="/manifest.json" />
+
+        {/* Structured Data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'WebApplication',
+              name: t('ai.title'),
+              description: pageDescription,
+              url: canonicalUrl,
+              applicationCategory: 'DesignApplication',
+              operatingSystem: 'Web',
+              offers: {
+                '@type': 'Offer',
+                price: '0',
+                priceCurrency: 'USD',
+              },
+              featureList: [
+                'Photo to Avatar conversion',
+                'Text to Avatar generation',
+                'AI-powered avatar creation',
+                'Notion-style avatar design',
+              ],
+            }),
+          }}
+        />
       </Head>
 
       <div className="min-h-screen flex flex-col bg-[#fffefc]">
@@ -294,7 +426,7 @@ export default function AIGeneratorPage() {
           {/* Enhanced Hero Section */}
           <section className="text-center mb-16 animate-in fade-in slide-in-from-bottom-4 duration-500">
             <div className="relative inline-block mb-6">
-              <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-4 relative z-10">
+              <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-4 relative">
                 {t('ai.title')}
               </h1>
               <div className="absolute right-0 -top-4 sm:-top-8 sm:-right-14 ">

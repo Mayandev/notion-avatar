@@ -105,6 +105,8 @@
   "ai": {
     "title": "Notion AI 头像生成",
     "description": "使用 AI 魔法将您的照片或创意转换为 Notion 风格头像。",
+    "heroSubtitle": "几秒钟内将您的照片或文字描述转换为独特的 Notion 风格头像",
+    "heroCTA": "开始使用",
     "photo2avatar": "照片转头像",
     "text2avatar": "文字生成",
     "uploadTitle": "上传照片",
@@ -129,7 +131,54 @@
       "prompt1": "一个戴眼镜的长发女孩，微笑",
       "prompt2": "一个留着胡须的男性，戴帽子",
       "prompt3": "一个短发女性，戴耳环，自信的表情"
-    }
+    },
+    "features": {
+      "title": "强大的 AI 功能",
+      "photo2avatarTitle": "照片转头像",
+      "photo2avatarDesc": "上传您的照片，AI 会自动识别并转换为 Notion 风格头像，保留您的独特特征",
+      "text2avatarTitle": "文字生成头像",
+      "text2avatarDesc": "只需描述您想要的头像特征，AI 就会为您生成个性化的 Notion 风格头像"
+    },
+    "steps": {
+      "title": "使用方法",
+      "step1Title": "选择模式",
+      "step1Desc": "选择照片转头像或文字生成头像模式",
+      "step2Title": "上传或描述",
+      "step2Desc": "上传您的照片或输入您想要的头像的文字描述",
+      "step3Title": "AI 生成",
+      "step3Desc": "点击生成，AI 将在几秒钟内创建您的头像",
+      "step4Title": "下载并使用",
+      "step4Desc": "下载您生成的头像，可在 Notion、社交媒体等平台使用"
+    },
+    "pricing": {
+      "title": "选择您的方案",
+      "description": "免费开始，随时升级",
+      "freeTitle": "免费",
+      "freePrice": "$0",
+      "freePeriod": "永久",
+      "freeDesc": "适合试用",
+      "proTitle": "专业版月付",
+      "proPrice": "$9.99",
+      "proPeriod": "每月",
+      "proDesc": "适合高级用户",
+      "creditsTitle": "积分包",
+      "creditsPrice": "$4.99",
+      "creditsPeriod": "10 积分",
+      "creditsDesc": "按需付费",
+      "upgradeNow": "立即升级"
+    },
+    "faq": {
+      "title": "常见问题",
+      "q1": "AI 生成需要多长时间？",
+      "a1": "通常只需几秒钟。AI 会在后台处理您的请求，完成后即可下载。",
+      "q2": "免费用户每天可以生成多少次？",
+      "a2": "免费用户每天可以生成 1 个头像。升级到专业版可享受无限生成。",
+      "q3": "如何升级到专业版？",
+      "a3": "点击页面上的「立即升级」按钮，选择专业版月付订阅或积分包，完成支付即可享受更多功能。",
+      "q4": "生成的头像可以商用吗？",
+      "a4": "可以，所有生成的头像遵循 CC0 许可证，可用于商业用途，无需署名。"
+    },
+    "seoKeywords": "AI 头像生成器,AI 头像制作,Notion AI 头像,照片转 AI 头像,文字生成 AI 头像,AI 头像创建器,Notion 风格 AI 头像,AI 生成头像,免费 AI 头像生成器,在线 AI 头像制作,AI 头像工具,人工智能头像,AI 头像生成,智能头像生成器"
   },
   "aiFeatureIntro": {
     "title": "全新 AI 头像生成功能",

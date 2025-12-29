@@ -100,8 +100,10 @@
     "step4Desc": "Compartilhe seu novo avatar Notion nas redes sociais e mostre aos seus amigos!"
   },
   "ai": {
-    "title": "Gerador de Avatar IA",
+    "title": "Gerador de Avatar IA Notion",
     "description": "Transforme suas fotos ou ideias em avatares estilo Notion com magia de IA.",
+    "heroSubtitle": "Transforme suas fotos ou descrições de texto em avatares únicos estilo Notion em apenas segundos",
+    "heroCTA": "Começar",
     "photo2avatar": "Foto para Avatar",
     "text2avatar": "Texto para Avatar",
     "uploadTitle": "Enviar Foto",
@@ -114,7 +116,66 @@
     "limitReached": "Limite diário atingido",
     "limitDesc": "Você usou sua cota diária gratuita. Volte amanhã ou atualize para mais.",
     "upgrade": "Atualizar Agora",
-    "error": "Algo deu errado. Por favor, tente novamente."
+    "error": "Algo deu errado. Por favor, tente novamente.",
+    "examples": {
+      "photoTitle": "Transformação de Foto",
+      "photoDesc": "Veja como a IA transforma suas fotos reais em avatares estilo Notion",
+      "textTitle": "Exemplos de Geração de Texto",
+      "textDesc": "Basta descrever o que você quer e a IA gerará para você",
+      "before": "Antes",
+      "after": "Depois",
+      "apply": "Aplicar Este Prompt",
+      "prompt1": "Uma garota com óculos e cabelo longo, sorrindo",
+      "prompt2": "Um homem com barba, usando chapéu",
+      "prompt3": "Uma mulher de cabelo curto com brincos, expressão confiante"
+    },
+    "features": {
+      "title": "Recursos Poderosos de IA",
+      "photo2avatarTitle": "Foto para Avatar",
+      "photo2avatarDesc": "Envie sua foto e a IA a reconhecerá e converterá automaticamente em um avatar estilo Notion, preservando suas características únicas",
+      "text2avatarTitle": "Texto para Avatar",
+      "text2avatarDesc": "Simplesmente descreva as características do avatar que deseja e a IA gerará um avatar personalizado estilo Notion para você"
+    },
+    "steps": {
+      "title": "Como Funciona",
+      "step1Title": "Escolher Modo",
+      "step1Desc": "Selecione o modo foto-para-avatar ou texto-para-avatar",
+      "step2Title": "Enviar ou Descrever",
+      "step2Desc": "Envie sua foto ou insira uma descrição de texto do seu avatar desejado",
+      "step3Title": "Geração de IA",
+      "step3Desc": "Clique em gerar e a IA criará seu avatar em segundos",
+      "step4Title": "Baixar e Usar",
+      "step4Desc": "Baixe seu avatar gerado e use-o no Notion, redes sociais e mais"
+    },
+    "pricing": {
+      "title": "Escolha Seu Plano",
+      "description": "Comece grátis, atualize a qualquer momento",
+      "freeTitle": "Grátis",
+      "freePrice": "$0",
+      "freePeriod": "para sempre",
+      "freeDesc": "Perfeito para experimentar",
+      "proTitle": "Pro Mensal",
+      "proPrice": "$9.99",
+      "proPeriod": "por mês",
+      "proDesc": "Para usuários avançados",
+      "creditsTitle": "Pacote de Créditos",
+      "creditsPrice": "$4.99",
+      "creditsPeriod": "10 créditos",
+      "creditsDesc": "Pague conforme usar",
+      "upgradeNow": "Atualizar Agora"
+    },
+    "faq": {
+      "title": "Perguntas Frequentes",
+      "q1": "Quanto tempo leva a geração de IA?",
+      "a1": "Geralmente apenas alguns segundos. A IA processa sua solicitação em segundo plano e você pode baixar quando estiver completa.",
+      "q2": "Quantas gerações os usuários gratuitos podem fazer por dia?",
+      "a2": "Usuários gratuitos podem gerar 1 avatar por dia. Atualize para Pro para gerações ilimitadas.",
+      "q3": "Como atualizo para Pro?",
+      "a3": "Clique no botão 'Atualizar Agora' na página, escolha a assinatura Pro Mensal ou o Pacote de Créditos, complete o pagamento para aproveitar mais recursos.",
+      "q4": "Posso usar avatares gerados comercialmente?",
+      "a4": "Sim, todos os avatares gerados seguem a licença CC0 e podem ser usados para fins comerciais sem atribuição."
+    },
+    "seoKeywords": "Gerador de Avatar IA,Criador de Avatar IA,Avatar IA Notion,Foto para Avatar IA,Texto para Avatar IA,Criador de Avatar IA,Avatar Estilo Notion IA,Avatar Gerado por IA,Gerador de Avatar IA Grátis,Criador de Avatar IA Online,Ferramenta de Avatar IA,Avatar de Inteligência Artificial,Gerador de Foto de Perfil IA,Design de Avatar IA,Gerador de Avatar Inteligente"
   },
   "aiFeatureIntro": {
     "title": "Nova Funcionalidade de Gerador de Avatar IA",

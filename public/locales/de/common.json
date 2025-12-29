@@ -103,8 +103,10 @@
     "step4Desc": "Teile deinen neuen Notion-Avatar auf sozialen Medien und zeige ihn deinen Freunden!"
   },
   "ai": {
-    "title": "KI-Avatar-Generator",
+    "title": "Notion KI-Avatar-Generator",
     "description": "Verwandle deine Fotos oder Ideen mit KI-Magie in Notion-style Avatare.",
+    "heroSubtitle": "Verwandle deine Fotos oder Textbeschreibungen in einzigartige Notion-style Avatare in nur wenigen Sekunden",
+    "heroCTA": "Loslegen",
     "photo2avatar": "Foto zu Avatar",
     "text2avatar": "Text zu Avatar",
     "uploadTitle": "Foto hochladen",
@@ -117,7 +119,66 @@
     "limitReached": "Tageslimit erreicht",
     "limitDesc": "Du hast dein kostenloses Tageskontingent aufgebraucht. Komm morgen wieder oder upgrade für mehr.",
     "upgrade": "Jetzt upgraden",
-    "error": "Etwas ist schief gelaufen. Bitte versuche es erneut."
+    "error": "Etwas ist schief gelaufen. Bitte versuche es erneut.",
+    "examples": {
+      "photoTitle": "Foto-Transformation",
+      "photoDesc": "Sieh, wie KI deine echten Fotos in Notion-style Avatare verwandelt",
+      "textTitle": "Text-Generierungsbeispiele",
+      "textDesc": "Beschreibe einfach, was du willst, und KI wird es für dich generieren",
+      "before": "Vorher",
+      "after": "Nachher",
+      "apply": "Diesen Prompt Anwenden",
+      "prompt1": "Ein Mädchen mit Brille und langen Haaren, lächelnd",
+      "prompt2": "Ein Mann mit Bart, trägt einen Hut",
+      "prompt3": "Eine Frau mit kurzen Haaren, Ohrringe, selbstbewusster Ausdruck"
+    },
+    "features": {
+      "title": "Leistungsstarke KI-Funktionen",
+      "photo2avatarTitle": "Foto zu Avatar",
+      "photo2avatarDesc": "Lade dein Foto hoch und KI erkennt und konvertiert es automatisch in einen Notion-style Avatar und bewahrt deine einzigartigen Merkmale",
+      "text2avatarTitle": "Text zu Avatar",
+      "text2avatarDesc": "Beschreibe einfach die Avatar-Merkmale, die du möchtest, und KI generiert einen personalisierten Notion-style Avatar für dich"
+    },
+    "steps": {
+      "title": "Wie Es Funktioniert",
+      "step1Title": "Modus Wählen",
+      "step1Desc": "Wähle Foto-zu-Avatar oder Text-zu-Avatar Modus",
+      "step2Title": "Hochladen oder Beschreiben",
+      "step2Desc": "Lade dein Foto hoch oder gib eine Textbeschreibung deines gewünschten Avatars ein",
+      "step3Title": "KI-Generierung",
+      "step3Desc": "Klicke auf Generieren und KI erstellt deinen Avatar in Sekunden",
+      "step4Title": "Herunterladen & Verwenden",
+      "step4Desc": "Lade deinen generierten Avatar herunter und verwende ihn auf Notion, sozialen Medien und mehr"
+    },
+    "pricing": {
+      "title": "Wähle Deinen Plan",
+      "description": "Kostenlos starten, jederzeit upgraden",
+      "freeTitle": "Kostenlos",
+      "freePrice": "$0",
+      "freePeriod": "für immer",
+      "freeDesc": "Perfekt zum Ausprobieren",
+      "proTitle": "Pro Monatlich",
+      "proPrice": "$9.99",
+      "proPeriod": "pro Monat",
+      "proDesc": "Für Power-User",
+      "creditsTitle": "Credits-Paket",
+      "creditsPrice": "$4.99",
+      "creditsPeriod": "10 Credits",
+      "creditsDesc": "Pay-as-you-go",
+      "upgradeNow": "Jetzt Upgraden"
+    },
+    "faq": {
+      "title": "Häufig Gestellte Fragen",
+      "q1": "Wie lange dauert die KI-Generierung?",
+      "a1": "Normalerweise nur wenige Sekunden. KI verarbeitet deine Anfrage im Hintergrund und du kannst herunterladen, sobald es fertig ist.",
+      "q2": "Wie viele Generierungen können kostenlose Benutzer pro Tag machen?",
+      "a2": "Kostenlose Benutzer können 1 Avatar pro Tag generieren. Upgrade auf Pro für unbegrenzte Generierungen.",
+      "q3": "Wie upgrade ich auf Pro?",
+      "a3": "Klicke auf die Schaltfläche 'Jetzt Upgraden' auf der Seite, wähle Pro Monatliches Abonnement oder Credits-Paket, schließe die Zahlung ab, um mehr Funktionen zu genießen.",
+      "q4": "Kann ich generierte Avatare kommerziell verwenden?",
+      "a4": "Ja, alle generierten Avatare folgen der CC0-Lizenz und können ohne Namensnennung für kommerzielle Zwecke verwendet werden."
+    },
+    "seoKeywords": "KI-Avatar-Generator,KI-Avatar-Ersteller,Notion KI-Avatar,Foto zu KI-Avatar,Text zu KI-Avatar,KI-Avatar-Ersteller,Notion-Stil KI-Avatar,KI-generierter Avatar,Kostenloser KI-Avatar-Generator,Online KI-Avatar-Ersteller,KI-Avatar-Tool,Künstliche Intelligenz Avatar,KI-Profilbild-Generator,KI-Avatar-Design,Intelligenter Avatar-Generator"
   },
   "aiFeatureIntro": {
     "title": "Neue KI-Avatar-Generator-Funktion",

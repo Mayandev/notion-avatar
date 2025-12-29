@@ -103,8 +103,10 @@
     "step4Desc": "새로운 Notion 아바타를 소셜 미디어에 공유하고 친구들에게 보여주세요!"
   },
   "ai": {
-    "title": "AI 아바타 생성",
+    "title": "Notion AI 아바타 생성",
     "description": "AI 마법으로 사진이나 아이디어를 Notion 스타일 아바타로 변환하세요.",
+    "heroSubtitle": "몇 초 만에 사진이나 텍스트 설명을 고유한 Notion 스타일 아바타로 변환",
+    "heroCTA": "시작하기",
     "photo2avatar": "사진에서 아바타",
     "text2avatar": "텍스트에서 아바타",
     "uploadTitle": "사진 업로드",
@@ -117,7 +119,66 @@
     "limitReached": "오늘 한도에 도달했습니다",
     "limitDesc": "오늘의 무료 할당량을 모두 사용했습니다. 내일 다시 오시거나 업그레이드하여 더 많은 횟수를 잠금 해제하세요.",
     "upgrade": "지금 업그레이드",
-    "error": "문제가 발생했습니다. 다시 시도해주세요."
+    "error": "문제가 발생했습니다. 다시 시도해주세요.",
+    "examples": {
+      "photoTitle": "사진 변환 효과",
+      "photoDesc": "AI가 실제 사진을 Notion 스타일 아바타로 변환하는 방법을 확인하세요",
+      "textTitle": "텍스트 생성 예제",
+      "textDesc": "원하는 아바타를 설명하기만 하면 AI가 생성해드립니다",
+      "before": "변환 전",
+      "after": "변환 후",
+      "apply": "이 프롬프트 적용",
+      "prompt1": "안경을 쓴 긴 머리 소녀, 미소",
+      "prompt2": "수염을 기른 남성, 모자를 쓴",
+      "prompt3": "짧은 머리 여성, 귀걸이를 한, 자신감 있는 표정"
+    },
+    "features": {
+      "title": "강력한 AI 기능",
+      "photo2avatarTitle": "사진에서 아바타",
+      "photo2avatarDesc": "사진을 업로드하면 AI가 자동으로 인식하여 Notion 스타일 아바타로 변환하고 고유한 특징을 보존합니다",
+      "text2avatarTitle": "텍스트에서 아바타",
+      "text2avatarDesc": "원하는 아바타 특징을 설명하기만 하면 AI가 개인화된 Notion 스타일 아바타를 생성합니다"
+    },
+    "steps": {
+      "title": "사용 방법",
+      "step1Title": "모드 선택",
+      "step1Desc": "사진에서 아바타 또는 텍스트에서 아바타 모드 선택",
+      "step2Title": "업로드 또는 설명",
+      "step2Desc": "사진을 업로드하거나 원하는 아바타의 텍스트 설명 입력",
+      "step3Title": "AI 생성",
+      "step3Desc": "생성을 클릭하면 AI가 몇 초 만에 아바타를 생성합니다",
+      "step4Title": "다운로드 및 사용",
+      "step4Desc": "생성된 아바타를 다운로드하여 Notion, SNS 등에서 사용할 수 있습니다"
+    },
+    "pricing": {
+      "title": "플랜 선택",
+      "description": "무료로 시작하고 언제든지 업그레이드",
+      "freeTitle": "무료",
+      "freePrice": "$0",
+      "freePeriod": "영구",
+      "freeDesc": "시도하기에 완벽",
+      "proTitle": "프로 월간",
+      "proPrice": "$9.99",
+      "proPeriod": "월간",
+      "proDesc": "파워 유저용",
+      "creditsTitle": "크레딧 팩",
+      "creditsPrice": "$4.99",
+      "creditsPeriod": "10 크레딧",
+      "creditsDesc": "종량제",
+      "upgradeNow": "지금 업그레이드"
+    },
+    "faq": {
+      "title": "자주 묻는 질문",
+      "q1": "AI 생성에는 얼마나 걸리나요?",
+      "a1": "보통 몇 초만 걸립니다. AI가 백그라운드에서 요청을 처리하며 완료되면 다운로드할 수 있습니다.",
+      "q2": "무료 사용자는 하루에 몇 번 생성할 수 있나요?",
+      "a2": "무료 사용자는 하루에 1개의 아바타를 생성할 수 있습니다. 프로로 업그레이드하면 무제한 생성이 가능합니다.",
+      "q3": "프로로 업그레이드하려면 어떻게 해야 하나요?",
+      "a3": "페이지의 '지금 업그레이드' 버튼을 클릭하고 프로 월간 구독 또는 크레딧 팩을 선택한 후 결제를 완료하면 더 많은 기능을 사용할 수 있습니다.",
+      "q4": "생성된 아바타를 상업적으로 사용할 수 있나요?",
+      "a4": "네, 모든 생성된 아바타는 CC0 라이선스를 따르며 귀속 표시 없이 상업적 목적으로 사용할 수 있습니다."
+    },
+    "seoKeywords": "AI 아바타 생성기,AI 아바타 메이커,Notion AI 아바타,사진에서 AI 아바타,텍스트에서 AI 아바타,AI 아바타 크리에이터,Notion 스타일 AI 아바타,AI 생성 아바타,무료 AI 아바타 생성기,온라인 AI 아바타 메이커,AI 아바타 도구,인공지능 아바타,AI 아바타 생성,스마트 아바타 생성기"
   },
   "aiFeatureIntro": {
     "title": "새로운 AI 아바타 생성 기능",
