@@ -19,7 +19,7 @@ const PHOTO_PROMPT = `Transform this photo into a Notion Avatar style illustrati
 - Simple black outline strokes for facial contours
 - Solid black fill for hair (no gradients, no strokes)
 - Minimalist facial features: simple shapes for eyes, single line for nose, simple curve for mouth
-- Clean white/cream background (#fffefc)
+- Pure white background (#ffffff) - MUST be solid white, no other colors, no gradients, no transparency
 - Cartoon proportions with slightly larger head
 - Completely flat design with NO shadows or gradients
 - Slight hand-drawn imperfection in lines
@@ -31,7 +31,7 @@ const TEXT_PROMPT = `Generate a Notion Avatar style portrait illustration based 
 - Simple black outline strokes for facial contours  
 - Solid black fill for hair (no gradients)
 - Minimalist facial features: simple shapes for eyes, single line for nose, simple curve for mouth
-- Clean white/cream background (#fffefc)
+- Pure white background (#ffffff) - MUST be solid white, no other colors, no gradients, no transparency
 - Cartoon proportions with slightly larger head
 - Completely flat design with NO shadows or gradients
 - Slight hand-drawn imperfection in lines

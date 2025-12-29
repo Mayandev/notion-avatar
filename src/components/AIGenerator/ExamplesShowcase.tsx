@@ -144,8 +144,10 @@ export default function ExamplesShowcase({
   // 示例数据 - 图片转换前后对比
   const photoExamples: Example[] = [
     {
-      before: '/image/avatar-1.jpg',
-      after: '/image/avatar-2.jpg',
+      before:
+        'https://uclqvnpqvartezdtmgpn.supabase.co/storage/v1/object/public/static-resource/ai-image-demo1-final.png',
+      after:
+        'https://uclqvnpqvartezdtmgpn.supabase.co/storage/v1/object/public/static-resource/ai-image-demo1-original.png',
       type: 'photo2avatar',
     },
     {
@@ -163,17 +165,20 @@ export default function ExamplesShowcase({
   // 示例数据 - 提示词生成结果
   const textExamples: Example[] = [
     {
-      after: '/image/avatar-1.jpg',
+      after:
+        'https://uclqvnpqvartezdtmgpn.supabase.co/storage/v1/object/public/static-resource/notion-avatar-ai-1767025735126.png',
       prompt: t('ai.examples.prompt1'),
       type: 'text2avatar',
     },
     {
-      after: '/image/avatar-2.jpg',
+      after:
+        'https://uclqvnpqvartezdtmgpn.supabase.co/storage/v1/object/public/static-resource/notion-avatar-ai-1767025604623.png',
       prompt: t('ai.examples.prompt2'),
       type: 'text2avatar',
     },
     {
-      after: '/image/avatar-3.jpg',
+      after:
+        'https://uclqvnpqvartezdtmgpn.supabase.co/storage/v1/object/public/static-resource/notion-avatar-ai-1767025641207.pngg',
       prompt: t('ai.examples.prompt3'),
       type: 'text2avatar',
     },

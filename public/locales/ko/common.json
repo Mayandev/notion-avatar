@@ -204,5 +204,25 @@
     "credits": "크레딧",
     "accountSettings": "계정 설정",
     "upgradePlan": "플랜 업그레이드"
+  },
+  "auth": {
+    "createAccount": "계정 만들기",
+    "welcomeBack": "다시 오신 것을 환영합니다",
+    "signUpDesc": "아바타 생성을 시작하려면 가입하세요",
+    "signInDesc": "계속하려면 로그인하세요",
+    "continueWithGoogle": "Google로 계속하기",
+    "continueWithGitHub": "GitHub로 계속하기",
+    "or": "또는",
+    "username": "사용자 이름",
+    "email": "이메일 주소",
+    "password": "비밀번호",
+    "loading": "로딩 중...",
+    "signUp": "가입",
+    "signIn": "로그인",
+    "alreadyHaveAccount": "이미 계정이 있으신가요?",
+    "dontHaveAccount": "계정이 없으신가요?",
+    "closeModal": "모달 닫기",
+    "checkEmail": "계정을 확인하려면 이메일을 확인하세요!",
+    "error": "오류가 발생했습니다. 다시 시도해주세요."
   }
 }

@@ -204,5 +204,25 @@
     "credits": "积分",
     "accountSettings": "账户设置",
     "upgradePlan": "升级计划"
+  },
+  "auth": {
+    "createAccount": "创建账户",
+    "welcomeBack": "欢迎回来",
+    "signUpDesc": "注册以开始生成头像",
+    "signInDesc": "登录以继续",
+    "continueWithGoogle": "使用 Google 继续",
+    "continueWithGitHub": "使用 GitHub 继续",
+    "or": "或",
+    "username": "用户名",
+    "email": "邮箱地址",
+    "password": "密码",
+    "loading": "加载中...",
+    "signUp": "注册",
+    "signIn": "登录",
+    "alreadyHaveAccount": "已有账户？",
+    "dontHaveAccount": "还没有账户？",
+    "closeModal": "关闭弹窗",
+    "checkEmail": "请检查您的邮箱以确认账户！",
+    "error": "出错了，请重试。"
   }
 }

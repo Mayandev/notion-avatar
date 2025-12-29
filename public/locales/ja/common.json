@@ -204,5 +204,25 @@
     "credits": "クレジット",
     "accountSettings": "アカウント設定",
     "upgradePlan": "プランをアップグレード"
+  },
+  "auth": {
+    "createAccount": "アカウント作成",
+    "welcomeBack": "おかえりなさい",
+    "signUpDesc": "アバター生成を始めるために登録",
+    "signInDesc": "続けるためにログイン",
+    "continueWithGoogle": "Googleで続ける",
+    "continueWithGitHub": "GitHubで続ける",
+    "or": "または",
+    "username": "ユーザー名",
+    "email": "メールアドレス",
+    "password": "パスワード",
+    "loading": "読み込み中...",
+    "signUp": "登録",
+    "signIn": "ログイン",
+    "alreadyHaveAccount": "すでにアカウントをお持ちですか？",
+    "dontHaveAccount": "アカウントをお持ちでないですか？",
+    "closeModal": "モーダルを閉じる",
+    "checkEmail": "アカウントを確認するためにメールを確認してください！",
+    "error": "エラーが発生しました。もう一度お試しください。"
   }
 }

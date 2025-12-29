@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import { useTranslation } from 'next-i18next';
 import toast from 'react-hot-toast';
 import { useAuth } from '@/contexts/AuthContext';
 
@@ -9,6 +10,7 @@ interface AuthModalProps {
 }
 
 export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
+  const { t } = useTranslation('common');
   const router = useRouter();
   const {
     signInWithGoogle,
@@ -46,14 +48,14 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
       if (error) {
         toast.error(error.message);
       } else if (isSignUp) {
-        toast.success('Check your email to confirm your account!');
+        toast.success(t('auth.checkEmail'));
         onClose();
       } else {
         onClose();
         router.reload();
       }
     } catch (err) {
-      toast.error('An error occurred. Please try again.');
+      toast.error(t('auth.error'));
     } finally {
       setIsLoading(false);
     }
@@ -67,7 +69,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
         await signInWithGithub();
       }
     } catch (err) {
-      toast.error('An error occurred. Please try again.');
+      toast.error(t('auth.error'));
     }
   };
 
@@ -80,7 +82,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
         onKeyDown={(e) => e.key === 'Escape' && onClose()}
         role="button"
         tabIndex={0}
-        aria-label="Close modal"
+        aria-label={t('auth.closeModal')}
       />
 
       {/* Modal */}
@@ -108,12 +110,10 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
 
         <div className="text-center mb-6">
           <h2 className="text-2xl font-bold text-gray-900">
-            {isSignUp ? 'Create Account' : 'Welcome Back'}
+            {isSignUp ? t('auth.createAccount') : t('auth.welcomeBack')}
           </h2>
           <p className="text-gray-600 mt-1">
-            {isSignUp
-              ? 'Sign up to start generating avatars'
-              : 'Sign in to continue'}
+            {isSignUp ? t('auth.signUpDesc') : t('auth.signInDesc')}
           </p>
         </div>
 
@@ -143,7 +143,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
               />
             </svg>
             <span className="font-medium text-gray-700">
-              Continue with Google
+              {t('auth.continueWithGoogle')}
             </span>
           </button>
 
@@ -160,7 +160,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
               />
             </svg>
             <span className="font-medium text-gray-700">
-              Continue with GitHub
+              {t('auth.continueWithGitHub')}
             </span>
           </button>
         </div>
@@ -170,7 +170,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
             <div className="w-full border-t border-gray-300" />
           </div>
           <div className="relative flex justify-center text-sm">
-            <span className="px-4 bg-white text-gray-500">or</span>
+            <span className="px-4 bg-white text-gray-500">{t('auth.or')}</span>
           </div>
         </div>
 
@@ -185,7 +185,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                 required={isSignUp}
                 minLength={2}
                 className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-black focus:border-transparent outline-none transition-all"
-                placeholder="Username"
+                placeholder={t('auth.username')}
               />
             </div>
           )}
@@ -197,7 +197,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
               onChange={(e) => setEmail(e.target.value)}
               required
               className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-black focus:border-transparent outline-none transition-all"
-              placeholder="Email address"
+              placeholder={t('auth.email')}
             />
           </div>
 
@@ -209,7 +209,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
               required
               minLength={6}
               className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-black focus:border-transparent outline-none transition-all"
-              placeholder="Password"
+              placeholder={t('auth.password')}
             />
           </div>
 
@@ -218,18 +218,22 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
             disabled={isLoading}
             className="w-full py-3 px-4 bg-black text-white font-bold rounded-xl hover:bg-gray-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            {isLoading ? 'Loading...' : isSignUp ? 'Sign Up' : 'Sign In'}
+            {isLoading
+              ? t('auth.loading')
+              : isSignUp
+              ? t('auth.signUp')
+              : t('auth.signIn')}
           </button>
         </form>
 
         <p className="mt-4 text-center text-sm text-gray-600">
-          {isSignUp ? 'Already have an account?' : "Don't have an account?"}{' '}
+          {isSignUp ? t('auth.alreadyHaveAccount') : t('auth.dontHaveAccount')}{' '}
           <button
             type="button"
             onClick={() => setIsSignUp(!isSignUp)}
             className="font-medium text-black hover:underline"
           >
-            {isSignUp ? 'Sign In' : 'Sign Up'}
+            {isSignUp ? t('auth.signIn') : t('auth.signUp')}
           </button>
         </p>
       </div>

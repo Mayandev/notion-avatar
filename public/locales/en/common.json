@@ -219,5 +219,25 @@
     "credits": "credits",
     "accountSettings": "Account Settings",
     "upgradePlan": "Upgrade Plan"
+  },
+  "auth": {
+    "createAccount": "Create Account",
+    "welcomeBack": "Welcome Back",
+    "signUpDesc": "Sign up to start generating avatars",
+    "signInDesc": "Sign in to continue",
+    "continueWithGoogle": "Continue with Google",
+    "continueWithGitHub": "Continue with GitHub",
+    "or": "or",
+    "username": "Username",
+    "email": "Email address",
+    "password": "Password",
+    "loading": "Loading...",
+    "signUp": "Sign Up",
+    "signIn": "Sign In",
+    "alreadyHaveAccount": "Already have an account?",
+    "dontHaveAccount": "Don't have an account?",
+    "closeModal": "Close modal",
+    "checkEmail": "Check your email to confirm your account!",
+    "error": "An error occurred. Please try again."
   }
 }

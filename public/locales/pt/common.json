@@ -201,5 +201,25 @@
     "credits": "créditos",
     "accountSettings": "Configurações da conta",
     "upgradePlan": "Atualizar plano"
+  },
+  "auth": {
+    "createAccount": "Criar conta",
+    "welcomeBack": "Bem-vindo de volta",
+    "signUpDesc": "Cadastre-se para começar a gerar avatares",
+    "signInDesc": "Entre para continuar",
+    "continueWithGoogle": "Continuar com Google",
+    "continueWithGitHub": "Continuar com GitHub",
+    "or": "ou",
+    "username": "Nome de usuário",
+    "email": "Endereço de e-mail",
+    "password": "Senha",
+    "loading": "Carregando...",
+    "signUp": "Cadastrar",
+    "signIn": "Entrar",
+    "alreadyHaveAccount": "Já tem uma conta?",
+    "dontHaveAccount": "Não tem uma conta?",
+    "closeModal": "Fechar modal",
+    "checkEmail": "Verifique seu e-mail para confirmar sua conta!",
+    "error": "Ocorreu um erro. Por favor, tente novamente."
   }
 }

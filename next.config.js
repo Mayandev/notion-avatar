@@ -5,6 +5,15 @@ const runtimeCaching = require('next-pwa/cache');
 module.exports = withPWA({
   i18n,
   reactStrictMode: true,
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'uclqvnpqvartezdtmgpn.supabase.co',
+        pathname: '/storage/v1/object/public/**',
+      },
+    ],
+  },
   pwa: {
     dest: 'public',
     register: true,

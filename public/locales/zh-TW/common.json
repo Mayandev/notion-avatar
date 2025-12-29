@@ -204,5 +204,25 @@
     "credits": "積分",
     "accountSettings": "帳戶設定",
     "upgradePlan": "升級方案"
+  },
+  "auth": {
+    "createAccount": "創建帳戶",
+    "welcomeBack": "歡迎回來",
+    "signUpDesc": "註冊以開始生成頭像",
+    "signInDesc": "登入以繼續",
+    "continueWithGoogle": "使用 Google 繼續",
+    "continueWithGitHub": "使用 GitHub 繼續",
+    "or": "或",
+    "username": "用戶名",
+    "email": "電子郵件地址",
+    "password": "密碼",
+    "loading": "載入中...",
+    "signUp": "註冊",
+    "signIn": "登入",
+    "alreadyHaveAccount": "已有帳戶？",
+    "dontHaveAccount": "還沒有帳戶？",
+    "closeModal": "關閉彈窗",
+    "checkEmail": "請檢查您的電子郵件以確認帳戶！",
+    "error": "出錯了，請重試。"
   }
 }
