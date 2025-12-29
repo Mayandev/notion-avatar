@@ -19,6 +19,10 @@ import GeneratedResult from '@/components/AIGenerator/GeneratedResult';
 import DailyLimitBanner from '@/components/AIGenerator/DailyLimitBanner';
 import AuthModal from '@/components/Auth/AuthModal';
 import UpgradeModal from '@/components/Pricing/UpgradeModal';
+import PricingPlans from '@/components/Pricing/PricingPlans';
+import UseCases from '@/components/UseCases';
+import ExamplesShowcase from '@/components/AIGenerator/ExamplesShowcase';
+import Image from 'next/legacy/image';
 
 export default function AIGeneratorPage() {
   const { t } = useTranslation('common');
@@ -124,6 +128,78 @@ export default function AIGeneratorPage() {
   const canGenerate = usageState.isUnlimited || usageState.remaining > 0;
   const isDisabled = !canGenerate && !!user;
 
+  const scrollToGenerator = () => {
+    const element = document.getElementById('ai-generator');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
+  const handleApplyPrompt = (prompt: string) => {
+    // 切换到文字生成模式
+    setMode('text2avatar');
+    // 设置提示词
+    setInputText(prompt);
+    // 清除之前的生成结果
+    setGeneratedImage(null);
+    // 滚动到生成器区域
+    setTimeout(() => {
+      scrollToGenerator();
+    }, 100);
+  };
+
+  const plans = [
+    {
+      name: 'Free',
+      price: '$0',
+      period: 'forever',
+      description: 'Perfect for trying out',
+      features: [
+        '1 generation per day',
+        'Photo to Avatar',
+        'Text to Avatar',
+        'Standard quality',
+      ],
+      buttonText: 'Current Plan',
+      buttonVariant: 'secondary' as const,
+      priceType: null,
+    },
+    {
+      name: 'Pro Monthly',
+      price: '$9.99',
+      period: 'per month',
+      description: 'For power users',
+      features: [
+        'Unlimited generations',
+        'Photo to Avatar',
+        'Text to Avatar',
+        'High quality output',
+        'Priority processing',
+        'Generation history',
+      ],
+      buttonText: 'Subscribe Now',
+      buttonVariant: 'primary' as const,
+      priceType: 'monthly',
+      popular: true,
+    },
+    {
+      name: 'Credit Pack',
+      price: '$4.99',
+      period: '10 credits',
+      description: 'Pay as you go',
+      features: [
+        '10 generations',
+        'Never expires',
+        'Photo to Avatar',
+        'Text to Avatar',
+        'Standard quality',
+      ],
+      buttonText: 'Buy Credits',
+      buttonVariant: 'secondary' as const,
+      priceType: 'credits',
+    },
+  ];
+
   const renderContent = () => {
     if (isGenerating) {
       return <GeneratingStatus />;
@@ -216,28 +292,165 @@ export default function AIGeneratorPage() {
         />
 
         <main className="flex-grow container mx-auto px-4 py-12">
-          <div className="text-center mb-12">
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">
-              {t('ai.title')} 🪄
-            </h1>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              {t('ai.description')}
-            </p>
-          </div>
-
-          <div className="max-w-2xl mx-auto bg-white rounded-3xl shadow-xl p-8 border-4 border-gray-100">
-            {/* Mode Selector */}
-            <ModeSelector
-              currentMode={mode}
-              onModeChange={setMode}
-              disabled={isGenerating || !!generatedImage}
-            />
-
-            {/* Content Area */}
-            <div className="min-h-[400px] flex flex-col items-center justify-center">
-              {renderContent()}
+          {/* Enhanced Hero Section */}
+          <section className="text-center mb-16 animate-in fade-in slide-in-from-bottom-4 duration-500">
+            <div className="relative inline-block mb-6">
+              <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-4 relative z-10">
+                {t('ai.title')}
+              </h1>
+              <div className="absolute right-0 -top-4 sm:-top-8 sm:-right-14 ">
+                <Image
+                  src="/icon/ai-stars.svg"
+                  width={60}
+                  height={60}
+                  alt="Stars"
+                />
+              </div>
             </div>
-          </div>
+            <p className="text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto mb-8 leading-relaxed">
+              {t('ai.heroSubtitle')}
+            </p>
+          </section>
+          {/* Generator Section */}
+          <section id="ai-generator" className="mb-16 scroll-mt-20">
+            <div className="max-w-2xl mx-auto bg-white rounded-3xl shadow-xl p-8 border-4 border-black">
+              {/* Mode Selector */}
+              <ModeSelector
+                currentMode={mode}
+                onModeChange={setMode}
+                disabled={isGenerating || !!generatedImage}
+              />
+
+              {/* Content Area */}
+              <div className="min-h-[400px] flex flex-col items-center justify-center">
+                {renderContent()}
+              </div>
+            </div>
+          </section>
+
+          {/* Steps Section */}
+          <section className="py-16 mb-12 animate-in fade-in slide-in-from-bottom-4 duration-500 delay-200">
+            <div className="container mx-auto px-4 md:px-8">
+              <h2 className="text-3xl font-bold text-center mb-12 text-gray-900">
+                {t('ai.steps.title')}
+              </h2>
+              <div className="max-w-3xl mx-auto space-y-8">
+                <div className="flex">
+                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-black flex items-center justify-center text-white font-bold mr-4">
+                    1
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold text-gray-800 mb-2">
+                      {t('ai.steps.step1Title')}
+                    </h3>
+                    <p className="text-gray-700 leading-relaxed">
+                      {t('ai.steps.step1Desc')}
+                    </p>
+                  </div>
+                </div>
+                <div className="flex">
+                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-black flex items-center justify-center text-white font-bold mr-4">
+                    2
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold text-gray-800 mb-2">
+                      {t('ai.steps.step2Title')}
+                    </h3>
+                    <p className="text-gray-700 leading-relaxed">
+                      {t('ai.steps.step2Desc')}
+                    </p>
+                  </div>
+                </div>
+                <div className="flex">
+                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-black flex items-center justify-center text-white font-bold mr-4">
+                    3
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold text-gray-800 mb-2">
+                      {t('ai.steps.step3Title')}
+                    </h3>
+                    <p className="text-gray-700 leading-relaxed">
+                      {t('ai.steps.step3Desc')}
+                    </p>
+                  </div>
+                </div>
+                <div className="flex">
+                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-black flex items-center justify-center text-white font-bold mr-4">
+                    4
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold text-gray-800 mb-2">
+                      {t('ai.steps.step4Title')}
+                    </h3>
+                    <p className="text-gray-700 leading-relaxed">
+                      {t('ai.steps.step4Desc')}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Use Cases Section */}
+          <UseCases />
+
+          {/* Examples Showcase Section */}
+          <ExamplesShowcase onApplyPrompt={handleApplyPrompt} />
+
+          {/* Pricing Section */}
+          <section className="py-16 mb-12 animate-in fade-in slide-in-from-bottom-4 duration-500 delay-300">
+            <div className="container mx-auto px-4 md:px-8">
+              <PricingPlans
+                plans={plans}
+                title={t('ai.pricing.title')}
+                description={t('ai.pricing.description')}
+                onAuthRequired={() => setIsAuthModalOpen(true)}
+              />
+            </div>
+          </section>
+
+          {/* FAQ Section */}
+          <section className="py-16 mb-12 animate-in fade-in slide-in-from-bottom-4 duration-500 delay-400">
+            <div className="container mx-auto px-4 md:px-8">
+              <h2 className="text-3xl font-bold text-center mb-12 text-gray-900">
+                {t('ai.faq.title')}
+              </h2>
+              <div className="max-w-3xl mx-auto space-y-6">
+                <div className="bg-white rounded-xl p-6 border-3 border-black">
+                  <h3 className="text-xl font-semibold text-gray-800 mb-3">
+                    {t('ai.faq.q1')}
+                  </h3>
+                  <p className="text-gray-700 leading-relaxed">
+                    {t('ai.faq.a1')}
+                  </p>
+                </div>
+                <div className="bg-white rounded-xl p-6 border-3 border-black">
+                  <h3 className="text-xl font-semibold text-gray-800 mb-3">
+                    {t('ai.faq.q2')}
+                  </h3>
+                  <p className="text-gray-700 leading-relaxed">
+                    {t('ai.faq.a2')}
+                  </p>
+                </div>
+                <div className="bg-white rounded-xl p-6 border-3 border-black">
+                  <h3 className="text-xl font-semibold text-gray-800 mb-3">
+                    {t('ai.faq.q3')}
+                  </h3>
+                  <p className="text-gray-700 leading-relaxed">
+                    {t('ai.faq.a3')}
+                  </p>
+                </div>
+                <div className="bg-white rounded-xl p-6 border-3 border-black">
+                  <h3 className="text-xl font-semibold text-gray-800 mb-3">
+                    {t('ai.faq.q4')}
+                  </h3>
+                  <p className="text-gray-700 leading-relaxed">
+                    {t('ai.faq.a4')}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
         </main>
 
         <Footer />

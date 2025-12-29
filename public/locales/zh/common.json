@@ -117,7 +117,19 @@
     "limitReached": "今日额度已用完",
     "limitDesc": "您已使用完今日的免费额度。请明天再来，或升级解锁更多次数。",
     "upgrade": "立即升级",
-    "error": "出错了，请重试。"
+    "error": "出错了，请重试。",
+    "examples": {
+      "photoTitle": "照片转换效果",
+      "photoDesc": "看看 AI 如何将您的真实照片转换为 Notion 风格头像",
+      "textTitle": "文字生成示例",
+      "textDesc": "只需描述您想要的头像，AI 就能为您生成",
+      "before": "原图",
+      "after": "生成",
+      "apply": "应用此提示词",
+      "prompt1": "一个戴眼镜的长发女孩，微笑",
+      "prompt2": "一个留着胡须的男性，戴帽子",
+      "prompt3": "一个短发女性，戴耳环，自信的表情"
+    }
   },
   "aiFeatureIntro": {
     "title": "全新 AI 头像生成功能",

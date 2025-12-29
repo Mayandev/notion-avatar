@@ -15,7 +15,7 @@ export default function Header() {
   return (
     <header className="relative">
       <div className="flex justify-between items-center py-5 px-5 sm:px-16 md:px-32">
-        <div className="flex items-center">
+        <div className="flex items-center gap-4">
           <Link
             href="/"
             className="flex items-center gap-2 hover:opacity-80 transition-opacity"
@@ -26,12 +26,12 @@ export default function Header() {
               width={50}
               height={50}
             />
-            <span className="text-lg leading-tight relative inline-block">
+            <span className="w-36 sm:w-48 text-lg leading-tight relative inline-block">
               Notion {router.pathname === '/ai-generator' ? 'AI' : ''}
               <br />
               {t('avatarMaker')}
               {router.pathname === '/ai-generator' && (
-                <span className="absolute top-0 right-4 transition-opacity">
+                <span className="absolute top-0 sm:right-24 right-12 transition-opacity">
                   <Image
                     src="/icon/ai-stars.svg"
                     alt="AI Stars"
@@ -43,9 +43,6 @@ export default function Header() {
               )}
             </span>
           </Link>
-        </div>
-
-        <nav className="flex items-center gap-4 relative z-10 mr-5">
           <Link
             href="/ai-generator"
             className={`flex items-center gap-2 px-4 py-2 rounded-full font-bold transition-all ${
@@ -56,6 +53,9 @@ export default function Header() {
           >
             <span className="hidden sm:inline">{t('ai.title')}</span>
           </Link>
+        </div>
+
+        <nav className="flex items-center gap-4 relative z-10 mr-5">
           <UserMenu onLoginClick={() => setIsAuthModalOpen(true)} />
         </nav>
       </div>

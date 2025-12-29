@@ -120,6 +120,8 @@
   "ai": {
     "title": "AI Avatar Generator",
     "description": "Transform your photos or ideas into Notion-style avatars with AI magic.",
+    "heroSubtitle": "Transform your photos or text descriptions into unique Notion-style avatars in just seconds",
+    "heroCTA": "Get Started",
     "photo2avatar": "Photo to Avatar",
     "text2avatar": "Text to Avatar",
     "uploadTitle": "Upload Photo",
@@ -132,7 +134,65 @@
     "limitReached": "Daily limit reached",
     "limitDesc": "You have used your free daily quota. Please come back tomorrow or upgrade for more.",
     "upgrade": "Upgrade Now",
-    "error": "Something went wrong. Please try again."
+    "error": "Something went wrong. Please try again.",
+    "examples": {
+      "photoTitle": "Photo Transformation",
+      "photoDesc": "See how AI transforms your real photos into Notion-style avatars",
+      "textTitle": "Text Generation Examples",
+      "textDesc": "Just describe what you want, and AI will generate it for you",
+      "before": "Before",
+      "after": "After",
+      "apply": "Apply This Prompt",
+      "prompt1": "A girl with glasses and long hair, smiling",
+      "prompt2": "A man with a beard, wearing a hat",
+      "prompt3": "A short-haired woman with earrings, confident expression"
+    },
+    "features": {
+      "title": "Powerful AI Features",
+      "photo2avatarTitle": "Photo to Avatar",
+      "photo2avatarDesc": "Upload your photo and AI will automatically recognize and convert it to a Notion-style avatar, preserving your unique features",
+      "text2avatarTitle": "Text to Avatar",
+      "text2avatarDesc": "Simply describe the avatar features you want, and AI will generate a personalized Notion-style avatar for you"
+    },
+    "steps": {
+      "title": "How It Works",
+      "step1Title": "Choose Mode",
+      "step1Desc": "Select photo-to-avatar or text-to-avatar mode",
+      "step2Title": "Upload or Describe",
+      "step2Desc": "Upload your photo or enter a text description of your desired avatar",
+      "step3Title": "AI Generation",
+      "step3Desc": "Click generate and AI will create your avatar in seconds",
+      "step4Title": "Download & Use",
+      "step4Desc": "Download your generated avatar and use it on Notion, social media, and more"
+    },
+    "pricing": {
+      "title": "Choose Your Plan",
+      "description": "Start free, upgrade anytime",
+      "freeTitle": "Free",
+      "freePrice": "$0",
+      "freePeriod": "forever",
+      "freeDesc": "Perfect for trying out",
+      "proTitle": "Pro Monthly",
+      "proPrice": "$9.99",
+      "proPeriod": "per month",
+      "proDesc": "For power users",
+      "creditsTitle": "Credit Pack",
+      "creditsPrice": "$4.99",
+      "creditsPeriod": "10 credits",
+      "creditsDesc": "Pay as you go",
+      "upgradeNow": "Upgrade Now"
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "q1": "How long does AI generation take?",
+      "a1": "Usually just a few seconds. AI processes your request in the background and you can download once it's complete.",
+      "q2": "How many generations can free users make per day?",
+      "a2": "Free users can generate 1 avatar per day. Upgrade to Pro for unlimited generations.",
+      "q3": "How do I upgrade to Pro?",
+      "a3": "Click the 'Upgrade Now' button on the page, choose Pro Monthly subscription or Credit Pack, complete payment to enjoy more features.",
+      "q4": "Can I use generated avatars commercially?",
+      "a4": "Yes, all generated avatars follow CC0 license and can be used for commercial purposes without attribution."
+    }
   },
   "aiFeatureIntro": {
     "title": "New AI Avatar Generator Feature",
