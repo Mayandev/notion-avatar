@@ -7,7 +7,7 @@ import UserMenu from '@/components/Auth/UserMenu';
 import AuthModal from '@/components/Auth/AuthModal';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
 import { useAuth } from '@/contexts/AuthContext';
-import Decoration, { WaveDecoration } from './decoration';
+import Decoration from './decoration';
 
 export default function Header() {
   const { t } = useTranslation('common');
@@ -15,6 +15,7 @@ export default function Header() {
   const { user, subscription, credits, signOut, isLoading } = useAuth();
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [showMobileLanguageMenu, setShowMobileLanguageMenu] = useState(false);
 
   // Prevent body scroll when mobile menu is open
   useEffect(() => {
@@ -22,6 +23,7 @@ export default function Header() {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = '';
+      setShowMobileLanguageMenu(false);
     }
     return () => {
       document.body.style.overflow = '';
@@ -68,15 +70,30 @@ export default function Header() {
             className="group flex items-center gap-2 px-4 py-2 transition-all relative text-black font-bold"
           >
             <span className="relative z-10">{t('ai.navTitle')}</span>
-            <span className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 pointer-events-none rotate-3">
-              <WaveDecoration />
+            <span
+              className={`absolute top-[-24px] left-[-24px] pointer-events-none transition-all duration-300 ease-out ${
+                router.pathname === '/ai-generator'
+                  ? 'opacity-100 scale-100'
+                  : 'opacity-0 scale-0 group-hover:opacity-100 group-hover:scale-100'
+              }`}
+            >
+              <Image src="/icon/bling.svg" width={32} height={34} alt="Bling" />
             </span>
           </Link>
           <Link
             href="/blog"
-            className="px-4 py-2 transition-all text-black font-bold hover:text-gray-600"
+            className="group flex items-center gap-2 px-4 py-2 transition-all relative text-black font-bold"
           >
-            Blog
+            <span className="relative z-10">Blog</span>
+            <span
+              className={`absolute top-[-24px] left-[-24px] pointer-events-none transition-all duration-300 ease-out ${
+                router.pathname.startsWith('/blog')
+                  ? 'opacity-100 scale-100'
+                  : 'opacity-0 scale-0 group-hover:opacity-100 group-hover:scale-100'
+              }`}
+            >
+              <Image src="/icon/bling.svg" width={32} height={34} alt="Bling" />
+            </span>
           </Link>
           <LanguageSwitcher />
           <UserMenu onLoginClick={() => setIsAuthModalOpen(true)} />
@@ -232,11 +249,59 @@ export default function Header() {
 
                 {/* Language Switcher */}
                 <div className="pt-4 mt-4 border-t border-gray-200">
-                  <div className="flex items-center justify-between px-4 py-3">
-                    <span className="text-sm font-semibold text-gray-700">
-                      {t('language')}
-                    </span>
-                    <LanguageSwitcher />
+                  <div className="relative">
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setShowMobileLanguageMenu(!showMobileLanguageMenu)
+                      }
+                      className="flex items-center gap-3 px-4 py-3 w-full text-left hover:bg-gray-50 transition-colors"
+                    >
+                      <Image
+                        src="/icon/language.svg"
+                        alt="Language"
+                        width={20}
+                        height={20}
+                      />
+                      <span className="font-bold text-black">
+                        {t('language')}
+                      </span>
+                    </button>
+                    {showMobileLanguageMenu && (
+                      <div className="bg-gray-50 py-2">
+                        {[
+                          { code: 'en', name: 'English' },
+                          { code: 'zh', name: '中文' },
+                          { code: 'zh-TW', name: '繁體中文' },
+                          { code: 'ja', name: '日本語' },
+                          { code: 'ko', name: '한국어' },
+                          { code: 'es', name: 'Español' },
+                          { code: 'fr', name: 'Français' },
+                          { code: 'de', name: 'Deutsch' },
+                          { code: 'ru', name: 'Русский' },
+                          { code: 'pt', name: 'Português' },
+                        ].map((lang) => (
+                          <button
+                            key={lang.code}
+                            type="button"
+                            className={`block w-full text-left px-8 py-2 text-sm hover:bg-gray-100 transition-colors ${
+                              router.locale === lang.code
+                                ? 'bg-gray-100 font-medium'
+                                : ''
+                            }`}
+                            onClick={() => {
+                              router.push(router.asPath, router.asPath, {
+                                locale: lang.code,
+                              });
+                              setShowMobileLanguageMenu(false);
+                              setIsMobileMenuOpen(false);
+                            }}
+                          >
+                            {lang.name}
+                          </button>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 </div>
 

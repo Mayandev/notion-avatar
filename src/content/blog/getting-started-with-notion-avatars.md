@@ -1,8 +1,8 @@
 ---
 title: "Getting Started with Notion Avatar Maker"
 description: "Learn how to create your perfect Notion-style avatar in minutes. This guide covers all the basics of customizing facial features, hairstyles, accessories, and more."
-date: "2026-01-03"
-coverImage: "/image/avatar-1.jpg"
+date: "2025-12-25"
+coverImage: "/image/scribble.png"
 ---
 
 Welcome to Notion Avatar Maker! Creating your unique hand-drawn style avatar has never been easier. In this guide, we'll walk you through everything you need to know to create the perfect avatar for your Notion workspace, social media profiles, or any other platform.
