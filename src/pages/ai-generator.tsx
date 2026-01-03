@@ -160,7 +160,7 @@ export default function AIGeneratorPage() {
   const pageTitle = `${t('ai.title')} | Notion Avatar Maker`;
   const pageDescription = t('ai.description');
   const pageKeywords = t('ai.seoKeywords') || t('siteKeywords');
-  const ogImage = 'https://i.imgur.com/F5R0K03.png';
+  const ogImage = 'https://imgur.com/0CQcvd6';
 
   // Generate hreflang URLs
   const locales = [
