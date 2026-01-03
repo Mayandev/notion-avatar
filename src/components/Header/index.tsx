@@ -72,6 +72,12 @@ export default function Header() {
               <WaveDecoration />
             </span>
           </Link>
+          <Link
+            href="/blog"
+            className="px-4 py-2 transition-all text-black font-bold hover:text-gray-600"
+          >
+            Blog
+          </Link>
           <LanguageSwitcher />
           <UserMenu onLoginClick={() => setIsAuthModalOpen(true)} />
         </nav>
@@ -199,6 +205,29 @@ export default function Header() {
                     className="drop-shadow-sm"
                   />
                   <span className="relative z-10">{t('ai.title')}</span>
+                </Link>
+
+                {/* Blog Link */}
+                <Link
+                  href="/blog"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="flex items-center gap-3 px-4 py-3 transition-all text-black font-bold rounded-lg hover:bg-gray-50 active:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-5 w-5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"
+                    />
+                  </svg>
+                  <span>Blog</span>
                 </Link>
 
                 {/* Language Switcher */}
