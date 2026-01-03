@@ -36,3 +36,4 @@ CREATE POLICY "Service role can manage all purchases" ON public.resource_purchas
   FOR ALL USING (auth.jwt() ->> 'role' = 'service_role');
 
 
+

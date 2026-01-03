@@ -12,5 +12,5 @@ module.exports = {
       8: '8px',
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/typography')],
 };
