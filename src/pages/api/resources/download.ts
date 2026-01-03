@@ -29,18 +29,31 @@ export default async function handler(
       return res.status(400).json({ error: 'Invalid resource pack ID' });
     }
 
-    // Check if user has purchased this resource pack
-    const { data: purchase, error: purchaseError } = await supabase
-      .from('resource_purchases')
-      .select('id')
+    // Check if user is a Pro subscriber
+    const { data: subscription } = await supabase
+      .from('subscriptions')
+      .select('plan_type, status')
       .eq('user_id', user.id)
-      .eq('resource_pack_id', pack)
       .single();
 
-    if (purchaseError || !purchase) {
-      return res.status(403).json({
-        error: 'You have not purchased this resource pack',
-      });
+    const isPro =
+      subscription?.plan_type === 'monthly' &&
+      subscription?.status === 'active';
+
+    // If not a Pro user, check if user has purchased this resource pack
+    if (!isPro) {
+      const { data: purchase, error: purchaseError } = await supabase
+        .from('resource_purchases')
+        .select('id')
+        .eq('user_id', user.id)
+        .eq('resource_pack_id', pack)
+        .single();
+
+      if (purchaseError || !purchase) {
+        return res.status(403).json({
+          error: 'You have not purchased this resource pack',
+        });
+      }
     }
 
     // Generate signed URL for the resource file

@@ -1,6 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { createClient } from '@/lib/supabase/server';
 
+// All available resource packs
+const ALL_RESOURCE_PACKS = ['design-pack', 'scribbles-pack'];
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,
@@ -17,6 +20,22 @@ export default async function handler(
 
     if (!user) {
       return res.status(401).json({ error: 'Unauthorized' });
+    }
+
+    // Check if user is a Pro subscriber
+    const { data: subscription } = await supabase
+      .from('subscriptions')
+      .select('plan_type, status')
+      .eq('user_id', user.id)
+      .single();
+
+    const isPro =
+      subscription?.plan_type === 'monthly' &&
+      subscription?.status === 'active';
+
+    // Pro users get access to all resource packs for free
+    if (isPro) {
+      return res.status(200).json({ packs: ALL_RESOURCE_PACKS });
     }
 
     // Fetch user's purchased resource packs

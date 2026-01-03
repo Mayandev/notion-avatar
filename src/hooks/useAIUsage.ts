@@ -1,4 +1,5 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useCallback } from 'react';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { useAuth } from '@/contexts/AuthContext';
 
 export interface AIUsageState {
@@ -15,74 +16,87 @@ export interface AIUsageState {
 const FREE_DAILY_LIMIT = 1;
 const STORAGE_KEY = 'ai_avatar_usage_guest';
 
-export function useAIUsage() {
-  const { user } = useAuth();
-  const [usageState, setUsageState] = useState<AIUsageState>({
-    remaining: 0,
+function getGuestUsage(): AIUsageState {
+  if (typeof window === 'undefined') {
+    return {
+      remaining: FREE_DAILY_LIMIT,
+      total: FREE_DAILY_LIMIT,
+      isUnlimited: false,
+      isAuthenticated: false,
+      isLoading: false,
+    };
+  }
+
+  const today = new Date().toISOString().split('T')[0];
+  const usage = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+
+  if (usage.date !== today) {
+    return {
+      remaining: FREE_DAILY_LIMIT,
+      total: FREE_DAILY_LIMIT,
+      isUnlimited: false,
+      isAuthenticated: false,
+      isLoading: false,
+    };
+  }
+
+  return {
+    remaining: Math.max(0, FREE_DAILY_LIMIT - (usage.count || 0)),
     total: FREE_DAILY_LIMIT,
     isUnlimited: false,
     isAuthenticated: false,
-    isLoading: true,
+    isLoading: false,
+  };
+}
+
+async function fetchUsageCheck(): Promise<AIUsageState> {
+  const response = await fetch('/api/usage/check');
+  const data = await response.json();
+
+  return {
+    remaining: data.remaining,
+    total: data.total,
+    isUnlimited: data.isUnlimited,
+    freeRemaining: data.freeRemaining,
+    paidCredits: data.paidCredits,
+    planType: data.planType,
+    isAuthenticated: true,
+    isLoading: false,
+  };
+}
+
+export function useAIUsage() {
+  const { user } = useAuth();
+  const queryClient = useQueryClient();
+
+  const { data: usageState, isLoading } = useQuery<AIUsageState>({
+    queryKey: ['usageCheck', !!user],
+    queryFn: async () => {
+      if (user) {
+        return fetchUsageCheck();
+      }
+      return getGuestUsage();
+    },
+    staleTime: 1000 * 60 * 2,
+    retry: 1,
   });
 
+  const defaultState: AIUsageState = {
+    remaining: 0,
+    total: FREE_DAILY_LIMIT,
+    isUnlimited: false,
+    isAuthenticated: !!user,
+    isLoading: true,
+  };
+
   const checkUsage = useCallback(async () => {
+    await queryClient.invalidateQueries({ queryKey: ['usageCheck'] });
+  }, [queryClient]);
+
+  const incrementUsage = useCallback(async () => {
     if (user) {
-      // Authenticated user - fetch from API
-      try {
-        const response = await fetch('/api/usage/check');
-        const data = await response.json();
-
-        setUsageState({
-          remaining: data.remaining,
-          total: data.total,
-          isUnlimited: data.isUnlimited,
-          freeRemaining: data.freeRemaining,
-          paidCredits: data.paidCredits,
-          planType: data.planType,
-          isAuthenticated: true,
-          isLoading: false,
-        });
-      } catch (error) {
-        console.error('Failed to check usage:', error);
-        setUsageState((prev) => ({ ...prev, isLoading: false }));
-      }
-    } else {
-      // Guest user - use localStorage
-      const today = new Date().toISOString().split('T')[0];
-      const usage = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
-
-      if (usage.date !== today) {
-        // Reset for new day
-        setUsageState({
-          remaining: FREE_DAILY_LIMIT,
-          total: FREE_DAILY_LIMIT,
-          isUnlimited: false,
-          isAuthenticated: false,
-          isLoading: false,
-        });
-      } else {
-        setUsageState({
-          remaining: Math.max(0, FREE_DAILY_LIMIT - (usage.count || 0)),
-          total: FREE_DAILY_LIMIT,
-          isUnlimited: false,
-          isAuthenticated: false,
-          isLoading: false,
-        });
-      }
-    }
-  }, [user]);
-
-  useEffect(() => {
-    checkUsage();
-  }, [checkUsage]);
-
-  const incrementUsage = async () => {
-    if (user) {
-      // For authenticated users, usage is tracked on the server
-      // Just refresh the usage state
       await checkUsage();
     } else {
-      // For guest users, update localStorage
       const today = new Date().toISOString().split('T')[0];
       const usage = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
       const newCount = usage.date === today ? (usage.count || 0) + 1 : 1;
@@ -97,7 +111,11 @@ export function useAIUsage() {
 
       await checkUsage();
     }
-  };
+  }, [user, checkUsage]);
 
-  return { usageState, incrementUsage, checkUsage };
+  return {
+    usageState: usageState || { ...defaultState, isLoading },
+    incrementUsage,
+    checkUsage,
+  };
 }

@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import type { GetServerSidePropsContext, NextPage } from 'next';
 import Head from 'next/head';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -13,6 +13,7 @@ import UseCases from '@/components/UseCases';
 import AIFeatureIntroModal from '@/components/Modal/AIFeatureIntro';
 import ResourceStore from '@/components/ResourceStore';
 import { createServerSideClient } from '@/lib/supabase/server';
+import { usePurchasedPacks } from '@/hooks/useAccountData';
 
 const URL = `https://notion-avatar.app/`;
 
@@ -26,18 +27,14 @@ const Home: NextPage<HomeProps> = ({ initialPurchasedPacks }) => {
   const { t } = useTranslation(`common`);
   const { user, isLoading: isAuthLoading } = useAuth();
   const [isAIFeatureModalOpen, setIsAIFeatureModalOpen] = useState(false);
-  const [purchasedPacks, setPurchasedPacks] = useState<string[]>(
-    initialPurchasedPacks,
-  );
+  const { data: purchasedPacks = initialPurchasedPacks, refetch } =
+    usePurchasedPacks(initialPurchasedPacks);
 
-  // 检查是否应该显示 AI 功能弹窗
   // eslint-disable-next-line consistent-return
   useEffect(() => {
-    // 只在客户端检查 localStorage
     if (typeof window !== 'undefined') {
       const dismissed = localStorage.getItem(AI_FEATURE_INTRO_KEY);
       if (!dismissed) {
-        // 延迟显示，让页面先加载
         const timer = setTimeout(() => {
           setIsAIFeatureModalOpen(true);
         }, 1000);
@@ -53,44 +50,6 @@ const Home: NextPage<HomeProps> = ({ initialPurchasedPacks }) => {
     setIsAIFeatureModalOpen(false);
   };
 
-  // Refresh purchased packs when payment succeeds
-  const refreshPurchasedPacks = useCallback(async () => {
-    if (!user) {
-      return;
-    }
-
-    try {
-      const response = await fetch('/api/resources/purchased');
-      if (response.ok) {
-        const data = await response.json();
-        setPurchasedPacks(data.packs || []);
-      }
-    } catch (error) {
-      // eslint-disable-next-line no-console
-      console.error('Failed to fetch purchased packs:', error);
-    }
-  }, [user]);
-
-  // Fallback: If SSR failed and user is logged in, fetch in CSR
-  useEffect(() => {
-    if (
-      !isAuthLoading &&
-      user &&
-      initialPurchasedPacks.length === 0 &&
-      purchasedPacks.length === 0
-    ) {
-      // SSR might have failed, try fetching in CSR
-      refreshPurchasedPacks();
-    }
-  }, [
-    user,
-    isAuthLoading,
-    initialPurchasedPacks.length,
-    purchasedPacks.length,
-    refreshPurchasedPacks,
-  ]);
-
-  // Handle download
   const handleDownload = async (packId: string) => {
     if (!user) {
       return;
@@ -101,8 +60,6 @@ const Home: NextPage<HomeProps> = ({ initialPurchasedPacks }) => {
       const data = await response.json();
 
       if (response.ok && data.url) {
-        // Open the signed URL in a new window/tab to trigger download
-        // Note: This will navigate away, so loading state will be cleared
         window.location.href = data.url;
       } else {
         throw new Error(data.error || 'Failed to download');
@@ -111,7 +68,6 @@ const Home: NextPage<HomeProps> = ({ initialPurchasedPacks }) => {
       // eslint-disable-next-line no-console
       console.error('Download error:', error);
       toast.error('Failed to download resource pack. Please try again.');
-      // Re-throw to let ResourceStore component handle loading state
       throw error;
     }
   };
@@ -126,7 +82,6 @@ const Home: NextPage<HomeProps> = ({ initialPurchasedPacks }) => {
       ? new URLSearchParams(hash.split('?')[1])
       : null;
 
-    // Check for success in query params or hash params
     const successParam =
       urlParams.get('success') || hashParams?.get('success') || null;
     const packParam = urlParams.get('pack') || hashParams?.get('pack') || null;
@@ -136,11 +91,9 @@ const Home: NextPage<HomeProps> = ({ initialPurchasedPacks }) => {
         toast.success(
           'Payment successful! You can now download your resource pack.',
         );
-        refreshPurchasedPacks();
+        refetch();
       }
-      // Clean up URL and set hash
       window.history.replaceState({}, '', '#resource-store');
-      // Scroll to resource store section after a short delay
       setTimeout(() => {
         const element = document.getElementById('resource-store');
         if (element) {
@@ -148,7 +101,6 @@ const Home: NextPage<HomeProps> = ({ initialPurchasedPacks }) => {
         }
       }, 500);
     } else if (hash === '#resource-store') {
-      // Just scroll if hash is present without success param
       setTimeout(() => {
         const element = document.getElementById('resource-store');
         if (element) {
@@ -156,9 +108,8 @@ const Home: NextPage<HomeProps> = ({ initialPurchasedPacks }) => {
         }
       }, 300);
     }
-  }, [refreshPurchasedPacks, user, isAuthLoading]);
+  }, [refetch, user, isAuthLoading]);
 
-  // FAQ数据
   const faqItems = [
     { question: 'faq.whatIsAvatar', answer: 'faq.whatIsAvatarAnswer' },
     { question: 'faq.howToUse', answer: 'faq.howToUseAnswer' },
@@ -278,7 +229,6 @@ const Home: NextPage<HomeProps> = ({ initialPurchasedPacks }) => {
         <meta name="googlebot" content="index, follow" />
         <meta name="google" content="notranslate" />
         <link rel="canonical" href="https://notion-avatar.app" />
-        {/* 添加所有语言的备用链接 */}
         <link
           rel="alternate"
           hrefLang="en"
@@ -360,7 +310,6 @@ const Home: NextPage<HomeProps> = ({ initialPurchasedPacks }) => {
         <meta name="format-detection" content="telephone=no" />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="msapplication-tap-highlight" content="no" />
-        {/* PWA manifest */}
         <link rel="manifest" href="/manifest.json" />
       </Head>
 
@@ -484,7 +433,6 @@ export async function getServerSideProps(
     } = await supabase.auth.getUser();
 
     if (user) {
-      // Fetch user's purchased resource packs
       const { data: purchases, error } = await supabase
         .from('resource_purchases')
         .select('resource_pack_id')
@@ -497,7 +445,6 @@ export async function getServerSideProps(
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Error fetching purchased packs in SSR:', error);
-    // Continue with empty array if error occurs
   }
 
   return {

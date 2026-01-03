@@ -70,8 +70,9 @@
   },
   "resourceStore": {
     "title": "デザインリソース",
-    "description": "Notion Avatar Maker の完全なデザインリソースパック（ウェブサイトデザインと装飾要素を含む）",
+    "description": "Notion Avatar Maker の完全なデザインリソースパック（ウェブサイトデザインと装飾要素を含む）。Proユーザーは無料。",
     "buyNow": "今すぐ購入",
+    "freeForPro": "Proユーザーは無料",
     "designPack": {
       "title": "完全なウェブサイトデザイン",
       "description": "すべてのページの Figma デザインファイル",
@@ -212,6 +213,8 @@
     "close": "メニューを閉じる",
     "navigation": "ナビゲーションメニュー",
     "home": "ホーム",
+    "resources": "リソース",
+    "pricing": "料金",
     "signIn": "サインイン",
     "signOut": "サインアウト",
     "pro": "プロ",
@@ -268,6 +271,88 @@
     "subscriptionWillCancel": "サブスクリプションは請求期間の終了時にキャンセルされます",
     "expiresOn": "有効期限",
     "subscriptionCanceled": "サブスクリプションがキャンセルされました",
-    "resubscribe": "再購読"
+    "resubscribe": "再購読",
+    "generationHistoryProOnly": "生成履歴は Pro ユーザーのみ利用可能です。",
+    "upgradeToViewHistory": "Pro にアップグレードして生成履歴を表示"
+  },
+  "pricing": {
+    "pageTitle": "料金 | Notion Avatar Maker",
+    "pageDescription": "アバター作成に最適なプランを選択してください",
+    "title": "シンプルで透明な料金",
+    "description": "あなたに最適なプランを選択してください。いつでもアップグレードできます。",
+    "plans": {
+      "free": {
+        "name": "無料",
+        "price": "$0",
+        "period": "永久",
+        "description": "お試しに最適",
+        "features": {
+          "1": "1日1回生成",
+          "2": "写真からアバター",
+          "3": "テキストからアバター",
+          "4": "標準品質"
+        },
+        "buttonText": "現在のプラン"
+      },
+      "pro": {
+        "name": "プロ月額",
+        "price": "$9.99",
+        "period": "月額",
+        "description": "上級ユーザー向け",
+        "features": {
+          "1": "無制限生成",
+          "2": "写真からアバター",
+          "3": "テキストからアバター",
+          "4": "高品質出力",
+          "5": "優先処理",
+          "6": "生成履歴",
+          "7": "無料リソースパックダウンロード"
+        },
+        "buttonText": "今すぐ購読",
+        "popular": "最も人気"
+      },
+      "credits": {
+        "name": "クレジットパック",
+        "price": "$4.99",
+        "period": "10クレジット",
+        "description": "従量課金",
+        "features": {
+          "1": "10回生成",
+          "2": "有効期限なし",
+          "3": "写真からアバター",
+          "4": "テキストからアバター",
+          "5": "標準品質"
+        },
+        "buttonText": "クレジットを購入"
+      }
+    },
+    "loading": "読み込み中...",
+    "currentPlan": "現在のプラン",
+    "checkoutError": "チェックアウトの開始に失敗しました。もう一度お試しください。",
+    "faq": {
+      "title": "よくある質問",
+      "q1": "無料生成回数がなくなったらどうなりますか？",
+      "a1": "無料ユーザーは1日1回生成できます。使用後は、明日まで待つか、クレジットパックを購入するか、Proに登録して無制限アクセスを取得できます。",
+      "q2": "クレジットは期限切れになりますか？",
+      "a2": "いいえ！クレジットは期限切れになりません。必要なときにいつでも使用できます。",
+      "q3": "サブスクリプションはいつでもキャンセルできますか？",
+      "a3": "はい、Proサブスクリプションはいつでもキャンセルできます。請求期間の終了まで引き続きアクセスできます。"
+    },
+    "upgradeModal": {
+      "title": "1日の上限に達しました",
+      "description": "本日の無料生成回数を使用しました。素晴らしいアバターを作成し続けるためにアップグレードしてください！",
+      "bestValue": "最高の価値",
+      "unlimitedGenerations": "無制限生成",
+      "proMonthly": "プロ月額",
+      "proPrice": "$9.99",
+      "proPeriod": "/月",
+      "creditPack": "クレジットパック",
+      "creditPackDesc": "10回生成、有効期限なし",
+      "creditPackPrice": "$4.99",
+      "creditPackPeriod": "/パック",
+      "redirecting": "チェックアウトにリダイレクト中...",
+      "resetInfo": "無料上限は明日の深夜にリセットされます。",
+      "checkoutError": "チェックアウトの開始に失敗しました。もう一度お試しください。"
+    }
   }
 }

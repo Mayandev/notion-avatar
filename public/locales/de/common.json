@@ -70,8 +70,9 @@
   },
   "resourceStore": {
     "title": "Design-Ressourcen",
-    "description": "Holen Sie sich das komplette Design-Ressourcenpaket für Notion Avatar Maker, einschließlich Website-Design und dekorativer Elemente",
+    "description": "Holen Sie sich das komplette Design-Ressourcenpaket für Notion Avatar Maker, einschließlich Website-Design und dekorativer Elemente. Kostenlos für Pro-Nutzer.",
     "buyNow": "Jetzt kaufen",
+    "freeForPro": "Kostenlos für Pro-Nutzer",
     "designPack": {
       "title": "Komplettes Website-Design",
       "description": "Enthält Figma-Designdateien für alle Seiten",
@@ -212,6 +213,8 @@
     "close": "Menü schließen",
     "navigation": "Navigationsmenü",
     "home": "Startseite",
+    "resources": "Ressourcen",
+    "pricing": "Preise",
     "signIn": "Anmelden",
     "signOut": "Abmelden",
     "pro": "Pro",
@@ -268,6 +271,88 @@
     "subscriptionWillCancel": "Ihr Abonnement wird am Ende des Abrechnungszeitraums gekündigt",
     "expiresOn": "Läuft ab am",
     "subscriptionCanceled": "Ihr Abonnement wurde gekündigt",
-    "resubscribe": "Erneut abonnieren"
+    "resubscribe": "Erneut abonnieren",
+    "generationHistoryProOnly": "Generierungsverlauf ist nur für Pro-Benutzer verfügbar.",
+    "upgradeToViewHistory": "Upgraden Sie auf Pro, um Ihren Generierungsverlauf anzuzeigen"
+  },
+  "pricing": {
+    "pageTitle": "Preise | Notion Avatar Maker",
+    "pageDescription": "Wählen Sie den perfekten Plan für Ihre Avatar-Erstellung",
+    "title": "Einfache, transparente Preise",
+    "description": "Wählen Sie den Plan, der am besten zu Ihnen passt. Jederzeit upgraden.",
+    "plans": {
+      "free": {
+        "name": "Kostenlos",
+        "price": "$0",
+        "period": "für immer",
+        "description": "Perfekt zum Ausprobieren",
+        "features": {
+          "1": "1 Generierung pro Tag",
+          "2": "Foto zu Avatar",
+          "3": "Text zu Avatar",
+          "4": "Standardqualität"
+        },
+        "buttonText": "Aktueller Plan"
+      },
+      "pro": {
+        "name": "Pro Monatlich",
+        "price": "$9.99",
+        "period": "pro Monat",
+        "description": "Für Power-User",
+        "features": {
+          "1": "Unbegrenzte Generierungen",
+          "2": "Foto zu Avatar",
+          "3": "Text zu Avatar",
+          "4": "Hohe Qualität",
+          "5": "Prioritätsverarbeitung",
+          "6": "Generierungsverlauf",
+          "7": "Kostenlose Ressourcenpaket-Downloads"
+        },
+        "buttonText": "Jetzt abonnieren",
+        "popular": "Beliebtester"
+      },
+      "credits": {
+        "name": "Credits-Paket",
+        "price": "$4.99",
+        "period": "10 Credits",
+        "description": "Nach Bedarf bezahlen",
+        "features": {
+          "1": "10 Generierungen",
+          "2": "Läuft nie ab",
+          "3": "Foto zu Avatar",
+          "4": "Text zu Avatar",
+          "5": "Standardqualität"
+        },
+        "buttonText": "Credits kaufen"
+      }
+    },
+    "loading": "Lädt...",
+    "currentPlan": "Aktueller Plan",
+    "checkoutError": "Checkout konnte nicht gestartet werden. Bitte versuchen Sie es erneut.",
+    "faq": {
+      "title": "Häufig gestellte Fragen",
+      "q1": "Was passiert, wenn mir die kostenlosen Generierungen ausgehen?",
+      "a1": "Kostenlose Nutzer erhalten 1 Generierung pro Tag. Sobald Sie diese verwendet haben, können Sie entweder bis morgen warten, ein Credits-Paket kaufen oder Pro für unbegrenzten Zugang abonnieren.",
+      "q2": "Laufen Credits ab?",
+      "a2": "Nein! Credits laufen nie ab. Verwenden Sie sie, wann immer Sie sie benötigen.",
+      "q3": "Kann ich mein Abonnement jederzeit kündigen?",
+      "a3": "Ja, Sie können Ihr Pro-Abonnement jederzeit kündigen. Sie haben weiterhin Zugriff bis zum Ende Ihres Abrechnungszeitraums."
+    },
+    "upgradeModal": {
+      "title": "Tageslimit erreicht",
+      "description": "Sie haben Ihre kostenlose Generierung für heute verwendet. Upgraden Sie, um weiterhin großartige Avatare zu erstellen!",
+      "bestValue": "Bester Wert",
+      "unlimitedGenerations": "Unbegrenzte Generierungen",
+      "proMonthly": "Pro Monatlich",
+      "proPrice": "$9.99",
+      "proPeriod": "/Monat",
+      "creditPack": "Credits-Paket",
+      "creditPackDesc": "10 Generierungen, läuft nie ab",
+      "creditPackPrice": "$4.99",
+      "creditPackPeriod": "/Paket",
+      "redirecting": "Weiterleitung zum Checkout...",
+      "resetInfo": "Ihr kostenloses Limit wird morgen um Mitternacht zurückgesetzt.",
+      "checkoutError": "Checkout konnte nicht gestartet werden. Bitte versuchen Sie es erneut."
+    }
   }
 }

@@ -11,24 +11,21 @@ import { useAuth } from '@/contexts/AuthContext';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Modal from '@/components/Modal/Common';
-
-interface UsageRecord {
-  id: string;
-  generation_mode: string;
-  created_at: string;
-  image_path?: string;
-  image_url?: string;
-}
+import { useUsageHistory, usePurchasedPacks } from '@/hooks/useAccountData';
 
 export default function AccountPage() {
   const { t } = useTranslation('common');
   const router = useRouter();
   const { user, subscription, credits, isLoading, signOut } = useAuth();
-  const [usageHistory, setUsageHistory] = useState<UsageRecord[]>([]);
-  const [isLoadingHistory, setIsLoadingHistory] = useState(true);
+
+  const isPro =
+    subscription?.plan_type === 'monthly' && subscription?.status === 'active';
+  const { data: usageHistory = [], isLoading: isLoadingHistory } =
+    useUsageHistory(10, isPro);
+  const { data: purchasedPacks = [], isLoading: isLoadingPacks } =
+    usePurchasedPacks();
+
   const [isManagingBilling, setIsManagingBilling] = useState(false);
-  const [purchasedPacks, setPurchasedPacks] = useState<string[]>([]);
-  const [isLoadingPacks, setIsLoadingPacks] = useState(true);
   const [downloadingPack, setDownloadingPack] = useState<string | null>(null);
   const [previewImageUrl, setPreviewImageUrl] = useState<string | null>(null);
   const [downloadingImage, setDownloadingImage] = useState<string | null>(null);
@@ -41,55 +38,11 @@ export default function AccountPage() {
   }, [user, isLoading, router]);
 
   useEffect(() => {
-    const fetchHistory = async () => {
-      if (!user) return;
-
-      try {
-        const response = await fetch('/api/usage/history?limit=10');
-        const data = await response.json();
-        const records = data.records || [];
-        setUsageHistory(records);
-        // Set loading state for all images with image_url
-        const imageIds = records
-          .filter((r: UsageRecord) => r.image_url)
-          .map((r: UsageRecord) => r.id);
-        setLoadingImages(new Set(imageIds));
-      } catch (error) {
-        console.error('Failed to fetch history:', error);
-      } finally {
-        setIsLoadingHistory(false);
-      }
-    };
-
-    if (user) {
-      fetchHistory();
+    if (usageHistory.length > 0) {
+      const imageIds = usageHistory.filter((r) => r.image_url).map((r) => r.id);
+      setLoadingImages(new Set(imageIds));
     }
-  }, [user]);
-
-  useEffect(() => {
-    const fetchPurchasedPacks = async () => {
-      if (!user) {
-        setIsLoadingPacks(false);
-        return;
-      }
-
-      try {
-        const response = await fetch('/api/resources/purchased');
-        if (response.ok) {
-          const data = await response.json();
-          setPurchasedPacks(data.packs || []);
-        }
-      } catch (error) {
-        console.error('Failed to fetch purchased packs:', error);
-      } finally {
-        setIsLoadingPacks(false);
-      }
-    };
-
-    if (user) {
-      fetchPurchasedPacks();
-    }
-  }, [user]);
+  }, [usageHistory]);
 
   const handleManageBilling = async () => {
     setIsManagingBilling(true);
@@ -183,8 +136,6 @@ export default function AccountPage() {
     return null;
   }
 
-  const isPro =
-    subscription?.plan_type === 'monthly' && subscription?.status === 'active';
   const planLabel = isPro ? t('menu.pro') : t('menu.free');
   const avatarUrl = user.user_metadata?.avatar_url;
   const displayName =
@@ -392,7 +343,37 @@ export default function AccountPage() {
               <h2 className="text-lg font-bold text-gray-900 mb-4">
                 {t('account.recentGenerations')}
               </h2>
-              {isLoadingHistory ? (
+              {!isPro ? (
+                <div className="text-center py-8">
+                  <div className="mb-4">
+                    <svg
+                      className="w-16 h-16 mx-auto text-gray-400"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                      />
+                    </svg>
+                  </div>
+                  <p className="text-gray-600 mb-2">
+                    {t('account.generationHistoryProOnly')}
+                  </p>
+                  <p className="text-gray-500 text-sm mb-4">
+                    {t('account.upgradeToViewHistory')}
+                  </p>
+                  <Link
+                    href="/pricing"
+                    className="inline-block px-6 py-2 bg-black text-white text-sm font-medium rounded-lg hover:bg-gray-800 transition-colors"
+                  >
+                    {t('account.upgradeToPro')}
+                  </Link>
+                </div>
+              ) : isLoadingHistory ? (
                 <div className="text-center py-8">
                   <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-black mx-auto" />
                 </div>

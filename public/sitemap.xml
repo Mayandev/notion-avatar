@@ -1,106 +1,142 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://notion-avatar.app</loc>
     <lastmod>2025-01-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://notion-avatar.app/en"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://notion-avatar.app/zh"/>
-    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://notion-avatar.app/zh-TW"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://notion-avatar.app/ja"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://notion-avatar.app/ko"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://notion-avatar.app/es"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://notion-avatar.app/fr"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://notion-avatar.app/de"/>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://notion-avatar.app/pt"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://notion-avatar.app/ru"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://notion-avatar.app"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://notion-avatar.app/en" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://notion-avatar.app/zh" />
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://notion-avatar.app/zh-TW" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://notion-avatar.app/ja" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://notion-avatar.app/ko" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://notion-avatar.app/es" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://notion-avatar.app/fr" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://notion-avatar.app/de" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://notion-avatar.app/pt" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://notion-avatar.app/ru" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://notion-avatar.app" />
   </url>
   <url>
     <loc>https://notion-avatar.app/ai-generator</loc>
     <lastmod>2025-12-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://notion-avatar.app/ai-generator"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://notion-avatar.app/zh/ai-generator"/>
-    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://notion-avatar.app/zh-TW/ai-generator"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://notion-avatar.app/ja/ai-generator"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://notion-avatar.app/ko/ai-generator"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://notion-avatar.app/es/ai-generator"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://notion-avatar.app/fr/ai-generator"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://notion-avatar.app/de/ai-generator"/>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://notion-avatar.app/pt/ai-generator"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://notion-avatar.app/ru/ai-generator"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://notion-avatar.app/ai-generator"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://notion-avatar.app/ai-generator" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://notion-avatar.app/zh/ai-generator" />
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://notion-avatar.app/zh-TW/ai-generator" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://notion-avatar.app/ja/ai-generator" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://notion-avatar.app/ko/ai-generator" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://notion-avatar.app/es/ai-generator" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://notion-avatar.app/fr/ai-generator" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://notion-avatar.app/de/ai-generator" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://notion-avatar.app/pt/ai-generator" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://notion-avatar.app/ru/ai-generator" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://notion-avatar.app/ai-generator" />
   </url>
   <url>
     <loc>https://notion-avatar.app/pricing</loc>
     <lastmod>2025-12-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://notion-avatar.app/pricing"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://notion-avatar.app/zh/pricing"/>
-    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://notion-avatar.app/zh-TW/pricing"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://notion-avatar.app/ja/pricing"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://notion-avatar.app/ko/pricing"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://notion-avatar.app/es/pricing"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://notion-avatar.app/fr/pricing"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://notion-avatar.app/de/pricing"/>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://notion-avatar.app/pt/pricing"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://notion-avatar.app/ru/pricing"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://notion-avatar.app/pricing"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://notion-avatar.app/pricing" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://notion-avatar.app/zh/pricing" />
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://notion-avatar.app/zh-TW/pricing" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://notion-avatar.app/ja/pricing" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://notion-avatar.app/ko/pricing" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://notion-avatar.app/es/pricing" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://notion-avatar.app/fr/pricing" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://notion-avatar.app/de/pricing" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://notion-avatar.app/pt/pricing" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://notion-avatar.app/ru/pricing" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://notion-avatar.app/pricing" />
   </url>
   <url>
     <loc>https://notion-avatar.app/resources</loc>
     <lastmod>2025-12-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://notion-avatar.app/resources"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://notion-avatar.app/zh/resources"/>
-    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://notion-avatar.app/zh-TW/resources"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://notion-avatar.app/ja/resources"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://notion-avatar.app/ko/resources"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://notion-avatar.app/es/resources"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://notion-avatar.app/fr/resources"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://notion-avatar.app/de/resources"/>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://notion-avatar.app/pt/resources"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://notion-avatar.app/ru/resources"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://notion-avatar.app/resources"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://notion-avatar.app/resources" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://notion-avatar.app/zh/resources" />
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://notion-avatar.app/zh-TW/resources" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://notion-avatar.app/ja/resources" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://notion-avatar.app/ko/resources" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://notion-avatar.app/es/resources" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://notion-avatar.app/fr/resources" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://notion-avatar.app/de/resources" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://notion-avatar.app/pt/resources" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://notion-avatar.app/ru/resources" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://notion-avatar.app/resources" />
   </url>
   <url>
     <loc>https://notion-avatar.app/privacy-policy</loc>
     <lastmod>2025-01-01</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://notion-avatar.app/privacy-policy"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://notion-avatar.app/zh/privacy-policy"/>
-    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://notion-avatar.app/zh-TW/privacy-policy"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://notion-avatar.app/ja/privacy-policy"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://notion-avatar.app/ko/privacy-policy"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://notion-avatar.app/es/privacy-policy"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://notion-avatar.app/fr/privacy-policy"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://notion-avatar.app/de/privacy-policy"/>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://notion-avatar.app/pt/privacy-policy"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://notion-avatar.app/ru/privacy-policy"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://notion-avatar.app/privacy-policy"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://notion-avatar.app/privacy-policy" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://notion-avatar.app/zh/privacy-policy" />
+    <xhtml:link rel="alternate" hreflang="zh-TW"
+      href="https://notion-avatar.app/zh-TW/privacy-policy" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://notion-avatar.app/ja/privacy-policy" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://notion-avatar.app/ko/privacy-policy" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://notion-avatar.app/es/privacy-policy" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://notion-avatar.app/fr/privacy-policy" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://notion-avatar.app/de/privacy-policy" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://notion-avatar.app/pt/privacy-policy" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://notion-avatar.app/ru/privacy-policy" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://notion-avatar.app/privacy-policy" />
   </url>
   <url>
     <loc>https://notion-avatar.app/terms</loc>
     <lastmod>2025-01-01</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://notion-avatar.app/terms"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://notion-avatar.app/zh/terms"/>
-    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://notion-avatar.app/zh-TW/terms"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://notion-avatar.app/ja/terms"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://notion-avatar.app/ko/terms"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://notion-avatar.app/es/terms"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://notion-avatar.app/fr/terms"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://notion-avatar.app/de/terms"/>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://notion-avatar.app/pt/terms"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://notion-avatar.app/ru/terms"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://notion-avatar.app/terms"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://notion-avatar.app/terms" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://notion-avatar.app/zh/terms" />
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://notion-avatar.app/zh-TW/terms" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://notion-avatar.app/ja/terms" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://notion-avatar.app/ko/terms" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://notion-avatar.app/es/terms" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://notion-avatar.app/fr/terms" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://notion-avatar.app/de/terms" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://notion-avatar.app/pt/terms" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://notion-avatar.app/ru/terms" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://notion-avatar.app/terms" />
+  </url>
+  <url>
+    <loc>https://notion-avatar.app/blog</loc>
+    <lastmod>2025-01-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://notion-avatar.app/blog" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://notion-avatar.app/zh/blog" />
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://notion-avatar.app/zh-TW/blog" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://notion-avatar.app/ja/blog" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://notion-avatar.app/ko/blog" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://notion-avatar.app/es/blog" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://notion-avatar.app/fr/blog" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://notion-avatar.app/de/blog" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://notion-avatar.app/pt/blog" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://notion-avatar.app/ru/blog" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://notion-avatar.app/blog" />
+  </url>
+  <url>
+    <loc>https://notion-avatar.app/blog/about-notion-avatar</loc>
+    <lastmod>2024-01-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://notion-avatar.app/blog/ai-avatar-generator-guide</loc>
+    <lastmod>2025-12-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://notion-avatar.app/blog/getting-started-with-notion-avatars</loc>
+    <lastmod>2025-01-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
 </urlset>

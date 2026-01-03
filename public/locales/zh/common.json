@@ -70,8 +70,9 @@
   },
   "resourceStore": {
     "title": "设计资源",
-    "description": "获取 Notion Avatar Maker 的完整设计资源包，包含网站设计稿和装饰元素",
+    "description": "获取 Notion Avatar Maker 的完整设计资源包，包含网站设计稿和装饰元素。Pro 用户免费。",
     "buyNow": "立即购买",
+    "freeForPro": "Pro 用户免费",
     "designPack": {
       "title": "完整网站设计稿",
       "description": "包含所有页面的 Figma 设计稿",
@@ -212,6 +213,8 @@
     "close": "关闭菜单",
     "navigation": "导航菜单",
     "home": "首页",
+    "resources": "资源",
+    "pricing": "价格",
     "signIn": "登录",
     "signOut": "退出登录",
     "pro": "专业版",
@@ -268,6 +271,88 @@
     "subscriptionWillCancel": "您的订阅将在计费周期结束时取消",
     "expiresOn": "到期时间",
     "subscriptionCanceled": "您的订阅已取消",
-    "resubscribe": "重新订阅"
+    "resubscribe": "重新订阅",
+    "generationHistoryProOnly": "生成历史仅限 Pro 用户使用。",
+    "upgradeToViewHistory": "升级到 Pro 以查看您的生成历史"
+  },
+  "pricing": {
+    "pageTitle": "价格 | Notion Avatar Maker",
+    "pageDescription": "选择最适合您头像创建需求的方案",
+    "title": "简单透明的价格",
+    "description": "选择最适合您的方案。随时可以升级。",
+    "plans": {
+      "free": {
+        "name": "免费版",
+        "price": "$0",
+        "period": "永久",
+        "description": "适合试用",
+        "features": {
+          "1": "每天 1 次生成",
+          "2": "照片转头像",
+          "3": "文字生成头像",
+          "4": "标准质量"
+        },
+        "buttonText": "当前方案"
+      },
+      "pro": {
+        "name": "专业版月付",
+        "price": "$9.99",
+        "period": "每月",
+        "description": "适合高级用户",
+        "features": {
+          "1": "无限生成",
+          "2": "照片转头像",
+          "3": "文字生成头像",
+          "4": "高质量输出",
+          "5": "优先处理",
+          "6": "生成历史",
+          "7": "免费资源包下载"
+        },
+        "buttonText": "立即订阅",
+        "popular": "最受欢迎"
+      },
+      "credits": {
+        "name": "积分包",
+        "price": "$4.99",
+        "period": "10 积分",
+        "description": "按需付费",
+        "features": {
+          "1": "10 次生成",
+          "2": "永不过期",
+          "3": "照片转头像",
+          "4": "文字生成头像",
+          "5": "标准质量"
+        },
+        "buttonText": "购买积分"
+      }
+    },
+    "loading": "加载中...",
+    "currentPlan": "当前方案",
+    "checkoutError": "启动结账失败，请重试。",
+    "faq": {
+      "title": "常见问题",
+      "q1": "免费生成次数用完后会怎样？",
+      "a1": "免费用户每天可以生成 1 次。用完后，您可以等到明天，购买积分包，或订阅专业版以获得无限访问。",
+      "q2": "积分会过期吗？",
+      "a2": "不会！积分永不过期。需要时随时使用。",
+      "q3": "我可以随时取消订阅吗？",
+      "a3": "可以，您可以随时取消专业版订阅。在计费周期结束前，您仍可继续使用。"
+    },
+    "upgradeModal": {
+      "title": "今日额度已用完",
+      "description": "您已使用完今日的免费生成次数。升级以继续创建精彩的头像！",
+      "bestValue": "最超值",
+      "unlimitedGenerations": "无限生成",
+      "proMonthly": "专业版月付",
+      "proPrice": "$9.99",
+      "proPeriod": "/月",
+      "creditPack": "积分包",
+      "creditPackDesc": "10 次生成，永不过期",
+      "creditPackPrice": "$4.99",
+      "creditPackPeriod": "/包",
+      "redirecting": "正在跳转到结账页面...",
+      "resetInfo": "您的免费额度将在明天午夜重置。",
+      "checkoutError": "启动结账失败，请重试。"
+    }
   }
 }
