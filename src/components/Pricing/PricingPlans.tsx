@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import toast from 'react-hot-toast';
-import Image from 'next/legacy/image';
+import { useTranslation } from 'next-i18next';
 import { useAuth } from '@/contexts/AuthContext';
 
 interface Plan {
@@ -28,6 +28,7 @@ export default function PricingPlans({
   description,
   onAuthRequired,
 }: PricingPlansProps) {
+  const { t } = useTranslation('common');
   const { user, subscription } = useAuth();
   const [loadingPlan, setLoadingPlan] = useState<string | null>(null);
 
@@ -60,7 +61,7 @@ export default function PricingPlans({
         throw new Error(data.error || 'Failed to create checkout');
       }
     } catch {
-      toast.error('Failed to start checkout. Please try again.');
+      toast.error(t('pricing.checkoutError'));
     } finally {
       setLoadingPlan(null);
     }
@@ -68,13 +69,14 @@ export default function PricingPlans({
 
   const isCurrentPlan = (planName: string) => {
     if (
-      planName === 'Free' &&
+      (planName === t('pricing.plans.free.name') || planName === 'Free') &&
       (!subscription || subscription.plan_type === 'free')
     ) {
       return true;
     }
     if (
-      planName === 'Pro Monthly' &&
+      (planName === t('pricing.plans.pro.name') ||
+        planName === 'Pro Monthly') &&
       subscription?.plan_type === 'monthly' &&
       subscription?.status === 'active'
     ) {
@@ -109,7 +111,7 @@ export default function PricingPlans({
             {plan.popular && (
               <div className="absolute -top-4 left-1/2 -translate-x-1/2">
                 <span className="bg-black text-white text-sm font-medium px-4 py-1 rounded-full">
-                  Most Popular
+                  {t('pricing.plans.pro.popular')}
                 </span>
               </div>
             )}
@@ -164,9 +166,9 @@ export default function PricingPlans({
               } disabled:opacity-50`}
             >
               {loadingPlan !== null && loadingPlan === plan.priceType
-                ? 'Loading...'
+                ? t('pricing.loading')
                 : isCurrentPlan(plan.name)
-                ? 'Current Plan'
+                ? t('pricing.currentPlan')
                 : plan.buttonText}
             </button>
           </div>

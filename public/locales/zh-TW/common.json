@@ -70,8 +70,9 @@
   },
   "resourceStore": {
     "title": "設計資源",
-    "description": "獲取 Notion Avatar Maker 的完整設計資源包，包含網站設計稿和裝飾元素",
+    "description": "獲取 Notion Avatar Maker 的完整設計資源包，包含網站設計稿和裝飾元素。Pro 用戶免費。",
     "buyNow": "立即購買",
+    "freeForPro": "Pro 用戶免費",
     "designPack": {
       "title": "完整網站設計稿",
       "description": "包含所有頁面的 Figma 設計稿",
@@ -212,6 +213,8 @@
     "close": "關閉選單",
     "navigation": "導航選單",
     "home": "首頁",
+    "resources": "資源",
+    "pricing": "價格",
     "signIn": "登入",
     "signOut": "登出",
     "pro": "專業版",
@@ -268,6 +271,88 @@
     "subscriptionWillCancel": "您的訂閱將在計費週期結束時取消",
     "expiresOn": "到期時間",
     "subscriptionCanceled": "您的訂閱已取消",
-    "resubscribe": "重新訂閱"
+    "resubscribe": "重新訂閱",
+    "generationHistoryProOnly": "生成歷史僅限 Pro 用戶使用。",
+    "upgradeToViewHistory": "升級到 Pro 以查看您的生成歷史"
+  },
+  "pricing": {
+    "pageTitle": "價格 | Notion Avatar Maker",
+    "pageDescription": "選擇最適合您頭像建立需求的方案",
+    "title": "簡單透明的價格",
+    "description": "選擇最適合您的方案。隨時可以升級。",
+    "plans": {
+      "free": {
+        "name": "免費版",
+        "price": "$0",
+        "period": "永久",
+        "description": "適合試用",
+        "features": {
+          "1": "每天 1 次生成",
+          "2": "照片轉頭像",
+          "3": "文字生成頭像",
+          "4": "標準品質"
+        },
+        "buttonText": "目前方案"
+      },
+      "pro": {
+        "name": "專業版月付",
+        "price": "$9.99",
+        "period": "每月",
+        "description": "適合進階使用者",
+        "features": {
+          "1": "無限生成",
+          "2": "照片轉頭像",
+          "3": "文字生成頭像",
+          "4": "高品質輸出",
+          "5": "優先處理",
+          "6": "生成歷史",
+          "7": "免費資源包下載"
+        },
+        "buttonText": "立即訂閱",
+        "popular": "最受歡迎"
+      },
+      "credits": {
+        "name": "積分包",
+        "price": "$4.99",
+        "period": "10 積分",
+        "description": "按需付費",
+        "features": {
+          "1": "10 次生成",
+          "2": "永不過期",
+          "3": "照片轉頭像",
+          "4": "文字生成頭像",
+          "5": "標準品質"
+        },
+        "buttonText": "購買積分"
+      }
+    },
+    "loading": "載入中...",
+    "currentPlan": "目前方案",
+    "checkoutError": "啟動結帳失敗，請重試。",
+    "faq": {
+      "title": "常見問題",
+      "q1": "免費生成次數用完後會怎樣？",
+      "a1": "免費使用者每天可以生成 1 次。用完後，您可以等到明天，購買積分包，或訂閱專業版以獲得無限存取。",
+      "q2": "積分會過期嗎？",
+      "a2": "不會！積分永不過期。需要時隨時使用。",
+      "q3": "我可以隨時取消訂閱嗎？",
+      "a3": "可以，您可以隨時取消專業版訂閱。在計費週期結束前，您仍可繼續使用。"
+    },
+    "upgradeModal": {
+      "title": "今日額度已用完",
+      "description": "您已使用完今日的免費生成次數。升級以繼續建立精彩的頭像！",
+      "bestValue": "最超值",
+      "unlimitedGenerations": "無限生成",
+      "proMonthly": "專業版月付",
+      "proPrice": "$9.99",
+      "proPeriod": "/月",
+      "creditPack": "積分包",
+      "creditPackDesc": "10 次生成，永不過期",
+      "creditPackPrice": "$4.99",
+      "creditPackPeriod": "/包",
+      "redirecting": "正在跳轉到結帳頁面...",
+      "resetInfo": "您的免費額度將在明天午夜重置。",
+      "checkoutError": "啟動結帳失敗，請重試。"
+    }
   }
 }

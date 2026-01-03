@@ -67,8 +67,9 @@
   },
   "resourceStore": {
     "title": "Recursos de Design",
-    "description": "Obtenha o pacote completo de recursos de design para o Notion Avatar Maker, incluindo design do site e elementos decorativos",
+    "description": "Obtenha o pacote completo de recursos de design para o Notion Avatar Maker, incluindo design do site e elementos decorativos. Grátis para usuários Pro.",
     "buyNow": "Comprar Agora",
+    "freeForPro": "Grátis para usuários Pro",
     "designPack": {
       "title": "Design Completo do Site",
       "description": "Inclui arquivos Figma para todas as páginas",
@@ -209,6 +210,8 @@
     "close": "Fechar menu",
     "navigation": "Menu de navegação",
     "home": "Início",
+    "resources": "Recursos",
+    "pricing": "Preços",
     "signIn": "Entrar",
     "signOut": "Sair",
     "pro": "Pro",
@@ -265,6 +268,88 @@
     "subscriptionWillCancel": "Sua assinatura será cancelada no final do período de cobrança",
     "expiresOn": "Expira em",
     "subscriptionCanceled": "Sua assinatura foi cancelada",
-    "resubscribe": "Reassinar"
+    "resubscribe": "Reassinar",
+    "generationHistoryProOnly": "O histórico de gerações está disponível apenas para usuários Pro.",
+    "upgradeToViewHistory": "Atualize para Pro para ver seu histórico de gerações"
+  },
+  "pricing": {
+    "pageTitle": "Preços | Notion Avatar Maker",
+    "pageDescription": "Escolha o plano perfeito para suas necessidades de criação de avatar",
+    "title": "Preços Simples e Transparentes",
+    "description": "Escolha o plano que funciona melhor para você. Atualize a qualquer momento.",
+    "plans": {
+      "free": {
+        "name": "Grátis",
+        "price": "$0",
+        "period": "para sempre",
+        "description": "Perfeito para experimentar",
+        "features": {
+          "1": "1 geração por dia",
+          "2": "Foto para Avatar",
+          "3": "Texto para Avatar",
+          "4": "Qualidade padrão"
+        },
+        "buttonText": "Plano Atual"
+      },
+      "pro": {
+        "name": "Pro Mensal",
+        "price": "$9.99",
+        "period": "por mês",
+        "description": "Para usuários avançados",
+        "features": {
+          "1": "Gerações ilimitadas",
+          "2": "Foto para Avatar",
+          "3": "Texto para Avatar",
+          "4": "Alta qualidade",
+          "5": "Processamento prioritário",
+          "6": "Histórico de gerações",
+          "7": "Downloads gratuitos de pacotes de recursos"
+        },
+        "buttonText": "Assinar Agora",
+        "popular": "Mais Popular"
+      },
+      "credits": {
+        "name": "Pacote de Créditos",
+        "price": "$4.99",
+        "period": "10 créditos",
+        "description": "Pague conforme usa",
+        "features": {
+          "1": "10 gerações",
+          "2": "Nunca expira",
+          "3": "Foto para Avatar",
+          "4": "Texto para Avatar",
+          "5": "Qualidade padrão"
+        },
+        "buttonText": "Comprar Créditos"
+      }
+    },
+    "loading": "Carregando...",
+    "currentPlan": "Plano Atual",
+    "checkoutError": "Falha ao iniciar o checkout. Por favor, tente novamente.",
+    "faq": {
+      "title": "Perguntas Frequentes",
+      "q1": "O que acontece quando acabo as gerações gratuitas?",
+      "a1": "Usuários gratuitos recebem 1 geração por dia. Depois de usá-la, você pode esperar até amanhã, comprar um pacote de créditos ou assinar Pro para acesso ilimitado.",
+      "q2": "Os créditos expiram?",
+      "a2": "Não! Os créditos nunca expiram. Use-os sempre que precisar.",
+      "q3": "Posso cancelar minha assinatura a qualquer momento?",
+      "a3": "Sim, você pode cancelar sua assinatura Pro a qualquer momento. Continuará tendo acesso até o final do período de cobrança."
+    },
+    "upgradeModal": {
+      "title": "Limite Diário Atingido",
+      "description": "Você usou sua geração gratuita de hoje. Atualize para continuar criando avatares incríveis!",
+      "bestValue": "Melhor Valor",
+      "unlimitedGenerations": "Gerações ilimitadas",
+      "proMonthly": "Pro Mensal",
+      "proPrice": "$9.99",
+      "proPeriod": "/mês",
+      "creditPack": "Pacote de Créditos",
+      "creditPackDesc": "10 gerações, nunca expira",
+      "creditPackPrice": "$4.99",
+      "creditPackPeriod": "/pacote",
+      "redirecting": "Redirecionando para o checkout...",
+      "resetInfo": "Seu limite gratuito será redefinido amanhã à meia-noite.",
+      "checkoutError": "Falha ao iniciar o checkout. Por favor, tente novamente."
+    }
   }
 }

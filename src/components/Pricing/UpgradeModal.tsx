@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import toast from 'react-hot-toast';
+import { useTranslation } from 'next-i18next';
 import { useAuth } from '@/contexts/AuthContext';
 
 interface UpgradeModalProps {
@@ -13,6 +14,7 @@ export default function UpgradeModal({
   onClose,
   onLoginClick,
 }: UpgradeModalProps) {
+  const { t } = useTranslation('common');
   const { user } = useAuth();
   const [isLoading, setIsLoading] = useState<string | null>(null);
 
@@ -44,7 +46,7 @@ export default function UpgradeModal({
         throw new Error(data.error || 'Failed to create checkout');
       }
     } catch {
-      toast.error('Failed to start checkout. Please try again.');
+      toast.error(t('pricing.upgradeModal.checkoutError'));
     } finally {
       setIsLoading(null);
     }
@@ -102,11 +104,10 @@ export default function UpgradeModal({
             </svg>
           </div>
           <h2 className="text-2xl font-bold text-gray-900">
-            Daily Limit Reached
+            {t('pricing.upgradeModal.title')}
           </h2>
           <p className="text-gray-600 mt-2">
-            You&apos;ve used your free generation for today. Upgrade to continue
-            creating amazing avatars!
+            {t('pricing.upgradeModal.description')}
           </p>
         </div>
 
@@ -121,23 +122,29 @@ export default function UpgradeModal({
             <div className="flex items-center justify-between">
               <div>
                 <div className="flex items-center gap-2">
-                  <span className="font-bold text-lg">Pro Monthly</span>
+                  <span className="font-bold text-lg">
+                    {t('pricing.upgradeModal.proMonthly')}
+                  </span>
                   <span className="bg-gradient-to-r from-purple-500 to-pink-500 text-white text-xs font-medium px-2 py-0.5 rounded-full">
-                    Best Value
+                    {t('pricing.upgradeModal.bestValue')}
                   </span>
                 </div>
                 <p className="text-gray-600 text-sm mt-1">
-                  Unlimited generations
+                  {t('pricing.upgradeModal.unlimitedGenerations')}
                 </p>
               </div>
               <div className="text-right">
-                <span className="text-2xl font-bold">$9.99</span>
-                <span className="text-gray-500 text-sm">/mo</span>
+                <span className="text-2xl font-bold">
+                  {t('pricing.upgradeModal.proPrice')}
+                </span>
+                <span className="text-gray-500 text-sm">
+                  {t('pricing.upgradeModal.proPeriod')}
+                </span>
               </div>
             </div>
             {isLoading === 'monthly' && (
               <div className="mt-2 text-center text-sm text-gray-500">
-                Redirecting to checkout...
+                {t('pricing.upgradeModal.redirecting')}
               </div>
             )}
           </button>
@@ -151,26 +158,32 @@ export default function UpgradeModal({
           >
             <div className="flex items-center justify-between">
               <div>
-                <span className="font-bold text-lg">Credit Pack</span>
+                <span className="font-bold text-lg">
+                  {t('pricing.upgradeModal.creditPack')}
+                </span>
                 <p className="text-gray-600 text-sm mt-1">
-                  10 generations, never expires
+                  {t('pricing.upgradeModal.creditPackDesc')}
                 </p>
               </div>
               <div className="text-right">
-                <span className="text-2xl font-bold">$4.99</span>
-                <span className="text-gray-500 text-sm">/pack</span>
+                <span className="text-2xl font-bold">
+                  {t('pricing.upgradeModal.creditPackPrice')}
+                </span>
+                <span className="text-gray-500 text-sm">
+                  {t('pricing.upgradeModal.creditPackPeriod')}
+                </span>
               </div>
             </div>
             {isLoading === 'credits' && (
               <div className="mt-2 text-center text-sm text-gray-500">
-                Redirecting to checkout...
+                {t('pricing.upgradeModal.redirecting')}
               </div>
             )}
           </button>
         </div>
 
         <p className="text-center text-sm text-gray-500 mt-6">
-          Your free limit resets tomorrow at midnight.
+          {t('pricing.upgradeModal.resetInfo')}
         </p>
       </div>
     </div>

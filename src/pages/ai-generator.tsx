@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -180,57 +180,60 @@ export default function AIGeneratorPage() {
       ? `${baseUrl}${pagePath}`
       : `${baseUrl}/${locale}${pagePath}`;
 
-  const plans = [
-    {
-      name: 'Free',
-      price: '$0',
-      period: 'forever',
-      description: 'Perfect for trying out',
-      features: [
-        '1 generation per day',
-        'Photo to Avatar',
-        'Text to Avatar',
-        'Standard quality',
-      ],
-      buttonText: 'Current Plan',
-      buttonVariant: 'secondary' as const,
-      priceType: null,
-    },
-    {
-      name: 'Pro Monthly',
-      price: '$9.99',
-      period: 'per month',
-      description: 'For power users',
-      features: [
-        'Unlimited generations',
-        'Photo to Avatar',
-        'Text to Avatar',
-        'High quality output',
-        'Priority processing',
-        'Generation history',
-      ],
-      buttonText: 'Subscribe Now',
-      buttonVariant: 'primary' as const,
-      priceType: 'monthly',
-      popular: true,
-    },
-    {
-      name: 'Credit Pack',
-      price: '$4.99',
-      period: '10 credits',
-      description: 'Pay as you go',
-      features: [
-        '10 generations',
-        'Never expires',
-        'Photo to Avatar',
-        'Text to Avatar',
-        'Standard quality',
-      ],
-      buttonText: 'Buy Credits',
-      buttonVariant: 'secondary' as const,
-      priceType: 'credits',
-    },
-  ];
+  const plans = useMemo(
+    () => [
+      {
+        name: t('pricing.plans.free.name'),
+        price: t('pricing.plans.free.price'),
+        period: t('pricing.plans.free.period'),
+        description: t('pricing.plans.free.description'),
+        features: [
+          t('pricing.plans.free.features.1'),
+          t('pricing.plans.free.features.2'),
+          t('pricing.plans.free.features.3'),
+          t('pricing.plans.free.features.4'),
+        ],
+        buttonText: t('pricing.plans.free.buttonText'),
+        buttonVariant: 'secondary' as const,
+        priceType: null,
+      },
+      {
+        name: t('pricing.plans.pro.name'),
+        price: t('pricing.plans.pro.price'),
+        period: t('pricing.plans.pro.period'),
+        description: t('pricing.plans.pro.description'),
+        features: [
+          t('pricing.plans.pro.features.1'),
+          t('pricing.plans.pro.features.2'),
+          t('pricing.plans.pro.features.3'),
+          t('pricing.plans.pro.features.4'),
+          t('pricing.plans.pro.features.5'),
+          t('pricing.plans.pro.features.6'),
+        ],
+        buttonText: t('pricing.plans.pro.buttonText'),
+        buttonVariant: 'primary' as const,
+        priceType: 'monthly',
+        popular: true,
+      },
+      {
+        name: t('pricing.plans.credits.name'),
+        price: t('pricing.plans.credits.price'),
+        period: t('pricing.plans.credits.period'),
+        description: t('pricing.plans.credits.description'),
+        features: [
+          t('pricing.plans.credits.features.1'),
+          t('pricing.plans.credits.features.2'),
+          t('pricing.plans.credits.features.3'),
+          t('pricing.plans.credits.features.4'),
+          t('pricing.plans.credits.features.5'),
+        ],
+        buttonText: t('pricing.plans.credits.buttonText'),
+        buttonVariant: 'secondary' as const,
+        priceType: 'credits',
+      },
+    ],
+    [t],
+  );
 
   const renderContent = () => {
     if (isGenerating) {

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useTranslation } from 'next-i18next';
 import Image from 'next/legacy/image';
+import Link from 'next/link';
 import { useAuth } from '@/contexts/AuthContext';
 import AuthModal from '@/components/Auth/AuthModal';
 import toast from 'react-hot-toast';
@@ -134,8 +135,8 @@ export default function ResourceStore({
               <div className="flex items-center text-sm">
                 <Image
                   src="/icon/check.svg"
-                  width={16}
-                  height={16}
+                  width={20}
+                  height={20}
                   alt="check"
                 />
                 <span className="ml-2">Figma</span>
@@ -143,14 +144,25 @@ export default function ResourceStore({
               <div className="flex items-center text-sm">
                 <Image
                   src="/icon/check.svg"
-                  width={16}
-                  height={16}
+                  width={20}
+                  height={20}
                   alt="check"
                 />
                 <span className="ml-2">
                   {t('resourceStore.designPack.features.1')}
                 </span>
               </div>
+              <Link href="/pricing" className="flex items-center text-sm group">
+                <Image
+                  src="/icon/check.svg"
+                  width={20}
+                  height={20}
+                  alt="check"
+                />
+                <span className="ml-2 font-medium group-hover:underline">
+                  {t('resourceStore.freeForPro')}
+                </span>
+              </Link>
             </div>
             {showDownloadButton && isPurchased('design-pack') ? (
               <button
@@ -229,6 +241,17 @@ export default function ResourceStore({
                   {t('resourceStore.scribblesPack.features.1')}
                 </span>
               </div>
+              <Link href="/pricing" className="flex items-center text-sm group">
+                <Image
+                  src="/icon/check.svg"
+                  width={20}
+                  height={20}
+                  alt="check"
+                />
+                <span className="ml-2 font-medium group-hover:underline">
+                  {t('resourceStore.freeForPro')}
+                </span>
+              </Link>
             </div>
             {showDownloadButton && isPurchased('scribbles-pack') ? (
               <button

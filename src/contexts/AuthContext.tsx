@@ -1,11 +1,5 @@
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useState,
-  useCallback,
-  ReactNode,
-} from 'react';
+import { createContext, useContext, ReactNode } from 'react';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 
 interface User {
   id: string;
@@ -23,6 +17,11 @@ interface Subscription {
   plan_type: string;
   current_period_end: string | null;
   cancel_at_period_end?: boolean;
+}
+
+interface SubscriptionData {
+  subscription: Subscription | null;
+  credits: number;
 }
 
 interface AuthContextType {
@@ -47,95 +46,84 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-export function AuthProvider({ children }: { children: ReactNode }) {
-  const [user, setUser] = useState<User | null>(null);
-  const [subscription, setSubscription] = useState<Subscription | null>(null);
-  const [credits, setCredits] = useState<number>(0);
-  const [isLoading, setIsLoading] = useState(true);
+async function fetchSession(): Promise<User | null> {
+  try {
+    const response = await fetch('/api/auth/session');
+    const data = await response.json();
+    return data.user || null;
+  } catch {
+    return null;
+  }
+}
 
-  // Fetch current session from API
-  const fetchSession = useCallback(async () => {
-    try {
-      const response = await fetch('/api/auth/session');
+async function fetchSubscriptionData(): Promise<SubscriptionData> {
+  try {
+    const response = await fetch('/api/user/subscription');
+    if (response.ok) {
       const data = await response.json();
-
-      if (data.user) {
-        setUser(data.user);
-        return true;
-      }
-
-      setUser(null);
-      return false;
-    } catch {
-      setUser(null);
-      return false;
+      return {
+        subscription: data.subscription || null,
+        credits: data.credits || 0,
+      };
     }
-  }, []);
+    return { subscription: null, credits: 0 };
+  } catch {
+    return { subscription: null, credits: 0 };
+  }
+}
 
-  // Fetch subscription info from API
-  const fetchSubscription = useCallback(async () => {
-    try {
-      const response = await fetch('/api/user/subscription');
-      if (response.ok) {
-        const data = await response.json();
-        setSubscription(data.subscription);
-        setCredits(data.credits);
-      } else {
-        setSubscription(null);
-        setCredits(0);
-      }
-    } catch {
-      setSubscription(null);
-      setCredits(0);
-    }
-  }, []);
+export function AuthProvider({ children }: { children: ReactNode }) {
+  const queryClient = useQueryClient();
 
-  const refreshSubscription = useCallback(async () => {
+  const { data: user = null, isLoading: isLoadingUser } = useQuery<User | null>(
+    {
+      queryKey: ['session'],
+      queryFn: fetchSession,
+      staleTime: 1000 * 60 * 5,
+      retry: 1,
+    },
+  );
+
+  const {
+    data: subscriptionData = { subscription: null, credits: 0 },
+    isLoading: isLoadingSubscription,
+  } = useQuery<SubscriptionData>({
+    queryKey: ['subscription'],
+    queryFn: fetchSubscriptionData,
+    enabled: !!user,
+    staleTime: 1000 * 60 * 5,
+    retry: 1,
+  });
+
+  const isLoading = isLoadingUser || (!!user && isLoadingSubscription);
+
+  const refreshSubscription = async () => {
     if (user) {
-      await fetchSubscription();
+      await queryClient.invalidateQueries({ queryKey: ['subscription'] });
     }
-  }, [user, fetchSubscription]);
-
-  // Initialize auth state
-  useEffect(() => {
-    const initAuth = async () => {
-      setIsLoading(true);
-      const hasSession = await fetchSession();
-      if (hasSession) {
-        await fetchSubscription();
-      }
-      setIsLoading(false);
-    };
-
-    initAuth();
-  }, [fetchSession, fetchSubscription]);
+  };
 
   const signInWithGoogle = async () => {
-    // Get the current page or saved redirect URL to redirect back after login
     const savedRedirect =
       typeof window !== 'undefined'
         ? sessionStorage.getItem('auth_redirect')
         : null;
 
-    // Get locale from pathname or default to 'en'
     const pathname =
       typeof window !== 'undefined' ? window.location.pathname : '/';
     const localeMatch = pathname.match(/^\/(zh|zh-TW|ko|ja|es|fr|de|ru|pt)/);
     const locale = localeMatch ? localeMatch[1] : 'en';
     const homePath = locale === 'en' ? '/' : `/${locale}`;
 
-    // Use saved redirect, or current pathname if not login page, or home
     let next = savedRedirect || homePath;
     if (!savedRedirect && pathname && !pathname.includes('/auth/login')) {
       next = pathname;
     }
 
-    // If next is login page, redirect to home instead
     if (next.includes('/auth/login')) {
       next = homePath;
     }
 
-    // Clear saved redirect
     if (typeof window !== 'undefined') {
       sessionStorage.removeItem('auth_redirect');
     }
@@ -149,7 +137,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const data = await response.json();
 
     if (data.url) {
-      // Redirect to OAuth provider
       window.location.href = data.url;
     } else if (data.error) {
       throw new Error(data.error);
@@ -157,31 +144,26 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   const signInWithGithub = async () => {
-    // Get the current page or saved redirect URL to redirect back after login
     const savedRedirect =
       typeof window !== 'undefined'
         ? sessionStorage.getItem('auth_redirect')
         : null;
 
-    // Get locale from pathname or default to 'en'
     const pathname =
       typeof window !== 'undefined' ? window.location.pathname : '/';
     const localeMatch = pathname.match(/^\/(zh|zh-TW|ko|ja|es|fr|de|ru|pt)/);
     const locale = localeMatch ? localeMatch[1] : 'en';
     const homePath = locale === 'en' ? '/' : `/${locale}`;
 
-    // Use saved redirect, or current pathname if not login page, or home
     let next = savedRedirect || homePath;
     if (!savedRedirect && pathname && !pathname.includes('/auth/login')) {
       next = pathname;
     }
 
-    // If next is login page, redirect to home instead
     if (next.includes('/auth/login')) {
       next = homePath;
     }
 
-    // Clear saved redirect
     if (typeof window !== 'undefined') {
       sessionStorage.removeItem('auth_redirect');
     }
@@ -195,7 +177,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const data = await response.json();
 
     if (data.url) {
-      // Redirect to OAuth provider
       window.location.href = data.url;
     } else if (data.error) {
       throw new Error(data.error);
@@ -216,9 +197,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         return { error: new Error(data.error) };
       }
 
-      // Refresh session after successful login
-      await fetchSession();
-      await fetchSubscription();
+      await queryClient.invalidateQueries({ queryKey: ['session'] });
+      await queryClient.invalidateQueries({ queryKey: ['subscription'] });
 
       return { error: null };
     } catch (error) {
@@ -256,9 +236,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         method: 'POST',
       });
 
-      setUser(null);
-      setSubscription(null);
-      setCredits(0);
+      queryClient.setQueryData(['session'], null);
+      queryClient.setQueryData(['subscription'], {
+        subscription: null,
+        credits: 0,
+      });
     } catch {
       // Sign out failed silently
     }
@@ -268,8 +250,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     <AuthContext.Provider
       value={{
         user,
-        subscription,
-        credits,
+        subscription: subscriptionData.subscription,
+        credits: subscriptionData.credits,
         isLoading,
         signInWithGoogle,
         signInWithGithub,

@@ -70,8 +70,9 @@
   },
   "resourceStore": {
     "title": "Design Resources",
-    "description": "Get the complete design resource pack for Notion Avatar Maker, including website design and decorative elements",
+    "description": "Get the complete design resource pack for Notion Avatar Maker, including website design and decorative elements. Free for Pro users.",
     "buyNow": "Buy Now",
+    "freeForPro": "Free for Pro users",
     "designPack": {
       "title": "Complete Website Design",
       "description": "Includes Figma design files for all pages",
@@ -212,6 +213,8 @@
     "close": "Close menu",
     "navigation": "Navigation menu",
     "home": "Home",
+    "resources": "Resources",
+    "pricing": "Pricing",
     "signIn": "Sign In",
     "signOut": "Sign Out",
     "pro": "Pro",
@@ -268,6 +271,88 @@
     "subscriptionWillCancel": "Your subscription will cancel at the end of the billing period",
     "expiresOn": "Expires on",
     "subscriptionCanceled": "Your subscription has been canceled",
-    "resubscribe": "Resubscribe"
+    "resubscribe": "Resubscribe",
+    "generationHistoryProOnly": "Generation history is available for Pro users only.",
+    "upgradeToViewHistory": "Upgrade to Pro to view your generation history"
+  },
+  "pricing": {
+    "pageTitle": "Pricing | Notion Avatar Maker",
+    "pageDescription": "Choose the perfect plan for your avatar creation needs",
+    "title": "Simple, Transparent Pricing",
+    "description": "Choose the plan that works best for you. Upgrade anytime.",
+    "plans": {
+      "free": {
+        "name": "Free",
+        "price": "$0",
+        "period": "forever",
+        "description": "Perfect for trying out",
+        "features": {
+          "1": "1 generation per day",
+          "2": "Photo to Avatar",
+          "3": "Text to Avatar",
+          "4": "Standard quality"
+        },
+        "buttonText": "Current Plan"
+      },
+      "pro": {
+        "name": "Pro Monthly",
+        "price": "$9.99",
+        "period": "per month",
+        "description": "For power users",
+        "features": {
+          "1": "Unlimited generations",
+          "2": "Photo to Avatar",
+          "3": "Text to Avatar",
+          "4": "High quality output",
+          "5": "Priority processing",
+          "6": "Generation history",
+          "7": "Free resource pack downloads"
+        },
+        "buttonText": "Subscribe Now",
+        "popular": "Most Popular"
+      },
+      "credits": {
+        "name": "Credit Pack",
+        "price": "$4.99",
+        "period": "10 credits",
+        "description": "Pay as you go",
+        "features": {
+          "1": "10 generations",
+          "2": "Never expires",
+          "3": "Photo to Avatar",
+          "4": "Text to Avatar",
+          "5": "Standard quality"
+        },
+        "buttonText": "Buy Credits"
+      }
+    },
+    "loading": "Loading...",
+    "currentPlan": "Current Plan",
+    "checkoutError": "Failed to start checkout. Please try again.",
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "q1": "What happens when I run out of free generations?",
+      "a1": "Free users get 1 generation per day. Once you've used it, you can either wait until tomorrow, purchase a credit pack, or subscribe to Pro for unlimited access.",
+      "q2": "Do credits expire?",
+      "a2": "No! Credits never expire. Use them whenever you need them.",
+      "q3": "Can I cancel my subscription anytime?",
+      "a3": "Yes, you can cancel your Pro subscription at any time. You'll continue to have access until the end of your billing period."
+    },
+    "upgradeModal": {
+      "title": "Daily Limit Reached",
+      "description": "You've used your free generation for today. Upgrade to continue creating amazing avatars!",
+      "bestValue": "Best Value",
+      "unlimitedGenerations": "Unlimited generations",
+      "proMonthly": "Pro Monthly",
+      "proPrice": "$9.99",
+      "proPeriod": "/mo",
+      "creditPack": "Credit Pack",
+      "creditPackDesc": "10 generations, never expires",
+      "creditPackPrice": "$4.99",
+      "creditPackPeriod": "/pack",
+      "redirecting": "Redirecting to checkout...",
+      "resetInfo": "Your free limit resets tomorrow at midnight.",
+      "checkoutError": "Failed to start checkout. Please try again."
+    }
   }
 }
