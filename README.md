@@ -1,14 +1,13 @@
 
 
-![cover](./public/social.png)
+![Notion AI Avatar](./public/social-ai.png)
 
 
 # Notion Avatar Maker
 
-An online tool for making notion-style avatars.
+AI-powered online tool for making notion-style avatars.
 
 I18n supported:
-
 - [English](https://notion-avatar.app/en)
 - [简体中文](https://notion-avatar.app/zh)
 - [繁體中文](https://notion-avatar.app/zh-TW)
@@ -19,6 +18,11 @@ I18n supported:
 - [Deutsch](https://notion-avatar.app/de)
 - [Português](https://notion-avatar.app/pt)
 - [Русский](https://notion-avatar.app/ru)
+
+## AI Features
+- Transform your photos into Notion-style avatars
+- Generate avatars from text descriptions
+- Create truly one-of-a-kind designs
 
 ## Styles
 
