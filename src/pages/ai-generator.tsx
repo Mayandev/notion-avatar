@@ -446,6 +446,19 @@ export default function AIGeneratorPage() {
             <p className="text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto mb-8 leading-relaxed">
               {t('ai.heroSubtitle')}
             </p>
+            <a
+              href="https://www.producthunt.com/products/notion-avatar-maker-3?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-notion-avatar-maker-2"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex justify-center"
+            >
+              <img
+                alt="Notion Avatar Maker - AI-powered online tool for making notion-style avatars. | Product Hunt"
+                width="250"
+                height="54"
+                src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1057963&theme=dark&t=1767502844579"
+              />
+            </a>
           </section>
           {/* Generator Section */}
           <section id="ai-generator" className="mb-16 scroll-mt-20">
