@@ -273,7 +273,19 @@
     "subscriptionCanceled": "您的訂閱已取消",
     "resubscribe": "重新訂閱",
     "generationHistoryProOnly": "生成歷史僅限 Pro 用戶使用。",
-    "upgradeToViewHistory": "升級到 Pro 以查看您的生成歷史"
+    "upgradeToViewHistory": "升級到 Pro 以查看您的生成歷史",
+    "promo": {
+      "title": "促銷碼",
+      "description": "有促銷碼？在下方輸入以兌換積分。",
+      "placeholder": "輸入促銷碼",
+      "redeem": "兌換",
+      "success": "成功兌換 {{credits}} 積分！",
+      "enterCode": "請輸入促銷碼",
+      "invalidCode": "無效的促銷碼",
+      "expired": "此促銷碼已過期",
+      "alreadyRedeemed": "您已經兌換過此促銷碼",
+      "error": "兌換促銷碼失敗，請重試。"
+    }
   },
   "pricing": {
     "pageTitle": "價格 | Notion Avatar Maker",

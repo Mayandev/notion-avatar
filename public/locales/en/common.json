@@ -273,7 +273,19 @@
     "subscriptionCanceled": "Your subscription has been canceled",
     "resubscribe": "Resubscribe",
     "generationHistoryProOnly": "Generation history is available for Pro users only.",
-    "upgradeToViewHistory": "Upgrade to Pro to view your generation history"
+    "upgradeToViewHistory": "Upgrade to Pro to view your generation history",
+    "promo": {
+      "title": "Promo Code",
+      "description": "Have a promo code? Enter it below to redeem credits.",
+      "placeholder": "Enter promo code",
+      "redeem": "Redeem",
+      "success": "Successfully redeemed {{credits}} credits!",
+      "enterCode": "Please enter a promo code",
+      "invalidCode": "Invalid promo code",
+      "expired": "This promo code has expired",
+      "alreadyRedeemed": "You have already redeemed this promo code",
+      "error": "Failed to redeem promo code. Please try again."
+    }
   },
   "pricing": {
     "pageTitle": "Pricing | Notion Avatar Maker",

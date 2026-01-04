@@ -269,7 +269,19 @@
     "subscriptionCanceled": "Tu suscripción ha sido cancelada",
     "resubscribe": "Volver a suscribirse",
     "generationHistoryProOnly": "El historial de generaciones está disponible solo para usuarios Pro.",
-    "upgradeToViewHistory": "Actualiza a Pro para ver tu historial de generaciones"
+    "upgradeToViewHistory": "Actualiza a Pro para ver tu historial de generaciones",
+    "promo": {
+      "title": "Código Promocional",
+      "description": "¿Tienes un código promocional? Introdúcelo a continuación para canjear créditos.",
+      "placeholder": "Introduce el código promocional",
+      "redeem": "Canjear",
+      "success": "¡{{credits}} créditos canjeados con éxito!",
+      "enterCode": "Por favor, introduce un código promocional",
+      "invalidCode": "Código promocional inválido",
+      "expired": "Este código promocional ha expirado",
+      "alreadyRedeemed": "Ya has canjeado este código promocional",
+      "error": "Error al canjear el código promocional. Por favor, inténtalo de nuevo."
+    }
   },
   "pricing": {
     "pageTitle": "Precios | Notion Avatar Maker",

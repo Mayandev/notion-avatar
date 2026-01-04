@@ -273,7 +273,19 @@
     "subscriptionCanceled": "구독이 취소되었습니다",
     "resubscribe": "재구독",
     "generationHistoryProOnly": "생성 기록은 Pro 사용자만 사용할 수 있습니다.",
-    "upgradeToViewHistory": "Pro로 업그레이드하여 생성 기록 보기"
+    "upgradeToViewHistory": "Pro로 업그레이드하여 생성 기록 보기",
+    "promo": {
+      "title": "프로모 코드",
+      "description": "프로모 코드가 있으신가요? 아래에 입력하여 크레딧을 교환하세요.",
+      "placeholder": "프로모 코드 입력",
+      "redeem": "교환",
+      "success": "{{credits}} 크레딧 교환 성공!",
+      "enterCode": "프로모 코드를 입력해주세요",
+      "invalidCode": "유효하지 않은 프로모 코드",
+      "expired": "이 프로모 코드는 만료되었습니다",
+      "alreadyRedeemed": "이미 교환한 프로모 코드입니다",
+      "error": "프로모 코드 교환에 실패했습니다. 다시 시도해주세요."
+    }
   },
   "pricing": {
     "pageTitle": "가격 | Notion Avatar Maker",

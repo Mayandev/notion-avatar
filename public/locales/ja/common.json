@@ -273,7 +273,19 @@
     "subscriptionCanceled": "サブスクリプションがキャンセルされました",
     "resubscribe": "再購読",
     "generationHistoryProOnly": "生成履歴は Pro ユーザーのみ利用可能です。",
-    "upgradeToViewHistory": "Pro にアップグレードして生成履歴を表示"
+    "upgradeToViewHistory": "Pro にアップグレードして生成履歴を表示",
+    "promo": {
+      "title": "プロモコード",
+      "description": "プロモコードをお持ちですか？以下に入力してクレジットを交換してください。",
+      "placeholder": "プロモコードを入力",
+      "redeem": "交換",
+      "success": "{{credits}} クレジットの交換に成功しました！",
+      "enterCode": "プロモコードを入力してください",
+      "invalidCode": "無効なプロモコード",
+      "expired": "このプロモコードは期限切れです",
+      "alreadyRedeemed": "このプロモコードは既に交換済みです",
+      "error": "プロモコードの交換に失敗しました。もう一度お試しください。"
+    }
   },
   "pricing": {
     "pageTitle": "料金 | Notion Avatar Maker",

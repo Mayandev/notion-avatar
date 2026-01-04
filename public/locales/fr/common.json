@@ -273,7 +273,19 @@
     "subscriptionCanceled": "Votre abonnement a été annulé",
     "resubscribe": "Réabonner",
     "generationHistoryProOnly": "L'historique des générations est disponible uniquement pour les utilisateurs Pro.",
-    "upgradeToViewHistory": "Mettez à niveau vers Pro pour voir votre historique de générations"
+    "upgradeToViewHistory": "Mettez à niveau vers Pro pour voir votre historique de générations",
+    "promo": {
+      "title": "Code Promo",
+      "description": "Vous avez un code promo ? Entrez-le ci-dessous pour échanger des crédits.",
+      "placeholder": "Entrez le code promo",
+      "redeem": "Échanger",
+      "success": "{{credits}} crédits échangés avec succès !",
+      "enterCode": "Veuillez entrer un code promo",
+      "invalidCode": "Code promo invalide",
+      "expired": "Ce code promo a expiré",
+      "alreadyRedeemed": "Vous avez déjà échangé ce code promo",
+      "error": "Échec de l'échange du code promo. Veuillez réessayer."
+    }
   },
   "pricing": {
     "pageTitle": "Tarifs | Notion Avatar Maker",
