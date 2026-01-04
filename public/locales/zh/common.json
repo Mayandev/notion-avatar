@@ -273,7 +273,20 @@
     "subscriptionCanceled": "您的订阅已取消",
     "resubscribe": "重新订阅",
     "generationHistoryProOnly": "生成历史仅限 Pro 用户使用。",
-    "upgradeToViewHistory": "升级到 Pro 以查看您的生成历史"
+    "upgradeToViewHistory": "升级到 Pro 以查看您的生成历史",
+    "promo": {
+      "title": "促销码",
+      "description": "有促销码？在下方输入以兑换积分。",
+      "placeholder": "输入促销码",
+      "redeem": "兑换",
+      "success": "成功兑换 {{credits}} 积分！",
+      "enterCode": "请输入促销码",
+      "invalidCode": "无效的促销码",
+      "expired": "此促销码已过期",
+      "alreadyRedeemed": "您已经兑换过此促销码",
+      "limitReached": "此促销码已达到兑换上限",
+      "error": "兑换促销码失败，请重试。"
+    }
   },
   "pricing": {
     "pageTitle": "价格 | Notion Avatar Maker",
@@ -354,5 +367,11 @@
       "resetInfo": "您的免费额度将在明天午夜重置。",
       "checkoutError": "启动结账失败，请重试。"
     }
+  },
+  "productHunt": {
+    "welcome": "欢迎来自 Product Hunt 的朋友！",
+    "promoMessage": "使用促销码获得 10 个免费积分：",
+    "redeemNow": "立即兑换",
+    "signInToRedeem": "登录兑换"
   }
 }

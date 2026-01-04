@@ -273,7 +273,20 @@
     "subscriptionCanceled": "Ihr Abonnement wurde gekündigt",
     "resubscribe": "Erneut abonnieren",
     "generationHistoryProOnly": "Generierungsverlauf ist nur für Pro-Benutzer verfügbar.",
-    "upgradeToViewHistory": "Upgraden Sie auf Pro, um Ihren Generierungsverlauf anzuzeigen"
+    "upgradeToViewHistory": "Upgraden Sie auf Pro, um Ihren Generierungsverlauf anzuzeigen",
+    "promo": {
+      "title": "Promo-Code",
+      "description": "Haben Sie einen Promo-Code? Geben Sie ihn unten ein, um Credits einzulösen.",
+      "placeholder": "Promo-Code eingeben",
+      "redeem": "Einlösen",
+      "success": "{{credits}} Credits erfolgreich eingelöst!",
+      "enterCode": "Bitte geben Sie einen Promo-Code ein",
+      "invalidCode": "Ungültiger Promo-Code",
+      "expired": "Dieser Promo-Code ist abgelaufen",
+      "alreadyRedeemed": "Sie haben diesen Promo-Code bereits eingelöst",
+      "limitReached": "Dieser Promo-Code hat sein Einlöselimit erreicht",
+      "error": "Promo-Code konnte nicht eingelöst werden. Bitte versuchen Sie es erneut."
+    }
   },
   "pricing": {
     "pageTitle": "Preise | Notion Avatar Maker",
@@ -354,5 +367,11 @@
       "resetInfo": "Ihr kostenloses Limit wird morgen um Mitternacht zurückgesetzt.",
       "checkoutError": "Checkout konnte nicht gestartet werden. Bitte versuchen Sie es erneut."
     }
+  },
+  "productHunt": {
+    "welcome": "Willkommen von Product Hunt!",
+    "promoMessage": "Verwenden Sie den Promo-Code für 10 kostenlose Credits:",
+    "redeemNow": "Jetzt einlösen",
+    "signInToRedeem": "Anmelden zum Einlösen"
   }
 }

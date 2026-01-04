@@ -270,7 +270,20 @@
     "subscriptionCanceled": "Sua assinatura foi cancelada",
     "resubscribe": "Reassinar",
     "generationHistoryProOnly": "O histórico de gerações está disponível apenas para usuários Pro.",
-    "upgradeToViewHistory": "Atualize para Pro para ver seu histórico de gerações"
+    "upgradeToViewHistory": "Atualize para Pro para ver seu histórico de gerações",
+    "promo": {
+      "title": "Código Promocional",
+      "description": "Tem um código promocional? Digite-o abaixo para resgatar créditos.",
+      "placeholder": "Digite o código promocional",
+      "redeem": "Resgatar",
+      "success": "{{credits}} créditos resgatados com sucesso!",
+      "enterCode": "Por favor, digite um código promocional",
+      "invalidCode": "Código promocional inválido",
+      "expired": "Este código promocional expirou",
+      "alreadyRedeemed": "Você já resgatou este código promocional",
+      "limitReached": "Este código promocional atingiu seu limite de resgates",
+      "error": "Falha ao resgatar código promocional. Por favor, tente novamente."
+    }
   },
   "pricing": {
     "pageTitle": "Preços | Notion Avatar Maker",
@@ -351,5 +364,11 @@
       "resetInfo": "Seu limite gratuito será redefinido amanhã à meia-noite.",
       "checkoutError": "Falha ao iniciar o checkout. Por favor, tente novamente."
     }
+  },
+  "productHunt": {
+    "welcome": "Bem-vindo do Product Hunt!",
+    "promoMessage": "Use o código promocional para obter 10 créditos grátis:",
+    "redeemNow": "Resgatar Agora",
+    "signInToRedeem": "Entrar para Resgatar"
   }
 }

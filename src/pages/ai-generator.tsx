@@ -22,6 +22,7 @@ import AuthModal from '@/components/Auth/AuthModal';
 import UpgradeModal from '@/components/Pricing/UpgradeModal';
 import PricingPlans from '@/components/Pricing/PricingPlans';
 import ExamplesShowcase from '@/components/AIGenerator/ExamplesShowcase';
+import ProductHuntBanner from '@/components/ProductHuntBanner';
 import Image from 'next/legacy/image';
 
 export default function AIGeneratorPage() {
@@ -410,6 +411,7 @@ export default function AIGeneratorPage() {
       </Head>
 
       <div className="min-h-screen flex flex-col bg-[#fffefc]">
+        <ProductHuntBanner />
         <Header />
         <Toaster position="top-center" />
         <AuthModal

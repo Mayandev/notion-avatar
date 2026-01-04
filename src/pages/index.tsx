@@ -12,6 +12,7 @@ import WhosUsing from '@/components/WhosUsing';
 import UseCases from '@/components/UseCases';
 import AIFeatureIntroModal from '@/components/Modal/AIFeatureIntro';
 import ResourceStore from '@/components/ResourceStore';
+import ProductHuntBanner from '@/components/ProductHuntBanner';
 import { createServerSideClient } from '@/lib/supabase/server';
 import { usePurchasedPacks } from '@/hooks/useAccountData';
 
@@ -313,6 +314,7 @@ const Home: NextPage<HomeProps> = ({ initialPurchasedPacks }) => {
         <link rel="manifest" href="/manifest.json" />
       </Head>
 
+      <ProductHuntBanner />
       <Header />
       <main className="my-5">
         <AvatarEditor />

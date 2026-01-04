@@ -16,7 +16,14 @@ import { useUsageHistory, usePurchasedPacks } from '@/hooks/useAccountData';
 export default function AccountPage() {
   const { t } = useTranslation('common');
   const router = useRouter();
-  const { user, subscription, credits, isLoading, signOut } = useAuth();
+  const {
+    user,
+    subscription,
+    credits,
+    isLoading,
+    signOut,
+    refreshSubscription,
+  } = useAuth();
 
   const isPro =
     subscription?.plan_type === 'monthly' && subscription?.status === 'active';
@@ -30,6 +37,8 @@ export default function AccountPage() {
   const [previewImageUrl, setPreviewImageUrl] = useState<string | null>(null);
   const [downloadingImage, setDownloadingImage] = useState<string | null>(null);
   const [loadingImages, setLoadingImages] = useState<Set<string>>(new Set());
+  const [promoCode, setPromoCode] = useState('');
+  const [isRedeeming, setIsRedeeming] = useState(false);
 
   useEffect(() => {
     if (!isLoading && !user) {
@@ -121,6 +130,49 @@ export default function AccountPage() {
       toast.error(t('account.failedToDownload') || 'Failed to download');
     } finally {
       setDownloadingImage(null);
+    }
+  };
+
+  const handleRedeemPromo = async () => {
+    if (!promoCode.trim()) {
+      toast.error(t('account.promo.enterCode'));
+      return;
+    }
+
+    setIsRedeeming(true);
+    try {
+      const response = await fetch('/api/promo/redeem', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ code: promoCode.trim() }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        toast.success(t('account.promo.success', { credits: data.credits }));
+        setPromoCode('');
+        // Refresh subscription data to update credits
+        refreshSubscription();
+      } else {
+        // Map error messages to i18n keys
+        let errorKey = 'account.promo.error';
+        if (data.error === 'Invalid promo code') {
+          errorKey = 'account.promo.invalidCode';
+        } else if (data.error === 'Promo code has expired') {
+          errorKey = 'account.promo.expired';
+        } else if (data.error === 'Promo code already redeemed') {
+          errorKey = 'account.promo.alreadyRedeemed';
+        } else if (data.error === 'Promo code redemption limit reached') {
+          errorKey = 'account.promo.limitReached';
+        }
+        toast.error(t(errorKey));
+      }
+    } catch (error) {
+      console.error('Promo redeem error:', error);
+      toast.error(t('account.promo.error'));
+    } finally {
+      setIsRedeeming(false);
     }
   };
 
@@ -282,6 +334,46 @@ export default function AccountPage() {
                 </div>
               </div>
             )}
+
+            {/* Promo Code Section */}
+            <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 mb-6">
+              <h2 className="text-lg font-bold text-gray-900 mb-4">
+                {t('account.promo.title')}
+              </h2>
+              <p className="text-gray-500 text-sm mb-4">
+                {t('account.promo.description')}
+              </p>
+              <div className="flex gap-3">
+                <input
+                  type="text"
+                  value={promoCode}
+                  onChange={(e) => setPromoCode(e.target.value.toUpperCase())}
+                  placeholder={t('account.promo.placeholder')}
+                  className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent uppercase"
+                  disabled={isRedeeming}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' && !isRedeeming) {
+                      handleRedeemPromo();
+                    }
+                  }}
+                />
+                <button
+                  onClick={handleRedeemPromo}
+                  disabled={isRedeeming || !promoCode.trim()}
+                  type="button"
+                  className="px-6 py-2 bg-black text-white text-sm font-medium rounded-lg hover:bg-gray-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+                >
+                  {isRedeeming ? (
+                    <>
+                      <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white" />
+                      <span>{t('auth.loading')}</span>
+                    </>
+                  ) : (
+                    t('account.promo.redeem')
+                  )}
+                </button>
+              </div>
+            </div>
 
             {/* Purchased Resources */}
             <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 mb-6">
