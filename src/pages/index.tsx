@@ -4,6 +4,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/legacy/image';
 import dynamic from 'next/dynamic';
+import { useRouter } from 'next/router';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
 import toast from 'react-hot-toast';
@@ -40,6 +41,7 @@ interface HomeProps {
 
 const Home: NextPage<HomeProps> = ({ initialPurchasedPacks }) => {
   const { t } = useTranslation(`common`);
+  const router = useRouter();
   const { user, isLoading: isAuthLoading } = useAuth();
   const [isAIFeatureModalOpen, setIsAIFeatureModalOpen] = useState(false);
   const { data: purchasedPacks = initialPurchasedPacks, refetch } =
@@ -199,7 +201,12 @@ const Home: NextPage<HomeProps> = ({ initialPurchasedPacks }) => {
         <meta name="robots" content="index, follow" />
         <meta name="googlebot" content="index, follow" />
         <meta name="google" content="notranslate" />
-        <link rel="canonical" href="https://notion-avatar.app" />
+        <link
+          rel="canonical"
+          href={`https://notion-avatar.app${
+            router.locale && router.locale !== 'en' ? `/${router.locale}` : ''
+          }`}
+        />
 
         {/* Hreflang - 使用更简洁的方式 */}
         {['en', 'zh', 'zh-TW', 'ja', 'ko', 'es', 'fr', 'de', 'ru', 'pt'].map(

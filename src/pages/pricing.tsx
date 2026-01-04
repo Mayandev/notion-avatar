@@ -1,6 +1,7 @@
 import { useState, useMemo } from 'react';
 import Head from 'next/head';
 import dynamic from 'next/dynamic';
+import { useRouter } from 'next/router';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
 import { GetStaticPropsContext } from 'next';
@@ -21,6 +22,7 @@ const PricingPlans = dynamic(
 
 export default function PricingPage() {
   const { t } = useTranslation('common');
+  const router = useRouter();
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
 
   const plans = useMemo(
@@ -86,7 +88,12 @@ export default function PricingPage() {
         <meta name="description" content={t('pricing.pageDescription')} />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://notion-avatar.app/pricing" />
+        <link
+          rel="canonical"
+          href={`https://notion-avatar.app${
+            router.locale && router.locale !== 'en' ? `/${router.locale}` : ''
+          }/pricing`}
+        />
       </Head>
 
       <div className="min-h-screen flex flex-col bg-[#fffefc]">

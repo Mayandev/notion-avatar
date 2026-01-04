@@ -15,7 +15,13 @@ export default function UseCases() {
           <h2 className="text-2xl font-bold inline-block relative">
             <span className="relative">{t('useCases')}</span>
             <span className="absolute top-[-32px] right-[-32px]">
-              <Image src="/icon/star.svg" width={32} height={34} />
+              <Image
+                src="/icon/star.svg"
+                width={32}
+                height={34}
+                alt="star"
+                aria-hidden="true"
+              />
             </span>
           </h2>
           <p className="mt-6 text-gray-500">{t('useCasesDescription')}</p>

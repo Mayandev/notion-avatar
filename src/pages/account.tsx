@@ -12,6 +12,11 @@ import {
   createServerSideClient,
   createServiceClient,
 } from '@/lib/supabase/server';
+import {
+  getCanonicalUrl,
+  getHreflangLinks,
+  getDefaultHreflangUrl,
+} from '@/lib/seo';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Modal from '@/components/Modal/Common';
@@ -215,10 +220,30 @@ export default function AccountPage({
   const displayName =
     user.user_metadata?.full_name || user.user_metadata?.name || user.email;
 
+  const pagePath = '/account';
+  const canonicalUrl = getCanonicalUrl(pagePath, router.locale);
+  const hreflangLinks = getHreflangLinks(pagePath);
+
   return (
     <>
       <Head>
         <title>{t('account.pageTitle')}</title>
+        <meta name="description" content={t('account.title')} />
+        <link rel="canonical" href={canonicalUrl} />
+        {/* Hreflang links for all language versions */}
+        {hreflangLinks.map((link) => (
+          <link
+            key={link.hrefLang}
+            rel="alternate"
+            hrefLang={link.hrefLang}
+            href={link.href}
+          />
+        ))}
+        <link
+          rel="alternate"
+          hrefLang="x-default"
+          href={getDefaultHreflangUrl(pagePath)}
+        />
       </Head>
 
       <div className="min-h-screen flex flex-col bg-[#fffefc]">

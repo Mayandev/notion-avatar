@@ -103,7 +103,13 @@ export default function ResourceStore({
           <h2 className="text-2xl font-bold mb-4 relative  inline-block">
             {t('resourceStore.title')}
             <span className="absolute top-[-32px] left-[-32px]">
-              <Image src="/icon/bling.svg" width={32} height={34} />
+              <Image
+                src="/icon/bling.svg"
+                width={32}
+                height={34}
+                alt="bling"
+                aria-hidden="true"
+              />
             </span>
           </h2>
           <p className="text-gray-600">{t('resourceStore.description')}</p>
@@ -127,7 +133,10 @@ export default function ResourceStore({
             </p>
             <div className="flex items-baseline mb-6">
               <span className="text-3xl font-bold">$1.99</span>
-              <span className="ml-2 text-lg line-through text-gray-400">
+              <span
+                className="ml-2 text-lg line-through text-gray-500"
+                aria-label="original price $9.99"
+              >
                 $9.9
               </span>
             </div>
@@ -216,7 +225,10 @@ export default function ResourceStore({
             </p>
             <div className="flex items-baseline mb-6">
               <span className="text-3xl font-bold">$2.99</span>
-              <span className="ml-2 text-lg line-through text-gray-400">
+              <span
+                className="ml-2 text-lg line-through text-gray-500"
+                aria-label="original price $9.99"
+              >
                 $9.99
               </span>
             </div>

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
 import { GetStaticPropsContext } from 'next';
@@ -13,6 +14,7 @@ import { usePurchasedPacks } from '@/hooks/useAccountData';
 
 export default function ResourcesPage() {
   const { t } = useTranslation('common');
+  const router = useRouter();
   const { user, isLoading: isAuthLoading } = useAuth();
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const { data: purchasedPacks = [], refetch } = usePurchasedPacks();
@@ -62,6 +64,13 @@ export default function ResourcesPage() {
     );
   }
 
+  const baseUrl = 'https://notion-avatar.app';
+  const currentLocale = router.locale || 'en';
+  const canonicalUrl =
+    currentLocale === 'en'
+      ? `${baseUrl}/resources`
+      : `${baseUrl}/${currentLocale}/resources`;
+
   return (
     <>
       <Head>
@@ -70,6 +79,7 @@ export default function ResourcesPage() {
           name="description"
           content="Download your purchased resource packs"
         />
+        <link rel="canonical" href={canonicalUrl} />
       </Head>
 
       <div className="min-h-screen flex flex-col bg-[#fffefc]">

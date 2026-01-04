@@ -263,7 +263,12 @@ export default function AvatarEditor() {
                   data-tip={t('language')}
                   aria-label={t('changeLanguage')}
                 >
-                  <Image width={30} height={30} src="/icon/language.svg" />
+                  <Image
+                    width={30}
+                    height={30}
+                    src="/icon/language.svg"
+                    alt={t('language')}
+                  />
                 </button>
                 {showLanguageMenu && (
                   <div className="absolute right-0 mt-2 bg-white shadow-lg rounded-md p-2 z-20 min-w-[120px] border border-gray-200">
@@ -305,11 +310,13 @@ export default function AvatarEditor() {
                 onClick={() => {
                   setFlip(!flip);
                 }}
+                aria-label={t('flip')}
               >
                 <Image
                   width={30}
                   height={30}
                   src={flip ? '/icon/flip-left.svg' : '/icon/flip-right.svg'}
+                  alt={t('flip')}
                 />
               </button>
               <div className="relative" id="palette-picker">
@@ -317,8 +324,14 @@ export default function AvatarEditor() {
                   data-tip={t('background')}
                   className="w-8 h-8 sm:w-12 sm:h-12 tooltip ml-2"
                   onClick={onOpenPaletteModal}
+                  aria-label={t('background')}
                 >
-                  <Image width={30} height={30} src="/icon/palette.svg" />
+                  <Image
+                    width={30}
+                    height={30}
+                    src="/icon/palette.svg"
+                    alt={t('background')}
+                  />
                 </button>
                 {modalStates.palette && (
                   <PalettePopover
@@ -351,6 +364,7 @@ export default function AvatarEditor() {
                     }.svg`}
                     width={30}
                     height={30}
+                    alt={t(type)}
                   />
                 </SelectionWrapper>
                 {avatarPart?.part === type && (
@@ -392,6 +406,7 @@ export default function AvatarEditor() {
                       src={`/avatar/part/festival/${festival}/${festival}-${config[festival]}.svg`}
                       width={30}
                       height={30}
+                      alt={FestivalTooltipEmoji[festival]}
                     />
                     <span className="top-0 right-0 absolute bg-red-600 text-xs text-white rounded translate-x-1/2 px-1 -translate-y-1/2">
                       New
@@ -465,9 +480,14 @@ export default function AvatarEditor() {
                 <span className="ml-3">{t('download')}</span>
               </button>
               <div className="border-3 border-black rounded-full flex items-center rounded-l-none border-l-0 relative">
+                <label htmlFor="image-type-select" className="sr-only">
+                  {t('downloadTip')}
+                </label>
                 <select
+                  id="image-type-select"
                   className="appearance-none focus:outline-none select-none bg-transparent h-full w-20 pl-4 pr-7 cursor-pointer"
                   onChange={(e) => setImageType(e.target.value as ImageType)}
+                  aria-label={t('downloadTip')}
                 >
                   <option value="png">.PNG</option>
                   <option value="svg">.SVG</option>
@@ -508,7 +528,9 @@ export default function AvatarEditor() {
             src={'/icon/arrow.svg'}
             width={59}
             height={126}
+            alt=""
             loading="lazy"
+            aria-hidden="true"
           />
         </div>
       </div>
