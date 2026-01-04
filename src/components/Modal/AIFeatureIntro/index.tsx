@@ -61,19 +61,6 @@ export default function AIFeatureIntroModal({
 
         {/* Content */}
         <div className="text-center">
-          {/* Icon */}
-          <div className="mb-6 flex justify-center">
-            <div className="w-20 h-20 rounded-full bg-black flex items-center justify-center">
-              <Image
-                src="/icon/ai-magic.svg"
-                alt="AI Magic"
-                width={40}
-                height={40}
-                className="invert"
-              />
-            </div>
-          </div>
-
           {/* Title */}
           <h2 className="text-3xl font-bold text-gray-900 mb-4">
             {t('aiFeatureIntro.title')}
@@ -83,6 +70,15 @@ export default function AIFeatureIntroModal({
           <p className="text-gray-600 mb-6 leading-relaxed">
             {t('aiFeatureIntro.description')}
           </p>
+
+          <div className="my-8">
+            <Image
+              src="/image/avatar-diff.png"
+              alt="Notion AI Avatar"
+              width={512}
+              height={160}
+            />
+          </div>
 
           {/* Features */}
           <div className="space-y-3 mb-8 text-left">

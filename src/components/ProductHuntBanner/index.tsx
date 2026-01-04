@@ -12,6 +12,7 @@ export default function ProductHuntBanner() {
   const { t } = useTranslation('common');
   const { user } = useAuth();
   const [isVisible, setIsVisible] = useState(false);
+  const [refParam, setRefParam] = useState<string | null>(null);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -32,12 +33,25 @@ export default function ProductHuntBanner() {
 
     if (isFromProductHunt) {
       setIsVisible(true);
+      setRefParam(ref || 'producthunt');
       // 记录来源，即使刷新页面也显示 banner
       sessionStorage.setItem('from-producthunt', 'true');
+      if (ref) {
+        sessionStorage.setItem('ph-ref', ref);
+      }
     } else if (sessionStorage.getItem('from-producthunt') === 'true') {
       setIsVisible(true);
+      setRefParam(sessionStorage.getItem('ph-ref') || 'producthunt');
     }
   }, []);
+
+  // 构建带 ref 参数的链接
+  const buildLinkWithRef = (path: string) => {
+    if (refParam) {
+      return `${path}?ref=${refParam}`;
+    }
+    return path;
+  };
 
   const handleDismiss = () => {
     setIsVisible(false);
@@ -80,17 +94,23 @@ export default function ProductHuntBanner() {
             </div>
           </div>
           <div className="flex items-center gap-2">
+            <Link
+              href={buildLinkWithRef('/ai-generator')}
+              className="px-3 py-1.5 bg-black text-white text-sm font-medium rounded-lg hover:bg-gray-800 transition-colors whitespace-nowrap"
+            >
+              {t('productHunt.tryAI')}
+            </Link>
             {user ? (
               <Link
-                href="/account"
-                className="px-3 py-1.5 bg-black text-white text-sm font-medium rounded-lg hover:bg-gray-800 transition-colors whitespace-nowrap"
+                href={buildLinkWithRef('/account')}
+                className="px-3 py-1.5 bg-white text-gray-900 text-sm font-medium rounded-lg hover:bg-gray-50 transition-colors whitespace-nowrap border border-gray-300"
               >
                 {t('productHunt.redeemNow')}
               </Link>
             ) : (
               <Link
-                href="/auth/login"
-                className="px-3 py-1.5 bg-black text-white text-sm font-medium rounded-lg hover:bg-gray-800 transition-colors whitespace-nowrap"
+                href={buildLinkWithRef('/auth/login')}
+                className="px-3 py-1.5 bg-white text-gray-900 text-sm font-medium rounded-lg hover:bg-gray-50 transition-colors whitespace-nowrap border border-gray-300"
               >
                 {t('productHunt.signInToRedeem')}
               </Link>

@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import type { GetServerSidePropsContext, NextPage } from 'next';
 import Head from 'next/head';
+import Link from 'next/link';
+import Image from 'next/legacy/image';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
 import toast from 'react-hot-toast';
@@ -379,6 +381,58 @@ const Home: NextPage<HomeProps> = ({ initialPurchasedPacks }) => {
             </div>
           </div>
         </section>
+        {/* AI Avatar Hero Section */}
+        <section className="py-16 my-12">
+          <div className="container mx-auto px-4 md:px-8">
+            <div className="text-center mb-8">
+              <div className="relative inline-block mb-6">
+                <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 relative">
+                  {t('ai.title')}
+                </h2>
+                <div className="absolute -right-6 -top-4 md:-top-8 md:-right-12">
+                  <Image
+                    src="/icon/ai-stars.svg"
+                    width={48}
+                    height={48}
+                    alt="Stars"
+                  />
+                </div>
+              </div>
+              <p className="text-lg md:text-xl text-gray-700 max-w-2xl mx-auto mb-8 leading-relaxed">
+                {t('ai.heroSubtitle')}
+              </p>
+              <div className="mb-8">
+                <Image
+                  src="/image/avatar-diff.png"
+                  alt="Notion AI Avatar demo"
+                  width={1024}
+                  height={320}
+                  className="mx-auto"
+                />
+              </div>
+              <Link
+                href="/ai-generator"
+                className="inline-flex items-center gap-2 py-3 px-8 rounded-full bg-black text-white font-bold text-lg hover:scale-105 active:scale-95 transition-all shadow-lg hover:shadow-xl"
+              >
+                {t('ai.heroCTA')}
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M13 7l5 5m0 0l-5 5m5-5H6"
+                  />
+                </svg>
+              </Link>
+            </div>
+          </div>
+        </section>
+
         <div id="resource-store">
           <ResourceStore
             purchasedPacks={purchasedPacks}
