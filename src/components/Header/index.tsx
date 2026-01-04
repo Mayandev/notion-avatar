@@ -43,6 +43,8 @@ export default function Header() {
               alt="Notion Avatar Logo"
               width={50}
               height={50}
+              priority
+              loading="eager"
             />
             <span className="w-36 sm:w-48 text-lg leading-tight relative inline-block">
               Notion {router.pathname === '/ai-generator' ? 'AI' : ''}

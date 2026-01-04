@@ -504,7 +504,12 @@ export default function AvatarEditor() {
         </div>
 
         <div className="mt-6">
-          <Image src={'/icon/arrow.svg'} width={59} height={126} />
+          <Image
+            src={'/icon/arrow.svg'}
+            width={59}
+            height={126}
+            loading="lazy"
+          />
         </div>
       </div>
     </>

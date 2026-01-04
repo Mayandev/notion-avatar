@@ -1,13 +1,23 @@
 import { useState, useMemo } from 'react';
 import Head from 'next/head';
+import dynamic from 'next/dynamic';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
 import { GetStaticPropsContext } from 'next';
 import { Toaster } from 'react-hot-toast';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import AuthModal from '@/components/Auth/AuthModal';
-import PricingPlans from '@/components/Pricing/PricingPlans';
+
+// 延迟加载非关键组件
+const AuthModal = dynamic(() => import('@/components/Auth/AuthModal'), {
+  loading: () => null,
+});
+const PricingPlans = dynamic(
+  () => import('@/components/Pricing/PricingPlans'),
+  {
+    loading: () => null,
+  },
+);
 
 export default function PricingPage() {
   const { t } = useTranslation('common');
@@ -74,6 +84,9 @@ export default function PricingPage() {
       <Head>
         <title>{t('pricing.pageTitle')}</title>
         <meta name="description" content={t('pricing.pageDescription')} />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://notion-avatar.app/pricing" />
       </Head>
 
       <div className="min-h-screen flex flex-col bg-[#fffefc]">

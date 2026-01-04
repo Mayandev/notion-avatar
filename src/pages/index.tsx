@@ -3,20 +3,32 @@ import type { GetServerSidePropsContext, NextPage } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/legacy/image';
+import dynamic from 'next/dynamic';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
 import toast from 'react-hot-toast';
 import { useAuth } from '@/contexts/AuthContext';
+import { createServerSideClient } from '@/lib/supabase/server';
+import { usePurchasedPacks } from '@/hooks/useAccountData';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import AvatarEditor from '@/components/AvatarEditor';
-import WhosUsing from '@/components/WhosUsing';
-import UseCases from '@/components/UseCases';
-import AIFeatureIntroModal from '@/components/Modal/AIFeatureIntro';
-import ResourceStore from '@/components/ResourceStore';
 import ProductHuntBanner from '@/components/ProductHuntBanner';
-import { createServerSideClient } from '@/lib/supabase/server';
-import { usePurchasedPacks } from '@/hooks/useAccountData';
+
+// 延迟加载非首屏组件
+const WhosUsing = dynamic(() => import('@/components/WhosUsing'), {
+  loading: () => null,
+});
+const UseCases = dynamic(() => import('@/components/UseCases'), {
+  loading: () => null,
+});
+const AIFeatureIntroModal = dynamic(
+  () => import('@/components/Modal/AIFeatureIntro'),
+  { loading: () => null },
+);
+const ResourceStore = dynamic(() => import('@/components/ResourceStore'), {
+  loading: () => null,
+});
 
 const URL = `https://notion-avatar.app/`;
 
@@ -130,57 +142,11 @@ const Home: NextPage<HomeProps> = ({ initialPurchasedPacks }) => {
   return (
     <>
       <Head>
-        <link
-          rel="apple-touch-icon"
-          sizes="57x57"
-          href="/favicon/apple-icon-57x57.png"
-        />
-        <link
-          rel="apple-touch-icon"
-          sizes="60x60"
-          href="/favicon/apple-icon-60x60.png"
-        />
-        <link
-          rel="apple-touch-icon"
-          sizes="72x72"
-          href="/favicon/apple-icon-72x72.png"
-        />
-        <link
-          rel="apple-touch-icon"
-          sizes="76x76"
-          href="/favicon/apple-icon-76x76.png"
-        />
-        <link
-          rel="apple-touch-icon"
-          sizes="114x114"
-          href="/favicon/apple-icon-114x114.png"
-        />
-        <link
-          rel="apple-touch-icon"
-          sizes="120x120"
-          href="/favicon/apple-icon-120x120.png"
-        />
-        <link
-          rel="apple-touch-icon"
-          sizes="144x144"
-          href="/favicon/apple-icon-144x144.png"
-        />
-        <link
-          rel="apple-touch-icon"
-          sizes="152x152"
-          href="/favicon/apple-icon-152x152.png"
-        />
-        <link
-          rel="apple-touch-icon"
-          sizes="180x180"
-          href="/favicon/apple-icon-180x180.png"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="192x192"
-          href="/favicon/android-icon-192x192.png"
-        />
+        {/* 关键资源预加载 */}
+        <link rel="preload" href="/logo.gif" as="image" />
+        <link rel="preload" href="/image/avatar-diff.png" as="image" />
+
+        {/* Favicon - 只保留关键尺寸 */}
         <link
           rel="icon"
           type="image/png"
@@ -190,31 +156,32 @@ const Home: NextPage<HomeProps> = ({ initialPurchasedPacks }) => {
         <link
           rel="icon"
           type="image/png"
-          sizes="96x96"
-          href="/favicon/favicon-96x96.png"
-        />
-        <link
-          rel="icon"
-          type="image/png"
           sizes="16x16"
           href="/favicon/favicon-16x16.png"
         />
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/favicon/apple-icon-180x180.png"
+        />
         <link rel="manifest" href="/manifest.json" />
+
+        {/* SEO Meta Tags */}
         <title>{t(`siteTitle`)}</title>
         <meta name="description" content={t(`siteDescription`)} />
+        <meta name="keywords" content={t('siteKeywords')} />
+        <meta name="author" content="Notion Avatar" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="theme-color" content="#fffefc" />
         <meta name="msapplication-TileColor" content="#fffefc" />
         <meta
           name="msapplication-TileImage"
           content="/favicon/ms-icon-144x144.png"
         />
-        <meta name="theme-color" content="#fffefc" />
-        <meta name="keywords" content={t('siteKeywords')} />
-        <meta name="author" content="Notion Avatar" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="format-detection" content="telephone=no" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-        <meta content={t(`siteDescription`)} name="description" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="apple-mobile-web-app-title" content="Notion Avatar" />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content={t(`siteTitle`)} />
         <meta property="og:title" content={t(`siteTitle`)} />
@@ -228,72 +195,35 @@ const Home: NextPage<HomeProps> = ({ initialPurchasedPacks }) => {
         <meta name="twitter:description" content={t(`siteDescription`)} />
         <meta charSet="utf-8" />
         <meta name="theme-color" content="#fffefc" />
+        {/* Robots & Canonical */}
         <meta name="robots" content="index, follow" />
         <meta name="googlebot" content="index, follow" />
         <meta name="google" content="notranslate" />
         <link rel="canonical" href="https://notion-avatar.app" />
-        <link
-          rel="alternate"
-          hrefLang="en"
-          href="https://notion-avatar.app/en"
-        />
-        <link
-          rel="alternate"
-          hrefLang="zh"
-          href="https://notion-avatar.app/zh"
-        />
-        <link
-          rel="alternate"
-          hrefLang="zh-TW"
-          href="https://notion-avatar.app/zh-TW"
-        />
-        <link
-          rel="alternate"
-          hrefLang="ja"
-          href="https://notion-avatar.app/ja"
-        />
-        <link
-          rel="alternate"
-          hrefLang="ko"
-          href="https://notion-avatar.app/ko"
-        />
-        <link
-          rel="alternate"
-          hrefLang="es"
-          href="https://notion-avatar.app/es"
-        />
-        <link
-          rel="alternate"
-          hrefLang="fr"
-          href="https://notion-avatar.app/fr"
-        />
-        <link
-          rel="alternate"
-          hrefLang="de"
-          href="https://notion-avatar.app/de"
-        />
-        <link
-          rel="alternate"
-          hrefLang="ru"
-          href="https://notion-avatar.app/ru"
-        />
-        <link
-          rel="alternate"
-          hrefLang="pt"
-          href="https://notion-avatar.app/pt"
-        />
+
+        {/* Hreflang - 使用更简洁的方式 */}
+        {['en', 'zh', 'zh-TW', 'ja', 'ko', 'es', 'fr', 'de', 'ru', 'pt'].map(
+          (lang) => (
+            <link
+              key={lang}
+              rel="alternate"
+              hrefLang={lang}
+              href={`https://notion-avatar.app/${lang === 'en' ? '' : lang}`}
+            />
+          ),
+        )}
         <link
           rel="alternate"
           hrefLang="x-default"
           href="https://notion-avatar.app"
         />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
+          rel="preload"
+          href="/fonts/Quicksand.ttf"
+          as="font"
+          type="font/ttf"
           crossOrigin="anonymous"
         />
-        <link href="/fonts/Quicksand.tff" as="font" crossOrigin="anonymous" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -308,12 +238,6 @@ const Home: NextPage<HomeProps> = ({ initialPurchasedPacks }) => {
             }),
           }}
         />
-        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-        <meta name="apple-mobile-web-app-title" content="Notion Avatar" />
-        <meta name="format-detection" content="telephone=no" />
-        <meta name="mobile-web-app-capable" content="yes" />
-        <meta name="msapplication-tap-highlight" content="no" />
-        <link rel="manifest" href="/manifest.json" />
       </Head>
 
       <ProductHuntBanner />
@@ -406,8 +330,10 @@ const Home: NextPage<HomeProps> = ({ initialPurchasedPacks }) => {
                   src="/image/avatar-diff.png"
                   alt="Notion AI Avatar demo"
                   width={1024}
-                  height={320}
+                  height={485}
                   className="mx-auto"
+                  priority
+                  loading="eager"
                 />
               </div>
               <Link

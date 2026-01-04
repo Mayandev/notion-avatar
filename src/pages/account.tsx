@@ -4,16 +4,34 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
-import { GetStaticPropsContext } from 'next';
+import type { GetServerSidePropsContext } from 'next';
 import toast, { Toaster } from 'react-hot-toast';
 import Image from 'next/legacy/image';
 import { useAuth } from '@/contexts/AuthContext';
+import {
+  createServerSideClient,
+  createServiceClient,
+} from '@/lib/supabase/server';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Modal from '@/components/Modal/Common';
 import { useUsageHistory, usePurchasedPacks } from '@/hooks/useAccountData';
 
-export default function AccountPage() {
+interface AccountPageProps {
+  initialPurchasedPacks: string[];
+  initialUsageHistory: Array<{
+    id: string;
+    generation_mode: string;
+    created_at: string;
+    image_path?: string;
+    image_url?: string;
+  }>;
+}
+
+export default function AccountPage({
+  initialPurchasedPacks,
+  initialUsageHistory,
+}: AccountPageProps) {
   const { t } = useTranslation('common');
   const router = useRouter();
   const {
@@ -27,10 +45,14 @@ export default function AccountPage() {
 
   const isPro =
     subscription?.plan_type === 'monthly' && subscription?.status === 'active';
-  const { data: usageHistory = [], isLoading: isLoadingHistory } =
-    useUsageHistory(10, isPro);
-  const { data: purchasedPacks = [], isLoading: isLoadingPacks } =
-    usePurchasedPacks();
+  const {
+    data: usageHistory = initialUsageHistory,
+    isLoading: isLoadingHistory,
+  } = useUsageHistory(10, isPro);
+  const {
+    data: purchasedPacks = initialPurchasedPacks,
+    isLoading: isLoadingPacks,
+  } = usePurchasedPacks(initialPurchasedPacks);
 
   const [isManagingBilling, setIsManagingBilling] = useState(false);
   const [downloadingPack, setDownloadingPack] = useState<string | null>(null);
@@ -216,10 +238,12 @@ export default function AccountPage() {
               </h2>
               <div className="flex items-center gap-4">
                 {avatarUrl ? (
+                  // eslint-disable-next-line @next/next/no-img-element
                   <img
                     src={avatarUrl}
                     alt="Avatar"
                     className="w-16 h-16 rounded-full border border-gray-200"
+                    loading="lazy"
                   />
                 ) : (
                   <div className="w-16 h-16 rounded-full bg-gray-900 flex items-center justify-center text-white text-xl font-medium">
@@ -483,7 +507,7 @@ export default function AccountPage() {
                               <div className="absolute inset-0 bg-gray-200 animate-pulse rounded-lg z-10" />
                             )}
                             <Image
-                              src={record.image_url}
+                              src={record.image_url || ''}
                               alt="Generated avatar"
                               layout="fill"
                               objectFit="cover"
@@ -492,6 +516,7 @@ export default function AccountPage() {
                                   ? 'opacity-0'
                                   : 'opacity-100'
                               }`}
+                              loading="lazy"
                               onClick={() => {
                                 if (record.image_url) {
                                   handleImagePreview(record.image_url);
@@ -612,10 +637,12 @@ export default function AccountPage() {
               <div className="flex flex-col items-center">
                 <div className="w-full flex justify-center mb-4">
                   <div className="relative w-full max-w-md">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src={previewImageUrl}
                       alt="Generated avatar preview"
                       className="w-full h-auto rounded-lg"
+                      loading="lazy"
                     />
                   </div>
                 </div>
@@ -675,11 +702,97 @@ export default function AccountPage() {
   );
 }
 
-export async function getStaticProps({
-  locale,
-}: GetStaticPropsContext & { locale: string }) {
+export async function getServerSideProps(
+  context: GetServerSidePropsContext & { locale: string },
+) {
+  const { locale } = context;
+  let purchasedPacks: string[] = [];
+  let usageHistory: Array<{
+    id: string;
+    generation_mode: string;
+    created_at: string;
+    image_path?: string;
+    image_url?: string;
+  }> = [];
+
+  try {
+    const supabase = createServerSideClient(context);
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+
+    if (!user) {
+      return {
+        redirect: {
+          destination: '/auth/login',
+          permanent: false,
+        },
+      };
+    }
+
+    // 并行获取数据
+    const [purchasesResult, subscriptionResult, usageResult] =
+      await Promise.all([
+        // 获取购买的资源包
+        supabase
+          .from('resource_purchases')
+          .select('resource_pack_id')
+          .eq('user_id', user.id),
+        // 获取订阅信息
+        supabase
+          .from('subscriptions')
+          .select('plan_type, status')
+          .eq('user_id', user.id)
+          .single(),
+        // 获取使用历史（仅 Pro 用户）
+        supabase
+          .from('usage_records')
+          .select('id, generation_mode, created_at, image_path')
+          .eq('user_id', user.id)
+          .order('created_at', { ascending: false })
+          .limit(10),
+      ]);
+
+    if (purchasesResult.data) {
+      purchasedPacks = purchasesResult.data.map((p) => p.resource_pack_id);
+    }
+
+    // 检查是否为 Pro 用户
+    const isPro =
+      subscriptionResult.data?.plan_type === 'monthly' &&
+      subscriptionResult.data?.status === 'active';
+
+    // 如果是 Pro 用户，生成图片签名 URL
+    if (isPro && usageResult.data) {
+      const serviceClient = createServiceClient();
+      usageHistory = await Promise.all(
+        usageResult.data.map(async (record) => {
+          if (record.image_path) {
+            try {
+              const { data: signedUrlData } = await serviceClient.storage
+                .from('generated-avatars')
+                .createSignedUrl(record.image_path, 3600);
+              return {
+                ...record,
+                image_url: signedUrlData?.signedUrl,
+              };
+            } catch {
+              return record;
+            }
+          }
+          return record;
+        }),
+      );
+    }
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error('Error fetching account data in SSR:', error);
+  }
+
   return {
     props: {
+      initialPurchasedPacks: purchasedPacks,
+      initialUsageHistory: usageHistory,
       ...(await serverSideTranslations(locale, ['common'])),
     },
   };

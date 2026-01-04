@@ -6,13 +6,23 @@ class Document extends NextDocument {
     return (
       <Html>
         <Head>
-          {/* Google Analytics */}
+          {/* 预加载关键资源 */}
+          <link
+            rel="preload"
+            href="/fonts/Quicksand.ttf"
+            as="font"
+            type="font/ttf"
+            crossOrigin="anonymous"
+          />
+          {/* Google Analytics - 延迟加载 */}
           <script
             async
+            defer
             src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
           />
           <script
             async
+            defer
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3671095188342075"
             crossOrigin="anonymous"
           />

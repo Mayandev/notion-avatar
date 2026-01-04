@@ -76,7 +76,7 @@ export default function AIFeatureIntroModal({
               src="/image/avatar-diff.png"
               alt="Notion AI Avatar"
               width={512}
-              height={160}
+              height={242}
             />
           </div>
 

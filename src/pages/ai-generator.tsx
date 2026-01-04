@@ -10,6 +10,7 @@ import { AIGenerationMode, AIGenerateResponse } from '@/types/ai';
 import { useAIUsage } from '@/hooks/useAIUsage';
 import { useAuth } from '@/contexts/AuthContext';
 
+import dynamic from 'next/dynamic';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ModeSelector from '@/components/AIGenerator/ModeSelector';
@@ -18,12 +19,29 @@ import TextInput from '@/components/AIGenerator/TextInput';
 import GeneratingStatus from '@/components/AIGenerator/GeneratingStatus';
 import GeneratedResult from '@/components/AIGenerator/GeneratedResult';
 import DailyLimitBanner from '@/components/AIGenerator/DailyLimitBanner';
-import AuthModal from '@/components/Auth/AuthModal';
-import UpgradeModal from '@/components/Pricing/UpgradeModal';
-import PricingPlans from '@/components/Pricing/PricingPlans';
-import ExamplesShowcase from '@/components/AIGenerator/ExamplesShowcase';
 import ProductHuntBanner from '@/components/ProductHuntBanner';
 import Image from 'next/legacy/image';
+
+// 延迟加载非首屏组件
+const AuthModal = dynamic(() => import('@/components/Auth/AuthModal'), {
+  loading: () => null,
+});
+const UpgradeModal = dynamic(
+  () => import('@/components/Pricing/UpgradeModal'),
+  {
+    loading: () => null,
+  },
+);
+const PricingPlans = dynamic(
+  () => import('@/components/Pricing/PricingPlans'),
+  {
+    loading: () => null,
+  },
+);
+const ExamplesShowcase = dynamic(
+  () => import('@/components/AIGenerator/ExamplesShowcase'),
+  { loading: () => null },
+);
 
 export default function AIGeneratorPage() {
   const { t } = useTranslation('common');
@@ -440,6 +458,8 @@ export default function AIGeneratorPage() {
                   width={60}
                   height={60}
                   alt="Stars"
+                  priority
+                  loading="eager"
                 />
               </div>
             </div>
@@ -452,11 +472,13 @@ export default function AIGeneratorPage() {
               rel="noopener noreferrer"
               className="flex justify-center"
             >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 alt="Notion Avatar Maker - AI-powered online tool for making notion-style avatars. | Product Hunt"
                 width="250"
                 height="54"
                 src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1057963&theme=dark&t=1767502844579"
+                loading="lazy"
               />
             </a>
           </section>
@@ -480,7 +502,13 @@ export default function AIGeneratorPage() {
           {/* Steps Section */}
 
           <div className="mt-6 mx-auto flex justify-center">
-            <Image src="/icon/arrow.svg" alt="Arrow" width={59} height={126} />
+            <Image
+              src="/icon/arrow.svg"
+              alt="Arrow"
+              width={59}
+              height={126}
+              loading="lazy"
+            />
           </div>
           <section className="py-16 mb-12 animate-in fade-in slide-in-from-bottom-4 duration-500 delay-200">
             <div className="container mx-auto px-4 md:px-8">
