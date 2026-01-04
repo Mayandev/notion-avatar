@@ -284,6 +284,7 @@
       "invalidCode": "Invalid promo code",
       "expired": "This promo code has expired",
       "alreadyRedeemed": "You have already redeemed this promo code",
+      "limitReached": "This promo code has reached its redemption limit",
       "error": "Failed to redeem promo code. Please try again."
     }
   },
@@ -366,5 +367,11 @@
       "resetInfo": "Your free limit resets tomorrow at midnight.",
       "checkoutError": "Failed to start checkout. Please try again."
     }
+  },
+  "productHunt": {
+    "welcome": "Welcome from Product Hunt!",
+    "promoMessage": "Use promo code to get 10 free credits:",
+    "redeemNow": "Redeem Now",
+    "signInToRedeem": "Sign In to Redeem"
   }
 }

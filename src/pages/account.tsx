@@ -163,6 +163,8 @@ export default function AccountPage() {
           errorKey = 'account.promo.expired';
         } else if (data.error === 'Promo code already redeemed') {
           errorKey = 'account.promo.alreadyRedeemed';
+        } else if (data.error === 'Promo code redemption limit reached') {
+          errorKey = 'account.promo.limitReached';
         }
         toast.error(t(errorKey));
       }

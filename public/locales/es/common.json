@@ -280,6 +280,7 @@
       "invalidCode": "Código promocional inválido",
       "expired": "Este código promocional ha expirado",
       "alreadyRedeemed": "Ya has canjeado este código promocional",
+      "limitReached": "Este código promocional ha alcanzado su límite de canjes",
       "error": "Error al canjear el código promocional. Por favor, inténtalo de nuevo."
     }
   },
@@ -362,5 +363,11 @@
       "resetInfo": "Tu límite gratuito se restablecerá mañana a medianoche.",
       "checkoutError": "Error al iniciar el checkout. Por favor, inténtalo de nuevo."
     }
+  },
+  "productHunt": {
+    "welcome": "¡Bienvenido desde Product Hunt!",
+    "promoMessage": "Usa el código promocional para obtener 10 créditos gratis:",
+    "redeemNow": "Canjear Ahora",
+    "signInToRedeem": "Iniciar Sesión para Canjear"
   }
 }

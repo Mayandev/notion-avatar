@@ -284,6 +284,7 @@
       "invalidCode": "無效的促銷碼",
       "expired": "此促銷碼已過期",
       "alreadyRedeemed": "您已經兌換過此促銷碼",
+      "limitReached": "此促銷碼已達到兌換上限",
       "error": "兌換促銷碼失敗，請重試。"
     }
   },
@@ -366,5 +367,11 @@
       "resetInfo": "您的免費額度將在明天午夜重置。",
       "checkoutError": "啟動結帳失敗，請重試。"
     }
+  },
+  "productHunt": {
+    "welcome": "歡迎來自 Product Hunt 的朋友！",
+    "promoMessage": "使用促銷碼獲得 10 個免費積分：",
+    "redeemNow": "立即兌換",
+    "signInToRedeem": "登入兌換"
   }
 }

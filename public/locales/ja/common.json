@@ -284,6 +284,7 @@
       "invalidCode": "無効なプロモコード",
       "expired": "このプロモコードは期限切れです",
       "alreadyRedeemed": "このプロモコードは既に交換済みです",
+      "limitReached": "このプロモコードは交換上限に達しました",
       "error": "プロモコードの交換に失敗しました。もう一度お試しください。"
     }
   },
@@ -366,5 +367,11 @@
       "resetInfo": "無料上限は明日の深夜にリセットされます。",
       "checkoutError": "チェックアウトの開始に失敗しました。もう一度お試しください。"
     }
+  },
+  "productHunt": {
+    "welcome": "Product Hunt からようこそ！",
+    "promoMessage": "プロモコードを使って 10 クレジットを無料で獲得：",
+    "redeemNow": "今すぐ交換",
+    "signInToRedeem": "ログインして交換"
   }
 }

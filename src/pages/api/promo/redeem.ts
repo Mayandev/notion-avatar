@@ -3,11 +3,13 @@ import { createClient, createServiceClient } from '@/lib/supabase/server';
 
 // 固定的 Promo codes 配置
 // 可根据需要添加或修改促销码
+const MAX_REDEMPTIONS_PER_CODE = 20;
+
 const PROMO_CODES: Record<string, { credits: number; expiresAt: Date | null }> =
   {
-    XKZQWM: { credits: 10, expiresAt: new Date('2026-12-31') },
-    PLRTYN: { credits: 10, expiresAt: new Date('2025-06-30') },
-    VBNMGH: { credits: 10, expiresAt: new Date('2026-03-31') },
+    XKZQWM: { credits: 10, expiresAt: new Date('2026-01-31') },
+    PLRTYN: { credits: 10, expiresAt: new Date('2026-01-31') },
+    VBNMGH: { credits: 10, expiresAt: new Date('2026-01-31') },
   };
 
 export default async function handler(
@@ -63,6 +65,21 @@ export default async function handler(
 
     if (existingRedemption) {
       return res.status(400).json({ error: 'Promo code already redeemed' });
+    }
+
+    // 检查该 promo code 的全局兑换次数是否已达上限
+    const { count: totalRedemptions } = await serviceClient
+      .from('promo_redemptions')
+      .select('*', { count: 'exact', head: true })
+      .eq('promo_code', normalizedCode);
+
+    if (
+      totalRedemptions !== null &&
+      totalRedemptions >= MAX_REDEMPTIONS_PER_CODE
+    ) {
+      return res
+        .status(400)
+        .json({ error: 'Promo code redemption limit reached' });
     }
 
     // 插入 credit_packages 记录

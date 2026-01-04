@@ -284,6 +284,7 @@
       "invalidCode": "Ungültiger Promo-Code",
       "expired": "Dieser Promo-Code ist abgelaufen",
       "alreadyRedeemed": "Sie haben diesen Promo-Code bereits eingelöst",
+      "limitReached": "Dieser Promo-Code hat sein Einlöselimit erreicht",
       "error": "Promo-Code konnte nicht eingelöst werden. Bitte versuchen Sie es erneut."
     }
   },
@@ -366,5 +367,11 @@
       "resetInfo": "Ihr kostenloses Limit wird morgen um Mitternacht zurückgesetzt.",
       "checkoutError": "Checkout konnte nicht gestartet werden. Bitte versuchen Sie es erneut."
     }
+  },
+  "productHunt": {
+    "welcome": "Willkommen von Product Hunt!",
+    "promoMessage": "Verwenden Sie den Promo-Code für 10 kostenlose Credits:",
+    "redeemNow": "Jetzt einlösen",
+    "signInToRedeem": "Anmelden zum Einlösen"
   }
 }

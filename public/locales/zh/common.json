@@ -284,6 +284,7 @@
       "invalidCode": "无效的促销码",
       "expired": "此促销码已过期",
       "alreadyRedeemed": "您已经兑换过此促销码",
+      "limitReached": "此促销码已达到兑换上限",
       "error": "兑换促销码失败，请重试。"
     }
   },
@@ -366,5 +367,11 @@
       "resetInfo": "您的免费额度将在明天午夜重置。",
       "checkoutError": "启动结账失败，请重试。"
     }
+  },
+  "productHunt": {
+    "welcome": "欢迎来自 Product Hunt 的朋友！",
+    "promoMessage": "使用促销码获得 10 个免费积分：",
+    "redeemNow": "立即兑换",
+    "signInToRedeem": "登录兑换"
   }
 }

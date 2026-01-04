@@ -284,6 +284,7 @@
       "invalidCode": "유효하지 않은 프로모 코드",
       "expired": "이 프로모 코드는 만료되었습니다",
       "alreadyRedeemed": "이미 교환한 프로모 코드입니다",
+      "limitReached": "이 프로모 코드는 교환 한도에 도달했습니다",
       "error": "프로모 코드 교환에 실패했습니다. 다시 시도해주세요."
     }
   },
@@ -366,5 +367,11 @@
       "resetInfo": "무료 한도는 내일 자정에 재설정됩니다.",
       "checkoutError": "결제를 시작하지 못했습니다. 다시 시도해주세요."
     }
+  },
+  "productHunt": {
+    "welcome": "Product Hunt에서 오신 것을 환영합니다!",
+    "promoMessage": "프로모 코드를 사용하여 10 크레딧을 무료로 받으세요:",
+    "redeemNow": "지금 교환",
+    "signInToRedeem": "로그인하여 교환"
   }
 }

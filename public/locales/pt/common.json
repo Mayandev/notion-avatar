@@ -281,6 +281,7 @@
       "invalidCode": "Código promocional inválido",
       "expired": "Este código promocional expirou",
       "alreadyRedeemed": "Você já resgatou este código promocional",
+      "limitReached": "Este código promocional atingiu seu limite de resgates",
       "error": "Falha ao resgatar código promocional. Por favor, tente novamente."
     }
   },
@@ -363,5 +364,11 @@
       "resetInfo": "Seu limite gratuito será redefinido amanhã à meia-noite.",
       "checkoutError": "Falha ao iniciar o checkout. Por favor, tente novamente."
     }
+  },
+  "productHunt": {
+    "welcome": "Bem-vindo do Product Hunt!",
+    "promoMessage": "Use o código promocional para obter 10 créditos grátis:",
+    "redeemNow": "Resgatar Agora",
+    "signInToRedeem": "Entrar para Resgatar"
   }
 }
