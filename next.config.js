@@ -76,13 +76,13 @@ module.exports = withPWA({
     buildExcludes: [
       /middleware-manifest\.json$/,
       /middleware-build-manifest\.js$/,
-      /middleware-react-loadable-manifest\.js$/,
+      /.*\/middleware-build-manifest\.js$/,
       /.*\/server\/.*\.js$/,
       /.*\/server\/.*\.json$/,
       /.*\/_next\/server\/.*/,
+      /.*\/_next\/server\/middleware.*/,
     ],
-    // 排除 server 目录下的所有文件
-    publicExcludes: [/.*\/server\/.*/, /.*\/_next\/server\/.*/],
+    publicExcludes: ['!**/server/**', '!**/_next/server/**'],
   },
   webpack: (config) => {
     config.module.rules.push({
