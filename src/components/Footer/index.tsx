@@ -7,7 +7,7 @@ export default function Footer() {
 
   return (
     <footer className="flex flex-col items-center pb-4">
-      <Image src="/icon/line.svg" width="125" height="54" />
+      <Image src="/icon/line.svg" width="125" height="54" alt="" />
       <div className="flex flex-wrap justify-center mt-10 gap-x-1 gap-y-2">
         <a className="transition hover:underline" href={t(`coffeeUrl`)}>
           {t(`coffee`)}

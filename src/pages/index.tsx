@@ -54,7 +54,7 @@ const Home: NextPage<HomeProps> = ({ initialPurchasedPacks }) => {
       if (!dismissed) {
         const timer = setTimeout(() => {
           setIsAIFeatureModalOpen(true);
-        }, 1000);
+        }, 5000);
         return () => clearTimeout(timer);
       }
     }
