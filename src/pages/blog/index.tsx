@@ -4,6 +4,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import BlogCard, { BlogPostMeta } from '@/components/Blog/BlogCard';
+import FaviconLinks from '@/components/SEO/FaviconLinks';
 import { getAllPosts } from '@/lib/blog';
 
 const BASE_URL = 'https://notion-avatar.app';
@@ -15,8 +16,11 @@ interface BlogListProps {
 const BlogList: NextPage<BlogListProps> = ({ posts }) => (
   <>
     <Head>
+      <FaviconLinks />
       {/* Basic Meta Tags */}
       <title>Blog | Notion Avatar Maker</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta name="format-detection" content="telephone=no" />
       <meta
         name="description"
         content="Explore tips, tutorials, and updates about Notion Avatar Maker. Learn how to create unique hand-drawn style avatars for your Notion workspace and social profiles."

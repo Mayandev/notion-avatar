@@ -20,6 +20,7 @@ import {
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Modal from '@/components/Modal/Common';
+import FaviconLinks from '@/components/SEO/FaviconLinks';
 import { useUsageHistory, usePurchasedPacks } from '@/hooks/useAccountData';
 
 interface AccountPageProps {
@@ -227,8 +228,12 @@ export default function AccountPage({
   return (
     <>
       <Head>
+        <FaviconLinks />
         <title>{t('account.pageTitle')}</title>
         <meta name="description" content={t('account.title')} />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="robots" content="noindex, nofollow" />
         <link rel="canonical" href={canonicalUrl} />
         {/* Hreflang links for all language versions */}
         {hreflangLinks.map((link) => (

@@ -8,6 +8,7 @@ import { GetStaticPropsContext } from 'next';
 import { Toaster } from 'react-hot-toast';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import FaviconLinks from '@/components/SEO/FaviconLinks';
 
 // 延迟加载非关键组件
 const AuthModal = dynamic(() => import('@/components/Auth/AuthModal'), {
@@ -84,10 +85,13 @@ export default function PricingPage() {
   return (
     <>
       <Head>
+        <FaviconLinks />
         <title>{t('pricing.pageTitle')}</title>
         <meta name="description" content={t('pricing.pageDescription')} />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="format-detection" content="telephone=no" />
         <meta name="robots" content="index, follow" />
+        <meta name="googlebot" content="index, follow" />
         <link
           rel="canonical"
           href={`https://notion-avatar.app${

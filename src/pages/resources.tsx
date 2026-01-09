@@ -10,6 +10,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import AuthModal from '@/components/Auth/AuthModal';
 import ResourceStore from '@/components/ResourceStore';
+import FaviconLinks from '@/components/SEO/FaviconLinks';
 import { usePurchasedPacks } from '@/hooks/useAccountData';
 
 export default function ResourcesPage() {
@@ -74,11 +75,16 @@ export default function ResourcesPage() {
   return (
     <>
       <Head>
+        <FaviconLinks />
         <title>Resources | Notion Avatar Maker</title>
         <meta
           name="description"
           content="Download your purchased resource packs"
         />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="robots" content="index, follow" />
+        <meta name="googlebot" content="index, follow" />
         <link rel="canonical" href={canonicalUrl} />
       </Head>
 
@@ -91,21 +97,6 @@ export default function ResourcesPage() {
         />
 
         <main className="flex-grow container mx-auto px-4 py-12">
-          {!user && (
-            <div className="max-w-md mx-auto bg-white rounded-2xl shadow-lg p-8 border-4 border-gray-100 mb-8">
-              <p className="text-center text-gray-600 mb-4">
-                Please sign in to view and download your purchased resources.
-              </p>
-              <button
-                onClick={() => setIsAuthModalOpen(true)}
-                type="button"
-                className="w-full py-3 px-6 bg-black text-white rounded-full font-bold hover:bg-gray-800 transition-colors"
-              >
-                Sign In
-              </button>
-            </div>
-          )}
-
           <ResourceStore
             purchasedPacks={purchasedPacks}
             onDownload={handleDownload}
