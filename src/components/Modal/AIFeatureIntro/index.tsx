@@ -77,6 +77,7 @@ export default function AIFeatureIntroModal({
               alt="Notion AI Avatar"
               width={512}
               height={242}
+              priority
             />
           </div>
 
