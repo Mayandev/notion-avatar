@@ -73,7 +73,11 @@ module.exports = withPWA({
     skipWaiting: true,
     disable: process.env.NODE_ENV === 'development',
     runtimeCaching,
-    buildExcludes: [/middleware-manifest.json$/],
+    buildExcludes: [
+      /middleware-manifest\.json$/,
+      /middleware-build-manifest\.js$/,
+      /.*\/middleware-build-manifest\.js$/,
+    ],
   },
   webpack: (config) => {
     config.module.rules.push({
