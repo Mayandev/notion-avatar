@@ -336,7 +336,7 @@ const Home: NextPage<HomeProps> = ({ initialPurchasedPacks }) => {
               <div className="mb-8">
                 <Image
                   src="/image/avatar-diff.png"
-                  alt="Notion AI Avatar demo"
+                  alt="Notion AI Avatar"
                   width={1024}
                   height={485}
                   className="mx-auto"
