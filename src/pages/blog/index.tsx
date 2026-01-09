@@ -26,6 +26,8 @@ const BlogList: NextPage<BlogListProps> = ({ posts }) => (
         content="Notion Avatar Blog, Avatar Design Tips, Hand-drawn Avatar, Notion Style Guide, Avatar Tutorials"
       />
       <meta name="author" content="Notion Avatar" />
+      <meta name="robots" content="index, follow" />
+      <meta name="googlebot" content="index, follow" />
 
       {/* Open Graph */}
       <meta property="og:type" content="website" />
@@ -50,6 +52,19 @@ const BlogList: NextPage<BlogListProps> = ({ posts }) => (
 
       {/* Canonical URL */}
       <link rel="canonical" href={`${BASE_URL}/blog`} />
+
+      {/* Hreflang links */}
+      <link rel="alternate" hrefLang="en" href={`${BASE_URL}/blog`} />
+      <link rel="alternate" hrefLang="zh" href={`${BASE_URL}/zh/blog`} />
+      <link rel="alternate" hrefLang="zh-TW" href={`${BASE_URL}/zh-TW/blog`} />
+      <link rel="alternate" hrefLang="ja" href={`${BASE_URL}/ja/blog`} />
+      <link rel="alternate" hrefLang="ko" href={`${BASE_URL}/ko/blog`} />
+      <link rel="alternate" hrefLang="es" href={`${BASE_URL}/es/blog`} />
+      <link rel="alternate" hrefLang="fr" href={`${BASE_URL}/fr/blog`} />
+      <link rel="alternate" hrefLang="de" href={`${BASE_URL}/de/blog`} />
+      <link rel="alternate" hrefLang="pt" href={`${BASE_URL}/pt/blog`} />
+      <link rel="alternate" hrefLang="ru" href={`${BASE_URL}/ru/blog`} />
+      <link rel="alternate" hrefLang="x-default" href={`${BASE_URL}/blog`} />
 
       {/* JSON-LD Structured Data */}
       <script

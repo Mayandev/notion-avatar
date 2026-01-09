@@ -43,7 +43,13 @@ const ExamplesShowcase = dynamic(
   { loading: () => null },
 );
 
-export default function AIGeneratorPage() {
+interface AIGeneratorPageProps {
+  locale?: string;
+}
+
+export default function AIGeneratorPage({
+  locale: propLocale,
+}: AIGeneratorPageProps) {
   const { t } = useTranslation('common');
   const router = useRouter();
   const { user, isLoading: isAuthLoading } = useAuth();
@@ -169,7 +175,8 @@ export default function AIGeneratorPage() {
   };
 
   // Generate SEO URLs based on current locale
-  const currentLocale = router.locale || 'en';
+  // Use prop locale (from getStaticProps) for SSR, fallback to router.locale for CSR
+  const currentLocale = propLocale || router.locale || 'en';
   const baseUrl = 'https://notion-avatar.app';
   const pagePath = '/ai-generator';
   const canonicalUrl =
@@ -642,6 +649,7 @@ export async function getStaticProps({
 }: GetStaticPropsContext & { locale: string }) {
   return {
     props: {
+      locale,
       ...(await serverSideTranslations(locale, ['common'])),
     },
   };

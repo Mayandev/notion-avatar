@@ -46,6 +46,8 @@ export default function BlogLayout({ post }: BlogLayoutProps) {
         <title>{post.title} | Notion Avatar Blog</title>
         <meta name="description" content={post.description} />
         <meta name="author" content="Notion Avatar" />
+        <meta name="robots" content="index, follow" />
+        <meta name="googlebot" content="index, follow" />
 
         {/* Open Graph */}
         <meta property="og:type" content="article" />
