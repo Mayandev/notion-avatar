@@ -146,7 +146,7 @@ export default function BlogLayout({ post }: BlogLayoutProps) {
 
           {/* Cover Image */}
           {post.coverImage && (
-            <div className="relative w-full h-64 sm:h-80 md:h-96 mb-8 rounded-lg overflow-hidden border-3 border-black">
+            <div className="relative w-full h-64 sm:h-80 md:h-96 mb-8 rounded-lg overflow-hidden">
               <Image
                 src={post.coverImage}
                 alt={post.title}
