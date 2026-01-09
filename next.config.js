@@ -55,7 +55,7 @@ module.exports = withPWA({
               "style-src 'self' 'unsafe-inline'",
               "img-src 'self' data: https: blob:",
               "font-src 'self' data:",
-              "connect-src 'self' https://uclqvnpqvartezdtmgpn.supabase.co https://www.google-analytics.com",
+              "connect-src 'self' https://uclqvnpqvartezdtmgpn.supabase.co https://www.google-analytics.com https://vitals.vercel-insights.com",
               "frame-ancestors 'none'",
             ].join('; '),
           },
