@@ -22,8 +22,8 @@ export default function ImageUploader({
       return;
     }
 
-    if (file.size > 5 * 1024 * 1024) {
-      setError('Image size should be less than 5MB');
+    if (file.size > 2 * 1024 * 1024) {
+      setError('Image size should be less than 2MB');
       return;
     }
 

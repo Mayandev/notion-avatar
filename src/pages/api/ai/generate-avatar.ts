@@ -7,8 +7,7 @@ import {
   base64ToBuffer,
   uploadImageToStorage,
 } from '@/lib/supabase/server';
-
-const FREE_DAILY_LIMIT = 1;
+import { getWeekStart, FREE_WEEKLY_LIMIT } from '@/lib/date';
 
 export default async function handler(
   req: NextApiRequest,
@@ -53,6 +52,7 @@ export default async function handler(
     // Check usage limits
     let canGenerate = false;
     let useCredits = false;
+    let isPaidUser = false;
 
     if (user) {
       // Check subscription
@@ -68,19 +68,22 @@ export default async function handler(
       ) {
         // Unlimited for paid subscribers
         canGenerate = true;
+        isPaidUser = true;
       } else {
-        // Check free daily limit
+        // Check free weekly limit
         const today = new Date().toISOString().split('T')[0];
-        const { data: dailyUsage } = await supabase
+        const weekStart = getWeekStart();
+        const { data: weeklyUsage } = await supabase
           .from('daily_usage')
           .select('count')
           .eq('user_id', user.id)
-          .eq('usage_date', today)
-          .single();
+          .gte('usage_date', weekStart)
+          .lte('usage_date', today);
 
-        const usedToday = dailyUsage?.count || 0;
+        const usedThisWeek =
+          weeklyUsage?.reduce((sum, r) => sum + (r.count || 0), 0) || 0;
 
-        if (usedToday < FREE_DAILY_LIMIT) {
+        if (usedThisWeek < FREE_WEEKLY_LIMIT) {
           canGenerate = true;
         } else {
           // Check credit packages
@@ -99,6 +102,7 @@ export default async function handler(
           ) {
             canGenerate = true;
             useCredits = true;
+            isPaidUser = true;
           }
         }
       }
@@ -113,22 +117,24 @@ export default async function handler(
     if (!canGenerate) {
       return res.status(402).json({
         success: false,
-        error: 'Daily limit reached. Please upgrade or purchase credits.',
+        error: 'Weekly limit reached. Please upgrade or purchase credits.',
       });
     }
 
     const input = mode === 'photo2avatar' ? image! : description!;
     const generatedImage = await generateAvatar(mode, input);
 
-    // Upload image to Supabase Storage
+    // Upload image to Supabase Storage (paid users only - saves storage costs)
     let imagePath: string | null = null;
-    try {
-      const imageBuffer = base64ToBuffer(generatedImage);
-      imagePath = await uploadImageToStorage(imageBuffer, user!.id);
-    } catch (uploadError) {
-      console.error('Failed to upload image to storage:', uploadError);
-      // Continue without storing image path - don't fail the request
-      // The base64 image is still returned to the client
+    if (isPaidUser) {
+      try {
+        const imageBuffer = base64ToBuffer(generatedImage);
+        imagePath = await uploadImageToStorage(imageBuffer, user!.id);
+      } catch (uploadError) {
+        console.error('Failed to upload image to storage:', uploadError);
+        // Continue without storing image path - don't fail the request
+        // The base64 image is still returned to the client
+      }
     }
 
     // Record usage
@@ -175,25 +181,26 @@ export default async function handler(
       ) {
         const today = new Date().toISOString().split('T')[0];
 
-        await serviceClient.from('daily_usage').upsert(
-          {
-            user_id: user!.id,
-            usage_date: today,
-            count: 1,
-          },
-          {
-            onConflict: 'user_id,usage_date',
-          },
-        );
-
-        // Increment count if already exists
+        // Use RPC to atomically insert or increment daily usage count
         await serviceClient
           .rpc('increment_daily_usage', {
             p_user_id: user!.id,
             p_date: today,
           })
-          .catch(() => {
-            // RPC might not exist, use alternative
+          .then(async ({ error: rpcError }) => {
+            if (rpcError) {
+              // Fallback: upsert if RPC doesn't exist
+              await serviceClient.from('daily_usage').upsert(
+                {
+                  user_id: user!.id,
+                  usage_date: today,
+                  count: 1,
+                },
+                {
+                  onConflict: 'user_id,usage_date',
+                },
+              );
+            }
           });
       }
     }
@@ -214,7 +221,7 @@ export default async function handler(
 export const config = {
   api: {
     bodyParser: {
-      sizeLimit: '10mb', // Support large image uploads
+      sizeLimit: '4mb', // 2MB image ≈ 2.67MB base64 + JSON overhead
     },
   },
 };

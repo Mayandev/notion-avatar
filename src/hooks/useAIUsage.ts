@@ -1,6 +1,7 @@
 import { useCallback } from 'react';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { useAuth } from '@/contexts/AuthContext';
+import { getWeekStart, FREE_WEEKLY_LIMIT } from '@/lib/date';
 
 export interface AIUsageState {
   remaining: number;
@@ -12,28 +13,26 @@ export interface AIUsageState {
   isAuthenticated: boolean;
   isLoading: boolean;
 }
-
-const FREE_DAILY_LIMIT = 1;
 const STORAGE_KEY = 'ai_avatar_usage_guest';
 
 function getGuestUsage(): AIUsageState {
   if (typeof window === 'undefined') {
     return {
-      remaining: FREE_DAILY_LIMIT,
-      total: FREE_DAILY_LIMIT,
+      remaining: FREE_WEEKLY_LIMIT,
+      total: FREE_WEEKLY_LIMIT,
       isUnlimited: false,
       isAuthenticated: false,
       isLoading: false,
     };
   }
 
-  const today = new Date().toISOString().split('T')[0];
+  const weekStart = getWeekStart();
   const usage = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
 
-  if (usage.date !== today) {
+  if (usage.weekStart !== weekStart) {
     return {
-      remaining: FREE_DAILY_LIMIT,
-      total: FREE_DAILY_LIMIT,
+      remaining: FREE_WEEKLY_LIMIT,
+      total: FREE_WEEKLY_LIMIT,
       isUnlimited: false,
       isAuthenticated: false,
       isLoading: false,
@@ -41,8 +40,8 @@ function getGuestUsage(): AIUsageState {
   }
 
   return {
-    remaining: Math.max(0, FREE_DAILY_LIMIT - (usage.count || 0)),
-    total: FREE_DAILY_LIMIT,
+    remaining: Math.max(0, FREE_WEEKLY_LIMIT - (usage.count || 0)),
+    total: FREE_WEEKLY_LIMIT,
     isUnlimited: false,
     isAuthenticated: false,
     isLoading: false,
@@ -83,7 +82,7 @@ export function useAIUsage() {
 
   const defaultState: AIUsageState = {
     remaining: 0,
-    total: FREE_DAILY_LIMIT,
+    total: FREE_WEEKLY_LIMIT,
     isUnlimited: false,
     isAuthenticated: !!user,
     isLoading: true,
@@ -97,14 +96,15 @@ export function useAIUsage() {
     if (user) {
       await checkUsage();
     } else {
-      const today = new Date().toISOString().split('T')[0];
+      const weekStart = getWeekStart();
       const usage = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
-      const newCount = usage.date === today ? (usage.count || 0) + 1 : 1;
+      const newCount =
+        usage.weekStart === weekStart ? (usage.count || 0) + 1 : 1;
 
       localStorage.setItem(
         STORAGE_KEY,
         JSON.stringify({
-          date: today,
+          weekStart,
           count: newCount,
         }),
       );

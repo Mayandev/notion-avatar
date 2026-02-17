@@ -104,11 +104,12 @@ export function base64ToBuffer(base64DataUrl: string): Buffer {
 }
 
 /**
- * Upload image to Supabase Storage private bucket
- * @param imageBuffer - Buffer containing image data
+ * Upload image to Supabase Storage private bucket.
+ * Converts to JPEG (quality 0.85) to reduce storage costs by ~50-70%.
+ * @param imageBuffer - Buffer containing image data (PNG/JPEG)
  * @param userId - User ID for path organization
  * @param bucketName - Storage bucket name (default: 'generated-avatars')
- * @returns File path in storage (e.g., "{userId}/{timestamp}.png")
+ * @returns File path in storage (e.g., "{userId}/{timestamp}.jpg")
  */
 export async function uploadImageToStorage(
   imageBuffer: Buffer,
@@ -117,12 +118,17 @@ export async function uploadImageToStorage(
 ): Promise<string> {
   const serviceClient = createServiceClient();
   const timestamp = Date.now();
-  const filePath = `${userId}/${timestamp}.png`;
+  const filePath = `${userId}/${timestamp}.jpg`;
+
+  // Dynamic import to avoid loading sharp in routes that don't need it
+  const sharp = (await import('sharp')).default;
+  // Convert to JPEG to reduce storage size (avatars are B&W, JPEG works well)
+  const jpegBuffer = await sharp(imageBuffer).jpeg({ quality: 85 }).toBuffer();
 
   const { error } = await serviceClient.storage
     .from(bucketName)
-    .upload(filePath, imageBuffer, {
-      contentType: 'image/png',
+    .upload(filePath, jpegBuffer, {
+      contentType: 'image/jpeg',
       upsert: false, // Don't overwrite existing files
     });
 

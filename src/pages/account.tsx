@@ -509,6 +509,9 @@ export default function AccountPage({
                   <p className="text-gray-600 mb-2">
                     {t('account.generationHistoryProOnly')}
                   </p>
+                  <p className="text-amber-600 text-sm mb-2 bg-amber-50 rounded-lg px-4 py-2">
+                    {t('account.freeUsersNotStored')}
+                  </p>
                   <p className="text-gray-500 text-sm mb-4">
                     {t('account.upgradeToViewHistory')}
                   </p>

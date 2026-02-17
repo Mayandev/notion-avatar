@@ -43,8 +43,11 @@ export async function generateAvatar(
   mode: AIGenerationMode,
   input: string,
 ): Promise<string> {
-  // 1. Mock Mode Check
-  if (process.env.USE_MOCK_AI === 'true' || !process.env.GEMINI_API_KEY) {
+  // 1. Mock Mode Check (only in non-production to avoid accidental use in prod)
+  const isMockEnabled =
+    process.env.NODE_ENV !== 'production' &&
+    (process.env.USE_MOCK_AI === 'true' || !process.env.GEMINI_API_KEY);
+  if (isMockEnabled) {
     // eslint-disable-next-line no-console
     console.log('[Mock AI] Generating avatar...');
     await new Promise((resolve) => setTimeout(resolve, 2000)); // Simulate delay

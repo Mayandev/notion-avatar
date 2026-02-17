@@ -30,7 +30,7 @@ export default function DailyLimitBanner({
               clipRule="evenodd"
             />
           </svg>
-          Pro Plan - Unlimited Generations
+          {t('ai.unlimitedPlan')}
         </span>
       </div>
     );
@@ -41,12 +41,14 @@ export default function DailyLimitBanner({
     if (paidCredits && paidCredits > 0) {
       return (
         <div className="text-center text-sm text-gray-500 mt-6">
-          <span className="font-bold text-black">{remaining}</span> generations
-          available
+          {t('ai.generationsAvailable', { count: remaining })}
           {freeRemaining !== undefined && freeRemaining > 0 && (
             <span className="text-gray-400">
               {' '}
-              ({freeRemaining} free today + {paidCredits} credits)
+              {t('ai.freeThisWeekAndCredits', {
+                free: freeRemaining,
+                credits: paidCredits,
+              })}
             </span>
           )}
         </div>
@@ -56,10 +58,7 @@ export default function DailyLimitBanner({
     // Only free generations
     return (
       <div className="text-center text-sm text-gray-500 mt-6">
-        Remaining free generations today:{' '}
-        <span className="font-bold text-black">
-          {remaining}/{total}
-        </span>
+        {t('ai.remainingFreeThisWeek', { remaining, total })}
       </div>
     );
   }
