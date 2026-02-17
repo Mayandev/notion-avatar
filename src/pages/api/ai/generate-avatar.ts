@@ -7,9 +7,7 @@ import {
   base64ToBuffer,
   uploadImageToStorage,
 } from '@/lib/supabase/server';
-import { getWeekStart } from '@/lib/date';
-
-const FREE_WEEKLY_LIMIT = 1;
+import { getWeekStart, FREE_WEEKLY_LIMIT } from '@/lib/date';
 
 export default async function handler(
   req: NextApiRequest,
@@ -183,25 +181,26 @@ export default async function handler(
       ) {
         const today = new Date().toISOString().split('T')[0];
 
-        await serviceClient.from('daily_usage').upsert(
-          {
-            user_id: user!.id,
-            usage_date: today,
-            count: 1,
-          },
-          {
-            onConflict: 'user_id,usage_date',
-          },
-        );
-
-        // Increment count if already exists
+        // Use RPC to atomically insert or increment daily usage count
         await serviceClient
           .rpc('increment_daily_usage', {
             p_user_id: user!.id,
             p_date: today,
           })
-          .catch(() => {
-            // RPC might not exist, use alternative
+          .then(async ({ error: rpcError }) => {
+            if (rpcError) {
+              // Fallback: upsert if RPC doesn't exist
+              await serviceClient.from('daily_usage').upsert(
+                {
+                  user_id: user!.id,
+                  usage_date: today,
+                  count: 1,
+                },
+                {
+                  onConflict: 'user_id,usage_date',
+                },
+              );
+            }
           });
       }
     }
@@ -222,7 +221,7 @@ export default async function handler(
 export const config = {
   api: {
     bodyParser: {
-      sizeLimit: '2mb', // Max image upload size
+      sizeLimit: '4mb', // 2MB image ≈ 2.67MB base64 + JSON overhead
     },
   },
 };

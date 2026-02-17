@@ -136,6 +136,10 @@
     "limitReached": "Wochenlimit erreicht",
     "limitDesc": "Du hast dein kostenloses Wochenkontingent aufgebraucht. Komm nächste Woche wieder oder upgrade für mehr.",
     "upgrade": "Jetzt upgraden",
+    "unlimitedPlan": "Pro Plan - Unbegrenzte Generierungen",
+    "generationsAvailable": "{{count}} Generierungen verfügbar",
+    "freeThisWeekAndCredits": "({{free}} kostenlos diese Woche + {{credits}} Credits)",
+    "remainingFreeThisWeek": "Verbleibende kostenlose Generierungen diese Woche: {{remaining}}/{{total}}",
     "error": "Etwas ist schief gelaufen. Bitte versuche es erneut.",
     "examples": {
       "photoTitle": "Foto-Transformation",

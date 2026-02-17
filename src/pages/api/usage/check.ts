@@ -1,8 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { createClient } from '@/lib/supabase/server';
-import { getWeekStart } from '@/lib/date';
-
-const FREE_WEEKLY_LIMIT = 1;
+import { getWeekStart, FREE_WEEKLY_LIMIT } from '@/lib/date';
 
 export default async function handler(
   req: NextApiRequest,

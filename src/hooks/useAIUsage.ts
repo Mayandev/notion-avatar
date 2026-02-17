@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { useAuth } from '@/contexts/AuthContext';
-import { getWeekStart } from '@/lib/date';
+import { getWeekStart, FREE_WEEKLY_LIMIT } from '@/lib/date';
 
 export interface AIUsageState {
   remaining: number;
@@ -13,8 +13,6 @@ export interface AIUsageState {
   isAuthenticated: boolean;
   isLoading: boolean;
 }
-
-const FREE_WEEKLY_LIMIT = 1;
 const STORAGE_KEY = 'ai_avatar_usage_guest';
 
 function getGuestUsage(): AIUsageState {

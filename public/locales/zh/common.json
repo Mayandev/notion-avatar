@@ -136,6 +136,10 @@
     "limitReached": "本周额度已用完",
     "limitDesc": "您已使用完本周的免费额度。请下周再来，或升级解锁更多次数。",
     "upgrade": "立即升级",
+    "unlimitedPlan": "专业版 - 无限生成",
+    "generationsAvailable": "{{count}} 次生成可用",
+    "freeThisWeekAndCredits": "(本周免费 {{free}} 次 + {{credits}} 积分)",
+    "remainingFreeThisWeek": "本周剩余免费生成次数：{{remaining}}/{{total}}",
     "error": "出错了，请重试。",
     "examples": {
       "photoTitle": "照片转换效果",

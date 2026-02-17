@@ -2,7 +2,6 @@ import { createServerClient, CookieOptions } from '@supabase/ssr';
 import { createClient as createSupabaseClient } from '@supabase/supabase-js';
 import { NextApiRequest, NextApiResponse } from 'next';
 import type { GetServerSidePropsContext } from 'next';
-import sharp from 'sharp';
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
@@ -121,6 +120,8 @@ export async function uploadImageToStorage(
   const timestamp = Date.now();
   const filePath = `${userId}/${timestamp}.jpg`;
 
+  // Dynamic import to avoid loading sharp in routes that don't need it
+  const sharp = (await import('sharp')).default;
   // Convert to JPEG to reduce storage size (avatars are B&W, JPEG works well)
   const jpegBuffer = await sharp(imageBuffer).jpeg({ quality: 85 }).toBuffer();
 

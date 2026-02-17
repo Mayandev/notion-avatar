@@ -136,6 +136,10 @@
     "limitReached": "Weekly limit reached",
     "limitDesc": "You have used your free weekly quota. Please come back next week or upgrade for more.",
     "upgrade": "Upgrade Now",
+    "unlimitedPlan": "Pro Plan - Unlimited Generations",
+    "generationsAvailable": "{{count}} generations available",
+    "freeThisWeekAndCredits": "({{free}} free this week + {{credits}} credits)",
+    "remainingFreeThisWeek": "Remaining free generations this week: {{remaining}}/{{total}}",
     "error": "Something went wrong. Please try again.",
     "examples": {
       "photoTitle": "Photo Transformation",
