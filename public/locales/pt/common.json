@@ -125,13 +125,13 @@
     "text2avatar": "Texto para Avatar",
     "uploadTitle": "Enviar Foto",
     "uploadDesc": "Arraste e solte ou clique para enviar",
-    "uploadTip": "Formatos suportados: JPG, PNG. Máx. 5MB.",
+    "uploadTip": "Formatos suportados: JPG, PNG. Máx. 2MB.",
     "descPlaceholder": "Descreva o avatar que deseja gerar, ex.: 'Uma garota com óculos e cabelo longo'",
     "generate": "Gerar Avatar",
     "generating": "Gerando...",
     "download": "Baixar",
-    "limitReached": "Limite diário atingido",
-    "limitDesc": "Você usou sua cota diária gratuita. Volte amanhã ou atualize para mais.",
+    "limitReached": "Limite semanal atingido",
+    "limitDesc": "Você usou sua cota semanal gratuita. Volte na próxima semana ou atualize para mais.",
     "upgrade": "Atualizar Agora",
     "error": "Algo deu errado. Por favor, tente novamente.",
     "examples": {
@@ -185,8 +185,8 @@
       "title": "Perguntas Frequentes",
       "q1": "Quanto tempo leva a geração de AI?",
       "a1": "Geralmente apenas alguns segundos. A AI processa sua solicitação em segundo plano e você pode baixar quando estiver completa.",
-      "q2": "Quantas gerações os usuários gratuitos podem fazer por dia?",
-      "a2": "Usuários gratuitos podem gerar 1 avatar por dia. Atualize para Pro para gerações ilimitadas.",
+      "q2": "Quantas gerações os usuários gratuitos podem fazer por semana?",
+      "a2": "Usuários gratuitos podem gerar 1 avatar por semana. Atualize para Pro para gerações ilimitadas.",
       "q3": "Como atualizo para Pro?",
       "a3": "Clique no botão 'Atualizar Agora' na página, escolha a assinatura Pro Mensal ou o Pacote de Créditos, complete o pagamento para aproveitar mais recursos.",
       "q4": "Posso usar avatares gerados comercialmente?",
@@ -249,7 +249,7 @@
     "cancelsOn": "Cancela em",
     "renewsOn": "Renova em",
     "manageBilling": "Gerenciar Cobrança",
-    "freeGenerationPerDay": "1 geração gratuita por dia",
+    "freeGenerationPerDay": "1 geração gratuita por semana",
     "upgradeToPro": "Atualizar para Pro",
     "credits": "Créditos",
     "creditsRemaining": "créditos restantes",
@@ -270,6 +270,7 @@
     "subscriptionCanceled": "Sua assinatura foi cancelada",
     "resubscribe": "Reassinar",
     "generationHistoryProOnly": "O histórico de gerações está disponível apenas para usuários Pro.",
+    "freeUsersNotStored": "Imagens geradas não são armazenadas para usuários gratuitos. Baixe-as imediatamente.",
     "upgradeToViewHistory": "Atualize para Pro para ver seu histórico de gerações",
     "promo": {
       "title": "Código Promocional",
@@ -297,7 +298,7 @@
         "period": "para sempre",
         "description": "Perfeito para experimentar",
         "features": {
-          "1": "1 geração por dia",
+          "1": "1 geração por semana",
           "2": "Foto para Avatar",
           "3": "Texto para Avatar",
           "4": "Qualidade padrão"
@@ -342,15 +343,15 @@
     "faq": {
       "title": "Perguntas Frequentes",
       "q1": "O que acontece quando acabo as gerações gratuitas?",
-      "a1": "Usuários gratuitos recebem 1 geração por dia. Depois de usá-la, você pode esperar até amanhã, comprar um pacote de créditos ou assinar Pro para acesso ilimitado.",
+      "a1": "Usuários gratuitos recebem 1 geração por semana. Depois de usá-la, você pode esperar até a próxima semana, comprar um pacote de créditos ou assinar Pro para acesso ilimitado.",
       "q2": "Os créditos expiram?",
       "a2": "Não! Os créditos nunca expiram. Use-os sempre que precisar.",
       "q3": "Posso cancelar minha assinatura a qualquer momento?",
       "a3": "Sim, você pode cancelar sua assinatura Pro a qualquer momento. Continuará tendo acesso até o final do período de cobrança."
     },
     "upgradeModal": {
-      "title": "Limite Diário Atingido",
-      "description": "Você usou sua geração gratuita de hoje. Atualize para continuar criando avatares incríveis!",
+      "title": "Limite Semanal Atingido",
+      "description": "Você usou sua geração gratuita desta semana. Atualize para continuar criando avatares incríveis!",
       "bestValue": "Melhor Valor",
       "unlimitedGenerations": "Gerações ilimitadas",
       "proMonthly": "Pro Mensal",
@@ -361,7 +362,7 @@
       "creditPackPrice": "$4.99",
       "creditPackPeriod": "/pacote",
       "redirecting": "Redirecionando para o checkout...",
-      "resetInfo": "Seu limite gratuito será redefinido amanhã à meia-noite.",
+      "resetInfo": "Seu limite gratuito será redefinido na próxima segunda-feira.",
       "checkoutError": "Falha ao iniciar o checkout. Por favor, tente novamente."
     }
   },

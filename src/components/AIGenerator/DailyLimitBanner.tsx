@@ -46,7 +46,7 @@ export default function DailyLimitBanner({
           {freeRemaining !== undefined && freeRemaining > 0 && (
             <span className="text-gray-400">
               {' '}
-              ({freeRemaining} free today + {paidCredits} credits)
+              ({freeRemaining} free this week + {paidCredits} credits)
             </span>
           )}
         </div>
@@ -56,7 +56,7 @@ export default function DailyLimitBanner({
     // Only free generations
     return (
       <div className="text-center text-sm text-gray-500 mt-6">
-        Remaining free generations today:{' '}
+        Remaining free generations this week:{' '}
         <span className="font-bold text-black">
           {remaining}/{total}
         </span>

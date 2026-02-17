@@ -128,13 +128,13 @@
     "text2avatar": "Text zu Avatar",
     "uploadTitle": "Foto hochladen",
     "uploadDesc": "Ziehen und ablegen oder klicken zum Hochladen",
-    "uploadTip": "Unterstützte Formate: JPG, PNG. Max. 5MB.",
+    "uploadTip": "Unterstützte Formate: JPG, PNG. Max. 2MB.",
     "descPlaceholder": "Beschreibe den Avatar, den du generieren möchtest, z.B.: 'Ein Mädchen mit Brille und langen Haaren'",
     "generate": "Avatar generieren",
     "generating": "Generiere...",
     "download": "Herunterladen",
-    "limitReached": "Tageslimit erreicht",
-    "limitDesc": "Du hast dein kostenloses Tageskontingent aufgebraucht. Komm morgen wieder oder upgrade für mehr.",
+    "limitReached": "Wochenlimit erreicht",
+    "limitDesc": "Du hast dein kostenloses Wochenkontingent aufgebraucht. Komm nächste Woche wieder oder upgrade für mehr.",
     "upgrade": "Jetzt upgraden",
     "error": "Etwas ist schief gelaufen. Bitte versuche es erneut.",
     "examples": {
@@ -188,8 +188,8 @@
       "title": "Häufig Gestellte Fragen",
       "q1": "Wie lange dauert die AI-Generierung?",
       "a1": "Normalerweise nur wenige Sekunden. AI verarbeitet deine Anfrage im Hintergrund und du kannst herunterladen, sobald es fertig ist.",
-      "q2": "Wie viele Generierungen können kostenlose Benutzer pro Tag machen?",
-      "a2": "Kostenlose Benutzer können 1 Avatar pro Tag generieren. Upgrade auf Pro für unbegrenzte Generierungen.",
+      "q2": "Wie viele Generierungen können kostenlose Benutzer pro Woche machen?",
+      "a2": "Kostenlose Benutzer können 1 Avatar pro Woche generieren. Upgrade auf Pro für unbegrenzte Generierungen.",
       "q3": "Wie upgrade ich auf Pro?",
       "a3": "Klicke auf die Schaltfläche 'Jetzt Upgraden' auf der Seite, wähle Pro Monatliches Abonnement oder Credits-Paket, schließe die Zahlung ab, um mehr Funktionen zu genießen.",
       "q4": "Kann ich generierte Avatare kommerziell verwenden?",
@@ -252,7 +252,7 @@
     "cancelsOn": "Kündigt am",
     "renewsOn": "Erneuert am",
     "manageBilling": "Rechnungsverwaltung",
-    "freeGenerationPerDay": "1 kostenlose Generierung pro Tag",
+    "freeGenerationPerDay": "1 kostenlose Generierung pro Woche",
     "upgradeToPro": "Auf Pro upgraden",
     "credits": "Credits",
     "creditsRemaining": "verbleibende Credits",
@@ -273,6 +273,7 @@
     "subscriptionCanceled": "Ihr Abonnement wurde gekündigt",
     "resubscribe": "Erneut abonnieren",
     "generationHistoryProOnly": "Generierungsverlauf ist nur für Pro-Benutzer verfügbar.",
+    "freeUsersNotStored": "Generierte Bilder werden für kostenlose Nutzer nicht gespeichert. Bitte laden Sie sie rechtzeitig herunter.",
     "upgradeToViewHistory": "Upgraden Sie auf Pro, um Ihren Generierungsverlauf anzuzeigen",
     "promo": {
       "title": "Promo-Code",
@@ -300,7 +301,7 @@
         "period": "für immer",
         "description": "Perfekt zum Ausprobieren",
         "features": {
-          "1": "1 Generierung pro Tag",
+          "1": "1 Generierung pro Woche",
           "2": "Foto zu Avatar",
           "3": "Text zu Avatar",
           "4": "Standardqualität"
@@ -345,15 +346,15 @@
     "faq": {
       "title": "Häufig gestellte Fragen",
       "q1": "Was passiert, wenn mir die kostenlosen Generierungen ausgehen?",
-      "a1": "Kostenlose Nutzer erhalten 1 Generierung pro Tag. Sobald Sie diese verwendet haben, können Sie entweder bis morgen warten, ein Credits-Paket kaufen oder Pro für unbegrenzten Zugang abonnieren.",
+      "a1": "Kostenlose Nutzer erhalten 1 Generierung pro Woche. Sobald Sie diese verwendet haben, können Sie entweder bis nächste Woche warten, ein Credits-Paket kaufen oder Pro für unbegrenzten Zugang abonnieren.",
       "q2": "Laufen Credits ab?",
       "a2": "Nein! Credits laufen nie ab. Verwenden Sie sie, wann immer Sie sie benötigen.",
       "q3": "Kann ich mein Abonnement jederzeit kündigen?",
       "a3": "Ja, Sie können Ihr Pro-Abonnement jederzeit kündigen. Sie haben weiterhin Zugriff bis zum Ende Ihres Abrechnungszeitraums."
     },
     "upgradeModal": {
-      "title": "Tageslimit erreicht",
-      "description": "Sie haben Ihre kostenlose Generierung für heute verwendet. Upgraden Sie, um weiterhin großartige Avatare zu erstellen!",
+      "title": "Wochenlimit erreicht",
+      "description": "Sie haben Ihre kostenlose Generierung für diese Woche verwendet. Upgraden Sie, um weiterhin großartige Avatare zu erstellen!",
       "bestValue": "Bester Wert",
       "unlimitedGenerations": "Unbegrenzte Generierungen",
       "proMonthly": "Pro Monatlich",
@@ -364,7 +365,7 @@
       "creditPackPrice": "$4.99",
       "creditPackPeriod": "/Paket",
       "redirecting": "Weiterleitung zum Checkout...",
-      "resetInfo": "Ihr kostenloses Limit wird morgen um Mitternacht zurückgesetzt.",
+      "resetInfo": "Ihr kostenloses Limit wird am nächsten Montag zurückgesetzt.",
       "checkoutError": "Checkout konnte nicht gestartet werden. Bitte versuchen Sie es erneut."
     }
   },

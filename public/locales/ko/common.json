@@ -128,13 +128,13 @@
     "text2avatar": "텍스트에서 아바타",
     "uploadTitle": "사진 업로드",
     "uploadDesc": "드래그 앤 드롭 또는 클릭하여 업로드",
-    "uploadTip": "지원 형식: JPG, PNG. 최대 5MB.",
+    "uploadTip": "지원 형식: JPG, PNG. 최대 2MB.",
     "descPlaceholder": "생성하고 싶은 아바타를 설명하세요. 예: '안경을 쓴 긴 머리 소녀'",
     "generate": "아바타 생성",
     "generating": "생성 중...",
     "download": "다운로드",
-    "limitReached": "오늘 한도에 도달했습니다",
-    "limitDesc": "오늘의 무료 할당량을 모두 사용했습니다. 내일 다시 오시거나 업그레이드하여 더 많은 횟수를 잠금 해제하세요.",
+    "limitReached": "이번 주 한도에 도달했습니다",
+    "limitDesc": "이번 주 무료 할당량을 모두 사용했습니다. 다음 주에 다시 오시거나 업그레이드하여 더 많은 횟수를 잠금 해제하세요.",
     "upgrade": "지금 업그레이드",
     "error": "문제가 발생했습니다. 다시 시도해주세요.",
     "examples": {
@@ -252,7 +252,7 @@
     "cancelsOn": "취소일",
     "renewsOn": "갱신일",
     "manageBilling": "결제 관리",
-    "freeGenerationPerDay": "하루 1회 무료 생성",
+    "freeGenerationPerDay": "주 1회 무료 생성",
     "upgradeToPro": "Pro로 업그레이드",
     "credits": "크레딧",
     "creditsRemaining": "남은 크레딧",
@@ -273,6 +273,7 @@
     "subscriptionCanceled": "구독이 취소되었습니다",
     "resubscribe": "재구독",
     "generationHistoryProOnly": "생성 기록은 Pro 사용자만 사용할 수 있습니다.",
+    "freeUsersNotStored": "무료 사용자의 생성 이미지는 저장되지 않습니다. 즉시 다운로드해 주세요.",
     "upgradeToViewHistory": "Pro로 업그레이드하여 생성 기록 보기",
     "promo": {
       "title": "프로모 코드",
@@ -300,7 +301,7 @@
         "period": "영구",
         "description": "체험하기에 완벽",
         "features": {
-          "1": "하루 1회 생성",
+          "1": "주 1회 생성",
           "2": "사진을 아바타로",
           "3": "텍스트를 아바타로",
           "4": "표준 품질"
@@ -345,15 +346,15 @@
     "faq": {
       "title": "자주 묻는 질문",
       "q1": "무료 생성 횟수가 떨어지면 어떻게 되나요?",
-      "a1": "무료 사용자는 하루에 1회 생성할 수 있습니다. 사용한 후에는 내일까지 기다리거나, 크레딧 팩을 구매하거나, Pro에 구독하여 무제한 액세스를 받을 수 있습니다.",
+      "a1": "무료 사용자는 주 1회 생성할 수 있습니다. 사용한 후에는 다음 주까지 기다리거나, 크레딧 팩을 구매하거나, Pro에 구독하여 무제한 액세스를 받을 수 있습니다.",
       "q2": "크레딧이 만료되나요?",
       "a2": "아니요! 크레딧은 절대 만료되지 않습니다. 필요할 때마다 사용하세요.",
       "q3": "구독을 언제든지 취소할 수 있나요?",
       "a3": "네, Pro 구독을 언제든지 취소할 수 있습니다. 청구 기간이 끝날 때까지 계속 액세스할 수 있습니다."
     },
     "upgradeModal": {
-      "title": "일일 한도 도달",
-      "description": "오늘의 무료 생성 횟수를 사용했습니다. 놀라운 아바타를 계속 만들려면 업그레이드하세요!",
+      "title": "주간 한도 도달",
+      "description": "이번 주 무료 생성 횟수를 사용했습니다. 놀라운 아바타를 계속 만들려면 업그레이드하세요!",
       "bestValue": "최고의 가치",
       "unlimitedGenerations": "무제한 생성",
       "proMonthly": "프로 월간",
@@ -364,7 +365,7 @@
       "creditPackPrice": "$4.99",
       "creditPackPeriod": "/팩",
       "redirecting": "결제 페이지로 이동 중...",
-      "resetInfo": "무료 한도는 내일 자정에 재설정됩니다.",
+      "resetInfo": "무료 한도는 다음 주 월요일에 재설정됩니다.",
       "checkoutError": "결제를 시작하지 못했습니다. 다시 시도해주세요."
     }
   },

@@ -17,7 +17,7 @@ Upload any photo of yourself (or anyone!) and watch as our AI transforms it into
 
 1. Navigate to the AI Generator page
 2. Select "Photo to Avatar" mode
-3. Upload your photo (JPG or PNG, max 5MB)
+3. Upload your photo (JPG or PNG, max 2MB)
 4. Click "Generate Avatar"
 5. Download your new avatar!
 

@@ -128,13 +128,13 @@
     "text2avatar": "Text to Avatar",
     "uploadTitle": "Upload Photo",
     "uploadDesc": "Drag & drop or click to upload",
-    "uploadTip": "Supported formats: JPG, PNG. Max 5MB.",
+    "uploadTip": "Supported formats: JPG, PNG. Max 2MB.",
     "descPlaceholder": "Describe the avatar you want to generate, e.g., 'A girl with glasses and long hair'",
     "generate": "Generate Avatar",
     "generating": "Generating...",
     "download": "Download",
-    "limitReached": "Daily limit reached",
-    "limitDesc": "You have used your free daily quota. Please come back tomorrow or upgrade for more.",
+    "limitReached": "Weekly limit reached",
+    "limitDesc": "You have used your free weekly quota. Please come back next week or upgrade for more.",
     "upgrade": "Upgrade Now",
     "error": "Something went wrong. Please try again.",
     "examples": {
@@ -188,8 +188,8 @@
       "title": "Frequently Asked Questions",
       "q1": "How long does AI generation take?",
       "a1": "Usually just a few seconds. AI processes your request in the background and you can download once it's complete.",
-      "q2": "How many generations can free users make per day?",
-      "a2": "Free users can generate 1 avatar per day. Upgrade to Pro for unlimited generations.",
+      "q2": "How many generations can free users make per week?",
+      "a2": "Free users can generate 1 avatar per week. Upgrade to Pro for unlimited generations.",
       "q3": "How do I upgrade to Pro?",
       "a3": "Click the 'Upgrade Now' button on the page, choose Pro Monthly subscription or Credit Pack, complete payment to enjoy more features.",
       "q4": "Can I use generated avatars commercially?",
@@ -252,7 +252,7 @@
     "cancelsOn": "Cancels on",
     "renewsOn": "Renews on",
     "manageBilling": "Manage Billing",
-    "freeGenerationPerDay": "1 free generation per day",
+    "freeGenerationPerDay": "1 free generation per week",
     "upgradeToPro": "Upgrade to Pro",
     "credits": "Credits",
     "creditsRemaining": "credits remaining",
@@ -273,6 +273,7 @@
     "subscriptionCanceled": "Your subscription has been canceled",
     "resubscribe": "Resubscribe",
     "generationHistoryProOnly": "Generation history is available for Pro users only.",
+    "freeUsersNotStored": "Generated images are not stored for free users. Please download them promptly.",
     "upgradeToViewHistory": "Upgrade to Pro to view your generation history",
     "promo": {
       "title": "Promo Code",
@@ -300,7 +301,7 @@
         "period": "forever",
         "description": "Perfect for trying out",
         "features": {
-          "1": "1 generation per day",
+          "1": "1 generation per week",
           "2": "Photo to Avatar",
           "3": "Text to Avatar",
           "4": "Standard quality"
@@ -345,15 +346,15 @@
     "faq": {
       "title": "Frequently Asked Questions",
       "q1": "What happens when I run out of free generations?",
-      "a1": "Free users get 1 generation per day. Once you've used it, you can either wait until tomorrow, purchase a credit pack, or subscribe to Pro for unlimited access.",
+      "a1": "Free users get 1 generation per week. Once you've used it, you can either wait until next week, purchase a credit pack, or subscribe to Pro for unlimited access.",
       "q2": "Do credits expire?",
       "a2": "No! Credits never expire. Use them whenever you need them.",
       "q3": "Can I cancel my subscription anytime?",
       "a3": "Yes, you can cancel your Pro subscription at any time. You'll continue to have access until the end of your billing period."
     },
     "upgradeModal": {
-      "title": "Daily Limit Reached",
-      "description": "You've used your free generation for today. Upgrade to continue creating amazing avatars!",
+      "title": "Weekly Limit Reached",
+      "description": "You've used your free generation for this week. Upgrade to continue creating amazing avatars!",
       "bestValue": "Best Value",
       "unlimitedGenerations": "Unlimited generations",
       "proMonthly": "Pro Monthly",
@@ -364,7 +365,7 @@
       "creditPackPrice": "$4.99",
       "creditPackPeriod": "/pack",
       "redirecting": "Redirecting to checkout...",
-      "resetInfo": "Your free limit resets tomorrow at midnight.",
+      "resetInfo": "Your free limit resets next Monday.",
       "checkoutError": "Failed to start checkout. Please try again."
     }
   },

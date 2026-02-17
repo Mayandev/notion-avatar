@@ -128,13 +128,13 @@
     "text2avatar": "Texte vers Avatar",
     "uploadTitle": "Télécharger une Photo",
     "uploadDesc": "Glisser-déposer ou cliquer pour télécharger",
-    "uploadTip": "Formats supportés : JPG, PNG. Max 5MB.",
+    "uploadTip": "Formats supportés : JPG, PNG. Max 2MB.",
     "descPlaceholder": "Décrivez l'avatar que vous souhaitez générer, ex. : 'Une fille avec des lunettes et les cheveux longs'",
     "generate": "Générer l'Avatar",
     "generating": "Génération...",
     "download": "Télécharger",
-    "limitReached": "Limite quotidienne atteinte",
-    "limitDesc": "Vous avez utilisé votre quota quotidien gratuit. Revenez demain ou mettez à niveau pour plus.",
+    "limitReached": "Limite hebdomadaire atteinte",
+    "limitDesc": "Vous avez utilisé votre quota hebdomadaire gratuit. Revenez la semaine prochaine ou mettez à niveau pour plus.",
     "upgrade": "Mettre à niveau maintenant",
     "error": "Quelque chose s'est mal passé. Veuillez réessayer.",
     "examples": {
@@ -188,8 +188,8 @@
       "title": "Questions Fréquemment Posées",
       "q1": "Combien de temps prend la génération AI ?",
       "a1": "Généralement quelques secondes seulement. L'AI traite votre demande en arrière-plan et vous pouvez télécharger une fois terminé.",
-      "q2": "Combien de générations les utilisateurs gratuits peuvent-ils faire par jour ?",
-      "a2": "Les utilisateurs gratuits peuvent générer 1 avatar par jour. Passez à Pro pour des générations illimitées.",
+      "q2": "Combien de générations les utilisateurs gratuits peuvent-ils faire par semaine ?",
+      "a2": "Les utilisateurs gratuits peuvent générer 1 avatar par semaine. Passez à Pro pour des générations illimitées.",
       "q3": "Comment passer à Pro ?",
       "a3": "Cliquez sur le bouton 'Mettre à Niveau Maintenant' sur la page, choisissez l'abonnement Pro Mensuel ou le Pack de Crédits, complétez le paiement pour profiter de plus de fonctionnalités.",
       "q4": "Puis-je utiliser les avatares générés commercialement ?",
@@ -252,7 +252,7 @@
     "cancelsOn": "Annule le",
     "renewsOn": "Renouvelle le",
     "manageBilling": "Gérer la Facturation",
-    "freeGenerationPerDay": "1 génération gratuite par jour",
+    "freeGenerationPerDay": "1 génération gratuite par semaine",
     "upgradeToPro": "Mettre à niveau vers Pro",
     "credits": "Crédits",
     "creditsRemaining": "crédits restants",
@@ -273,6 +273,7 @@
     "subscriptionCanceled": "Votre abonnement a été annulé",
     "resubscribe": "Réabonner",
     "generationHistoryProOnly": "L'historique des générations est disponible uniquement pour les utilisateurs Pro.",
+    "freeUsersNotStored": "Les images générées ne sont pas stockées pour les utilisateurs gratuits. Veuillez les télécharger rapidement.",
     "upgradeToViewHistory": "Mettez à niveau vers Pro pour voir votre historique de générations",
     "promo": {
       "title": "Code Promo",
@@ -300,7 +301,7 @@
         "period": "pour toujours",
         "description": "Parfait pour essayer",
         "features": {
-          "1": "1 génération par jour",
+          "1": "1 génération par semaine",
           "2": "Photo vers Avatar",
           "3": "Texte vers Avatar",
           "4": "Qualité standard"
@@ -345,15 +346,15 @@
     "faq": {
       "title": "Questions Fréquemment Posées",
       "q1": "Que se passe-t-il quand je n'ai plus de générations gratuites ?",
-      "a1": "Les utilisateurs gratuits obtiennent 1 génération par jour. Une fois que vous l'avez utilisée, vous pouvez attendre jusqu'à demain, acheter un pack de crédits ou vous abonner à Pro pour un accès illimité.",
+      "a1": "Les utilisateurs gratuits obtiennent 1 génération par semaine. Une fois que vous l'avez utilisée, vous pouvez attendre jusqu'à la semaine prochaine, acheter un pack de crédits ou vous abonner à Pro pour un accès illimité.",
       "q2": "Les crédits expirent-ils ?",
       "a2": "Non ! Les crédits n'expirent jamais. Utilisez-les quand vous en avez besoin.",
       "q3": "Puis-je annuler mon abonnement à tout moment ?",
       "a3": "Oui, vous pouvez annuler votre abonnement Pro à tout moment. Vous continuerez à avoir accès jusqu'à la fin de votre période de facturation."
     },
     "upgradeModal": {
-      "title": "Limite Quotidienne Atteinte",
-      "description": "Vous avez utilisé votre génération gratuite pour aujourd'hui. Mettez à niveau pour continuer à créer des avatars incroyables !",
+      "title": "Limite Hebdomadaire Atteinte",
+      "description": "Vous avez utilisé votre génération gratuite pour cette semaine. Mettez à niveau pour continuer à créer des avatars incroyables !",
       "bestValue": "Meilleure Valeur",
       "unlimitedGenerations": "Générations illimitées",
       "proMonthly": "Pro Mensuel",
@@ -364,7 +365,7 @@
       "creditPackPrice": "$4.99",
       "creditPackPeriod": "/pack",
       "redirecting": "Redirection vers le checkout...",
-      "resetInfo": "Votre limite gratuite sera réinitialisée demain à minuit.",
+      "resetInfo": "Votre limite gratuite sera réinitialisée lundi prochain.",
       "checkoutError": "Échec du démarrage du checkout. Veuillez réessayer."
     }
   },
