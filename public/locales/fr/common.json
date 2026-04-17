@@ -193,7 +193,7 @@
       "q1": "Combien de temps prend la génération AI ?",
       "a1": "Généralement quelques secondes seulement. L'AI traite votre demande en arrière-plan et vous pouvez télécharger une fois terminé.",
       "q2": "Combien de générations les utilisateurs gratuits peuvent-ils faire par semaine ?",
-      "a2": "Les utilisateurs gratuits peuvent générer 1 avatar par semaine. Passez à Pro pour des générations illimitées.",
+      "a2": "Les utilisateurs gratuits peuvent générer 3 avatars par semaine. Passez à Pro pour des générations illimitées.",
       "q3": "Comment passer à Pro ?",
       "a3": "Cliquez sur le bouton 'Mettre à Niveau Maintenant' sur la page, choisissez l'abonnement Pro Mensuel ou le Pack de Crédits, complétez le paiement pour profiter de plus de fonctionnalités.",
       "q4": "Puis-je utiliser les avatares générés commercialement ?",
@@ -256,7 +256,7 @@
     "cancelsOn": "Annule le",
     "renewsOn": "Renouvelle le",
     "manageBilling": "Gérer la Facturation",
-    "freeGenerationPerDay": "1 génération gratuite par semaine",
+    "freeGenerationPerDay": "3 générations gratuites par semaine",
     "upgradeToPro": "Mettre à niveau vers Pro",
     "credits": "Crédits",
     "creditsRemaining": "crédits restants",
@@ -303,7 +303,7 @@
         "period": "pour toujours",
         "description": "Parfait pour essayer",
         "features": {
-          "1": "1 génération par semaine",
+          "1": "3 générations par semaine",
           "2": "Photo vers Avatar",
           "3": "Texte vers Avatar",
           "4": "Qualité standard"
@@ -348,7 +348,7 @@
     "faq": {
       "title": "Questions Fréquemment Posées",
       "q1": "Que se passe-t-il quand je n'ai plus de générations gratuites ?",
-      "a1": "Les utilisateurs gratuits obtiennent 1 génération par semaine. Une fois que vous l'avez utilisée, vous pouvez attendre jusqu'à la semaine prochaine, acheter un pack de crédits ou vous abonner à Pro pour un accès illimité.",
+      "a1": "Les utilisateurs gratuits obtiennent 3 générations par semaine. Une fois que vous les avez utilisées, vous pouvez attendre jusqu'à la semaine prochaine, acheter un pack de crédits ou vous abonner à Pro pour un accès illimité.",
       "q2": "Les crédits expirent-ils ?",
       "a2": "Non ! Les crédits n'expirent jamais. Utilisez-les quand vous en avez besoin.",
       "q3": "Puis-je annuler mon abonnement à tout moment ?",
@@ -356,7 +356,7 @@
     },
     "upgradeModal": {
       "title": "Limite Hebdomadaire Atteinte",
-      "description": "Vous avez utilisé votre génération gratuite pour cette semaine. Mettez à niveau pour continuer à créer des avatars incroyables !",
+      "description": "Vous avez utilisé vos générations gratuites pour cette semaine. Mettez à niveau pour continuer à créer des avatars incroyables !",
       "bestValue": "Meilleure Valeur",
       "unlimitedGenerations": "Générations illimitées",
       "proMonthly": "Pro Mensuel",

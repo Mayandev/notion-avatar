@@ -193,7 +193,7 @@
       "q1": "Wie lange dauert die AI-Generierung?",
       "a1": "Normalerweise nur wenige Sekunden. AI verarbeitet deine Anfrage im Hintergrund und du kannst herunterladen, sobald es fertig ist.",
       "q2": "Wie viele Generierungen können kostenlose Benutzer pro Woche machen?",
-      "a2": "Kostenlose Benutzer können 1 Avatar pro Woche generieren. Upgrade auf Pro für unbegrenzte Generierungen.",
+      "a2": "Kostenlose Benutzer können 3 Avatare pro Woche generieren. Upgrade auf Pro für unbegrenzte Generierungen.",
       "q3": "Wie upgrade ich auf Pro?",
       "a3": "Klicke auf die Schaltfläche 'Jetzt Upgraden' auf der Seite, wähle Pro Monatliches Abonnement oder Credits-Paket, schließe die Zahlung ab, um mehr Funktionen zu genießen.",
       "q4": "Kann ich generierte Avatare kommerziell verwenden?",
@@ -256,7 +256,7 @@
     "cancelsOn": "Kündigt am",
     "renewsOn": "Erneuert am",
     "manageBilling": "Rechnungsverwaltung",
-    "freeGenerationPerDay": "1 kostenlose Generierung pro Woche",
+    "freeGenerationPerDay": "3 kostenlose Generierungen pro Woche",
     "upgradeToPro": "Auf Pro upgraden",
     "credits": "Credits",
     "creditsRemaining": "verbleibende Credits",
@@ -303,7 +303,7 @@
         "period": "für immer",
         "description": "Perfekt zum Ausprobieren",
         "features": {
-          "1": "1 Generierung pro Woche",
+          "1": "3 Generierungen pro Woche",
           "2": "Foto zu Avatar",
           "3": "Text zu Avatar",
           "4": "Standardqualität"
@@ -348,7 +348,7 @@
     "faq": {
       "title": "Häufig gestellte Fragen",
       "q1": "Was passiert, wenn mir die kostenlosen Generierungen ausgehen?",
-      "a1": "Kostenlose Nutzer erhalten 1 Generierung pro Woche. Sobald Sie diese verwendet haben, können Sie entweder bis nächste Woche warten, ein Credits-Paket kaufen oder Pro für unbegrenzten Zugang abonnieren.",
+      "a1": "Kostenlose Nutzer erhalten 3 Generierungen pro Woche. Sobald Sie diese aufgebraucht haben, können Sie entweder bis nächste Woche warten, ein Credits-Paket kaufen oder Pro für unbegrenzten Zugang abonnieren.",
       "q2": "Laufen Credits ab?",
       "a2": "Nein! Credits laufen nie ab. Verwenden Sie sie, wann immer Sie sie benötigen.",
       "q3": "Kann ich mein Abonnement jederzeit kündigen?",
@@ -356,7 +356,7 @@
     },
     "upgradeModal": {
       "title": "Wochenlimit erreicht",
-      "description": "Sie haben Ihre kostenlose Generierung für diese Woche verwendet. Upgraden Sie, um weiterhin großartige Avatare zu erstellen!",
+      "description": "Sie haben Ihre kostenlosen Generierungen für diese Woche aufgebraucht. Upgraden Sie, um weiterhin großartige Avatare zu erstellen!",
       "bestValue": "Bester Wert",
       "unlimitedGenerations": "Unbegrenzte Generierungen",
       "proMonthly": "Pro Monatlich",

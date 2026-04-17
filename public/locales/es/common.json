@@ -189,7 +189,7 @@
       "q1": "¿Cuánto tarda la generación AI?",
       "a1": "Generalmente solo unos segundos. AI procesa tu solicitud en segundo plano y puedes descargar una vez que esté completa.",
       "q2": "¿Cuántas generaciones pueden hacer los usuarios gratuitos por semana?",
-      "a2": "Los usuarios gratuitos pueden generar 1 avatar por semana. Actualiza a Pro para generaciones ilimitadas.",
+      "a2": "Los usuarios gratuitos pueden generar 3 avatares por semana. Actualiza a Pro para generaciones ilimitadas.",
       "q3": "¿Cómo actualizo a Pro?",
       "a3": "Haz clic en el botón 'Actualizar Ahora' en la página, elige la suscripción Pro Mensual o el Paquete de Créditos, completa el pago para disfrutar de más funciones.",
       "q4": "¿Puedo usar los avatares generados comercialmente?",
@@ -252,7 +252,7 @@
     "cancelsOn": "Cancela el",
     "renewsOn": "Renueva el",
     "manageBilling": "Gestionar Facturación",
-    "freeGenerationPerDay": "1 generación gratuita por semana",
+    "freeGenerationPerDay": "3 generaciones gratuitas por semana",
     "upgradeToPro": "Actualizar a Pro",
     "credits": "Créditos",
     "creditsRemaining": "créditos restantes",
@@ -299,7 +299,7 @@
         "period": "para siempre",
         "description": "Perfecto para probar",
         "features": {
-          "1": "1 generación por semana",
+          "1": "3 generaciones por semana",
           "2": "Foto a Avatar",
           "3": "Texto a Avatar",
           "4": "Calidad estándar"
@@ -344,7 +344,7 @@
     "faq": {
       "title": "Preguntas Frecuentes",
       "q1": "¿Qué pasa cuando se me acaban las generaciones gratuitas?",
-      "a1": "Los usuarios gratuitos obtienen 1 generación por semana. Una vez que la hayas usado, puedes esperar hasta la próxima semana, comprar un paquete de créditos o suscribirte a Pro para acceso ilimitado.",
+      "a1": "Los usuarios gratuitos obtienen 3 generaciones por semana. Una vez que las hayas usado, puedes esperar hasta la próxima semana, comprar un paquete de créditos o suscribirte a Pro para acceso ilimitado.",
       "q2": "¿Los créditos expiran?",
       "a2": "¡No! Los créditos nunca expiran. Úsalos cuando los necesites.",
       "q3": "¿Puedo cancelar mi suscripción en cualquier momento?",
@@ -352,7 +352,7 @@
     },
     "upgradeModal": {
       "title": "Límite Semanal Alcanzado",
-      "description": "Has usado tu generación gratuita de esta semana. ¡Actualiza para continuar creando avatares increíbles!",
+      "description": "Has usado tus generaciones gratuitas de esta semana. ¡Actualiza para continuar creando avatares increíbles!",
       "bestValue": "Mejor Valor",
       "unlimitedGenerations": "Generaciones ilimitadas",
       "proMonthly": "Pro Mensual",

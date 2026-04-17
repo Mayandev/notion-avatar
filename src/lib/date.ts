@@ -4,7 +4,7 @@ import isoWeek from 'dayjs/plugin/isoWeek';
 dayjs.extend(isoWeek);
 
 /** Free tier weekly generation limit */
-export const FREE_WEEKLY_LIMIT = 1;
+export const FREE_WEEKLY_LIMIT = 3;
 
 /**
  * Get ISO week start (Monday) as YYYY-MM-DD
