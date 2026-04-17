@@ -1,15 +1,18 @@
 import sharp from 'sharp';
 
 function createWatermarkSvg(width: number, height: number): Buffer {
-  const fontSize = Math.max(14, Math.round(width * 0.04));
-  const x = width - 10;
-  const y = height - 10;
+  const fontSize = Math.max(12, Math.round(width * 0.028));
+  const padding = Math.round(fontSize * 0.8);
+  const x = width - padding;
+  const y = height - padding;
 
   const svg = `<svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
-    <text x="${x}" y="${y}" text-anchor="end" font-family="Arial, Helvetica, sans-serif"
-      font-size="${fontSize}" font-weight="bold"
-      stroke="white" stroke-width="3" stroke-linejoin="round"
-      fill="black" opacity="0.5">notion-avatar.app</text>
+    <text x="${x}" y="${y}" text-anchor="end"
+      font-family="Georgia, 'Times New Roman', serif"
+      font-size="${fontSize}" font-weight="normal" font-style="italic"
+      letter-spacing="0.5"
+      stroke="white" stroke-width="2.5" stroke-linejoin="round" paint-order="stroke"
+      fill="rgba(0,0,0,0.45)">notion-avatar.app</text>
   </svg>`;
 
   return Buffer.from(svg);
