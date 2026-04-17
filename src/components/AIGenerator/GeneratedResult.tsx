@@ -1,20 +1,54 @@
 import { useTranslation } from 'next-i18next';
+import VariantPreviews from './VariantPreviews';
 
 interface GeneratedResultProps {
   image: string;
   onDownload: () => void;
   onReset: () => void;
+  remaining?: number;
+  total?: number;
+  isUnlimited?: boolean;
+  isPaidUser?: boolean;
+  onUpgradeClick: () => void;
 }
 
 export default function GeneratedResult({
   image,
   onDownload,
   onReset,
+  remaining,
+  isUnlimited,
+  isPaidUser,
+  onUpgradeClick,
 }: GeneratedResultProps) {
   const { t } = useTranslation('common');
 
   return (
     <div className="flex flex-col items-center animate-in zoom-in-95 duration-500">
+      {/* Remaining count */}
+      {!isUnlimited && remaining !== undefined && (
+        <div
+          className={`mb-4 text-sm font-medium px-4 py-2 rounded-full ${
+            remaining > 0
+              ? 'bg-green-50 text-green-700'
+              : 'bg-orange-50 text-orange-700'
+          }`}
+        >
+          {remaining > 0
+            ? t('ai.remainingGenerations', { remaining })
+            : t('ai.weeklyLimitUsed')}
+          {remaining === 0 && (
+            <button
+              type="button"
+              onClick={onUpgradeClick}
+              className="ml-2 underline font-bold hover:no-underline"
+            >
+              {t('ai.upgrade')}
+            </button>
+          )}
+        </div>
+      )}
+
       <div className="relative w-64 h-64 md:w-80 md:h-80 bg-white rounded-2xl shadow-xl border-4 border-black mb-8 overflow-hidden group">
         <div className="absolute inset-0 bg-[#fffefc] pattern-grid-lg opacity-10" />
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -24,6 +58,13 @@ export default function GeneratedResult({
           className="w-full h-full object-contain p-4"
         />
       </div>
+
+      {/* Watermark hint for free users */}
+      {!isPaidUser && (
+        <p className="text-xs text-gray-400 mb-4 text-center">
+          {t('ai.watermarkHint')}
+        </p>
+      )}
 
       <div className="flex gap-4 w-full max-w-md">
         <button
@@ -55,6 +96,9 @@ export default function GeneratedResult({
           {t('ai.download')}
         </button>
       </div>
+
+      {/* Variant previews for free users */}
+      {!isPaidUser && <VariantPreviews onUpgradeClick={onUpgradeClick} />}
     </div>
   );
 }

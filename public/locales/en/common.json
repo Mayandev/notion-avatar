@@ -140,6 +140,10 @@
     "generationsAvailable": "{{count}} generations available",
     "freeThisWeekAndCredits": "({{free}} free this week + {{credits}} credits)",
     "remainingFreeThisWeek": "Remaining free generations this week: {{remaining}}/{{total}}",
+    "remainingGenerations": "{{remaining}} free generations left this week",
+    "weeklyLimitUsed": "Weekly free quota used up, resets next Monday",
+    "unlockStyles": "Unlock more styles with Pro",
+    "watermarkHint": "Free tier includes watermark. Upgrade to Pro for watermark-free downloads.",
     "error": "Something went wrong. Please try again.",
     "examples": {
       "photoTitle": "Photo Transformation",

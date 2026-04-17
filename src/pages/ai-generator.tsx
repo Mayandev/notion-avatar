@@ -267,11 +267,18 @@ export default function AIGeneratorPage({
     }
 
     if (generatedImage) {
+      const isPaidUser =
+        usageState.isUnlimited || (usageState.paidCredits || 0) > 0;
       return (
         <GeneratedResult
           image={generatedImage}
           onDownload={handleDownload}
           onReset={() => setGeneratedImage(null)}
+          remaining={usageState.freeRemaining}
+          total={usageState.total}
+          isUnlimited={usageState.isUnlimited}
+          isPaidUser={isPaidUser}
+          onUpgradeClick={() => setIsUpgradeModalOpen(true)}
         />
       );
     }
