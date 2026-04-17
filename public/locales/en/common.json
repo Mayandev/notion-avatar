@@ -306,6 +306,10 @@
     "pageDescription": "Choose the perfect plan for your avatar creation needs",
     "title": "Simple, Transparent Pricing",
     "description": "Choose the plan that works best for you. Upgrade anytime.",
+    "toggle": {
+      "monthly": "Monthly",
+      "yearly": "Yearly"
+    },
     "plans": {
       "free": {
         "name": "Free",
@@ -335,7 +339,11 @@
           "7": "Free resource pack downloads"
         },
         "buttonText": "Subscribe Now",
-        "popular": "Most Popular"
+        "popular": "Most Popular",
+        "yearlyPrice": "$79.99",
+        "yearlyPeriod": "per year",
+        "yearlySave": "SAVE 33%",
+        "yearlyEquivalent": "$6.67/mo"
       },
       "credits": {
         "name": "Credit Pack",

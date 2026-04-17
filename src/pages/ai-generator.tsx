@@ -263,6 +263,11 @@ export default function AIGeneratorPage({
         buttonVariant: 'primary' as const,
         priceType: 'monthly',
         popular: true,
+        yearlyPrice: t('pricing.plans.pro.yearlyPrice'),
+        yearlyPeriod: t('pricing.plans.pro.yearlyPeriod'),
+        yearlySave: t('pricing.plans.pro.yearlySave'),
+        yearlyEquivalent: t('pricing.plans.pro.yearlyEquivalent'),
+        yearlyPriceType: 'yearly',
       },
       {
         name: t('pricing.plans.credits.name'),
