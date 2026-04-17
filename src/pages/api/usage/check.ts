@@ -36,7 +36,8 @@ export default async function handler(
     // Check if subscription has expired
     let isSubscriptionActive = false;
     if (
-      subscription?.plan_type === 'monthly' &&
+      (subscription?.plan_type === 'monthly' ||
+        subscription?.plan_type === 'yearly') &&
       subscription?.status === 'active'
     ) {
       // If current_period_end is null, consider subscription as active
@@ -67,7 +68,7 @@ export default async function handler(
         total: -1,
         isUnlimited: true,
         isAuthenticated: true,
-        planType: 'monthly',
+        planType: subscription?.plan_type,
       });
     }
 

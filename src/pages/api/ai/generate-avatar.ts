@@ -64,7 +64,8 @@ export default async function handler(
         .single();
 
       if (
-        subscription?.plan_type === 'monthly' &&
+        (subscription?.plan_type === 'monthly' ||
+          subscription?.plan_type === 'yearly') &&
         subscription?.status === 'active'
       ) {
         // Unlimited for paid subscribers
@@ -176,7 +177,8 @@ export default async function handler(
 
       if (
         !(
-          subscription?.plan_type === 'monthly' &&
+          (subscription?.plan_type === 'monthly' ||
+            subscription?.plan_type === 'yearly') &&
           subscription?.status === 'active'
         )
       ) {
