@@ -144,6 +144,12 @@
     "weeklyLimitUsed": "Weekly free quota used up, resets next Monday",
     "unlockStyles": "Unlock more styles with Pro",
     "watermarkHint": "Free tier includes watermark. Upgrade to Pro for watermark-free downloads.",
+    "downloadUpgrade": {
+      "title": "Get Watermark-Free Downloads",
+      "description": "Upgrade to Pro for high-quality, watermark-free avatar downloads.",
+      "upgrade": "Upgrade to Pro",
+      "dismiss": "Download with Watermark"
+    },
     "error": "Something went wrong. Please try again.",
     "examples": {
       "photoTitle": "Photo Transformation",
