@@ -20,7 +20,9 @@ export default function UpgradeModal({
 
   if (!isOpen) return null;
 
-  const handlePurchase = async (priceType: 'monthly' | 'credits') => {
+  const handlePurchase = async (
+    priceType: 'monthly' | 'yearly' | 'credits',
+  ) => {
     if (!user) {
       onClose();
       onLoginClick();
@@ -112,9 +114,9 @@ export default function UpgradeModal({
         </div>
 
         <div className="space-y-4">
-          {/* Pro Subscription */}
+          {/* Pro Yearly - Recommended */}
           <button
-            onClick={() => handlePurchase('monthly')}
+            onClick={() => handlePurchase('yearly')}
             disabled={isLoading !== null}
             type="button"
             className="w-full p-4 border-2 border-black rounded-xl hover:bg-gray-50 transition-colors disabled:opacity-50 text-left"
@@ -123,12 +125,47 @@ export default function UpgradeModal({
               <div>
                 <div className="flex items-center gap-2">
                   <span className="font-bold text-lg">
-                    {t('pricing.upgradeModal.proMonthly')}
+                    {t('pricing.upgradeModal.proYearly')}
                   </span>
                   <span className="bg-gradient-to-r from-purple-500 to-pink-500 text-white text-xs font-medium px-2 py-0.5 rounded-full">
-                    {t('pricing.upgradeModal.bestValue')}
+                    {t('pricing.upgradeModal.recommended')}
+                  </span>
+                  <span className="bg-green-100 text-green-700 text-xs font-bold px-2 py-0.5 rounded-full">
+                    {t('pricing.upgradeModal.proYearlySave')}
                   </span>
                 </div>
+                <p className="text-gray-600 text-sm mt-1">
+                  {t('pricing.upgradeModal.unlimitedGenerations')}
+                </p>
+              </div>
+              <div className="text-right">
+                <span className="text-2xl font-bold">
+                  {t('pricing.upgradeModal.proYearlyPrice')}
+                </span>
+                <span className="text-gray-500 text-sm">
+                  {t('pricing.upgradeModal.proYearlyPeriod')}
+                </span>
+              </div>
+            </div>
+            {isLoading === 'yearly' && (
+              <div className="mt-2 text-center text-sm text-gray-500">
+                {t('pricing.upgradeModal.redirecting')}
+              </div>
+            )}
+          </button>
+
+          {/* Pro Monthly */}
+          <button
+            onClick={() => handlePurchase('monthly')}
+            disabled={isLoading !== null}
+            type="button"
+            className="w-full p-4 border-2 border-gray-200 rounded-xl hover:bg-gray-50 transition-colors disabled:opacity-50 text-left"
+          >
+            <div className="flex items-center justify-between">
+              <div>
+                <span className="font-bold text-lg">
+                  {t('pricing.upgradeModal.proMonthly')}
+                </span>
                 <p className="text-gray-600 text-sm mt-1">
                   {t('pricing.upgradeModal.unlimitedGenerations')}
                 </p>
