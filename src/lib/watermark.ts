@@ -18,15 +18,6 @@ export async function addWatermark(base64Image: string): Promise<string> {
         width: Math.round(imgWidth * 0.3),
         fit: 'inside',
       })
-      .ensureAlpha()
-      .composite([
-        {
-          input: Buffer.from([0, 0, 0, 128]),
-          raw: { width: 1, height: 1, channels: 4 },
-          tile: true,
-          blend: 'dest-in',
-        },
-      ])
       .toBuffer();
   } catch {
     return base64Image;
