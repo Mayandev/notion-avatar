@@ -1,44 +1,46 @@
 import sharp from 'sharp';
-import path from 'path';
 
-const WATERMARK_PATH = path.join(process.cwd(), 'public', 'watermark.png');
+function createWatermarkSvg(width: number, height: number): Buffer {
+  const fontSize = Math.max(14, Math.round(width * 0.04));
+  const x = width - 10;
+  const y = height - 10;
+
+  const svg = `<svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
+    <text x="${x}" y="${y}" text-anchor="end" font-family="Arial, Helvetica, sans-serif"
+      font-size="${fontSize}" font-weight="bold"
+      stroke="white" stroke-width="3" stroke-linejoin="round"
+      fill="black" opacity="0.5">notion-avatar.app</text>
+  </svg>`;
+
+  return Buffer.from(svg);
+}
 
 export async function addWatermark(base64Image: string): Promise<string> {
-  const raw = base64Image.replace(/^data:image\/\w+;base64,/, '');
+  const raw = base64Image.replace(/^data:[^;]+;base64,/, '');
   const imageBuffer = Buffer.from(raw, 'base64');
-  const metadata = await sharp(imageBuffer).metadata();
 
-  const imgWidth = metadata.width || 512;
-  const imgHeight = metadata.height || 512;
-
-  let watermark: Buffer;
+  let metadata;
   try {
-    watermark = await sharp(WATERMARK_PATH)
-      .resize({
-        width: Math.round(imgWidth * 0.3),
-        fit: 'inside',
-      })
-      .toBuffer();
+    metadata = await sharp(imageBuffer).metadata();
   } catch {
     return base64Image;
   }
 
-  const watermarkMeta = await sharp(watermark).metadata();
-  const wmWidth = watermarkMeta.width || 100;
-  const wmHeight = watermarkMeta.height || 30;
+  const imgWidth = metadata.width || 512;
+  const imgHeight = metadata.height || 512;
 
-  const result = await sharp(imageBuffer)
-    .composite([
-      {
-        input: watermark,
-        top: imgHeight - wmHeight - 10,
-        left: imgWidth - wmWidth - 10,
-      },
-    ])
-    .png()
-    .toBuffer();
+  const watermarkSvg = createWatermarkSvg(imgWidth, imgHeight);
 
-  const resultBase64 = result.toString('base64');
-  const hadPrefix = base64Image.startsWith('data:');
-  return hadPrefix ? `data:image/png;base64,${resultBase64}` : resultBase64;
+  try {
+    const result = await sharp(imageBuffer)
+      .composite([{ input: watermarkSvg, top: 0, left: 0 }])
+      .png()
+      .toBuffer();
+
+    const resultBase64 = result.toString('base64');
+    const hadPrefix = base64Image.startsWith('data:');
+    return hadPrefix ? `data:image/png;base64,${resultBase64}` : resultBase64;
+  } catch {
+    return base64Image;
+  }
 }
