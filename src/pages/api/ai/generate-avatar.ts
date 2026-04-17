@@ -8,6 +8,7 @@ import {
   uploadImageToStorage,
 } from '@/lib/supabase/server';
 import { getWeekStart, FREE_WEEKLY_LIMIT } from '@/lib/date';
+import { addWatermark } from '@/lib/watermark';
 
 export default async function handler(
   req: NextApiRequest,
@@ -205,9 +206,15 @@ export default async function handler(
       }
     }
 
+    // Apply watermark for free users
+    let finalImage = generatedImage;
+    if (!isPaidUser) {
+      finalImage = await addWatermark(generatedImage);
+    }
+
     return res.status(200).json({
       success: true,
-      image: generatedImage,
+      image: finalImage,
     });
   } catch (error) {
     console.error('API Error:', error);
