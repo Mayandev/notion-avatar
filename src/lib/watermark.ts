@@ -4,7 +4,8 @@ import path from 'path';
 const WATERMARK_PATH = path.join(process.cwd(), 'public', 'watermark.png');
 
 export async function addWatermark(base64Image: string): Promise<string> {
-  const imageBuffer = Buffer.from(base64Image, 'base64');
+  const raw = base64Image.replace(/^data:image\/\w+;base64,/, '');
+  const imageBuffer = Buffer.from(raw, 'base64');
   const metadata = await sharp(imageBuffer).metadata();
 
   const imgWidth = metadata.width || 512;
@@ -46,5 +47,7 @@ export async function addWatermark(base64Image: string): Promise<string> {
     .png()
     .toBuffer();
 
-  return result.toString('base64');
+  const resultBase64 = result.toString('base64');
+  const hadPrefix = base64Image.startsWith('data:');
+  return hadPrefix ? `data:image/png;base64,${resultBase64}` : resultBase64;
 }
