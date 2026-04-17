@@ -140,6 +140,16 @@
     "generationsAvailable": "{{count}} générations disponibles",
     "freeThisWeekAndCredits": "({{free}} gratuites cette semaine + {{credits}} crédits)",
     "remainingFreeThisWeek": "Générations gratuites restantes cette semaine : {{remaining}}/{{total}}",
+    "remainingGenerations": "{{remaining}} générations gratuites restantes cette semaine",
+    "weeklyLimitUsed": "Quota gratuit hebdomadaire épuisé, réinitialisation lundi prochain",
+    "unlockStyles": "Débloquez plus de styles avec Pro",
+    "watermarkHint": "L'offre gratuite inclut un filigrane. Passez à Pro pour des téléchargements sans filigrane.",
+    "downloadUpgrade": {
+      "title": "Téléchargements sans filigrane",
+      "description": "Passez à Pro pour des avatars en haute qualité sans filigrane.",
+      "upgrade": "Passer à Pro",
+      "dismiss": "Télécharger avec filigrane"
+    },
     "error": "Quelque chose s'est mal passé. Veuillez réessayer.",
     "examples": {
       "photoTitle": "Transformation de Photo",
@@ -296,6 +306,10 @@
     "pageDescription": "Choisissez le plan parfait pour vos besoins de création d'avatar",
     "title": "Tarifs Simples et Transparents",
     "description": "Choisissez le plan qui vous convient le mieux. Mettez à niveau à tout moment.",
+    "toggle": {
+      "monthly": "Mensuel",
+      "yearly": "Annuel"
+    },
     "plans": {
       "free": {
         "name": "Gratuit",
@@ -325,7 +339,11 @@
           "7": "Téléchargements gratuits de packs de ressources"
         },
         "buttonText": "S'abonner Maintenant",
-        "popular": "Le Plus Populaire"
+        "popular": "Le Plus Populaire",
+        "yearlyPrice": "$79.99",
+        "yearlyPeriod": "par an",
+        "yearlySave": "ÉCONOMISEZ 33%",
+        "yearlyEquivalent": "$6.67/mois"
       },
       "credits": {
         "name": "Pack de Crédits",
@@ -358,6 +376,11 @@
       "title": "Limite Hebdomadaire Atteinte",
       "description": "Vous avez utilisé vos générations gratuites pour cette semaine. Mettez à niveau pour continuer à créer des avatars incroyables !",
       "bestValue": "Meilleure Valeur",
+      "proYearly": "Pro annuel",
+      "proYearlyPrice": "$79.99",
+      "proYearlyPeriod": "/an",
+      "proYearlySave": "Économisez 33%",
+      "recommended": "Recommandé",
       "unlimitedGenerations": "Générations illimitées",
       "proMonthly": "Pro Mensuel",
       "proPrice": "$9.99",

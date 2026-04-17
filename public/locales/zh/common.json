@@ -140,6 +140,16 @@
     "generationsAvailable": "{{count}} 次生成可用",
     "freeThisWeekAndCredits": "(本周免费 {{free}} 次 + {{credits}} 积分)",
     "remainingFreeThisWeek": "本周剩余免费生成次数：{{remaining}}/{{total}}",
+    "remainingGenerations": "本周剩余 {{remaining}} 次免费生成",
+    "weeklyLimitUsed": "本周免费额度已用完，下周一重置",
+    "unlockStyles": "升级 Pro 解锁更多风格",
+    "watermarkHint": "免费版包含水印，升级 Pro 获取无水印下载。",
+    "downloadUpgrade": {
+      "title": "获取无水印下载",
+      "description": "升级 Pro 享受高清无水印头像下载。",
+      "upgrade": "升级 Pro",
+      "dismiss": "下载带水印版本"
+    },
     "error": "出错了，请重试。",
     "examples": {
       "photoTitle": "照片转换效果",
@@ -296,6 +306,10 @@
     "pageDescription": "选择最适合您头像创建需求的方案",
     "title": "简单透明的价格",
     "description": "选择最适合您的方案。随时可以升级。",
+    "toggle": {
+      "monthly": "月付",
+      "yearly": "年付"
+    },
     "plans": {
       "free": {
         "name": "免费版",
@@ -325,7 +339,11 @@
           "7": "免费资源包下载"
         },
         "buttonText": "立即订阅",
-        "popular": "最受欢迎"
+        "popular": "最受欢迎",
+        "yearlyPrice": "$79.99",
+        "yearlyPeriod": "每年",
+        "yearlySave": "省33%",
+        "yearlyEquivalent": "$6.67/月"
       },
       "credits": {
         "name": "积分包",
@@ -358,6 +376,11 @@
       "title": "本周额度已用完",
       "description": "您已使用完本周的免费生成次数。升级以继续创建精彩的头像！",
       "bestValue": "最超值",
+      "proYearly": "Pro 年付",
+      "proYearlyPrice": "$79.99",
+      "proYearlyPeriod": "/年",
+      "proYearlySave": "省33%",
+      "recommended": "推荐",
       "unlimitedGenerations": "无限生成",
       "proMonthly": "专业版月付",
       "proPrice": "$9.99",

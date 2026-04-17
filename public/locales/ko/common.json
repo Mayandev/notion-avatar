@@ -140,6 +140,16 @@
     "generationsAvailable": "{{count}} 회 생성 가능",
     "freeThisWeekAndCredits": "(이번 주 무료 {{free}} 회 + {{credits}} 크레딧)",
     "remainingFreeThisWeek": "이번 주 남은 무료 생성 횟수: {{remaining}}/{{total}}",
+    "remainingGenerations": "이번 주 남은 무료 생성 {{remaining}}회",
+    "weeklyLimitUsed": "이번 주 무료 한도를 모두 사용했습니다. 다음 주 월요일에 초기화됩니다",
+    "unlockStyles": "Pro로 업그레이드하여 더 많은 스타일 잠금 해제",
+    "watermarkHint": "무료 플랜에는 워터마크가 포함됩니다. Pro로 업그레이드하여 워터마크 없이 다운로드하세요.",
+    "downloadUpgrade": {
+      "title": "워터마크 없이 다운로드",
+      "description": "Pro로 업그레이드하여 고품질 워터마크 없는 아바타를 다운로드하세요.",
+      "upgrade": "Pro로 업그레이드",
+      "dismiss": "워터마크 포함 다운로드"
+    },
     "error": "문제가 발생했습니다. 다시 시도해주세요.",
     "examples": {
       "photoTitle": "사진 변환 효과",
@@ -296,6 +306,10 @@
     "pageDescription": "아바타 생성에 필요한 완벽한 플랜을 선택하세요",
     "title": "간단하고 투명한 가격",
     "description": "당신에게 가장 적합한 플랜을 선택하세요. 언제든지 업그레이드할 수 있습니다.",
+    "toggle": {
+      "monthly": "월간",
+      "yearly": "연간"
+    },
     "plans": {
       "free": {
         "name": "무료",
@@ -325,7 +339,11 @@
           "7": "무료 리소스 팩 다운로드"
         },
         "buttonText": "지금 구독",
-        "popular": "가장 인기"
+        "popular": "가장 인기",
+        "yearlyPrice": "$79.99",
+        "yearlyPeriod": "연간",
+        "yearlySave": "33% 절약",
+        "yearlyEquivalent": "$6.67/월"
       },
       "credits": {
         "name": "크레딧 팩",
@@ -358,6 +376,11 @@
       "title": "주간 한도 도달",
       "description": "이번 주 무료 생성 횟수를 사용했습니다. 놀라운 아바타를 계속 만들려면 업그레이드하세요!",
       "bestValue": "최고의 가치",
+      "proYearly": "Pro 연간",
+      "proYearlyPrice": "$79.99",
+      "proYearlyPeriod": "/년",
+      "proYearlySave": "33% 절약",
+      "recommended": "추천",
       "unlimitedGenerations": "무제한 생성",
       "proMonthly": "프로 월간",
       "proPrice": "$9.99",

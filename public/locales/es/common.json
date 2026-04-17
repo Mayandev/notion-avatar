@@ -136,6 +136,16 @@
     "generationsAvailable": "{{count}} generaciones disponibles",
     "freeThisWeekAndCredits": "({{free}} gratis esta semana + {{credits}} créditos)",
     "remainingFreeThisWeek": "Generaciones gratuitas restantes esta semana: {{remaining}}/{{total}}",
+    "remainingGenerations": "{{remaining}} generaciones gratuitas restantes esta semana",
+    "weeklyLimitUsed": "Has agotado tu cupo gratis semanal; se restablece el próximo lunes",
+    "unlockStyles": "Desbloquea más estilos con Pro",
+    "watermarkHint": "El plan gratuito incluye marca de agua. Mejora a Pro para descargas sin marca de agua.",
+    "downloadUpgrade": {
+      "title": "Descargas sin marca de agua",
+      "description": "Mejora a Pro para descargas de avatares en alta calidad y sin marca de agua.",
+      "upgrade": "Mejorar a Pro",
+      "dismiss": "Descargar con marca de agua"
+    },
     "error": "Algo salió mal. Por favor, inténtalo de nuevo.",
     "examples": {
       "photoTitle": "Transformación de Foto",
@@ -292,6 +302,10 @@
     "pageDescription": "Elige el plan perfecto para tus necesidades de creación de avatares",
     "title": "Precios Simples y Transparentes",
     "description": "Elige el plan que mejor funcione para ti. Actualiza en cualquier momento.",
+    "toggle": {
+      "monthly": "Mensual",
+      "yearly": "Anual"
+    },
     "plans": {
       "free": {
         "name": "Gratis",
@@ -321,7 +335,11 @@
           "7": "Descargas gratuitas de paquetes de recursos"
         },
         "buttonText": "Suscribirse Ahora",
-        "popular": "Más Popular"
+        "popular": "Más Popular",
+        "yearlyPrice": "$79.99",
+        "yearlyPeriod": "por año",
+        "yearlySave": "AHORRA 33%",
+        "yearlyEquivalent": "$6.67/mes"
       },
       "credits": {
         "name": "Paquete de Créditos",
@@ -354,6 +372,11 @@
       "title": "Límite Semanal Alcanzado",
       "description": "Has usado tus generaciones gratuitas de esta semana. ¡Actualiza para continuar creando avatares increíbles!",
       "bestValue": "Mejor Valor",
+      "proYearly": "Pro anual",
+      "proYearlyPrice": "$79.99",
+      "proYearlyPeriod": "/año",
+      "proYearlySave": "Ahorra 33%",
+      "recommended": "Recomendado",
       "unlimitedGenerations": "Generaciones ilimitadas",
       "proMonthly": "Pro Mensual",
       "proPrice": "$9.99",

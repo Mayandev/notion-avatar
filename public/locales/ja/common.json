@@ -140,6 +140,16 @@
     "generationsAvailable": "{{count}} 回生成可能",
     "freeThisWeekAndCredits": "(今週無料 {{free}} 回 + {{credits}} クレジット)",
     "remainingFreeThisWeek": "今週の残り無料生成回数：{{remaining}}/{{total}}",
+    "remainingGenerations": "今週の無料生成残り {{remaining}} 回",
+    "weeklyLimitUsed": "今週の無料枠を使い切りました。来週月曜にリセットされます",
+    "unlockStyles": "Proにアップグレードしてスタイルを解除",
+    "watermarkHint": "無料プランには透かしが含まれます。Proにアップグレードして透かしなしでダウンロード。",
+    "downloadUpgrade": {
+      "title": "透かしなしでダウンロード",
+      "description": "Proにアップグレードして高画質・透かしなしのアバターをダウンロード。",
+      "upgrade": "Proにアップグレード",
+      "dismiss": "透かし付きでダウンロード"
+    },
     "error": "エラーが発生しました。もう一度お試しください。",
     "examples": {
       "photoTitle": "写真変換効果",
@@ -296,6 +306,10 @@
     "pageDescription": "アバター作成に最適なプランを選択してください",
     "title": "シンプルで透明な料金",
     "description": "あなたに最適なプランを選択してください。いつでもアップグレードできます。",
+    "toggle": {
+      "monthly": "月額",
+      "yearly": "年額"
+    },
     "plans": {
       "free": {
         "name": "無料",
@@ -325,7 +339,11 @@
           "7": "無料リソースパックダウンロード"
         },
         "buttonText": "今すぐ購読",
-        "popular": "最も人気"
+        "popular": "最も人気",
+        "yearlyPrice": "$79.99",
+        "yearlyPeriod": "年間",
+        "yearlySave": "33%お得",
+        "yearlyEquivalent": "$6.67/月"
       },
       "credits": {
         "name": "クレジットパック",
@@ -358,6 +376,11 @@
       "title": "今週の上限に達しました",
       "description": "今週の無料生成回数を使用しました。素晴らしいアバターを作成し続けるためにアップグレードしてください！",
       "bestValue": "最高の価値",
+      "proYearly": "Pro 年額",
+      "proYearlyPrice": "$79.99",
+      "proYearlyPeriod": "/年",
+      "proYearlySave": "33%お得",
+      "recommended": "おすすめ",
       "unlimitedGenerations": "無制限生成",
       "proMonthly": "プロ月額",
       "proPrice": "$9.99",
