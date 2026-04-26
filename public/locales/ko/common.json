@@ -129,6 +129,8 @@
     "uploadTitle": "사진 업로드",
     "uploadDesc": "드래그 앤 드롭 또는 클릭하여 업로드",
     "uploadTip": "지원 형식: JPG, PNG. 최대 2MB.",
+    "uploadErrorNotImage": "이미지 파일을 업로드하세요",
+    "uploadErrorFileSize": "이미지 크기는 2MB 미만이어야 합니다",
     "descPlaceholder": "생성하고 싶은 아바타를 설명하세요. 예: '안경을 쓴 긴 머리 소녀'",
     "generate": "아바타 생성",
     "generating": "생성 중...",

@@ -129,6 +129,8 @@
     "uploadTitle": "Télécharger une Photo",
     "uploadDesc": "Glisser-déposer ou cliquer pour télécharger",
     "uploadTip": "Formats supportés : JPG, PNG. Max 2MB.",
+    "uploadErrorNotImage": "Veuillez importer un fichier image",
+    "uploadErrorFileSize": "L'image doit être inférieure à 2 Mo",
     "descPlaceholder": "Décrivez l'avatar que vous souhaitez générer, ex. : 'Une fille avec des lunettes et les cheveux longs'",
     "generate": "Générer l'Avatar",
     "generating": "Génération...",

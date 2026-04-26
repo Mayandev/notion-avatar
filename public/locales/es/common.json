@@ -125,6 +125,8 @@
     "uploadTitle": "Subir Foto",
     "uploadDesc": "Arrastra y suelta o haz clic para subir",
     "uploadTip": "Formatos soportados: JPG, PNG. Máx. 2MB.",
+    "uploadErrorNotImage": "Sube un archivo de imagen",
+    "uploadErrorFileSize": "El tamaño de la imagen debe ser inferior a 2 MB",
     "descPlaceholder": "Describe el avatar que quieres generar, ej.: 'Una chica con gafas y pelo largo'",
     "generate": "Generar Avatar",
     "generating": "Generando...",

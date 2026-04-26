@@ -129,6 +129,8 @@
     "uploadTitle": "写真をアップロード",
     "uploadDesc": "ドラッグ&ドロップまたはクリックしてアップロード",
     "uploadTip": "対応形式: JPG, PNG。最大2MB。",
+    "uploadErrorNotImage": "画像ファイルをアップロードしてください",
+    "uploadErrorFileSize": "画像サイズは2MB未満にしてください",
     "descPlaceholder": "生成したいアバターを説明してください。例：「メガネをかけた長髪の女の子」",
     "generate": "アバターを生成",
     "generating": "生成中...",

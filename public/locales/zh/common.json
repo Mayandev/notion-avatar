@@ -129,6 +129,8 @@
     "uploadTitle": "上传照片",
     "uploadDesc": "拖拽或点击上传",
     "uploadTip": "支持格式: JPG, PNG。最大 2MB。",
+    "uploadErrorNotImage": "请上传图片文件",
+    "uploadErrorFileSize": "图片大小应小于 2MB",
     "descPlaceholder": "描述您想生成的头像，例如：'一个戴眼镜的长发女孩'",
     "generate": "生成头像",
     "generating": "生成中...",

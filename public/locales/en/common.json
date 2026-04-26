@@ -129,6 +129,8 @@
     "uploadTitle": "Upload Photo",
     "uploadDesc": "Drag & drop or click to upload",
     "uploadTip": "Supported formats: JPG, PNG. Max 2MB.",
+    "uploadErrorNotImage": "Please upload an image file",
+    "uploadErrorFileSize": "Image size should be less than 2MB",
     "descPlaceholder": "Describe the avatar you want to generate, e.g., 'A girl with glasses and long hair'",
     "generate": "Generate Avatar",
     "generating": "Generating...",

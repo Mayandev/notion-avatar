@@ -129,6 +129,8 @@
     "uploadTitle": "Foto hochladen",
     "uploadDesc": "Ziehen und ablegen oder klicken zum Hochladen",
     "uploadTip": "Unterstützte Formate: JPG, PNG. Max. 2MB.",
+    "uploadErrorNotImage": "Bitte lade eine Bilddatei hoch",
+    "uploadErrorFileSize": "Die Dateigröße muss unter 2 MB liegen",
     "descPlaceholder": "Beschreibe den Avatar, den du generieren möchtest, z.B.: 'Ein Mädchen mit Brille und langen Haaren'",
     "generate": "Avatar generieren",
     "generating": "Generiere...",
