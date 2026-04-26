@@ -72,7 +72,7 @@ export default function GeneratedResult({
           onClick={onReset}
           className="flex-1 py-3 px-6 rounded-full border-3 border-gray-200 text-gray-600 font-bold hover:border-black hover:text-black transition-colors"
         >
-          Try Again
+          {t('ai.tryAgain')}
         </button>
         <button
           type="button"
@@ -98,7 +98,7 @@ export default function GeneratedResult({
       </div>
 
       {/* Variant previews for free users */}
-      {!isPaidUser && <VariantPreviews onUpgradeClick={onUpgradeClick} />}
+      {/* {!isPaidUser && <VariantPreviews onUpgradeClick={onUpgradeClick} />} */}
     </div>
   );
 }
