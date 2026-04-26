@@ -58,7 +58,10 @@ export default async function handler(
 
         if (!userId) break;
 
-        if (priceType === 'monthly' && session.subscription) {
+        if (
+          (priceType === 'monthly' || priceType === 'yearly') &&
+          session.subscription
+        ) {
           // Handle subscription - use any to handle Stripe API response flexibility
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           const subscriptionData: any = await stripe.subscriptions.retrieve(
@@ -86,7 +89,7 @@ export default async function handler(
                 user_id: userId,
                 stripe_subscription_id: subscriptionData.id,
                 status: 'active',
-                plan_type: 'monthly',
+                plan_type: priceType === 'yearly' ? 'yearly' : 'monthly',
                 current_period_start: periodStart,
                 current_period_end: periodEnd,
               },
@@ -164,7 +167,8 @@ export default async function handler(
           !subscriptionData.cancel_at_period_end
         ) {
           status = 'active';
-          planType = 'monthly';
+          planType =
+            subscriptionData.plan?.interval === 'year' ? 'yearly' : 'monthly';
         } else if (subscriptionData.status === 'active' && isExpired) {
           // Subscription expired but Stripe hasn't sent deleted event yet
           status = 'canceled';
@@ -175,7 +179,8 @@ export default async function handler(
         ) {
           // Subscription is active but will cancel at period end
           status = 'active';
-          planType = 'monthly';
+          planType =
+            subscriptionData.plan?.interval === 'year' ? 'yearly' : 'monthly';
         }
 
         await supabase

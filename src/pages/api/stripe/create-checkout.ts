@@ -24,7 +24,7 @@ export default async function handler(
       return res.status(401).json({ error: 'Unauthorized' });
     }
 
-    const { priceType } = req.body; // 'monthly' or 'credits'
+    const { priceType } = req.body; // 'monthly', 'yearly', or 'credits'
 
     // Get or create Stripe customer
     const { data: profile } = await supabase
@@ -68,11 +68,20 @@ export default async function handler(
         .eq('id', user.id);
     }
 
-    // Determine the price ID based on type
-    const priceId =
-      priceType === 'monthly'
-        ? process.env.STRIPE_MONTHLY_PRICE_ID
-        : process.env.STRIPE_CREDITS_PRICE_ID;
+    // Determine the price ID and mode based on type
+    let priceId: string | undefined;
+    let checkoutMode: 'subscription' | 'payment';
+
+    if (priceType === 'monthly') {
+      priceId = process.env.STRIPE_MONTHLY_PRICE_ID;
+      checkoutMode = 'subscription';
+    } else if (priceType === 'yearly') {
+      priceId = process.env.STRIPE_YEARLY_PRICE_ID;
+      checkoutMode = 'subscription';
+    } else {
+      priceId = process.env.STRIPE_CREDITS_PRICE_ID;
+      checkoutMode = 'payment';
+    }
 
     if (!priceId) {
       return res.status(500).json({ error: 'Price not configured' });
@@ -81,7 +90,7 @@ export default async function handler(
     // Create checkout session
     const session = await stripe.checkout.sessions.create({
       customer: customerId,
-      mode: priceType === 'monthly' ? 'subscription' : 'payment',
+      mode: checkoutMode,
       payment_method_types: ['card'],
       line_items: [
         {

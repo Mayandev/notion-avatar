@@ -16,7 +16,7 @@ export default function GeneratingStatus() {
         {t('ai.generating')}
       </h3>
       <p className="text-gray-500 text-sm max-w-xs text-center">
-        Creating your unique Notion avatar...
+        {t('ai.generatingSubtitle')}
       </p>
     </div>
   );

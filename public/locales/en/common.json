@@ -129,10 +129,14 @@
     "uploadTitle": "Upload Photo",
     "uploadDesc": "Drag & drop or click to upload",
     "uploadTip": "Supported formats: JPG, PNG. Max 2MB.",
+    "uploadErrorNotImage": "Please upload an image file",
+    "uploadErrorFileSize": "Image size should be less than 2MB",
     "descPlaceholder": "Describe the avatar you want to generate, e.g., 'A girl with glasses and long hair'",
     "generate": "Generate Avatar",
     "generating": "Generating...",
+    "generatingSubtitle": "Creating your unique Notion avatar...",
     "download": "Download",
+    "tryAgain": "Try Again",
     "limitReached": "Weekly limit reached",
     "limitDesc": "You have used your free weekly quota. Please come back next week or upgrade for more.",
     "upgrade": "Upgrade Now",
@@ -140,6 +144,16 @@
     "generationsAvailable": "{{count}} generations available",
     "freeThisWeekAndCredits": "({{free}} free this week + {{credits}} credits)",
     "remainingFreeThisWeek": "Remaining free generations this week: {{remaining}}/{{total}}",
+    "remainingGenerations": "{{remaining}} free generations left this week",
+    "weeklyLimitUsed": "Weekly free quota used up, resets next Monday",
+    "unlockStyles": "Unlock more styles with Pro",
+    "watermarkHint": "Free tier includes watermark. Upgrade to Pro for watermark-free downloads.",
+    "downloadUpgrade": {
+      "title": "Get Watermark-Free Downloads",
+      "description": "Upgrade to Pro for high-quality, watermark-free avatar downloads.",
+      "upgrade": "Upgrade to Pro",
+      "dismiss": "Download with Watermark"
+    },
     "error": "Something went wrong. Please try again.",
     "examples": {
       "photoTitle": "Photo Transformation",
@@ -193,7 +207,7 @@
       "q1": "How long does AI generation take?",
       "a1": "Usually just a few seconds. AI processes your request in the background and you can download once it's complete.",
       "q2": "How many generations can free users make per week?",
-      "a2": "Free users can generate 1 avatar per week. Upgrade to Pro for unlimited generations.",
+      "a2": "Free users can generate 3 avatars per week. Upgrade to Pro for unlimited generations.",
       "q3": "How do I upgrade to Pro?",
       "a3": "Click the 'Upgrade Now' button on the page, choose Pro Monthly subscription or Credit Pack, complete payment to enjoy more features.",
       "q4": "Can I use generated avatars commercially?",
@@ -256,7 +270,7 @@
     "cancelsOn": "Cancels on",
     "renewsOn": "Renews on",
     "manageBilling": "Manage Billing",
-    "freeGenerationPerDay": "1 free generation per week",
+    "freeGenerationPerDay": "3 free generations per week",
     "upgradeToPro": "Upgrade to Pro",
     "credits": "Credits",
     "creditsRemaining": "credits remaining",
@@ -296,6 +310,10 @@
     "pageDescription": "Choose the perfect plan for your avatar creation needs",
     "title": "Simple, Transparent Pricing",
     "description": "Choose the plan that works best for you. Upgrade anytime.",
+    "toggle": {
+      "monthly": "Monthly",
+      "yearly": "Yearly"
+    },
     "plans": {
       "free": {
         "name": "Free",
@@ -303,7 +321,7 @@
         "period": "forever",
         "description": "Perfect for trying out",
         "features": {
-          "1": "1 generation per week",
+          "1": "3 generations per week",
           "2": "Photo to Avatar",
           "3": "Text to Avatar",
           "4": "Standard quality"
@@ -325,7 +343,11 @@
           "7": "Free resource pack downloads"
         },
         "buttonText": "Subscribe Now",
-        "popular": "Most Popular"
+        "popular": "Most Popular",
+        "yearlyPrice": "$79.99",
+        "yearlyPeriod": "per year",
+        "yearlySave": "SAVE 33%",
+        "yearlyEquivalent": "$6.67/mo"
       },
       "credits": {
         "name": "Credit Pack",
@@ -348,7 +370,7 @@
     "faq": {
       "title": "Frequently Asked Questions",
       "q1": "What happens when I run out of free generations?",
-      "a1": "Free users get 1 generation per week. Once you've used it, you can either wait until next week, purchase a credit pack, or subscribe to Pro for unlimited access.",
+      "a1": "Free users get 3 generations per week. Once you've used them, you can either wait until next week, purchase a credit pack, or subscribe to Pro for unlimited access.",
       "q2": "Do credits expire?",
       "a2": "No! Credits never expire. Use them whenever you need them.",
       "q3": "Can I cancel my subscription anytime?",
@@ -356,8 +378,13 @@
     },
     "upgradeModal": {
       "title": "Weekly Limit Reached",
-      "description": "You've used your free generation for this week. Upgrade to continue creating amazing avatars!",
+      "description": "You've used your free generations for this week. Upgrade to continue creating amazing avatars!",
       "bestValue": "Best Value",
+      "proYearly": "Pro Yearly",
+      "proYearlyPrice": "$79.99",
+      "proYearlyPeriod": "/year",
+      "proYearlySave": "Save 33%",
+      "recommended": "Recommended",
       "unlimitedGenerations": "Unlimited generations",
       "proMonthly": "Pro Monthly",
       "proPrice": "$9.99",

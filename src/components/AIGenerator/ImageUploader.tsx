@@ -18,12 +18,12 @@ export default function ImageUploader({
   const handleFile = (file: File) => {
     setError(null);
     if (!file.type.startsWith('image/')) {
-      setError('Please upload an image file');
+      setError(t('ai.uploadErrorNotImage'));
       return;
     }
 
     if (file.size > 2 * 1024 * 1024) {
-      setError('Image size should be less than 2MB');
+      setError(t('ai.uploadErrorFileSize'));
       return;
     }
 

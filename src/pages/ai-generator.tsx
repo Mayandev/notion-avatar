@@ -18,6 +18,7 @@ import ImageUploader from '@/components/AIGenerator/ImageUploader';
 import TextInput from '@/components/AIGenerator/TextInput';
 import GeneratingStatus from '@/components/AIGenerator/GeneratingStatus';
 import GeneratedResult from '@/components/AIGenerator/GeneratedResult';
+import DownloadUpgradePrompt from '@/components/AIGenerator/DownloadUpgradePrompt';
 import DailyLimitBanner from '@/components/AIGenerator/DailyLimitBanner';
 import ProductHuntBanner from '@/components/ProductHuntBanner';
 import Image from 'next/legacy/image';
@@ -60,6 +61,7 @@ export default function AIGeneratorPage({
   const [isGenerating, setIsGenerating] = useState(false);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [isUpgradeModalOpen, setIsUpgradeModalOpen] = useState(false);
+  const [isDownloadPromptOpen, setIsDownloadPromptOpen] = useState(false);
 
   const { usageState, incrementUsage, checkUsage } = useAIUsage();
 
@@ -143,12 +145,33 @@ export default function AIGeneratorPage({
 
   const handleDownload = () => {
     if (!generatedImage) return;
+
+    const isPaidUser =
+      usageState.isUnlimited || (usageState.paidCredits || 0) > 0;
+
+    if (!isPaidUser && !isDownloadPromptOpen) {
+      setIsDownloadPromptOpen(true);
+      return;
+    }
+
     const link = document.createElement('a');
     link.href = generatedImage;
     link.download = `notion-avatar-ai-${Date.now()}.png`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+    setIsDownloadPromptOpen(false);
+  };
+
+  const handleDownloadAnyway = () => {
+    if (!generatedImage) return;
+    const link = document.createElement('a');
+    link.href = generatedImage;
+    link.download = `notion-avatar-ai-${Date.now()}.png`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    setIsDownloadPromptOpen(false);
   };
 
   const canGenerate = usageState.isUnlimited || usageState.remaining > 0;
@@ -240,6 +263,11 @@ export default function AIGeneratorPage({
         buttonVariant: 'primary' as const,
         priceType: 'monthly',
         popular: true,
+        yearlyPrice: t('pricing.plans.pro.yearlyPrice'),
+        yearlyPeriod: t('pricing.plans.pro.yearlyPeriod'),
+        yearlySave: t('pricing.plans.pro.yearlySave'),
+        yearlyEquivalent: t('pricing.plans.pro.yearlyEquivalent'),
+        yearlyPriceType: 'yearly',
       },
       {
         name: t('pricing.plans.credits.name'),
@@ -267,11 +295,18 @@ export default function AIGeneratorPage({
     }
 
     if (generatedImage) {
+      const isPaidUser =
+        usageState.isUnlimited || (usageState.paidCredits || 0) > 0;
       return (
         <GeneratedResult
           image={generatedImage}
           onDownload={handleDownload}
           onReset={() => setGeneratedImage(null)}
+          remaining={usageState.freeRemaining}
+          total={usageState.total}
+          isUnlimited={usageState.isUnlimited}
+          isPaidUser={isPaidUser}
+          onUpgradeClick={() => setIsUpgradeModalOpen(true)}
         />
       );
     }
@@ -451,6 +486,15 @@ export default function AIGeneratorPage({
             setIsUpgradeModalOpen(false);
             setIsAuthModalOpen(true);
           }}
+        />
+        <DownloadUpgradePrompt
+          isOpen={isDownloadPromptOpen}
+          onClose={() => setIsDownloadPromptOpen(false)}
+          onUpgrade={() => {
+            setIsDownloadPromptOpen(false);
+            setIsUpgradeModalOpen(true);
+          }}
+          onDownloadAnyway={handleDownloadAnyway}
         />
 
         <main className="flex-grow container mx-auto px-4 py-12">

@@ -129,10 +129,14 @@
     "uploadTitle": "上传照片",
     "uploadDesc": "拖拽或点击上传",
     "uploadTip": "支持格式: JPG, PNG。最大 2MB。",
+    "uploadErrorNotImage": "请上传图片文件",
+    "uploadErrorFileSize": "图片大小应小于 2MB",
     "descPlaceholder": "描述您想生成的头像，例如：'一个戴眼镜的长发女孩'",
     "generate": "生成头像",
     "generating": "生成中...",
+    "generatingSubtitle": "正在为你创建专属的 Notion 风格头像…",
     "download": "下载头像",
+    "tryAgain": "再试一次",
     "limitReached": "本周额度已用完",
     "limitDesc": "您已使用完本周的免费额度。请下周再来，或升级解锁更多次数。",
     "upgrade": "立即升级",
@@ -140,6 +144,16 @@
     "generationsAvailable": "{{count}} 次生成可用",
     "freeThisWeekAndCredits": "(本周免费 {{free}} 次 + {{credits}} 积分)",
     "remainingFreeThisWeek": "本周剩余免费生成次数：{{remaining}}/{{total}}",
+    "remainingGenerations": "本周剩余 {{remaining}} 次免费生成",
+    "weeklyLimitUsed": "本周免费额度已用完，下周一重置",
+    "unlockStyles": "升级 Pro 解锁更多风格",
+    "watermarkHint": "免费版包含水印，升级 Pro 获取无水印下载。",
+    "downloadUpgrade": {
+      "title": "获取无水印下载",
+      "description": "升级 Pro 享受高清无水印头像下载。",
+      "upgrade": "升级 Pro",
+      "dismiss": "下载带水印版本"
+    },
     "error": "出错了，请重试。",
     "examples": {
       "photoTitle": "照片转换效果",
@@ -193,7 +207,7 @@
       "q1": "AI 生成需要多长时间？",
       "a1": "通常只需几秒钟。AI 会在后台处理您的请求，完成后即可下载。",
       "q2": "免费用户每周可以生成多少次？",
-      "a2": "免费用户每周可以生成 1 个头像。升级到专业版可享受无限生成。",
+      "a2": "免费用户每周可以生成 3 个头像。升级到专业版可享受无限生成。",
       "q3": "如何升级到专业版？",
       "a3": "点击页面上的「立即升级」按钮，选择专业版月付订阅或积分包，完成支付即可享受更多功能。",
       "q4": "生成的头像可以商用吗？",
@@ -256,7 +270,7 @@
     "cancelsOn": "取消于",
     "renewsOn": "续费于",
     "manageBilling": "管理账单",
-    "freeGenerationPerDay": "每周 1 次免费生成",
+    "freeGenerationPerDay": "每周 3 次免费生成",
     "upgradeToPro": "升级到 Pro",
     "credits": "积分",
     "creditsRemaining": "剩余积分",
@@ -296,6 +310,10 @@
     "pageDescription": "选择最适合您头像创建需求的方案",
     "title": "简单透明的价格",
     "description": "选择最适合您的方案。随时可以升级。",
+    "toggle": {
+      "monthly": "月付",
+      "yearly": "年付"
+    },
     "plans": {
       "free": {
         "name": "免费版",
@@ -303,7 +321,7 @@
         "period": "永久",
         "description": "适合试用",
         "features": {
-          "1": "每周 1 次生成",
+          "1": "每周 3 次生成",
           "2": "照片转头像",
           "3": "文字生成头像",
           "4": "标准质量"
@@ -325,7 +343,11 @@
           "7": "免费资源包下载"
         },
         "buttonText": "立即订阅",
-        "popular": "最受欢迎"
+        "popular": "最受欢迎",
+        "yearlyPrice": "$79.99",
+        "yearlyPeriod": "每年",
+        "yearlySave": "省33%",
+        "yearlyEquivalent": "$6.67/月"
       },
       "credits": {
         "name": "积分包",
@@ -348,7 +370,7 @@
     "faq": {
       "title": "常见问题",
       "q1": "免费生成次数用完后会怎样？",
-      "a1": "免费用户每周可以生成 1 次。用完后，您可以等到下周，购买积分包，或订阅专业版以获得无限访问。",
+      "a1": "免费用户每周可以生成 3 次。用完后，您可以等到下周，购买积分包，或订阅专业版以获得无限访问。",
       "q2": "积分会过期吗？",
       "a2": "不会！积分永不过期。需要时随时使用。",
       "q3": "我可以随时取消订阅吗？",
@@ -358,6 +380,11 @@
       "title": "本周额度已用完",
       "description": "您已使用完本周的免费生成次数。升级以继续创建精彩的头像！",
       "bestValue": "最超值",
+      "proYearly": "Pro 年付",
+      "proYearlyPrice": "$79.99",
+      "proYearlyPeriod": "/年",
+      "proYearlySave": "省33%",
+      "recommended": "推荐",
       "unlimitedGenerations": "无限生成",
       "proMonthly": "专业版月付",
       "proPrice": "$9.99",

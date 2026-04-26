@@ -13,6 +13,11 @@ interface Plan {
   buttonVariant: 'primary' | 'secondary';
   priceType: string | null;
   popular?: boolean;
+  yearlyPrice?: string;
+  yearlyPeriod?: string;
+  yearlySave?: string;
+  yearlyEquivalent?: string;
+  yearlyPriceType?: string;
 }
 
 interface PricingPlansProps {
@@ -31,8 +36,18 @@ export default function PricingPlans({
   const { t } = useTranslation('common');
   const { user, subscription } = useAuth();
   const [loadingPlan, setLoadingPlan] = useState<string | null>(null);
+  const [billingCycle, setBillingCycle] = useState<'monthly' | 'yearly'>(
+    'yearly',
+  );
 
-  const handleSelectPlan = async (priceType: string | null) => {
+  const checkoutPriceType = (plan: Plan) =>
+    billingCycle === 'yearly' && plan.yearlyPriceType
+      ? plan.yearlyPriceType
+      : plan.priceType;
+
+  const handleSelectPlan = async (plan: Plan) => {
+    const priceType = checkoutPriceType(plan);
+
     if (!priceType) return;
 
     if (!user) {
@@ -77,7 +92,8 @@ export default function PricingPlans({
     if (
       (planName === t('pricing.plans.pro.name') ||
         planName === 'Pro Monthly') &&
-      subscription?.plan_type === 'monthly' &&
+      (subscription?.plan_type === 'monthly' ||
+        subscription?.plan_type === 'yearly') &&
       subscription?.status === 'active'
     ) {
       return true;
@@ -100,6 +116,39 @@ export default function PricingPlans({
         </div>
       )}
 
+      {/* Billing cycle toggle */}
+      <div className="flex items-center justify-center gap-3 mb-10">
+        <span
+          className={`text-sm font-medium ${
+            billingCycle === 'monthly' ? 'text-gray-900' : 'text-gray-400'
+          }`}
+        >
+          {t('pricing.toggle.monthly')}
+        </span>
+        <button
+          type="button"
+          onClick={() =>
+            setBillingCycle(billingCycle === 'monthly' ? 'yearly' : 'monthly')
+          }
+          className={`relative w-12 h-6 rounded-full transition-colors ${
+            billingCycle === 'yearly' ? 'bg-black' : 'bg-gray-300'
+          }`}
+        >
+          <span
+            className={`absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full shadow transition-transform ${
+              billingCycle === 'yearly' ? 'translate-x-6' : 'translate-x-0'
+            }`}
+          />
+        </button>
+        <span
+          className={`text-sm font-medium ${
+            billingCycle === 'yearly' ? 'text-gray-900' : 'text-gray-400'
+          }`}
+        >
+          {t('pricing.toggle.yearly')}
+        </span>
+      </div>
+
       <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
         {plans.map((plan) => (
           <div
@@ -115,6 +164,13 @@ export default function PricingPlans({
                 </span>
               </div>
             )}
+            {plan.popular && billingCycle === 'yearly' && plan.yearlySave && (
+              <div className="absolute -top-4 right-4">
+                <span className="bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full">
+                  {plan.yearlySave}
+                </span>
+              </div>
+            )}
 
             <div className="text-center mb-6">
               <h3 className="text-xl font-bold text-gray-900 mb-2">
@@ -122,10 +178,22 @@ export default function PricingPlans({
               </h3>
               <div className="flex items-baseline justify-center gap-1">
                 <span className="text-4xl font-bold text-gray-900">
-                  {plan.price}
+                  {billingCycle === 'yearly' && plan.yearlyPrice
+                    ? plan.yearlyPrice
+                    : plan.price}
                 </span>
-                <span className="text-gray-500">/{plan.period}</span>
+                <span className="text-gray-500">
+                  /
+                  {billingCycle === 'yearly' && plan.yearlyPeriod
+                    ? plan.yearlyPeriod
+                    : plan.period}
+                </span>
               </div>
+              {billingCycle === 'yearly' && plan.yearlyEquivalent && (
+                <p className="text-sm text-green-600 font-medium mt-1">
+                  {plan.yearlyEquivalent}
+                </p>
+              )}
               <p className="text-gray-600 mt-2">{plan.description}</p>
             </div>
 
@@ -151,10 +219,11 @@ export default function PricingPlans({
             </ul>
 
             <button
-              onClick={() => handleSelectPlan(plan.priceType)}
+              onClick={() => handleSelectPlan(plan)}
               disabled={
                 isCurrentPlan(plan.name) ||
-                (loadingPlan !== null && loadingPlan === plan.priceType)
+                (loadingPlan !== null &&
+                  loadingPlan === checkoutPriceType(plan))
               }
               type="button"
               className={`w-full py-3 px-4 rounded-xl font-bold transition-all ${
@@ -165,7 +234,7 @@ export default function PricingPlans({
                   : 'bg-white text-black border-2 border-black hover:bg-gray-50'
               } disabled:opacity-50`}
             >
-              {loadingPlan !== null && loadingPlan === plan.priceType
+              {loadingPlan !== null && loadingPlan === checkoutPriceType(plan)
                 ? t('pricing.loading')
                 : isCurrentPlan(plan.name)
                 ? t('pricing.currentPlan')

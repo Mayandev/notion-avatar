@@ -129,10 +129,14 @@
     "uploadTitle": "Foto hochladen",
     "uploadDesc": "Ziehen und ablegen oder klicken zum Hochladen",
     "uploadTip": "Unterstützte Formate: JPG, PNG. Max. 2MB.",
+    "uploadErrorNotImage": "Bitte lade eine Bilddatei hoch",
+    "uploadErrorFileSize": "Die Dateigröße muss unter 2 MB liegen",
     "descPlaceholder": "Beschreibe den Avatar, den du generieren möchtest, z.B.: 'Ein Mädchen mit Brille und langen Haaren'",
     "generate": "Avatar generieren",
     "generating": "Generiere...",
+    "generatingSubtitle": "Dein einzigartiges Notion-Avatar wird erstellt …",
     "download": "Herunterladen",
+    "tryAgain": "Noch mal versuchen",
     "limitReached": "Wochenlimit erreicht",
     "limitDesc": "Du hast dein kostenloses Wochenkontingent aufgebraucht. Komm nächste Woche wieder oder upgrade für mehr.",
     "upgrade": "Jetzt upgraden",
@@ -140,6 +144,16 @@
     "generationsAvailable": "{{count}} Generierungen verfügbar",
     "freeThisWeekAndCredits": "({{free}} kostenlos diese Woche + {{credits}} Credits)",
     "remainingFreeThisWeek": "Verbleibende kostenlose Generierungen diese Woche: {{remaining}}/{{total}}",
+    "remainingGenerations": "{{remaining}} kostenlose Generierungen diese Woche übrig",
+    "weeklyLimitUsed": "Wöchentliches Gratis-Kontingent aufgebraucht, nächsten Montag zurückgesetzt",
+    "unlockStyles": "Schalten Sie mehr Stile mit Pro frei",
+    "watermarkHint": "Die kostenlose Stufe enthält ein Wasserzeichen. Upgraden Sie auf Pro für Downloads ohne Wasserzeichen.",
+    "downloadUpgrade": {
+      "title": "Downloads ohne Wasserzeichen",
+      "description": "Upgraden Sie auf Pro für hochwertige Avatar-Downloads ohne Wasserzeichen.",
+      "upgrade": "Auf Pro upgraden",
+      "dismiss": "Mit Wasserzeichen herunterladen"
+    },
     "error": "Etwas ist schief gelaufen. Bitte versuche es erneut.",
     "examples": {
       "photoTitle": "Foto-Transformation",
@@ -193,7 +207,7 @@
       "q1": "Wie lange dauert die AI-Generierung?",
       "a1": "Normalerweise nur wenige Sekunden. AI verarbeitet deine Anfrage im Hintergrund und du kannst herunterladen, sobald es fertig ist.",
       "q2": "Wie viele Generierungen können kostenlose Benutzer pro Woche machen?",
-      "a2": "Kostenlose Benutzer können 1 Avatar pro Woche generieren. Upgrade auf Pro für unbegrenzte Generierungen.",
+      "a2": "Kostenlose Benutzer können 3 Avatare pro Woche generieren. Upgrade auf Pro für unbegrenzte Generierungen.",
       "q3": "Wie upgrade ich auf Pro?",
       "a3": "Klicke auf die Schaltfläche 'Jetzt Upgraden' auf der Seite, wähle Pro Monatliches Abonnement oder Credits-Paket, schließe die Zahlung ab, um mehr Funktionen zu genießen.",
       "q4": "Kann ich generierte Avatare kommerziell verwenden?",
@@ -256,7 +270,7 @@
     "cancelsOn": "Kündigt am",
     "renewsOn": "Erneuert am",
     "manageBilling": "Rechnungsverwaltung",
-    "freeGenerationPerDay": "1 kostenlose Generierung pro Woche",
+    "freeGenerationPerDay": "3 kostenlose Generierungen pro Woche",
     "upgradeToPro": "Auf Pro upgraden",
     "credits": "Credits",
     "creditsRemaining": "verbleibende Credits",
@@ -296,6 +310,10 @@
     "pageDescription": "Wählen Sie den perfekten Plan für Ihre Avatar-Erstellung",
     "title": "Einfache, transparente Preise",
     "description": "Wählen Sie den Plan, der am besten zu Ihnen passt. Jederzeit upgraden.",
+    "toggle": {
+      "monthly": "Monatlich",
+      "yearly": "Jährlich"
+    },
     "plans": {
       "free": {
         "name": "Kostenlos",
@@ -303,7 +321,7 @@
         "period": "für immer",
         "description": "Perfekt zum Ausprobieren",
         "features": {
-          "1": "1 Generierung pro Woche",
+          "1": "3 Generierungen pro Woche",
           "2": "Foto zu Avatar",
           "3": "Text zu Avatar",
           "4": "Standardqualität"
@@ -325,7 +343,11 @@
           "7": "Kostenlose Ressourcenpaket-Downloads"
         },
         "buttonText": "Jetzt abonnieren",
-        "popular": "Beliebtester"
+        "popular": "Beliebtester",
+        "yearlyPrice": "$79.99",
+        "yearlyPeriod": "pro Jahr",
+        "yearlySave": "33% SPAREN",
+        "yearlyEquivalent": "$6.67/Monat"
       },
       "credits": {
         "name": "Credits-Paket",
@@ -348,7 +370,7 @@
     "faq": {
       "title": "Häufig gestellte Fragen",
       "q1": "Was passiert, wenn mir die kostenlosen Generierungen ausgehen?",
-      "a1": "Kostenlose Nutzer erhalten 1 Generierung pro Woche. Sobald Sie diese verwendet haben, können Sie entweder bis nächste Woche warten, ein Credits-Paket kaufen oder Pro für unbegrenzten Zugang abonnieren.",
+      "a1": "Kostenlose Nutzer erhalten 3 Generierungen pro Woche. Sobald Sie diese aufgebraucht haben, können Sie entweder bis nächste Woche warten, ein Credits-Paket kaufen oder Pro für unbegrenzten Zugang abonnieren.",
       "q2": "Laufen Credits ab?",
       "a2": "Nein! Credits laufen nie ab. Verwenden Sie sie, wann immer Sie sie benötigen.",
       "q3": "Kann ich mein Abonnement jederzeit kündigen?",
@@ -356,8 +378,13 @@
     },
     "upgradeModal": {
       "title": "Wochenlimit erreicht",
-      "description": "Sie haben Ihre kostenlose Generierung für diese Woche verwendet. Upgraden Sie, um weiterhin großartige Avatare zu erstellen!",
+      "description": "Sie haben Ihre kostenlosen Generierungen für diese Woche aufgebraucht. Upgraden Sie, um weiterhin großartige Avatare zu erstellen!",
       "bestValue": "Bester Wert",
+      "proYearly": "Pro Jährlich",
+      "proYearlyPrice": "$79.99",
+      "proYearlyPeriod": "/Jahr",
+      "proYearlySave": "33% sparen",
+      "recommended": "Empfohlen",
       "unlimitedGenerations": "Unbegrenzte Generierungen",
       "proMonthly": "Pro Monatlich",
       "proPrice": "$9.99",
