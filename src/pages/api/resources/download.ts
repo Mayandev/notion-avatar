@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { createClient } from '@/lib/supabase/server';
+import { getEffectiveSubscription, isProActive } from '@/lib/subscription';
 
 export default async function handler(
   req: NextApiRequest,
@@ -29,16 +30,9 @@ export default async function handler(
       return res.status(400).json({ error: 'Invalid resource pack ID' });
     }
 
-    // Check if user is a Pro subscriber
-    const { data: subscription } = await supabase
-      .from('subscriptions')
-      .select('plan_type, status')
-      .eq('user_id', user.id)
-      .single();
-
-    const isPro =
-      subscription?.plan_type === 'monthly' &&
-      subscription?.status === 'active';
+    // Check if user is a Pro subscriber (monthly OR yearly, period not expired)
+    const subscription = await getEffectiveSubscription(supabase, user.id);
+    const isPro = isProActive(subscription);
 
     // If not a Pro user, check if user has purchased this resource pack
     if (!isPro) {

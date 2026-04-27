@@ -9,6 +9,7 @@ import {
 } from '@/lib/supabase/server';
 import { getWeekStart, FREE_WEEKLY_LIMIT } from '@/lib/date';
 import { addWatermark } from '@/lib/watermark';
+import { getEffectiveSubscription, isProActive } from '@/lib/subscription';
 
 export default async function handler(
   req: NextApiRequest,
@@ -56,18 +57,9 @@ export default async function handler(
     let isPaidUser = false;
 
     if (user) {
-      // Check subscription
-      const { data: subscription } = await supabase
-        .from('subscriptions')
-        .select('*')
-        .eq('user_id', user.id)
-        .single();
+      const subscription = await getEffectiveSubscription(supabase, user.id);
 
-      if (
-        (subscription?.plan_type === 'monthly' ||
-          subscription?.plan_type === 'yearly') &&
-        subscription?.status === 'active'
-      ) {
+      if (isProActive(subscription)) {
         // Unlimited for paid subscribers
         canGenerate = true;
         isPaidUser = true;
@@ -168,20 +160,13 @@ export default async function handler(
           .eq('id', credits[0].id);
       }
     } else {
-      // Update daily usage (for free tier)
-      const { data: subscription } = await supabase
-        .from('subscriptions')
-        .select('plan_type, status')
-        .eq('user_id', user!.id)
-        .single();
+      // Update daily usage (for free tier).
+      // Re-read via getEffectiveSubscription so an expired-but-stale-active
+      // row gets downgraded here too, and we only skip usage tracking when
+      // the user is genuinely Pro.
+      const subscription = await getEffectiveSubscription(supabase, user!.id);
 
-      if (
-        !(
-          (subscription?.plan_type === 'monthly' ||
-            subscription?.plan_type === 'yearly') &&
-          subscription?.status === 'active'
-        )
-      ) {
+      if (!isProActive(subscription)) {
         const today = new Date().toISOString().split('T')[0];
 
         // Use RPC to atomically insert or increment daily usage count

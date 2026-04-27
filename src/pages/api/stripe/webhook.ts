@@ -73,13 +73,24 @@ export default async function handler(
             JSON.stringify(subscriptionData, null, 2),
           );
 
-          // Safely convert timestamps
-          const startTs = subscriptionData.current_period_start;
-          const endTs = subscriptionData.current_period_end;
-          const periodStart = startTs
-            ? new Date(startTs * 1000).toISOString()
-            : null;
-          const periodEnd = endTs ? new Date(endTs * 1000).toISOString() : null;
+          // Stripe API >= 2025-05-28 moved current_period_start/end from the
+          // Subscription object to its line items; fall back to the legacy
+          // top-level fields for older API versions.
+          const subscriptionItem = subscriptionData.items?.data?.[0];
+          const startTs =
+            subscriptionItem?.current_period_start ??
+            subscriptionData.current_period_start;
+          const endTs =
+            subscriptionItem?.current_period_end ??
+            subscriptionData.current_period_end;
+          const periodStart =
+            typeof startTs === 'number'
+              ? new Date(startTs * 1000).toISOString()
+              : null;
+          const periodEnd =
+            typeof endTs === 'number'
+              ? new Date(endTs * 1000).toISOString()
+              : null;
 
           // Use upsert to handle cases where subscription record may not exist
           const { error: upsertError } = await supabase
@@ -139,17 +150,23 @@ export default async function handler(
       case 'customer.subscription.updated': {
         const subscriptionData = event.data.object as any;
 
-        // Safely convert timestamps with validation
-        const startTs = subscriptionData.current_period_start;
-        const endTs = subscriptionData.current_period_end;
+        // Stripe API >= 2025-05-28 moved current_period_start/end from the
+        // Subscription object to its line items; fall back to the legacy
+        // top-level fields for older API versions.
+        const subscriptionItem = subscriptionData.items?.data?.[0];
+        const startTs =
+          subscriptionItem?.current_period_start ??
+          subscriptionData.current_period_start;
+        const endTs =
+          subscriptionItem?.current_period_end ??
+          subscriptionData.current_period_end;
 
-        // Validate timestamps before creating Date objects
         const periodStart =
-          startTs && typeof startTs === 'number'
+          typeof startTs === 'number'
             ? new Date(startTs * 1000).toISOString()
             : null;
         const periodEnd =
-          endTs && typeof endTs === 'number'
+          typeof endTs === 'number'
             ? new Date(endTs * 1000).toISOString()
             : null;
 

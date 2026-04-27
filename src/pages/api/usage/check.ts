@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { createClient } from '@/lib/supabase/server';
 import { getWeekStart, FREE_WEEKLY_LIMIT } from '@/lib/date';
+import { getEffectiveSubscription, isProActive } from '@/lib/subscription';
 
 export default async function handler(
   req: NextApiRequest,
@@ -26,43 +27,9 @@ export default async function handler(
       });
     }
 
-    // Check subscription status
-    const { data: subscription } = await supabase
-      .from('subscriptions')
-      .select('*')
-      .eq('user_id', user.id)
-      .single();
+    const subscription = await getEffectiveSubscription(supabase, user.id);
 
-    // Check if subscription has expired
-    let isSubscriptionActive = false;
-    if (
-      (subscription?.plan_type === 'monthly' ||
-        subscription?.plan_type === 'yearly') &&
-      subscription?.status === 'active'
-    ) {
-      // If current_period_end is null, consider subscription as active
-      if (!subscription.current_period_end) {
-        isSubscriptionActive = true;
-      } else {
-        const periodEnd = new Date(subscription.current_period_end);
-        const now = new Date();
-        isSubscriptionActive = periodEnd >= now;
-
-        // If subscription has expired, update it
-        if (!isSubscriptionActive) {
-          await supabase
-            .from('subscriptions')
-            .update({
-              status: 'canceled',
-              plan_type: 'free',
-            })
-            .eq('user_id', user.id);
-        }
-      }
-    }
-
-    // If user has active paid subscription, they have unlimited usage
-    if (isSubscriptionActive) {
+    if (isProActive(subscription)) {
       return res.status(200).json({
         remaining: -1, // -1 indicates unlimited
         total: -1,

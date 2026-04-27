@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { createClient } from '@/lib/supabase/server';
+import { getEffectiveSubscription, isProActive } from '@/lib/subscription';
 
 // All available resource packs
 const ALL_RESOURCE_PACKS = ['design-pack', 'scribbles-pack'];
@@ -22,19 +23,11 @@ export default async function handler(
       return res.status(401).json({ error: 'Unauthorized' });
     }
 
-    // Check if user is a Pro subscriber
-    const { data: subscription } = await supabase
-      .from('subscriptions')
-      .select('plan_type, status')
-      .eq('user_id', user.id)
-      .single();
-
-    const isPro =
-      subscription?.plan_type === 'monthly' &&
-      subscription?.status === 'active';
+    // Check if user is a Pro subscriber (monthly OR yearly, period not expired)
+    const subscription = await getEffectiveSubscription(supabase, user.id);
 
     // Pro users get access to all resource packs for free
-    if (isPro) {
+    if (isProActive(subscription)) {
       return res.status(200).json({ packs: ALL_RESOURCE_PACKS });
     }
 

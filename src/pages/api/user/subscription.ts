@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { createClient } from '@/lib/supabase/server';
+import { getEffectiveSubscription } from '@/lib/subscription';
 
 export default async function handler(
   req: NextApiRequest,
@@ -12,7 +13,6 @@ export default async function handler(
   try {
     const supabase = createClient(req, res);
 
-    // Get current session
     const {
       data: { session },
       error: sessionError,
@@ -24,44 +24,8 @@ export default async function handler(
 
     const userId = session.user.id;
 
-    // Fetch subscription
-    const { data: subscription } = await supabase
-      .from('subscriptions')
-      .select('*')
-      .eq('user_id', userId)
-      .single();
+    const finalSubscription = await getEffectiveSubscription(supabase, userId);
 
-    // Check if subscription has expired
-    let finalSubscription = subscription;
-    if (
-      subscription &&
-      subscription.plan_type === 'monthly' &&
-      subscription.status === 'active' &&
-      subscription.current_period_end
-    ) {
-      const periodEnd = new Date(subscription.current_period_end);
-      const now = new Date();
-
-      // If subscription has expired, update it to inactive
-      if (periodEnd < now) {
-        await supabase
-          .from('subscriptions')
-          .update({
-            status: 'canceled',
-            plan_type: 'free',
-          })
-          .eq('user_id', userId);
-
-        finalSubscription = {
-          ...subscription,
-          status: 'canceled',
-          plan_type: 'free',
-        };
-      }
-    }
-    // If subscription is active but current_period_end is null, keep it as is
-
-    // Fetch remaining credits
     const { data: creditData } = await supabase
       .from('credit_packages')
       .select('credits_remaining')
