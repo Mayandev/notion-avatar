@@ -1,25 +1,30 @@
+import path from 'path';
+import fs from 'fs';
 import sharp from 'sharp';
 
-function createWatermarkSvg(width: number, height: number): Buffer {
-  const fontSize = Math.max(12, Math.round(width * 0.028));
-  const x = Math.round(width * 0.9);
-  const y = Math.round(height * 0.9);
+// Pre-rendered transparent PNG with "notion-avatar.app" text.
+// Using a static asset avoids relying on system fonts at runtime
+// (librsvg in serverless/Linux envs has no Arial/DejaVu installed,
+// which caused glyphs to render as .notdef tofu boxes).
+const WATERMARK_PATH = path.join(process.cwd(), 'public', 'watermark.png');
 
-  const svg = `<svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
-    <text x="${x}" y="${y}" text-anchor="end"
-      font-family="Arial, DejaVu Sans, Liberation Sans, Noto Sans, sans-serif"
-      font-size="${fontSize}" font-weight="normal"
-      letter-spacing="1"
-      stroke="white" stroke-width="2" stroke-linejoin="round" paint-order="stroke"
-      fill="rgba(0,0,0,0.4)">notion-avatar.app</text>
-  </svg>`;
-
-  return Buffer.from(svg);
+let cachedWatermark: Buffer | null = null;
+function loadWatermark(): Buffer | null {
+  if (cachedWatermark) return cachedWatermark;
+  try {
+    cachedWatermark = fs.readFileSync(WATERMARK_PATH);
+    return cachedWatermark;
+  } catch {
+    return null;
+  }
 }
 
 export async function addWatermark(base64Image: string): Promise<string> {
   const raw = base64Image.replace(/^data:[^;]+;base64,/, '');
   const imageBuffer = Buffer.from(raw, 'base64');
+
+  const watermarkSrc = loadWatermark();
+  if (!watermarkSrc) return base64Image;
 
   let metadata;
   try {
@@ -31,11 +36,23 @@ export async function addWatermark(base64Image: string): Promise<string> {
   const imgWidth = metadata.width || 512;
   const imgHeight = metadata.height || 512;
 
-  const watermarkSvg = createWatermarkSvg(imgWidth, imgHeight);
+  const targetWidth = Math.max(96, Math.round(imgWidth * 0.32));
+  const margin = Math.max(8, Math.round(imgWidth * 0.025));
 
   try {
+    const resizedWatermark = await sharp(watermarkSrc)
+      .resize({ width: targetWidth })
+      .png()
+      .toBuffer({ resolveWithObject: true });
+
+    const wmW = resizedWatermark.info.width;
+    const wmH = resizedWatermark.info.height;
+
+    const left = Math.max(0, imgWidth - wmW - margin);
+    const top = Math.max(0, imgHeight - wmH - margin);
+
     const result = await sharp(imageBuffer)
-      .composite([{ input: watermarkSvg, top: 0, left: 0 }])
+      .composite([{ input: resizedWatermark.data, top, left }])
       .png()
       .toBuffer();
 
