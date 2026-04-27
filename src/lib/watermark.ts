@@ -3,12 +3,12 @@ import sharp from 'sharp';
 function createWatermarkSvg(width: number, height: number): Buffer {
   const fontSize = Math.max(12, Math.round(width * 0.028));
   const x = Math.round(width * 0.9);
-  const y = Math.round(height * 0.88);
+  const y = Math.round(height * 0.9);
 
   const svg = `<svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
     <text x="${x}" y="${y}" text-anchor="end"
-      font-family="'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Helvetica, Arial, sans-serif"
-      font-size="${fontSize}" font-weight="300"
+      font-family="Arial, DejaVu Sans, Liberation Sans, Noto Sans, sans-serif"
+      font-size="${fontSize}" font-weight="normal"
       letter-spacing="1"
       stroke="white" stroke-width="2" stroke-linejoin="round" paint-order="stroke"
       fill="rgba(0,0,0,0.4)">notion-avatar.app</text>
