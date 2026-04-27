@@ -32,6 +32,9 @@ const GENERATION_STAGES = [
 const PIXEL_COLUMNS = 31;
 const PIXEL_ROWS = 21;
 
+const randomBetween = (min: number, max: number) =>
+  min + Math.random() * (max - min);
+
 export default function GeneratingStatus() {
   const { t } = useTranslation('common');
   const [stageIndex, setStageIndex] = useState(0);
@@ -46,30 +49,54 @@ export default function GeneratingStatus() {
     return () => window.clearInterval(timer);
   }, []);
 
+  const pixelField = useMemo(() => {
+    const centerX = randomBetween(0.42, 0.66);
+    const centerY = randomBetween(0.42, 0.62);
+    const delayX = randomBetween(-72, 72);
+    const delayY = randomBetween(-96, 96);
+
+    return {
+      centerX,
+      centerY,
+      delayX: Math.abs(delayX) < 28 ? delayX - 56 : delayX,
+      delayY: Math.abs(delayY) < 36 ? delayY + 72 : delayY,
+      phaseX: randomBetween(0.48, 0.86),
+      phaseY: randomBetween(0.72, 1.08),
+      maskStyle: {
+        '--mask-x': `${Math.round(centerX * 100)}%`,
+        '--mask-y': `${Math.round(centerY * 100)}%`,
+      } as CSSProperties,
+    };
+  }, []);
+
   const pixels = useMemo(
     () =>
       Array.from({ length: PIXEL_COLUMNS * PIXEL_ROWS }, (_, index) => {
         const x = index % PIXEL_COLUMNS;
         const y = Math.floor(index / PIXEL_COLUMNS);
-        const horizontalCenter = PIXEL_COLUMNS * 0.58;
-        const verticalCenter = PIXEL_ROWS * 0.54;
+        const horizontalCenter = PIXEL_COLUMNS * pixelField.centerX;
+        const verticalCenter = PIXEL_ROWS * pixelField.centerY;
         const dx = (x - horizontalCenter) / (PIXEL_COLUMNS * 0.38);
         const dy = (y - verticalCenter) / (PIXEL_ROWS * 0.28);
         const density = Math.max(0, 1 - Math.sqrt(dx * dx + dy * dy));
-        const ripple = Math.sin((x * 0.68 + y * 0.92) * Math.PI) * 0.08;
+        const ripple =
+          Math.sin((x * pixelField.phaseX + y * pixelField.phaseY) * Math.PI) *
+          0.08;
         const size = 1.6 + (density + ripple) * 3.2;
         const opacity = 0.14 + density * 0.5;
 
         return {
           key: `${x}-${y}`,
           style: {
-            '--pixel-delay': `${x * -46 + y * -82}ms`,
+            '--pixel-delay': `${
+              x * pixelField.delayX + y * pixelField.delayY
+            }ms`,
             '--pixel-size': `${Math.max(1.2, size).toFixed(2)}px`,
             '--pixel-opacity': opacity.toFixed(2),
           } as CSSProperties,
         };
       }),
-    [],
+    [pixelField],
   );
 
   const currentStage = GENERATION_STAGES[stageIndex];
@@ -86,7 +113,11 @@ export default function GeneratingStatus() {
           </p>
         </div>
 
-        <div className="pixel-field" aria-hidden="true">
+        <div
+          className="pixel-field"
+          style={pixelField.maskStyle}
+          aria-hidden="true"
+        >
           {pixels.map((pixel) => (
             <span key={pixel.key} className="pixel-dot" style={pixel.style} />
           ))}
@@ -115,13 +146,13 @@ export default function GeneratingStatus() {
           align-items: center;
           justify-items: center;
           mask-image: radial-gradient(
-            ellipse at 58% 54%,
+            ellipse at var(--mask-x) var(--mask-y),
             #000 0%,
             #000 46%,
             transparent 78%
           );
           -webkit-mask-image: radial-gradient(
-            ellipse at 58% 54%,
+            ellipse at var(--mask-x) var(--mask-y),
             #000 0%,
             #000 46%,
             transparent 78%
