@@ -132,6 +132,13 @@
     "generate": "Gerar Avatar",
     "generating": "Gerando...",
     "generatingSubtitle": "Criando seu avatar Notion exclusivo...",
+    "generationStages": {
+      "creating": "Criando imagem",
+      "composing": "Compondo o avatar",
+      "refining": "Refinando detalhes",
+      "polishing": "Dando os toques finais",
+      "finishing": "Quase pronto"
+    },
     "download": "Baixar",
     "tryAgain": "Tentar novamente",
     "limitReached": "Limite semanal atingido",

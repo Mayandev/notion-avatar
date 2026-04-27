@@ -126,6 +126,13 @@
     "generate": "Сгенерировать Аватар",
     "generating": "Генерация...",
     "generatingSubtitle": "Создаём ваш уникальный аватар в стиле Notion…",
+    "generationStages": {
+      "creating": "Создаём изображение",
+      "composing": "Собираем аватар",
+      "refining": "Уточняем детали",
+      "polishing": "Доводим результат",
+      "finishing": "Почти готово"
+    },
     "download": "Скачать",
     "tryAgain": "Попробовать снова",
     "limitReached": "Недельный лимит достигнут",

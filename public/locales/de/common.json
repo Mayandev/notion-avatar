@@ -135,6 +135,13 @@
     "generate": "Avatar generieren",
     "generating": "Generiere...",
     "generatingSubtitle": "Dein einzigartiges Notion-Avatar wird erstellt …",
+    "generationStages": {
+      "creating": "Bild wird erstellt",
+      "composing": "Avatar wird komponiert",
+      "refining": "Details werden verfeinert",
+      "polishing": "Feinschliff läuft",
+      "finishing": "Fast fertig"
+    },
     "download": "Herunterladen",
     "tryAgain": "Noch mal versuchen",
     "limitReached": "Wochenlimit erreicht",

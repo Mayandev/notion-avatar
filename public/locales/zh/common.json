@@ -135,6 +135,13 @@
     "generate": "生成头像",
     "generating": "生成中...",
     "generatingSubtitle": "正在为你创建专属的 Notion 风格头像…",
+    "generationStages": {
+      "creating": "正在创建图片",
+      "composing": "正在构图成像",
+      "refining": "正在打磨细节",
+      "polishing": "正在润色头像",
+      "finishing": "即将完成"
+    },
     "download": "下载头像",
     "tryAgain": "再试一次",
     "limitReached": "本周额度已用完",

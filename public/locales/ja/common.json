@@ -135,6 +135,13 @@
     "generate": "アバターを生成",
     "generating": "生成中...",
     "generatingSubtitle": "あなた専用のNotion風アバターを作成しています…",
+    "generationStages": {
+      "creating": "画像を作成中",
+      "composing": "アバターを構成中",
+      "refining": "細部を調整中",
+      "polishing": "仕上げ中",
+      "finishing": "もうすぐ完了"
+    },
     "download": "ダウンロード",
     "tryAgain": "もう一度試す",
     "limitReached": "今週の上限に達しました",

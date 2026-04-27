@@ -135,6 +135,13 @@
     "generate": "아바타 생성",
     "generating": "생성 중...",
     "generatingSubtitle": "나만의 Notion 스타일 아바타를 만드는 중…",
+    "generationStages": {
+      "creating": "이미지 생성 중",
+      "composing": "아바타 구성 중",
+      "refining": "디테일 다듬는 중",
+      "polishing": "마무리 보정 중",
+      "finishing": "거의 완료"
+    },
     "download": "다운로드",
     "tryAgain": "다시 시도",
     "limitReached": "이번 주 한도에 도달했습니다",
