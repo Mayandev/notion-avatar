@@ -14,6 +14,11 @@ class Document extends NextDocument {
             type="font/ttf"
             crossOrigin="anonymous"
           />
+          <script
+            async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3671095188342075"
+            crossOrigin="anonymous"
+          />
         </Head>
         <body className="font-bold">
           <Main />
