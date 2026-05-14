@@ -301,7 +301,22 @@
       "alreadyRedeemed": "Вы уже обменяли этот промокод",
       "limitReached": "Этот промокод достиг лимита обменов",
       "error": "Не удалось обменять промокод. Пожалуйста, попробуйте снова."
-    }
+    },
+    "dangerZone": "Опасная зона",
+    "deleteAccount": "Удалить аккаунт",
+    "deleteAccountDescription": "Безвозвратно удалить ваш аккаунт и все связанные данные. Это действие нельзя отменить.",
+    "deleteAccountConfirmTitle": "Удалить ваш аккаунт?",
+    "deleteAccountConfirmDesc": "Это немедленно и безвозвратно удалит ваш аккаунт и все связанные данные. Активные подписки будут отменены без возврата средств.",
+    "deleteAccountItemProfile": "Профиль и учётные данные",
+    "deleteAccountItemSubscription": "Активные подписки (отмена без возврата)",
+    "deleteAccountItemHistory": "Сгенерированные аватары и история",
+    "deleteAccountItemCredits": "Оставшиеся кредиты",
+    "deleteAccountItemPurchases": "Записи о покупке пакетов ресурсов",
+    "deleteAccountTypeEmail": "Введите вашу почту \"{{email}}\" для подтверждения",
+    "deleteAccountConfirmButton": "Удалить мой аккаунт",
+    "deleteAccountSuccess": "Ваш аккаунт был удалён",
+    "deleteAccountFailed": "Не удалось удалить аккаунт. Пожалуйста, обратитесь в поддержку.",
+    "deleteAccountEmailMismatch": "Email не совпадает"
   },
   "pricing": {
     "pageTitle": "Цены | Notion Avatar Maker",

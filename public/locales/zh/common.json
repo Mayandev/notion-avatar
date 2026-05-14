@@ -310,7 +310,22 @@
       "alreadyRedeemed": "您已经兑换过此促销码",
       "limitReached": "此促销码已达到兑换上限",
       "error": "兑换促销码失败，请重试。"
-    }
+    },
+    "dangerZone": "危险操作",
+    "deleteAccount": "删除账户",
+    "deleteAccountDescription": "永久删除您的账户及所有相关数据。此操作不可恢复。",
+    "deleteAccountConfirmTitle": "删除您的账户？",
+    "deleteAccountConfirmDesc": "此操作将立即并永久删除您的账户及所有相关数据。当前有效的订阅将被立即取消且不予退款。",
+    "deleteAccountItemProfile": "个人资料与登录凭证",
+    "deleteAccountItemSubscription": "有效订阅（立即取消，不予退款）",
+    "deleteAccountItemHistory": "已生成的头像和历史记录",
+    "deleteAccountItemCredits": "剩余积分",
+    "deleteAccountItemPurchases": "资源包购买记录",
+    "deleteAccountTypeEmail": "请输入您的邮箱 \"{{email}}\" 以确认",
+    "deleteAccountConfirmButton": "永久删除我的账户",
+    "deleteAccountSuccess": "您的账户已被删除",
+    "deleteAccountFailed": "删除账户失败，请联系客服。",
+    "deleteAccountEmailMismatch": "邮箱地址不匹配"
   },
   "pricing": {
     "pageTitle": "价格 | Notion Avatar Maker",

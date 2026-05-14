@@ -207,14 +207,14 @@ const PrivacyPolicy: NextPage = () => {
           Privacy Policy
         </h1>
         <div className="prose max-w-none">
-          <p>Last Updated: June 09, 2025</p>
+          <p>Last Updated: May 07, 2026</p>
 
           <div className="bg-gray-100 p-4 rounded-lg my-6">
             <p>
               We value your privacy. This policy outlines how we handle your
-              data when you use Notion Avatar. The short version: we process
-              your images directly in your browser and don't store them on our
-              servers.
+              data when you use Notion Avatar. The short version: we never store
+              the photos you upload, and you can delete your account and all
+              associated data at any time from the Account page.
             </p>
           </div>
 
@@ -224,16 +224,68 @@ const PrivacyPolicy: NextPage = () => {
           <p>Notion Avatar is designed with privacy in mind:</p>
           <ul className="list-disc pl-8 my-4 space-y-3 text-gray-700">
             <li className="pl-2 leading-relaxed">
-              <strong className="text-gray-900">No Image Storage:</strong> Your
-              images are processed entirely within your browser and are never
-              uploaded to or stored on our servers.
+              <strong className="text-gray-900">
+                No Storage of Uploaded Photos:
+              </strong>{' '}
+              Photos you upload to the AI Avatar Generator are{' '}
+              <strong>never stored</strong> on our servers or in our database.
+              They are passed to the AI model only as transient input and
+              discarded from memory after the request completes.
             </li>
             <li className="pl-2 leading-relaxed">
               <strong className="text-gray-900">
                 No Personal Data Requirements:
               </strong>{' '}
-              You can use our tool without creating an account or providing any
-              personal information.
+              The classic editor (manual avatar customization) works entirely
+              within your browser and does not require an account or send any
+              images to our servers.
+            </li>
+          </ul>
+
+          <h2 className="text-2xl font-bold mt-10 mb-4 text-black">
+            How We Handle Uploaded Photos
+          </h2>
+          <p className="mb-4 text-gray-700">
+            When you use the AI Avatar Generator's Photo to Avatar mode, the
+            photo you upload follows this strict, privacy-first lifecycle:
+          </p>
+          <ul className="list-none pl-5 mb-6 space-y-3">
+            <li className="relative pl-6 text-gray-700">
+              <span className="absolute left-0 text-black">•</span>
+              <strong className="text-black">
+                Transient Processing Only:
+              </strong>{' '}
+              Your original photo is sent to the AI model (Google Gemini) as
+              input for that single request. We do not persist it to any
+              database, file system, object storage, or backup.
+            </li>
+            <li className="relative pl-6 text-gray-700">
+              <span className="absolute left-0 text-black">•</span>
+              <strong className="text-black">No Server-Side Logs:</strong>{' '}
+              Original images are never written to application logs or analytics
+              systems.
+            </li>
+            <li className="relative pl-6 text-gray-700">
+              <span className="absolute left-0 text-black">•</span>
+              <strong className="text-black">Generated Avatars:</strong> Only
+              the resulting black-and-white Notion-style avatar may be stored,
+              and only for Pro subscribers as part of their generation history.
+              These are stored in a private bucket and accessed via short-lived
+              signed URLs (1-hour expiry).
+            </li>
+            <li className="relative pl-6 text-gray-700">
+              <span className="absolute left-0 text-black">•</span>
+              <strong className="text-black">
+                Third-Party AI Providers:
+              </strong>{' '}
+              The AI model provider processes your image according to its own
+              privacy policy. We do not retain copies in our environment.
+            </li>
+            <li className="relative pl-6 text-gray-700">
+              <span className="absolute left-0 text-black">•</span>
+              <strong className="text-black">Classic Editor:</strong> Manual
+              avatar customization runs entirely in your browser; no images are
+              ever transmitted to our servers.
             </li>
           </ul>
 
@@ -340,7 +392,10 @@ const PrivacyPolicy: NextPage = () => {
             <h2 className="text-2xl font-bold mb-4 text-gray-800">
               Your Rights
             </h2>
-            <p className="mb-4 text-gray-700">You have the right to:</p>
+            <p className="mb-4 text-gray-700">
+              In line with the EU General Data Protection Regulation (GDPR) and
+              similar privacy laws, you have the right to:
+            </p>
             <ul className="list-none space-y-2 mb-6">
               <li className="relative pl-6 text-gray-700">
                 <span className="absolute left-0 text-gray-500">•</span>
@@ -348,7 +403,13 @@ const PrivacyPolicy: NextPage = () => {
               </li>
               <li className="relative pl-6 text-gray-700">
                 <span className="absolute left-0 text-gray-500">•</span>
-                Request deletion of data where applicable
+                Request deletion of data where applicable (Right to Erasure,
+                GDPR Article 17)
+              </li>
+              <li className="relative pl-6 text-gray-700">
+                <span className="absolute left-0 text-gray-500">•</span>
+                Request a copy of your personal data (Right to Data Portability,
+                GDPR Article 20)
               </li>
               <li className="relative pl-6 text-gray-700">
                 <span className="absolute left-0 text-gray-500">•</span>
@@ -359,6 +420,59 @@ const PrivacyPolicy: NextPage = () => {
                 Object to our use of your information
               </li>
             </ul>
+
+            <h3 className="text-xl font-semibold mt-8 mb-3 text-gray-800">
+              Self-Service Account Deletion
+            </h3>
+            <p className="mb-4 text-gray-700">
+              If you have created an account, you can permanently delete your
+              account and all associated data at any time:
+            </p>
+            <ol className="list-decimal pl-8 mb-4 space-y-2 text-gray-700">
+              <li>
+                Sign in and go to the{' '}
+                <a
+                  href="/account"
+                  className="text-black font-medium hover:underline"
+                >
+                  Account
+                </a>{' '}
+                page.
+              </li>
+              <li>
+                Scroll down to the <strong>Danger Zone</strong> section and
+                click <strong>Delete Account</strong>.
+              </li>
+              <li>
+                Confirm by typing your email address in the dialog that appears.
+              </li>
+            </ol>
+            <p className="mb-4 text-gray-700">
+              Once confirmed, the deletion takes effect{' '}
+              <strong>immediately</strong> and removes:
+            </p>
+            <ul className="list-disc pl-8 mb-4 space-y-1 text-gray-700">
+              <li>Your profile and login credentials (auth records)</li>
+              <li>
+                Your active Stripe subscriptions (canceled without refund) and
+                Stripe customer record
+              </li>
+              <li>All generated avatars stored in our private bucket</li>
+              <li>Generation history, daily usage counters, and credits</li>
+              <li>Resource pack purchase records and promo redemptions</li>
+            </ul>
+            <p className="mb-6 text-gray-700">
+              Account deletion is irreversible. If you would prefer to submit a
+              request manually, or to exercise any other right (access,
+              portability, objection), email us at{' '}
+              <a
+                href="mailto:contact@notion-avatar.app"
+                className="hover:underline"
+              >
+                contact@notion-avatar.app
+              </a>{' '}
+              and we will respond within 30 days as required by GDPR.
+            </p>
           </div>
 
           <div className="mt-12">

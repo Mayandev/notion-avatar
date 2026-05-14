@@ -310,7 +310,22 @@
       "alreadyRedeemed": "You have already redeemed this promo code",
       "limitReached": "This promo code has reached its redemption limit",
       "error": "Failed to redeem promo code. Please try again."
-    }
+    },
+    "dangerZone": "Danger Zone",
+    "deleteAccount": "Delete Account",
+    "deleteAccountDescription": "Permanently delete your account and all associated data. This action cannot be undone.",
+    "deleteAccountConfirmTitle": "Delete your account?",
+    "deleteAccountConfirmDesc": "This will immediately and permanently delete your account and all associated data. Active subscriptions will be canceled without refund.",
+    "deleteAccountItemProfile": "Profile and login credentials",
+    "deleteAccountItemSubscription": "Active subscriptions (canceled without refund)",
+    "deleteAccountItemHistory": "Generated avatars and history",
+    "deleteAccountItemCredits": "Remaining credits",
+    "deleteAccountItemPurchases": "Resource pack purchase records",
+    "deleteAccountTypeEmail": "Type your email \"{{email}}\" to confirm",
+    "deleteAccountConfirmButton": "Delete my account",
+    "deleteAccountSuccess": "Your account has been deleted",
+    "deleteAccountFailed": "Failed to delete account. Please contact support.",
+    "deleteAccountEmailMismatch": "Email does not match"
   },
   "pricing": {
     "pageTitle": "Pricing | Notion Avatar Maker",

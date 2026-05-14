@@ -310,7 +310,22 @@
       "alreadyRedeemed": "이미 교환한 프로모 코드입니다",
       "limitReached": "이 프로모 코드는 교환 한도에 도달했습니다",
       "error": "프로모 코드 교환에 실패했습니다. 다시 시도해주세요."
-    }
+    },
+    "dangerZone": "위험 영역",
+    "deleteAccount": "계정 삭제",
+    "deleteAccountDescription": "계정과 모든 관련 데이터를 영구적으로 삭제합니다. 이 작업은 되돌릴 수 없습니다.",
+    "deleteAccountConfirmTitle": "계정을 삭제하시겠습니까?",
+    "deleteAccountConfirmDesc": "계정과 모든 관련 데이터가 즉시 영구적으로 삭제됩니다. 활성 구독은 환불 없이 즉시 취소됩니다.",
+    "deleteAccountItemProfile": "프로필 및 로그인 정보",
+    "deleteAccountItemSubscription": "활성 구독 (환불 없이 취소)",
+    "deleteAccountItemHistory": "생성된 아바타 및 기록",
+    "deleteAccountItemCredits": "남은 크레딧",
+    "deleteAccountItemPurchases": "리소스 팩 구매 기록",
+    "deleteAccountTypeEmail": "확인을 위해 이메일 \"{{email}}\"을(를) 입력하세요",
+    "deleteAccountConfirmButton": "내 계정 삭제",
+    "deleteAccountSuccess": "계정이 삭제되었습니다",
+    "deleteAccountFailed": "계정 삭제에 실패했습니다. 지원팀에 문의하세요.",
+    "deleteAccountEmailMismatch": "이메일이 일치하지 않습니다"
   },
   "pricing": {
     "pageTitle": "가격 | Notion Avatar Maker",

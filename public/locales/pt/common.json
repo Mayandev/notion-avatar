@@ -307,7 +307,22 @@
       "alreadyRedeemed": "Você já resgatou este código promocional",
       "limitReached": "Este código promocional atingiu seu limite de resgates",
       "error": "Falha ao resgatar código promocional. Por favor, tente novamente."
-    }
+    },
+    "dangerZone": "Zona de Perigo",
+    "deleteAccount": "Excluir Conta",
+    "deleteAccountDescription": "Exclua permanentemente sua conta e todos os dados associados. Esta ação não pode ser desfeita.",
+    "deleteAccountConfirmTitle": "Excluir sua conta?",
+    "deleteAccountConfirmDesc": "Isso excluirá imediata e permanentemente sua conta e todos os dados associados. Assinaturas ativas serão canceladas sem reembolso.",
+    "deleteAccountItemProfile": "Perfil e credenciais de login",
+    "deleteAccountItemSubscription": "Assinaturas ativas (canceladas sem reembolso)",
+    "deleteAccountItemHistory": "Avatares gerados e histórico",
+    "deleteAccountItemCredits": "Créditos restantes",
+    "deleteAccountItemPurchases": "Registros de compra de pacotes de recursos",
+    "deleteAccountTypeEmail": "Digite seu email \"{{email}}\" para confirmar",
+    "deleteAccountConfirmButton": "Excluir minha conta",
+    "deleteAccountSuccess": "Sua conta foi excluída",
+    "deleteAccountFailed": "Falha ao excluir a conta. Por favor, contate o suporte.",
+    "deleteAccountEmailMismatch": "O email não corresponde"
   },
   "pricing": {
     "pageTitle": "Preços | Notion Avatar Maker",

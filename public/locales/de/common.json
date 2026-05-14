@@ -310,7 +310,22 @@
       "alreadyRedeemed": "Sie haben diesen Promo-Code bereits eingelöst",
       "limitReached": "Dieser Promo-Code hat sein Einlöselimit erreicht",
       "error": "Promo-Code konnte nicht eingelöst werden. Bitte versuchen Sie es erneut."
-    }
+    },
+    "dangerZone": "Gefahrenzone",
+    "deleteAccount": "Konto Löschen",
+    "deleteAccountDescription": "Löschen Sie Ihr Konto und alle zugehörigen Daten dauerhaft. Diese Aktion kann nicht rückgängig gemacht werden.",
+    "deleteAccountConfirmTitle": "Konto löschen?",
+    "deleteAccountConfirmDesc": "Dadurch werden Ihr Konto und alle zugehörigen Daten sofort und dauerhaft gelöscht. Aktive Abonnements werden ohne Rückerstattung gekündigt.",
+    "deleteAccountItemProfile": "Profil und Anmeldedaten",
+    "deleteAccountItemSubscription": "Aktive Abonnements (ohne Rückerstattung gekündigt)",
+    "deleteAccountItemHistory": "Generierte Avatare und Verlauf",
+    "deleteAccountItemCredits": "Verbleibende Credits",
+    "deleteAccountItemPurchases": "Kaufaufzeichnungen für Ressourcenpakete",
+    "deleteAccountTypeEmail": "Geben Sie Ihre E-Mail \"{{email}}\" zur Bestätigung ein",
+    "deleteAccountConfirmButton": "Mein Konto löschen",
+    "deleteAccountSuccess": "Ihr Konto wurde gelöscht",
+    "deleteAccountFailed": "Konto konnte nicht gelöscht werden. Bitte kontaktieren Sie den Support.",
+    "deleteAccountEmailMismatch": "E-Mail stimmt nicht überein"
   },
   "pricing": {
     "pageTitle": "Preise | Notion Avatar Maker",

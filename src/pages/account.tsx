@@ -67,6 +67,9 @@ export default function AccountPage({
   const [loadingImages, setLoadingImages] = useState<Set<string>>(new Set());
   const [promoCode, setPromoCode] = useState('');
   const [isRedeeming, setIsRedeeming] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [deleteConfirmEmail, setDeleteConfirmEmail] = useState('');
+  const [isDeletingAccount, setIsDeletingAccount] = useState(false);
 
   useEffect(() => {
     if (!isLoading && !user) {
@@ -158,6 +161,43 @@ export default function AccountPage({
       toast.error(t('account.failedToDownload') || 'Failed to download');
     } finally {
       setDownloadingImage(null);
+    }
+  };
+
+  const closeDeleteModal = () => {
+    if (isDeletingAccount) return;
+    setIsDeleteModalOpen(false);
+    setDeleteConfirmEmail('');
+  };
+
+  const handleDeleteAccount = async () => {
+    if (!user?.email) return;
+    if (deleteConfirmEmail.trim().toLowerCase() !== user.email.toLowerCase()) {
+      toast.error(t('account.deleteAccountEmailMismatch'));
+      return;
+    }
+
+    setIsDeletingAccount(true);
+    try {
+      const response = await fetch('/api/auth/delete-account', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ confirmEmail: deleteConfirmEmail.trim() }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok || !data.success) {
+        throw new Error(data.error || t('account.deleteAccountFailed'));
+      }
+
+      toast.success(t('account.deleteAccountSuccess'));
+      await signOut();
+      router.push('/');
+    } catch (error) {
+      console.error('Delete account error:', error);
+      toast.error(t('account.deleteAccountFailed'));
+      setIsDeletingAccount(false);
     }
   };
 
@@ -628,6 +668,23 @@ export default function AccountPage({
               )}
             </div>
 
+            {/* Danger Zone */}
+            <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 mb-6">
+              <h2 className="text-lg font-bold text-gray-900 mb-2">
+                {t('account.dangerZone')}
+              </h2>
+              <p className="text-gray-500 text-sm mb-4">
+                {t('account.deleteAccountDescription')}
+              </p>
+              <button
+                onClick={() => setIsDeleteModalOpen(true)}
+                type="button"
+                className="px-4 py-2 text-sm font-medium bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
+              >
+                {t('account.deleteAccount')}
+              </button>
+            </div>
+
             {/* Sign Out */}
             <div className="text-center">
               <button
@@ -642,6 +699,62 @@ export default function AccountPage({
         </main>
 
         <Footer />
+
+        {/* Delete Account Modal */}
+        {isDeleteModalOpen && user?.email && (
+          <Modal onCancel={closeDeleteModal}>
+            <div className="bg-white px-4 pt-5 pb-4 sm:p-6">
+              <h3 className="text-xl font-bold text-gray-900 mb-3">
+                {t('account.deleteAccountConfirmTitle')}
+              </h3>
+              <p className="text-gray-600 text-sm mb-4">
+                {t('account.deleteAccountConfirmDesc')}
+              </p>
+              <ul className="text-sm text-gray-600 list-disc pl-5 mb-4 space-y-1">
+                <li>{t('account.deleteAccountItemProfile')}</li>
+                <li>{t('account.deleteAccountItemSubscription')}</li>
+                <li>{t('account.deleteAccountItemHistory')}</li>
+                <li>{t('account.deleteAccountItemCredits')}</li>
+                <li>{t('account.deleteAccountItemPurchases')}</li>
+              </ul>
+              <label
+                htmlFor="delete-confirm-email"
+                className="block text-sm font-medium text-gray-700 mb-2"
+              >
+                {t('account.deleteAccountTypeEmail', { email: user.email })}
+              </label>
+              <input
+                id="delete-confirm-email"
+                type="email"
+                value={deleteConfirmEmail}
+                onChange={(e) => setDeleteConfirmEmail(e.target.value)}
+                placeholder={user.email}
+                disabled={isDeletingAccount}
+                autoComplete="off"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent mb-4 disabled:bg-gray-100"
+              />
+              <button
+                onClick={handleDeleteAccount}
+                disabled={
+                  isDeletingAccount ||
+                  deleteConfirmEmail.trim().toLowerCase() !==
+                    user.email.toLowerCase()
+                }
+                type="button"
+                className="w-full px-4 py-2 bg-red-600 text-white font-medium rounded-lg hover:bg-red-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+              >
+                {isDeletingAccount ? (
+                  <>
+                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white" />
+                    <span>{t('auth.loading')}</span>
+                  </>
+                ) : (
+                  t('account.deleteAccountConfirmButton')
+                )}
+              </button>
+            </div>
+          </Modal>
+        )}
 
         {/* Image Preview Modal */}
         {previewImageUrl && (

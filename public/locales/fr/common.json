@@ -310,7 +310,22 @@
       "alreadyRedeemed": "Vous avez déjà échangé ce code promo",
       "limitReached": "Ce code promo a atteint sa limite d'échange",
       "error": "Échec de l'échange du code promo. Veuillez réessayer."
-    }
+    },
+    "dangerZone": "Zone Dangereuse",
+    "deleteAccount": "Supprimer le Compte",
+    "deleteAccountDescription": "Supprimez définitivement votre compte et toutes les données associées. Cette action est irréversible.",
+    "deleteAccountConfirmTitle": "Supprimer votre compte ?",
+    "deleteAccountConfirmDesc": "Cela supprimera immédiatement et définitivement votre compte et toutes les données associées. Les abonnements actifs seront annulés sans remboursement.",
+    "deleteAccountItemProfile": "Profil et identifiants de connexion",
+    "deleteAccountItemSubscription": "Abonnements actifs (annulés sans remboursement)",
+    "deleteAccountItemHistory": "Avatars générés et historique",
+    "deleteAccountItemCredits": "Crédits restants",
+    "deleteAccountItemPurchases": "Historique d'achat des packs de ressources",
+    "deleteAccountTypeEmail": "Saisissez votre email \"{{email}}\" pour confirmer",
+    "deleteAccountConfirmButton": "Supprimer mon compte",
+    "deleteAccountSuccess": "Votre compte a été supprimé",
+    "deleteAccountFailed": "Échec de la suppression du compte. Veuillez contacter le support.",
+    "deleteAccountEmailMismatch": "L'email ne correspond pas"
   },
   "pricing": {
     "pageTitle": "Tarifs | Notion Avatar Maker",

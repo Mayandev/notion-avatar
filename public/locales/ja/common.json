@@ -310,7 +310,22 @@
       "alreadyRedeemed": "このプロモコードは既に交換済みです",
       "limitReached": "このプロモコードは交換上限に達しました",
       "error": "プロモコードの交換に失敗しました。もう一度お試しください。"
-    }
+    },
+    "dangerZone": "危険な操作",
+    "deleteAccount": "アカウントを削除",
+    "deleteAccountDescription": "アカウントとすべての関連データを完全に削除します。この操作は元に戻せません。",
+    "deleteAccountConfirmTitle": "アカウントを削除しますか？",
+    "deleteAccountConfirmDesc": "アカウントとすべての関連データが直ちに永久に削除されます。有効なサブスクリプションは即座にキャンセルされ、返金はありません。",
+    "deleteAccountItemProfile": "プロフィールとログイン情報",
+    "deleteAccountItemSubscription": "有効なサブスクリプション（返金なしで即座にキャンセル）",
+    "deleteAccountItemHistory": "生成されたアバターと履歴",
+    "deleteAccountItemCredits": "残りのクレジット",
+    "deleteAccountItemPurchases": "リソースパックの購入記録",
+    "deleteAccountTypeEmail": "メールアドレス \"{{email}}\" を入力して確認",
+    "deleteAccountConfirmButton": "アカウントを削除する",
+    "deleteAccountSuccess": "アカウントが削除されました",
+    "deleteAccountFailed": "アカウントの削除に失敗しました。サポートにお問い合わせください。",
+    "deleteAccountEmailMismatch": "メールアドレスが一致しません"
   },
   "pricing": {
     "pageTitle": "料金 | Notion Avatar Maker",
