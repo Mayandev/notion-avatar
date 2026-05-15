@@ -37,7 +37,7 @@ export default function PricingPlans({
   const { user, subscription } = useAuth();
   const [loadingPlan, setLoadingPlan] = useState<string | null>(null);
   const [billingCycle, setBillingCycle] = useState<'monthly' | 'yearly'>(
-    'yearly',
+    'monthly',
   );
 
   const checkoutPriceType = (plan: Plan) =>

@@ -2,7 +2,7 @@
 title: "Your Privacy, Your Control: We Don't Store Your Photos"
 description: "Learn how Notion Avatar Maker handles your data, why we never store the photos you upload, and how to delete your account and all associated data in one click."
 date: "2026-05-07"
-coverImage: "/social.png"
+coverImage: "/image/privacy.webp"
 ---
 
 At **Notion Avatar Maker**, privacy is a foundation of how we build, not an afterthought. As more users rely on our AI Avatar Generator, we want to be unambiguous about what happens to the photos you upload, and to give you full control over your data. This post explains exactly how we handle uploaded images and introduces a new one-click account deletion feature, fully aligned with the EU General Data Protection Regulation (GDPR).
