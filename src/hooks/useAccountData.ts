@@ -22,9 +22,12 @@ export function useUsageHistory(limit = 10, isPro = false) {
   const { user } = useAuth();
 
   return useQuery<UsageRecord[]>({
-    queryKey: ['usageHistory', limit],
-    queryFn: async () => {
-      const response = await fetch(`/api/usage/history?limit=${limit}`);
+    queryKey: ['usageHistory', user?.id, limit],
+    queryFn: async ({ signal }) => {
+      const response = await fetch(`/api/usage/history?limit=${limit}`, {
+        signal,
+        cache: 'no-store',
+      });
       const data: UsageHistoryResponse = await response.json();
       return data.records || [];
     },
@@ -39,8 +42,11 @@ export function usePurchasedPacks(initialData?: string[]) {
 
   const query = useQuery<string[]>({
     queryKey: ['purchasedPacks', user?.id],
-    queryFn: async () => {
-      const response = await fetch('/api/resources/purchased');
+    queryFn: async ({ signal }) => {
+      const response = await fetch('/api/resources/purchased', {
+        signal,
+        cache: 'no-store',
+      });
       if (!response.ok) {
         return [];
       }

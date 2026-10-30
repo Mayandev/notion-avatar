@@ -1,6 +1,22 @@
-const withPWA = require('next-pwa');
-const runtimeCaching = require('next-pwa/cache');
+const runtimeCaching = require('./pwa-cache');
 const { i18n } = require('./next-i18next.config');
+
+const withPWA = require('next-pwa')({
+  dest: 'public',
+  // Register natively in _app: next-pwa's helper also caches SSR JSON on install.
+  register: false,
+  skipWaiting: true,
+  disable: process.env.NODE_ENV === 'development',
+  runtimeCaching,
+  // Cache assets when visited; keep HTML and locale redirects on the network.
+  cacheStartUrl: false,
+  dynamicStartUrl: false,
+  cacheOnFrontEndNav: false,
+  reloadOnOnline: false,
+  additionalManifestEntries: [{ url: '/manifest.json', revision: null }],
+  buildExcludes: [() => true],
+  publicExcludes: ['!**/*'],
+});
 
 module.exports = withPWA({
   i18n,
@@ -27,6 +43,14 @@ module.exports = withPWA({
   poweredByHeader: false,
   async headers() {
     return [
+      {
+        source: '/:folder(avatar|icon|image|fonts|favicon)/:path*',
+        headers: [{ key: 'Cache-Control', value: 'public, max-age=86400' }],
+      },
+      {
+        source: '/logo.gif',
+        headers: [{ key: 'Cache-Control', value: 'public, max-age=86400' }],
+      },
       {
         // 为所有路由应用安全头部
         source: '/:path*',
@@ -66,23 +90,6 @@ module.exports = withPWA({
         ],
       },
     ];
-  },
-  pwa: {
-    dest: 'public',
-    register: true,
-    skipWaiting: true,
-    disable: process.env.NODE_ENV === 'development',
-    runtimeCaching,
-    buildExcludes: [
-      /middleware-manifest\.json$/,
-      /middleware-build-manifest\.js$/,
-      /.*\/middleware-build-manifest\.js$/,
-      /.*\/server\/.*\.js$/,
-      /.*\/server\/.*\.json$/,
-      /.*\/_next\/server\/.*/,
-      /.*\/_next\/server\/middleware.*/,
-    ],
-    publicExcludes: ['!**/server/**', '!**/_next/server/**'],
   },
   webpack: (config) => {
     config.module.rules.push({

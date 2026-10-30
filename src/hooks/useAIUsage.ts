@@ -48,49 +48,35 @@ function getGuestUsage(): AIUsageState {
   };
 }
 
-async function fetchUsageCheck(): Promise<AIUsageState> {
-  const response = await fetch('/api/usage/check');
-  const data = await response.json();
-
-  return {
-    remaining: data.remaining,
-    total: data.total,
-    isUnlimited: data.isUnlimited,
-    freeRemaining: data.freeRemaining,
-    paidCredits: data.paidCredits,
-    planType: data.planType,
-    isAuthenticated: true,
-    isLoading: false,
-  };
-}
-
 export function useAIUsage() {
-  const { user } = useAuth();
+  const {
+    user,
+    usage: accountUsage,
+    isLoading: isLoadingAccount,
+    refreshSubscription,
+  } = useAuth();
   const queryClient = useQueryClient();
-
-  const { data: usageState, isLoading } = useQuery<AIUsageState>({
-    queryKey: ['usageCheck', !!user],
-    queryFn: async () => {
-      if (user) {
-        return fetchUsageCheck();
-      }
-      return getGuestUsage();
-    },
+  const { data: guestUsage } = useQuery<AIUsageState>({
+    queryKey: ['guestUsage', getToday()],
+    queryFn: getGuestUsage,
+    enabled: !user && !isLoadingAccount,
     staleTime: 1000 * 60 * 2,
-    retry: 1,
   });
-
-  const defaultState: AIUsageState = {
-    remaining: 0,
-    total: FREE_DAILY_LIMIT,
-    isUnlimited: false,
-    isAuthenticated: !!user,
-    isLoading: true,
-  };
+  const usageState =
+    user && accountUsage
+      ? { ...accountUsage, isAuthenticated: true, isLoading: false }
+      : guestUsage || {
+          remaining: FREE_DAILY_LIMIT,
+          total: FREE_DAILY_LIMIT,
+          isUnlimited: false,
+          isAuthenticated: false,
+          isLoading: false,
+        };
 
   const checkUsage = useCallback(async () => {
-    await queryClient.invalidateQueries({ queryKey: ['usageCheck'] });
-  }, [queryClient]);
+    if (user) await refreshSubscription();
+    else await queryClient.invalidateQueries({ queryKey: ['guestUsage'] });
+  }, [queryClient, user, refreshSubscription]);
 
   const incrementUsage = useCallback(async () => {
     if (user) {
@@ -113,7 +99,7 @@ export function useAIUsage() {
   }, [user, checkUsage]);
 
   return {
-    usageState: usageState || { ...defaultState, isLoading },
+    usageState: { ...usageState, isLoading: isLoadingAccount },
     incrementUsage,
     checkUsage,
   };

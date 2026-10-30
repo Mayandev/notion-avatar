@@ -18,7 +18,11 @@ export default function ResourcesPage() {
   const router = useRouter();
   const { user, isLoading: isAuthLoading } = useAuth();
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
-  const { data: purchasedPacks = [], refetch } = usePurchasedPacks();
+  const {
+    data: purchasedPacks = [],
+    refetch,
+    isLoading: isLoadingPurchases,
+  } = usePurchasedPacks();
 
   // Check for success query param from Stripe
   useEffect(() => {
@@ -99,6 +103,7 @@ export default function ResourcesPage() {
         <main className="flex-grow container mx-auto px-4 py-12">
           <ResourceStore
             purchasedPacks={purchasedPacks}
+            isCheckingPurchases={!!user && isLoadingPurchases}
             onDownload={handleDownload}
             showDownloadButton
           />

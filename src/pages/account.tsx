@@ -23,22 +23,11 @@ import Modal from '@/components/Modal/Common';
 import FaviconLinks from '@/components/SEO/FaviconLinks';
 import { useUsageHistory, usePurchasedPacks } from '@/hooks/useAccountData';
 import { addSignedAvatarUrls } from '@/lib/avatar-history';
+import { QueryClient, dehydrate } from '@tanstack/react-query';
+import { getAccountState } from '@/lib/account';
+import { isProActive } from '@/lib/subscription';
 
-interface AccountPageProps {
-  initialPurchasedPacks: string[];
-  initialUsageHistory: Array<{
-    id: string;
-    generation_mode: string;
-    created_at: string;
-    image_path?: string;
-    image_url?: string;
-  }>;
-}
-
-export default function AccountPage({
-  initialPurchasedPacks,
-  initialUsageHistory,
-}: AccountPageProps) {
+export default function AccountPage() {
   const { t } = useTranslation('common');
   const router = useRouter();
   const {
@@ -50,16 +39,11 @@ export default function AccountPage({
     refreshSubscription,
   } = useAuth();
 
-  const isPro =
-    subscription?.plan_type === 'monthly' && subscription?.status === 'active';
-  const {
-    data: usageHistory = initialUsageHistory,
-    isLoading: isLoadingHistory,
-  } = useUsageHistory(10, isPro);
-  const {
-    data: purchasedPacks = initialPurchasedPacks,
-    isLoading: isLoadingPacks,
-  } = usePurchasedPacks(initialPurchasedPacks);
+  const isPro = subscription !== null && isProActive(subscription);
+  const { data: usageHistory = [], isLoading: isLoadingHistory } =
+    useUsageHistory(10, isPro);
+  const { data: purchasedPacks = [], isLoading: isLoadingPacks } =
+    usePurchasedPacks();
 
   const [isManagingBilling, setIsManagingBilling] = useState(false);
   const [downloadingPack, setDownloadingPack] = useState<string | null>(null);
@@ -832,78 +816,55 @@ export default function AccountPage({
 export async function getServerSideProps(
   context: GetServerSidePropsContext & { locale: string },
 ) {
-  const { locale } = context;
-  let purchasedPacks: string[] = [];
-  let usageHistory: Array<{
+  context.res.setHeader('Cache-Control', 'private, no-store');
+  const client = createServerSideClient(context);
+  const {
+    data: { user },
+  } = await client.auth.getUser();
+  if (!user) {
+    return { redirect: { destination: '/auth/login', permanent: false } };
+  }
+
+  const [account, purchases] = await Promise.all([
+    getAccountState(client, user),
+    client
+      .from('resource_purchases')
+      .select('resource_pack_id')
+      .eq('user_id', user.id),
+  ]);
+  if (purchases.error) throw purchases.error;
+  const isPro = isProActive(account.subscription);
+  const packs = isPro
+    ? ['design-pack', 'scribbles-pack']
+    : (purchases.data || []).map((row) => row.resource_pack_id);
+  let history: Array<{
     id: string;
     generation_mode: string;
     created_at: string;
     image_path?: string;
     image_url?: string;
   }> = [];
-
-  try {
-    const supabase = createServerSideClient(context);
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
-
-    if (!user) {
-      return {
-        redirect: {
-          destination: '/auth/login',
-          permanent: false,
-        },
-      };
-    }
-
-    // 并行获取数据
-    const [purchasesResult, subscriptionResult, usageResult] =
-      await Promise.all([
-        // 获取购买的资源包
-        supabase
-          .from('resource_purchases')
-          .select('resource_pack_id')
-          .eq('user_id', user.id),
-        // 获取订阅信息
-        supabase
-          .from('subscriptions')
-          .select('plan_type, status')
-          .eq('user_id', user.id)
-          .single(),
-        // 获取使用历史（仅 Pro 用户）
-        supabase
-          .from('usage_records')
-          .select('id, generation_mode, created_at, image_path')
-          .eq('user_id', user.id)
-          .order('created_at', { ascending: false })
-          .limit(10),
-      ]);
-
-    if (purchasesResult.data) {
-      purchasedPacks = purchasesResult.data.map((p) => p.resource_pack_id);
-    }
-
-    // 检查是否为 Pro 用户
-    const isPro =
-      subscriptionResult.data?.plan_type === 'monthly' &&
-      subscriptionResult.data?.status === 'active';
-
-    // 如果是 Pro 用户，生成图片签名 URL
-    if (isPro && usageResult.data) {
-      const serviceClient = createServiceClient();
-      usageHistory = await addSignedAvatarUrls(usageResult.data, serviceClient);
-    }
-  } catch (error) {
-    // eslint-disable-next-line no-console
-    console.error('Error fetching account data in SSR:', error);
+  if (isPro) {
+    const result = await client
+      .from('usage_records')
+      .select('id, generation_mode, created_at, image_path')
+      .eq('user_id', user.id)
+      .order('created_at', { ascending: false })
+      .limit(10);
+    if (result.error) throw result.error;
+    history = await addSignedAvatarUrls(
+      result.data || [],
+      createServiceClient(),
+    );
   }
-
+  const cache = new QueryClient();
+  cache.setQueryData(['accountState'], account);
+  cache.setQueryData(['purchasedPacks', user.id], packs);
+  cache.setQueryData(['usageHistory', user.id, 10], history);
   return {
     props: {
-      initialPurchasedPacks: purchasedPacks,
-      initialUsageHistory: usageHistory,
-      ...(await serverSideTranslations(locale, ['common'])),
+      dehydratedState: dehydrate(cache),
+      ...(await serverSideTranslations(context.locale, ['common'])),
     },
   };
 }

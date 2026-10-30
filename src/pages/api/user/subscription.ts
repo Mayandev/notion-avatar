@@ -14,15 +14,15 @@ export default async function handler(
     const supabase = createClient(req, res);
 
     const {
-      data: { session },
+      data: { user },
       error: sessionError,
-    } = await supabase.auth.getSession();
+    } = await supabase.auth.getUser();
 
-    if (sessionError || !session) {
+    if (sessionError || !user) {
       return res.status(401).json({ error: 'Unauthorized' });
     }
 
-    const userId = session.user.id;
+    const userId = user.id;
 
     const finalSubscription = await getEffectiveSubscription(supabase, userId);
 

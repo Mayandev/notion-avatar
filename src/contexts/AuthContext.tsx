@@ -1,33 +1,15 @@
-import { createContext, useContext, ReactNode } from 'react';
+import { createContext, useContext, useCallback, ReactNode } from 'react';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 
-interface User {
-  id: string;
-  email?: string;
-  user_metadata?: {
-    avatar_url?: string;
-    full_name?: string;
-    name?: string;
-  };
-}
-
-interface Subscription {
-  id: string;
-  status: string;
-  plan_type: string;
-  current_period_end: string | null;
-  cancel_at_period_end?: boolean;
-}
-
-interface SubscriptionData {
-  subscription: Subscription | null;
-  credits: number;
-}
+import { EMPTY_ACCOUNT } from '@/types/account';
+import type { AccountState, AccountUser, AccountUsage } from '@/types/account';
+import type { SubscriptionRow } from '@/lib/subscription';
 
 interface AuthContextType {
-  user: User | null;
-  subscription: Subscription | null;
+  user: AccountUser | null;
+  subscription: SubscriptionRow | null;
   credits: number;
+  usage: AccountUsage | null;
   isLoading: boolean;
   signInWithGoogle: () => Promise<void>;
   signInWithGithub: () => Promise<void>;
@@ -46,62 +28,32 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-async function fetchSession(): Promise<User | null> {
-  try {
-    const response = await fetch('/api/auth/session');
-    const data = await response.json();
-    return data.user || null;
-  } catch {
-    return null;
-  }
-}
-
-async function fetchSubscriptionData(): Promise<SubscriptionData> {
-  try {
-    const response = await fetch('/api/user/subscription');
-    if (response.ok) {
-      const data = await response.json();
-      return {
-        subscription: data.subscription || null,
-        credits: data.credits || 0,
-      };
-    }
-    return { subscription: null, credits: 0 };
-  } catch {
-    return { subscription: null, credits: 0 };
-  }
+async function fetchAccount({
+  signal,
+}: {
+  signal?: AbortSignal;
+}): Promise<AccountState> {
+  const response = await fetch('/api/auth/session', {
+    signal,
+    cache: 'no-store',
+  });
+  if (!response.ok) throw new Error('Failed to load account');
+  return response.json();
 }
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const queryClient = useQueryClient();
-
-  const { data: user = null, isLoading: isLoadingUser } = useQuery<User | null>(
-    {
-      queryKey: ['session'],
-      queryFn: fetchSession,
-      staleTime: 1000 * 60 * 5,
-      retry: 1,
-    },
-  );
-
-  const {
-    data: subscriptionData = { subscription: null, credits: 0 },
-    isLoading: isLoadingSubscription,
-  } = useQuery<SubscriptionData>({
-    queryKey: ['subscription'],
-    queryFn: fetchSubscriptionData,
-    enabled: !!user,
-    staleTime: 1000 * 60 * 5,
+  const { data: account = EMPTY_ACCOUNT, isLoading } = useQuery<AccountState>({
+    queryKey: ['accountState'],
+    queryFn: fetchAccount,
+    staleTime: 1000 * 60 * 2,
     retry: 1,
   });
+  const { user, subscription, credits, usage } = account;
 
-  const isLoading = isLoadingUser || (!!user && isLoadingSubscription);
-
-  const refreshSubscription = async () => {
-    if (user) {
-      await queryClient.invalidateQueries({ queryKey: ['subscription'] });
-    }
-  };
+  const refreshSubscription = useCallback(async () => {
+    await queryClient.invalidateQueries({ queryKey: ['accountState'] });
+  }, [queryClient]);
 
   const signInWithGoogle = async () => {
     const savedRedirect =
@@ -197,8 +149,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         return { error: new Error(data.error) };
       }
 
-      await queryClient.invalidateQueries({ queryKey: ['session'] });
-      await queryClient.invalidateQueries({ queryKey: ['subscription'] });
+      await queryClient.cancelQueries();
+      queryClient.removeQueries({ queryKey: ['usageHistory'] });
+      queryClient.removeQueries({ queryKey: ['purchasedPacks'] });
+      await refreshSubscription();
 
       return { error: null };
     } catch (error) {
@@ -232,15 +186,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const signOut = async () => {
     try {
-      await fetch('/api/auth/signout', {
-        method: 'POST',
-      });
-
-      queryClient.setQueryData(['session'], null);
-      queryClient.setQueryData(['subscription'], {
-        subscription: null,
-        credits: 0,
-      });
+      const response = await fetch('/api/auth/signout', { method: 'POST' });
+      if (!response.ok) throw new Error('Sign out failed');
+      await queryClient.cancelQueries();
+      queryClient.removeQueries({ queryKey: ['usageHistory'] });
+      queryClient.removeQueries({ queryKey: ['purchasedPacks'] });
+      queryClient.setQueryData(['accountState'], EMPTY_ACCOUNT);
     } catch {
       // Sign out failed silently
     }
@@ -250,8 +201,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     <AuthContext.Provider
       value={{
         user,
-        subscription: subscriptionData.subscription,
-        credits: subscriptionData.credits,
+        subscription,
+        credits,
+        usage,
         isLoading,
         signInWithGoogle,
         signInWithGithub,

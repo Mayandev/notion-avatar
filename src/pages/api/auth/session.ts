@@ -1,38 +1,31 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { createClient } from '@/lib/supabase/server';
+import { getAccountState } from '@/lib/account';
+import { EMPTY_ACCOUNT } from '@/types/account';
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
-  if (req.method !== 'GET') {
+  res.setHeader('Cache-Control', 'private, no-store');
+  if (req.method !== 'GET')
     return res.status(405).json({ error: 'Method not allowed' });
-  }
-
   try {
-    const supabase = createClient(req, res);
+    const client = createClient(req, res);
     const {
-      data: { session },
+      data: { user },
       error,
-    } = await supabase.auth.getSession();
-
-    if (error) {
-      return res.status(401).json({ error: error.message });
-    }
-
-    if (!session) {
-      return res.status(200).json({ user: null, session: null });
-    }
-
-    return res.status(200).json({
-      user: session.user,
-      session: {
-        access_token: session.access_token,
-        expires_at: session.expires_at,
-      },
-    });
+    } = await client.auth.getUser();
+    if (
+      error &&
+      error.name !== 'AuthSessionMissingError' &&
+      ![400, 401, 403].includes(error.status || 0)
+    )
+      throw error;
+    if (!user) return res.status(200).json(EMPTY_ACCOUNT);
+    return res.status(200).json(await getAccountState(client, user));
   } catch (error) {
-    console.error('Session error:', error);
-    return res.status(500).json({ error: 'Internal server error' });
+    console.error('Account state error:', error);
+    return res.status(500).json({ error: 'Failed to load account' });
   }
 }

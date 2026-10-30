@@ -1,4 +1,8 @@
-import { createServerClient, CookieOptions } from '@supabase/ssr';
+import {
+  createServerClient,
+  CookieOptions,
+  serializeCookieHeader,
+} from '@supabase/ssr';
 import { createClient as createSupabaseClient } from '@supabase/supabase-js';
 import { NextApiRequest, NextApiResponse } from 'next';
 import type { GetServerSidePropsContext } from 'next';
@@ -7,44 +11,47 @@ const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
 const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY || '';
 
-export function createClient(req: NextApiRequest, res: NextApiResponse) {
-  return createServerClient(supabaseUrl, supabaseAnonKey, {
-    cookies: {
-      getAll() {
-        const cookies: { name: string; value: string }[] = [];
-        Object.entries(req.cookies).forEach(([name, value]) => {
-          if (value) {
-            cookies.push({ name, value });
-          }
-        });
-        return cookies;
-      },
-      setAll(
-        cookiesToSet: { name: string; value: string; options: CookieOptions }[],
-      ) {
-        // Get existing Set-Cookie headers
-        const existingCookies = res.getHeader('Set-Cookie');
-        const existingCookiesArray: string[] = Array.isArray(existingCookies)
-          ? existingCookies.map(String)
-          : existingCookies
-          ? [String(existingCookies)]
-          : [];
-
-        // Create new cookie strings
-        const newCookies = cookiesToSet.map(({ name, value, options }) => {
-          const parts = [`${name}=${value}`];
-          parts.push(`Path=${options.path || '/'}`);
-          if (options.httpOnly) parts.push('HttpOnly');
-          if (options.secure) parts.push('Secure');
-          parts.push(`SameSite=${options.sameSite || 'Lax'}`);
-          if (options.maxAge) parts.push(`Max-Age=${options.maxAge}`);
-          return parts.join('; ');
-        });
-
-        // Combine existing and new cookies
-        res.setHeader('Set-Cookie', [...existingCookiesArray, ...newCookies]);
-      },
+// Cookie writes must be visible to later reads in this same request, and all
+// refreshed cookie chunks must be appended to the response together.
+function cookieAdapter(
+  req: GetServerSidePropsContext['req'],
+  res: GetServerSidePropsContext['res'],
+) {
+  return {
+    getAll() {
+      return Object.entries(req.cookies || {})
+        .filter(([, value]) => value)
+        .map(([name, value]) => ({ name, value: value! }));
     },
+    setAll(cookies: { name: string; value: string; options: CookieOptions }[]) {
+      const existing = res.getHeader('Set-Cookie');
+      const previous = Array.isArray(existing)
+        ? existing.map(String)
+        : existing
+        ? [String(existing)]
+        : [];
+      cookies.forEach(({ name, value }) => {
+        req.cookies[name] = value;
+      });
+      res.setHeader(
+        'Set-Cookie',
+        previous.concat(
+          cookies.map(({ name, value, options }) =>
+            serializeCookieHeader(name, value, {
+              ...options,
+              path: options.path || '/',
+            }),
+          ),
+        ),
+      );
+    },
+  };
+}
+
+export function createClient(req: NextApiRequest, res: NextApiResponse) {
+  res.setHeader('Cache-Control', 'private, no-store');
+  return createServerClient(supabaseUrl, supabaseAnonKey, {
+    cookies: cookieAdapter(req, res),
   });
 }
 
@@ -60,35 +67,8 @@ export function createServiceClient() {
 
 // Create a client for getServerSideProps
 export function createServerSideClient(context: GetServerSidePropsContext) {
-  const { req, res } = context;
-
   return createServerClient(supabaseUrl, supabaseAnonKey, {
-    cookies: {
-      getAll() {
-        const cookies: { name: string; value: string }[] = [];
-        if (req.cookies) {
-          Object.entries(req.cookies).forEach(([name, value]) => {
-            if (value) {
-              cookies.push({ name, value });
-            }
-          });
-        }
-        return cookies;
-      },
-      setAll(
-        cookiesToSet: { name: string; value: string; options: CookieOptions }[],
-      ) {
-        cookiesToSet.forEach(({ name, value, options }) => {
-          const cookieParts = [`${name}=${value}`];
-          cookieParts.push(`Path=${options.path || '/'}`);
-          if (options.httpOnly) cookieParts.push('HttpOnly');
-          if (options.secure) cookieParts.push('Secure');
-          cookieParts.push(`SameSite=${options.sameSite || 'Lax'}`);
-          if (options.maxAge) cookieParts.push(`Max-Age=${options.maxAge}`);
-          res.setHeader('Set-Cookie', cookieParts.join('; '));
-        });
-      },
-    },
+    cookies: cookieAdapter(context.req, context.res),
   });
 }
 

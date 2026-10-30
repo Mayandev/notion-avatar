@@ -1,4 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
+import { randomUUID } from 'crypto';
 import { generateAvatar } from '@/lib/gemini';
 import { AIGenerateRequest, AIGenerateResponse } from '@/types/ai';
 import {
@@ -7,213 +8,155 @@ import {
   base64ToBuffer,
   uploadImageToStorage,
 } from '@/lib/supabase/server';
-import { getToday, FREE_DAILY_LIMIT } from '@/lib/date';
+import { FREE_DAILY_LIMIT } from '@/lib/date';
 import { addWatermark } from '@/lib/watermark';
-import { getEffectiveSubscription, isProActive } from '@/lib/subscription';
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<AIGenerateResponse>,
 ) {
   if (req.method !== 'POST') {
-    return res.status(405).json({
-      success: false,
-      error: 'Method Not Allowed',
-    });
+    return res
+      .status(405)
+      .json({ success: false, error: 'Method Not Allowed' });
+  }
+  const { mode, image, description } = (req.body || {}) as AIGenerateRequest;
+  if (
+    !['photo2avatar', 'text2avatar'].includes(mode) ||
+    (mode === 'photo2avatar' && (typeof image !== 'string' || !image)) ||
+    (mode === 'text2avatar' &&
+      (typeof description !== 'string' ||
+        !description.trim() ||
+        description.length > 1000))
+  ) {
+    return res
+      .status(400)
+      .json({ success: false, error: 'Invalid generation input' });
+  }
+  const requestId = req.headers['idempotency-key'] || randomUUID();
+  if (
+    typeof requestId !== 'string' ||
+    !/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(
+      requestId,
+    )
+  ) {
+    return res
+      .status(400)
+      .json({ success: false, error: 'Invalid request ID' });
   }
 
+  let reservationId: string | undefined;
+  let userId: string | undefined;
+  let modelCompleted = false;
+  let service: ReturnType<typeof createServiceClient> | undefined;
   try {
-    const { mode, image, description } = req.body as AIGenerateRequest;
-
-    if (!mode || (mode !== 'photo2avatar' && mode !== 'text2avatar')) {
-      return res.status(400).json({
-        success: false,
-        error: 'Invalid generation mode',
-      });
-    }
-
-    if (mode === 'photo2avatar' && !image) {
-      return res.status(400).json({
-        success: false,
-        error: 'Image is required for photo2avatar mode',
-      });
-    }
-
-    if (mode === 'text2avatar' && !description) {
-      return res.status(400).json({
-        success: false,
-        error: 'Description is required for text2avatar mode',
-      });
-    }
-
-    const supabase = createClient(req, res);
+    const client = createClient(req, res);
     const {
       data: { user },
-    } = await supabase.auth.getUser();
-
-    // Check usage limits
-    let canGenerate = false;
-    let useCredits = false;
-    let isPaidUser = false;
-
-    if (user) {
-      const subscription = await getEffectiveSubscription(supabase, user.id);
-
-      if (isProActive(subscription)) {
-        // Unlimited for paid subscribers
-        canGenerate = true;
-        isPaidUser = true;
-      } else {
-        // Check free daily limit
-        const today = getToday();
-        const { data: dailyUsage } = await supabase
-          .from('daily_usage')
-          .select('count')
-          .eq('user_id', user.id)
-          .eq('usage_date', today);
-
-        const usedToday =
-          dailyUsage?.reduce((sum, r) => sum + (r.count || 0), 0) || 0;
-
-        if (usedToday < FREE_DAILY_LIMIT) {
-          canGenerate = true;
-        } else {
-          // Check credit packages
-          const { data: credits } = await supabase
-            .from('credit_packages')
-            .select('id, credits_remaining')
-            .eq('user_id', user.id)
-            .gt('credits_remaining', 0)
-            .order('purchased_at', { ascending: true })
-            .limit(1);
-
-          if (
-            credits &&
-            credits.length > 0 &&
-            credits[0].credits_remaining > 0
-          ) {
-            canGenerate = true;
-            useCredits = true;
-            isPaidUser = true;
-          }
-        }
-      }
-    } else {
-      // Guest user - check via rate limiting headers or return error
-      return res.status(401).json({
+    } = await client.auth.getUser();
+    if (!user) {
+      return res
+        .status(401)
+        .json({ success: false, error: 'Please sign in to generate avatars' });
+    }
+    userId = user.id;
+    service = createServiceClient();
+    const { data: reservation, error } = await service.rpc(
+      'reserve_avatar_generation',
+      {
+        p_user_id: userId,
+        p_request_id: requestId,
+        p_free_limit: FREE_DAILY_LIMIT,
+      },
+    );
+    if (error || !reservation) {
+      // Fail closed: never fall back to generating before reserving allowance.
+      console.error('Generation reservation failed:', error);
+      return res.status(503).json({
         success: false,
-        error: 'Please sign in to generate avatars',
+        error: 'Generation is temporarily unavailable. Please try again later.',
       });
     }
-
-    if (!canGenerate) {
+    if (reservation.status === 'limit') {
       return res.status(402).json({
         success: false,
         error: 'Daily limit reached. Please upgrade or purchase credits.',
       });
     }
+    if (reservation.status !== 'reserved' || !reservation.id) {
+      return res.status(409).json({
+        success: false,
+        error:
+          'A generation is already in progress or this request was already processed.',
+      });
+    }
+    reservationId = reservation.id;
+    const generatedImage = await generateAvatar(
+      mode,
+      mode === 'photo2avatar' ? image! : description!,
+    );
+    const finalImage = reservation.isPaid
+      ? generatedImage
+      : await addWatermark(generatedImage);
+    modelCompleted = true;
 
-    const input = mode === 'photo2avatar' ? image! : description!;
-    const generatedImage = await generateAvatar(mode, input);
-
-    // Upload image to Supabase Storage (paid users only - saves storage costs)
     let imagePath: string | null = null;
-    if (isPaidUser) {
+    if (reservation.isPaid) {
       try {
-        const imageBuffer = base64ToBuffer(generatedImage);
-        imagePath = await uploadImageToStorage(imageBuffer, user!.id);
+        imagePath = await uploadImageToStorage(
+          base64ToBuffer(generatedImage),
+          userId,
+        );
       } catch (uploadError) {
-        console.error('Failed to upload image to storage:', uploadError);
-        // Continue without storing image path - don't fail the request
-        // The base64 image is still returned to the client
+        console.error('Failed to save generated image:', uploadError);
       }
     }
-
-    // Record usage
-    const serviceClient = createServiceClient();
-
-    // Insert usage record with image_path if upload succeeded
-    await serviceClient.from('usage_records').insert({
-      user_id: user!.id,
-      generation_mode: mode,
-      input_type: mode === 'photo2avatar' ? 'image' : 'text',
-      image_path: imagePath,
-    });
-
-    // Update daily usage or credits
-    if (useCredits) {
-      // Deduct from credits
-      const { data: credits } = await supabase
-        .from('credit_packages')
-        .select('id, credits_remaining')
-        .eq('user_id', user!.id)
-        .gt('credits_remaining', 0)
-        .order('purchased_at', { ascending: true })
-        .limit(1);
-
-      if (credits && credits.length > 0) {
-        await serviceClient
-          .from('credit_packages')
-          .update({ credits_remaining: credits[0].credits_remaining - 1 })
-          .eq('id', credits[0].id);
-      }
-    } else {
-      // Update daily usage (for free tier).
-      // Re-read via getEffectiveSubscription so an expired-but-stale-active
-      // row gets downgraded here too, and we only skip usage tracking when
-      // the user is genuinely Pro.
-      const subscription = await getEffectiveSubscription(supabase, user!.id);
-
-      if (!isProActive(subscription)) {
-        const today = getToday();
-
-        // Use RPC to atomically insert or increment daily usage count
-        await serviceClient
-          .rpc('increment_daily_usage', {
-            p_user_id: user!.id,
-            p_date: today,
-          })
-          .then(async ({ error: rpcError }) => {
-            if (rpcError) {
-              // Fallback: upsert if RPC doesn't exist
-              await serviceClient.from('daily_usage').upsert(
-                {
-                  user_id: user!.id,
-                  usage_date: today,
-                  count: 1,
-                },
-                {
-                  onConflict: 'user_id,usage_date',
-                },
-              );
-            }
-          });
-      }
+    const completion = {
+      p_user_id: userId,
+      p_reservation_id: reservationId,
+      p_success: true,
+      p_mode: mode,
+      p_image_path: imagePath,
+    };
+    // Safe to retry a completion: the database records each reservation once.
+    let result = await service.rpc('finish_avatar_generation', completion);
+    if (result.error)
+      result = await service.rpc('finish_avatar_generation', completion);
+    if (result.error || result.data?.status !== 'completed') {
+      console.error('Generation completion failed:', result.error);
+      return res.status(503).json({
+        success: false,
+        error: 'Could not finalize generation. Please try again later.',
+      });
     }
-
-    // Apply watermark for free users
-    let finalImage = generatedImage;
-    if (!isPaidUser) {
-      finalImage = await addWatermark(generatedImage);
-    }
-
-    return res.status(200).json({
-      success: true,
-      image: finalImage,
-    });
+    return res.status(200).json({ success: true, image: finalImage });
   } catch (error) {
-    console.error('API Error:', error);
+    // A successful but unacknowledged completion must never be refunded twice.
+    // Expired reservations are recovered by the next reserve transaction.
+    if (service && reservationId && userId && !modelCompleted) {
+      const refund = {
+        p_user_id: userId,
+        p_reservation_id: reservationId,
+        p_success: false,
+      };
+      try {
+        let result = await service.rpc('finish_avatar_generation', refund);
+        if (result.error)
+          result = await service.rpc('finish_avatar_generation', refund);
+        if (result.error)
+          console.error('Generation refund failed:', result.error);
+      } catch (refundError) {
+        console.error('Generation refund failed:', refundError);
+      }
+    }
+    console.error('Generation failed:', error);
     return res.status(500).json({
       success: false,
-      error: error instanceof Error ? error.message : 'Internal Server Error',
+      error: 'Failed to generate avatar. Please try again later.',
     });
   }
 }
 
 export const config = {
-  api: {
-    bodyParser: {
-      sizeLimit: '4mb', // 2MB image ≈ 2.67MB base64 + JSON overhead
-    },
-  },
+  api: { bodyParser: { sizeLimit: '4mb' } },
 };

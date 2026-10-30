@@ -4,7 +4,11 @@ import '@/styles/global.css';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { appWithTranslation } from 'next-i18next';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import {
+  QueryClient,
+  QueryClientProvider,
+  HydrationBoundary,
+} from '@tanstack/react-query';
 import Script from 'next/script';
 
 import { Toaster } from 'react-hot-toast';
@@ -25,6 +29,13 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   );
   const router = useRouter();
   const AnyComponent = Component as any;
+
+  useEffect(() => {
+    if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
+      // Avoid next-pwa's generic installer, which stores private SSR JSON.
+      navigator.serviceWorker.register('/sw.js').catch(console.error);
+    }
+  }, []);
 
   useEffect(() => {
     const handleRouteChange = (url: string) => {
@@ -69,10 +80,12 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         </>
       )}
       <QueryClientProvider client={queryClient}>
-        <AuthProvider>
-          <AnyComponent {...pageProps} />
-          <Toaster />
-        </AuthProvider>
+        <HydrationBoundary state={pageProps.dehydratedState}>
+          <AuthProvider>
+            <AnyComponent {...pageProps} />
+            <Toaster />
+          </AuthProvider>
+        </HydrationBoundary>
       </QueryClientProvider>
     </>
   );

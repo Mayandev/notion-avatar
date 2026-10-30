@@ -1,0 +1,1 @@
+self.addEventListener("activate",s=>{s.waitUntil(Promise.all(["apis","others","next-data","cross-origin","start-url","static-image-assets","static-font-assets","next-image","static-js-assets","static-style-assets","static-data-assets"].map(s=>caches.delete(s))))});
