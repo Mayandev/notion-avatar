@@ -6,7 +6,7 @@ const { randomUUID } = require('node:crypto');
 const { test } = require('node:test');
 const ts = require('typescript');
 
-function load(file, imports = {}) {
+function load(file, imports = {}, globals = {}) {
   const code = ts.transpileModule(
     fs.readFileSync(path.join(__dirname, '..', file), 'utf8'),
     {
@@ -27,6 +27,7 @@ function load(file, imports = {}) {
       if (!(name in imports)) throw Error(`Unexpected import ${name}`);
       return imports[name];
     },
+    ...globals,
   });
   return module.exports;
 }
@@ -47,7 +48,11 @@ function response() {
     },
   };
 }
-function generation({ fails = false, reservationError = false } = {}) {
+function generation({
+  fails = false,
+  reservationError = false,
+  isPaid = false,
+} = {}) {
   let held = false,
     modelCalls = 0,
     refunded = 0,
@@ -63,7 +68,7 @@ function generation({ fails = false, reservationError = false } = {}) {
         if (held) return { data: { status: 'busy' } };
         held = true;
         return {
-          data: { status: 'reserved', id: randomUUID(), isPaid: false },
+          data: { status: 'reserved', id: randomUUID(), isPaid },
         };
       }
       if (args.p_success) completed++;
@@ -89,9 +94,13 @@ function generation({ fails = false, reservationError = false } = {}) {
         auth: { getUser: async () => ({ data: { user: { id: 'user' } } }) },
       }),
       createServiceClient: () => service,
+      base64ToBuffer: (image) => image,
+      uploadImageToStorage: async () => 'user/test.jpg',
     },
     '@/lib/date': { FREE_DAILY_LIMIT: 1 },
-    '@/lib/watermark': { addWatermark: async (image) => image },
+    '@/lib/watermark': {
+      addWatermark: async (image) => `${image}-watermarked`,
+    },
   });
   const request = () => ({
     method: 'POST',
@@ -133,6 +142,210 @@ test('upstream failure refunds the reservation and missing migration never start
   assert.equal(blocked.statusCode, 503);
   assert.equal(missing.stats().modelCalls, 0);
 });
+test('generation response identifies the entitlement actually used for this image', async () => {
+  for (const isPaid of [false, true]) {
+    const g = generation({ isPaid });
+    const res = response();
+    g.release();
+    await g.handler(g.request(), res);
+    assert.equal(res.statusCode, 200);
+    assert.equal(res.body.isPaid, isPaid);
+    assert.equal(
+      res.body.image,
+      isPaid ? 'mock-image' : 'mock-image-watermarked',
+    );
+  }
+});
+
+// Exercise the page's real event handlers with local state and mocked I/O.
+// The balance refresh runs between the API result and the next render.
+function generationPage({ isPaid, before, after }) {
+  const React = require('react');
+  const translation = { useTranslation: () => ({ t: (key) => key }) };
+  const Result = load('src/components/AIGenerator/GeneratedResult.tsx', {
+    'react/jsx-runtime': require('react/jsx-runtime'),
+    'next-i18next': translation,
+  }).default;
+  const state = [];
+  let cursor = 0,
+    usage = before,
+    downloads = 0;
+  const imports = {
+    react: {
+      ...React,
+      useState(initial) {
+        const index = cursor++;
+        if (!(index in state))
+          state[index] = typeof initial === 'function' ? initial() : initial;
+        return [
+          state[index],
+          (value) => {
+            state[index] =
+              typeof value === 'function' ? value(state[index]) : value;
+          },
+        ];
+      },
+      useEffect() {},
+      useMemo: (factory) => factory(),
+    },
+    'react/jsx-runtime': require('react/jsx-runtime'),
+    'next/router': { useRouter: () => ({ locale: 'en', query: {} }) },
+    'next-i18next': translation,
+    'next-i18next/serverSideTranslations': {
+      serverSideTranslations: async () => ({}),
+    },
+    'react-hot-toast': {
+      default: { success() {}, error() {} },
+      Toaster: 'Toaster',
+    },
+    'next/dynamic': { default: () => 'LazyComponent' },
+    '@/contexts/AuthContext': {
+      useAuth: () => ({ user: { id: 'test-user' }, isLoading: false }),
+    },
+    '@/hooks/useAIUsage': {
+      useAIUsage: () => ({
+        usageState: usage,
+        checkUsage: async () => {},
+        incrementUsage: async () => {
+          usage = after;
+        },
+      }),
+    },
+    '@/components/AIGenerator/GeneratedResult': { default: Result },
+  };
+  for (const name of [
+    'next/head',
+    'next/legacy/image',
+    '@/components/Header',
+    '@/components/Footer',
+    '@/components/AIGenerator/ModeSelector',
+    '@/components/AIGenerator/ImageUploader',
+    '@/components/AIGenerator/TextInput',
+    '@/components/AIGenerator/GeneratingStatus',
+    '@/components/AIGenerator/DownloadUpgradePrompt',
+    '@/components/AIGenerator/DailyLimitBanner',
+    '@/components/ProductHuntBanner',
+  ])
+    imports[name] = { default: name.split('/').pop() };
+  const Page = load('src/pages/ai-generator.tsx', imports, {
+    crypto: { randomUUID },
+    fetch: async (url) => {
+      assert.equal(url, '/api/ai/generate-avatar');
+      return {
+        status: 200,
+        json: async () => ({
+          success: true,
+          image: 'data:image/png;base64,b2ZmbGluZQ==',
+          isPaid,
+        }),
+      };
+    },
+    document: {
+      createElement: () => ({
+        click() {
+          downloads++;
+        },
+      }),
+      body: { appendChild() {}, removeChild() {} },
+    },
+  }).default;
+  function elements(node) {
+    if (Array.isArray(node)) return node.flatMap(elements);
+    if (!node || typeof node !== 'object') return [];
+    return [node, ...elements(node.props?.children)];
+  }
+  function render() {
+    cursor = 0;
+    return Page({});
+  }
+  function find(tree, type) {
+    return elements(tree).find((node) => node.type === type);
+  }
+  return {
+    Result,
+    render,
+    find,
+    async generate() {
+      find(render(), 'ModeSelector').props.onModeChange('text2avatar');
+      find(render(), 'TextInput').props.onChange('Offline regression test');
+      const button = elements(render()).find(
+        (node) =>
+          node.type === 'button' && node.props.children === 'ai.generate',
+      );
+      assert.ok(button, 'generation action exists');
+      await button.props.onClick();
+      return find(render(), Result);
+    },
+    downloads: () => downloads,
+  };
+}
+
+test('last credit keeps its image paid after balance refresh and bypasses the upgrade prompt', async () => {
+  const page = generationPage({
+    isPaid: true,
+    before: {
+      remaining: 1,
+      total: 1,
+      freeRemaining: 0,
+      paidCredits: 1,
+      isUnlimited: false,
+    },
+    after: {
+      remaining: 0,
+      total: 1,
+      freeRemaining: 0,
+      paidCredits: 0,
+      isUnlimited: false,
+    },
+  });
+  const result = await page.generate();
+  assert.equal(result.props.isPaidGeneration, true);
+  const html = require('react-dom/server').renderToString(
+    require('react').createElement(page.Result, result.props),
+  );
+  assert.doesNotMatch(html, /ai\.watermarkHint/);
+  result.props.onDownload();
+  assert.equal(page.downloads(), 1);
+  assert.equal(
+    page.find(page.render(), 'DownloadUpgradePrompt').props.isOpen,
+    false,
+  );
+  result.props.onReset();
+  assert.equal(page.find(page.render(), page.Result), undefined);
+});
+
+test('a free image retains the watermark hint and download prompt even when credits remain', async () => {
+  const page = generationPage({
+    isPaid: false,
+    before: {
+      remaining: 2,
+      total: 1,
+      freeRemaining: 1,
+      paidCredits: 1,
+      isUnlimited: false,
+    },
+    after: {
+      remaining: 1,
+      total: 1,
+      freeRemaining: 0,
+      paidCredits: 1,
+      isUnlimited: false,
+    },
+  });
+  const result = await page.generate();
+  assert.equal(result.props.isPaidGeneration, false);
+  const html = require('react-dom/server').renderToString(
+    require('react').createElement(page.Result, result.props),
+  );
+  assert.match(html, /ai\.watermarkHint/);
+  result.props.onDownload();
+  assert.equal(page.downloads(), 0);
+  assert.equal(
+    page.find(page.render(), 'DownloadUpgradePrompt').props.isOpen,
+    true,
+  );
+});
+
 test('one account request returns session, subscription, credits and daily usage after validated authentication', async () => {
   let authCalls = 0,
     accountCalls = 0;

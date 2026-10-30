@@ -129,7 +129,11 @@ export default async function handler(
         error: 'Could not finalize generation. Please try again later.',
       });
     }
-    return res.status(200).json({ success: true, image: finalImage });
+    return res.status(200).json({
+      success: true,
+      image: finalImage,
+      isPaid: reservation.isPaid,
+    });
   } catch (error) {
     // A successful but unacknowledged completion must never be refunded twice.
     // Expired reservations are recovered by the next reserve transaction.

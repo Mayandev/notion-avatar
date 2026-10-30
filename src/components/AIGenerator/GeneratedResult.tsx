@@ -7,7 +7,7 @@ interface GeneratedResultProps {
   remaining?: number;
   total?: number;
   isUnlimited?: boolean;
-  isPaidUser?: boolean;
+  isPaidGeneration: boolean;
   onUpgradeClick: () => void;
 }
 
@@ -17,7 +17,7 @@ export default function GeneratedResult({
   onReset,
   remaining,
   isUnlimited,
-  isPaidUser,
+  isPaidGeneration,
   onUpgradeClick,
 }: GeneratedResultProps) {
   const { t } = useTranslation('common');
@@ -58,8 +58,8 @@ export default function GeneratedResult({
         />
       </div>
 
-      {/* Watermark hint for free users */}
-      {!isPaidUser && (
+      {/* Entitlement belongs to this image, independently of remaining credits. */}
+      {!isPaidGeneration && (
         <p className="text-xs text-gray-400 mb-4 text-center">
           {t('ai.watermarkHint')}
         </p>
@@ -97,7 +97,7 @@ export default function GeneratedResult({
       </div>
 
       {/* Variant previews for free users */}
-      {/* {!isPaidUser && <VariantPreviews onUpgradeClick={onUpgradeClick} />} */}
+      {/* {!isPaidGeneration && <VariantPreviews onUpgradeClick={onUpgradeClick} />} */}
     </div>
   );
 }

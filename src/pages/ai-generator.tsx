@@ -6,7 +6,11 @@ import { useTranslation } from 'next-i18next';
 import { GetStaticPropsContext } from 'next';
 import toast, { Toaster } from 'react-hot-toast';
 
-import { AIGenerationMode, AIGenerateResponse } from '@/types/ai';
+import {
+  AIGenerationMode,
+  AIGenerateResponse,
+  AIGenerationResult,
+} from '@/types/ai';
 import { useAIUsage } from '@/hooks/useAIUsage';
 import { useAuth } from '@/contexts/AuthContext';
 
@@ -57,7 +61,9 @@ export default function AIGeneratorPage({
   const [mode, setMode] = useState<AIGenerationMode>('photo2avatar');
   const [inputImage, setInputImage] = useState<string>('');
   const [inputText, setInputText] = useState<string>('');
-  const [generatedImage, setGeneratedImage] = useState<string | null>(null);
+  const [generatedResult, setGeneratedResult] =
+    useState<AIGenerationResult | null>(null);
+  const generatedImage = generatedResult?.image || null;
   const [isGenerating, setIsGenerating] = useState(false);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [isUpgradeModalOpen, setIsUpgradeModalOpen] = useState(false);
@@ -100,7 +106,7 @@ export default function AIGeneratorPage({
     }
 
     setIsGenerating(true);
-    setGeneratedImage(null);
+    setGeneratedResult(null);
 
     try {
       const response = await fetch('/api/ai/generate-avatar', {
@@ -129,7 +135,10 @@ export default function AIGeneratorPage({
       }
 
       if (data.success && data.image) {
-        setGeneratedImage(data.image);
+        setGeneratedResult({
+          image: data.image,
+          isPaid: data.isPaid === true,
+        });
         await incrementUsage();
         toast.success('Avatar generated successfully!');
       } else {
@@ -145,18 +154,15 @@ export default function AIGeneratorPage({
   };
 
   const handleDownload = () => {
-    if (!generatedImage) return;
+    if (!generatedResult) return;
 
-    const isPaidUser =
-      usageState.isUnlimited || (usageState.paidCredits || 0) > 0;
-
-    if (!isPaidUser && !isDownloadPromptOpen) {
+    if (!generatedResult.isPaid && !isDownloadPromptOpen) {
       setIsDownloadPromptOpen(true);
       return;
     }
 
     const link = document.createElement('a');
-    link.href = generatedImage;
+    link.href = generatedResult.image;
     link.download = `notion-avatar-ai-${Date.now()}.png`;
     document.body.appendChild(link);
     link.click();
@@ -191,7 +197,7 @@ export default function AIGeneratorPage({
     // 设置提示词
     setInputText(prompt);
     // 清除之前的生成结果
-    setGeneratedImage(null);
+    setGeneratedResult(null);
     // 滚动到生成器区域
     setTimeout(() => {
       scrollToGenerator();
@@ -295,18 +301,16 @@ export default function AIGeneratorPage({
       return <GeneratingStatus />;
     }
 
-    if (generatedImage) {
-      const isPaidUser =
-        usageState.isUnlimited || (usageState.paidCredits || 0) > 0;
+    if (generatedResult) {
       return (
         <GeneratedResult
-          image={generatedImage}
+          image={generatedResult.image}
           onDownload={handleDownload}
-          onReset={() => setGeneratedImage(null)}
+          onReset={() => setGeneratedResult(null)}
           remaining={usageState.freeRemaining}
           total={usageState.total}
           isUnlimited={usageState.isUnlimited}
-          isPaidUser={isPaidUser}
+          isPaidGeneration={generatedResult.isPaid}
           onUpgradeClick={() => setIsUpgradeModalOpen(true)}
         />
       );
