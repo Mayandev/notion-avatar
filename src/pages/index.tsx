@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import type { GetServerSidePropsContext, NextPage } from 'next';
+import type { GetStaticPropsContext, NextPage } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/legacy/image';
@@ -9,7 +9,6 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
 import toast from 'react-hot-toast';
 import { useAuth } from '@/contexts/AuthContext';
-import { createServerSideClient } from '@/lib/supabase/server';
 import { usePurchasedPacks } from '@/hooks/useAccountData';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -35,17 +34,16 @@ const URL = `https://notion-avatar.app/`;
 
 const AI_FEATURE_INTRO_KEY = 'ai-feature-intro-dismissed';
 
-interface HomeProps {
-  initialPurchasedPacks: string[];
-}
-
-const Home: NextPage<HomeProps> = ({ initialPurchasedPacks }) => {
+const Home: NextPage = () => {
   const { t } = useTranslation(`common`);
   const router = useRouter();
   const { user, isLoading: isAuthLoading } = useAuth();
   const [isAIFeatureModalOpen, setIsAIFeatureModalOpen] = useState(false);
-  const { data: purchasedPacks = initialPurchasedPacks, refetch } =
-    usePurchasedPacks(initialPurchasedPacks);
+  const {
+    data: purchasedPacks = [],
+    refetch,
+    isLoading: isLoadingPurchases,
+  } = usePurchasedPacks();
 
   // eslint-disable-next-line consistent-return
   useEffect(() => {
@@ -372,6 +370,7 @@ const Home: NextPage<HomeProps> = ({ initialPurchasedPacks }) => {
         <div id="resource-store">
           <ResourceStore
             purchasedPacks={purchasedPacks}
+            isCheckingPurchases={!!user && isLoadingPurchases}
             onDownload={handleDownload}
             showDownloadButton
           />
@@ -412,37 +411,10 @@ const Home: NextPage<HomeProps> = ({ initialPurchasedPacks }) => {
   );
 };
 
-export async function getServerSideProps(
-  context: GetServerSidePropsContext & { locale: string },
-) {
-  const { locale } = context;
-  let purchasedPacks: string[] = [];
-
-  try {
-    const supabase = createServerSideClient(context);
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
-
-    if (user) {
-      const { data: purchases, error } = await supabase
-        .from('resource_purchases')
-        .select('resource_pack_id')
-        .eq('user_id', user.id);
-
-      if (!error && purchases) {
-        purchasedPacks = purchases.map((p) => p.resource_pack_id);
-      }
-    }
-  } catch (error) {
-    // eslint-disable-next-line no-console
-    console.error('Error fetching purchased packs in SSR:', error);
-  }
-
+export async function getStaticProps({ locale }: GetStaticPropsContext) {
   return {
     props: {
-      initialPurchasedPacks: purchasedPacks,
-      ...(await serverSideTranslations(locale, [`common`])),
+      ...(await serverSideTranslations(locale || 'en', [`common`])),
     },
   };
 }

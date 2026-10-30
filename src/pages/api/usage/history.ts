@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { createClient, createServiceClient } from '@/lib/supabase/server';
+import { addSignedAvatarUrls } from '@/lib/avatar-history';
 
 export default async function handler(
   req: NextApiRequest,
@@ -19,7 +20,21 @@ export default async function handler(
       return res.status(401).json({ error: 'Unauthorized' });
     }
 
-    const { limit = 20, offset = 0 } = req.query;
+    const limit = Number(req.query.limit ?? 20);
+    const offset = Number(req.query.offset ?? 0);
+
+    if (
+      Array.isArray(req.query.limit) ||
+      Array.isArray(req.query.offset) ||
+      !Number.isSafeInteger(limit) ||
+      !Number.isSafeInteger(offset) ||
+      limit < 1 ||
+      limit > 50 ||
+      offset < 0 ||
+      !Number.isSafeInteger(offset + limit)
+    ) {
+      return res.status(400).json({ error: 'Invalid pagination parameters' });
+    }
 
     const {
       data: records,
@@ -30,41 +45,20 @@ export default async function handler(
       .select('*', { count: 'exact' })
       .eq('user_id', user.id)
       .order('created_at', { ascending: false })
-      .range(Number(offset), Number(offset) + Number(limit) - 1);
+      .range(offset, offset + limit - 1);
 
     if (error) throw error;
 
-    // Generate signed URLs for records with image_path
-    const serviceClient = createServiceClient();
-    const recordsWithUrls = await Promise.all(
-      (records || []).map(async (record) => {
-        if (record.image_path) {
-          try {
-            const { data: signedUrlData, error: signedUrlError } =
-              await serviceClient.storage
-                .from('generated-avatars')
-                .createSignedUrl(record.image_path, 3600); // 1 hour expiry
-
-            if (!signedUrlError && signedUrlData) {
-              return {
-                ...record,
-                image_url: signedUrlData.signedUrl,
-              };
-            }
-          } catch {
-            // Silently fail for individual image URL generation
-            // The record will be returned without image_url
-          }
-        }
-        return record;
-      }),
-    );
+    const history = records || [];
+    const recordsWithUrls = history.some((record) => record.image_path)
+      ? await addSignedAvatarUrls(history, createServiceClient())
+      : history;
 
     return res.status(200).json({
       records: recordsWithUrls,
       total: count,
-      limit: Number(limit),
-      offset: Number(offset),
+      limit,
+      offset,
     });
   } catch (err) {
     // Log error for debugging (in production, use proper logging service)

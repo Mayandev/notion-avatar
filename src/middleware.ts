@@ -7,13 +7,16 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    /*
-     * Match all request paths except for the ones starting with:
-     * - _next/static (static files)
-     * - _next/image (image optimization files)
-     * - favicon.ico (favicon file)
-     * - public folder assets
-     */
-    '/((?!_next/static|_next/image|favicon.ico|avatar|icon|image|fonts|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico)$).*)',
+    // Public pages and avatar exports do not need session refresh. Keep
+    // middleware on account/auth APIs; each API still checks authorization.
+    '/account/:path*',
+    '/auth/:path*',
+    '/api/auth/:path*',
+    '/api/user/:path*',
+    '/api/usage/:path*',
+    '/api/ai/:path*',
+    '/api/resources/:path*',
+    '/api/stripe/:path*',
+    '/api/promo/:path*',
   ],
 };

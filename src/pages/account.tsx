@@ -22,6 +22,7 @@ import Footer from '@/components/Footer';
 import Modal from '@/components/Modal/Common';
 import FaviconLinks from '@/components/SEO/FaviconLinks';
 import { useUsageHistory, usePurchasedPacks } from '@/hooks/useAccountData';
+import { addSignedAvatarUrls } from '@/lib/avatar-history';
 
 interface AccountPageProps {
   initialPurchasedPacks: string[];
@@ -891,24 +892,7 @@ export async function getServerSideProps(
     // 如果是 Pro 用户，生成图片签名 URL
     if (isPro && usageResult.data) {
       const serviceClient = createServiceClient();
-      usageHistory = await Promise.all(
-        usageResult.data.map(async (record) => {
-          if (record.image_path) {
-            try {
-              const { data: signedUrlData } = await serviceClient.storage
-                .from('generated-avatars')
-                .createSignedUrl(record.image_path, 3600);
-              return {
-                ...record,
-                image_url: signedUrlData?.signedUrl,
-              };
-            } catch {
-              return record;
-            }
-          }
-          return record;
-        }),
-      );
+      usageHistory = await addSignedAvatarUrls(usageResult.data, serviceClient);
     }
   } catch (error) {
     // eslint-disable-next-line no-console

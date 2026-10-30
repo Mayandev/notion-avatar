@@ -38,7 +38,7 @@ export function usePurchasedPacks(initialData?: string[]) {
   const queryClient = useQueryClient();
 
   const query = useQuery<string[]>({
-    queryKey: ['purchasedPacks'],
+    queryKey: ['purchasedPacks', user?.id],
     queryFn: async () => {
       const response = await fetch('/api/resources/purchased');
       if (!response.ok) {

@@ -10,12 +10,14 @@ interface ResourceStoreProps {
   purchasedPacks?: string[];
   onDownload?: (packId: string) => void;
   showDownloadButton?: boolean;
+  isCheckingPurchases?: boolean;
 }
 
 export default function ResourceStore({
   purchasedPacks = [],
   onDownload,
   showDownloadButton = false,
+  isCheckingPurchases = false,
 }: ResourceStoreProps) {
   const { t } = useTranslation('common');
   const { user } = useAuth();
@@ -26,6 +28,7 @@ export default function ResourceStore({
   const handlePurchase = async (
     resourcePackId: 'design-pack' | 'scribbles-pack',
   ) => {
+    if (isCheckingPurchases) return;
     if (!user) {
       setIsAuthModalOpen(true);
       return;
@@ -192,11 +195,13 @@ export default function ResourceStore({
             ) : user ? (
               <button
                 onClick={() => handlePurchase('design-pack')}
-                disabled={loadingPack === 'design-pack'}
+                disabled={isCheckingPurchases || loadingPack === 'design-pack'}
                 type="button"
                 className="w-full text-center py-3 px-6 bg-black text-white rounded-full hover:bg-gray-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {loadingPack === 'design-pack'
+                {isCheckingPurchases
+                  ? t('menu.loading')
+                  : loadingPack === 'design-pack'
                   ? 'Processing...'
                   : t('resourceStore.buyNow')}
               </button>
@@ -288,11 +293,15 @@ export default function ResourceStore({
             ) : user ? (
               <button
                 onClick={() => handlePurchase('scribbles-pack')}
-                disabled={loadingPack === 'scribbles-pack'}
+                disabled={
+                  isCheckingPurchases || loadingPack === 'scribbles-pack'
+                }
                 type="button"
                 className="w-full text-center py-3 px-6 bg-black text-white rounded-full hover:bg-gray-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {loadingPack === 'scribbles-pack'
+                {isCheckingPurchases
+                  ? t('menu.loading')
+                  : loadingPack === 'scribbles-pack'
                   ? 'Processing...'
                   : t('resourceStore.buyNow')}
               </button>
